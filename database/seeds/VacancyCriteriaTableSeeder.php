@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ApplicationsTableSeeder extends Seeder
+class VacancyCriteriaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class ApplicationsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Application::class, 100)->create();
+        factory(App\VacancyCriterion::class, 100)->create();
     }
 }

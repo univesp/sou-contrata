@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEdictsTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,8 @@ class CreateEdictsTable extends Migration
      */
     public function up()
     {
-        Schema::create('edicts', function (Blueprint $table) {
-            
+        Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('edict_link');
-            $table->date('date_start');
-            $table->date('date_end');
-            
-
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ class CreateEdictsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('edicts');
+        Schema::dropIfExists('services');
     }
 }
