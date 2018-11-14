@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApplicationsTable extends Migration
+class CreateApplicationCriteriaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('applications', function (Blueprint $table) {
+        Schema::create('application_criteria', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status', 50);
-            $table->text('observation', 100);
+            $table->tinyInteger('flag_on');
             $table->integer('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates');
-            $table->integer('criterion_id')->unsigned();
-            $table->foreign('criterion_id')->references('id')->on('criterions');
+            $table->integer('vacancy_crit_id');
+            $table->foreign('vacancy_crit_id')->references('id')->on('vacancy_criterions');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ class CreateApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('applications');
+        Schema::dropIfExists('application_criteria');
     }
 }
