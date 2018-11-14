@@ -15,7 +15,7 @@ class CreateApplicationAssignmentsTable extends Migration
     {
         Schema::create('application_assignments', function (Blueprint $table) {
            
-            $table->increments('application_id')->unsined();
+            $table->integer('application_id')->unsined();
             $table->integer('service_id')->unsined();
             $table->tinyint('flag_ok');
             
