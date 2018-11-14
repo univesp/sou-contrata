@@ -14,13 +14,10 @@ class CreateVacancyCriteriaTable extends Migration
     public function up()
     {
         Schema::create('vacancy_criteria', function (Blueprint $table) {
-            $table->increments('vacancy_criterion_id');
+            $table->increments('id');
             $table->unsignedInteger('criterion_id');
             $table->unsignedInteger('vacancy_id');
             $table->integer('punctuation');
-            $table->increments('id');
-            $table->increments('id');
-            $table->increments('id');
 
             $table->foreign('criterion_id')->references('id')->on('criteria');
             $table->foreign('vacancy_id')->references('id')->on('vacancies');
