@@ -20,7 +20,7 @@ class CreateApplicationsTable extends Migration
             $table->integer('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates');
             $table->integer('criterion_id')->unsigned();
-            $table->foreign('criterion_id')->references('id')->on('criterions');
+            $table->foreign('criterion_id')->references('id')->on('criteria');
             $table->timestamps();
         });
     }

@@ -14,9 +14,8 @@ class CreateAssignmentVacanciesTable extends Migration {
         Schema::create('assignment_vacancies', function (Blueprint $table) {
             $table->integer('service_id')->unsigned()->unique();
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->integer('criteria_id')->unsigned()->unique();
-            $table->foreign('criteria_id')->references('id')->on('
-            applications')->onDelete('cascade');
+            $table->integer('criterion_id')->unsigned()->unique();
+            $table->foreign('criterion_id')->references('id')->on('criteria')->onDelete('cascade');
 
             $table->timestamps();
         });

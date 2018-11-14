@@ -17,8 +17,8 @@ class CreateServicesTable extends Migration
             
             $table->increments('id');
 
-            $table->varchar('title',50);
-            $table->varchar('description',400); 
+            $table->string('title',50);
+            $table->text('description',400); 
 
             $table->timestamps();
         });
