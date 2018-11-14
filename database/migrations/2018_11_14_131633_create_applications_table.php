@@ -14,7 +14,7 @@ class CreateApplicationsTable extends Migration
     public function up()
     {
         Schema::create('applications', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('status', 50);
             $table->text('observation', 100);
             $table->integer('candidate_id')->unsigned();
