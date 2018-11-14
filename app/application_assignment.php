@@ -8,10 +8,11 @@ class application_assignment extends Model
 {
     protected $table = 'application_assignments';
 
-    protected $guarded = ['id', 'created_at', 'update_at' , 'delete_at'];
+    protected $guarded = ['id', 'created_at', 'update_at'];
 
 
     // Protect table sorted fields
-    protected flag_ok;
-   
+    protected $sorted = [
+        'flag_ok'
+    ];
 }
