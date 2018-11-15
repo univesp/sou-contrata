@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
-    <meta charset="utf-8">
+	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Formulário Inscrição</title>
@@ -21,37 +21,39 @@
 		<a  class="link-conteudo" href="index.html">< Voltar</a>
 		<h2 class="fonte-conteudo">Formulário de Inscrição</h2>
 		
-		<form action="processos-seletivos">
-			<div class="form-group">
-				<label for="nome">Nome Completo:</label>
-				<input type="nome" class="form-control" id="nome">
+		<!-- <form action="processos-seletivos"> -->
+		<form action="/store" method="post" enctype="multipart/form-data">
+		{{ csrf_field() }}
+		<div class="form-group">
+				<label for="name">Nome Completo:</label>
+				<input type="text" class="form-control" id="name" name="name">
 			</div>
 			
 			<div class="form-group">
 				<label for="rg">RG:</label>
-				<input type="rg" class="form-control" id="rg">
+				<input type="text" class="form-control" id="rg" name="rg">
 			</div>
 			
 			<div class="form-group">
 				<label for="cpf">CPF:</label>
-				<input type="cpf" class="form-control" id="cpf">
+				<input type="text" class="form-control" id="cpf" name="cpf">
 			</div>
 			
 			<div class="form-group">
 				<label for="email">E-mail:</label>
-				<input type="email" class="form-control" id="email">
+				<input type="email" class="form-control" id="email" name="email">
 			</div>
 		  
 			<div class="form-group">
 				<label for="curriculum">Curriculum Letters</label>
-				<input type="curriculum" class="form-control, fundo-label" id="curriculum" value="http://lattes.cnpq.br/650934850395">
+				<input type="text" class="form-control" id="curriculum" name="curriculum" placeholder="http://lattes.cnpq.br/650934850395" value="">
 			</div>
 			<div class="formatacao_doc">
 				Documentação
 			</div>
 			<img src="img/imagem-rodape.jpg" class="img-responsive, formatacao-rodape" alt="img-rodape"/>
 			<div class="botao-posicao-form">
-			<a href="processos-seletivos"><button type="submit" class="btn btn-danger">Enviar</button></a>
+			<button type="submit" class="btn btn-danger">Enviar</button>
 			</div>
 		</form> 
 		
