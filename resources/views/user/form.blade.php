@@ -64,21 +64,37 @@
 	<script>
 		$(function() {
 			$(document).ready(function() {
-				$("#btn").click(function(){
+				$("#btn").click(function() {
 					$.ajax({
-						url: '/store',
-						type: 'post',
-						dateType: 'json',
+						type: "POST",
 						headers: {
-							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 						},
-						data: {
-							form: $('form').serialize()
+						url: "../store",
+						data: {// change data to this object
+							_token : $('meta[name="csrf-token"]').attr('content'), 
+							form:$('form').serialize()
 						},
-						success: function(Answers) {
-							alert();				
-						} 
+						dataType: "text",
+						success: function(resultData) { alert("Save Complete") }
 					});
+
+					/*$.ajax({
+						type: "POST",
+						headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						},
+						url: "/store",
+						data: {
+							_token : $('meta[name="csrf-token"]').attr('content'), 
+							form: $('form').serialize()
+						}
+						,dataType: "text",
+						success: function(resultData) { 
+							alert("Save Complete") 
+						}
+					});	*/				
+				
 				});
 			});
 		});
