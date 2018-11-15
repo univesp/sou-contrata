@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+    "content-hash": "edbbf87b2d9061d7ece4c82b7d32a668",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -365,6 +365,38 @@
                 "trusted proxy"
             ],
             "time": "2018-02-07T20:20:57+00:00"
+        },
+        {
+            "name": "gilak/nolock",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hasangilak/NoLock.git",
+                "reference": "a6849043fb85227871abee264eebb1f694f6cfdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hasangilak/NoLock/zipball/a6849043fb85227871abee264eebb1f694f6cfdc",
+                "reference": "a6849043fb85227871abee264eebb1f694f6cfdc",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "NoLock\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "get read of locking file in both laravel and the way laravel use league filesystem",
+            "keywords": [
+                "filesystem",
+                "lock",
+                "package"
+            ],
+            "time": "2016-01-11T20:18:33+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
