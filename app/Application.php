@@ -9,6 +9,9 @@ class Application extends Model
     // Protect table name
     protected $table = 'applications';
 
+    // Protected guarded table fields
+    protected $guarded = ['id', 'created_at', 'update_at'];
+
     // Protect table fields
     protected $fillable = [
         'observation',
