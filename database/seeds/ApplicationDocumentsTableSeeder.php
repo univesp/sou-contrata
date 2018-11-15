@@ -11,6 +11,6 @@ class ApplicationDocumentsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ApplicationDocument::class, 100)->create();
+        factory(App\ApplicationDocument::class, 100)->make();
     }
 }
