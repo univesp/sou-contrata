@@ -23,7 +23,7 @@
 		<h2 class="fonte-conteudo">Formulário de Inscrição</h2>
 		
 		<!-- <form action="processos-seletivos"> -->
-		<form action="/store" method="get" enctype="multipart/form-data">
+		<form action="/store" method="post" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="form-group">
 				<label for="name">Nome Completo:</label>
@@ -54,50 +54,12 @@
 			</div>
 			<img src="img/imagem-rodape.jpg" class="img-responsive, formatacao-rodape" alt="img-rodape"/>
 			<div class="botao-posicao-form">
-			<button type="button" class="btn btn-danger" id="btn">Enviar</button>
+			<button type="submit" class="btn btn-danger" id="btn">Enviar</button>
 			</div>
 		</form> 
 		
 	</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	
-	<script>
-		$(function() {
-			$(document).ready(function() {
-				$("#btn").click(function() {
-					$.ajax({
-						type: "POST",
-						headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						},
-						url: "../store",
-						data: {// change data to this object
-							_token : $('meta[name="csrf-token"]').attr('content'), 
-							form:$('form').serialize()
-						},
-						dataType: "text",
-						success: function(resultData) { alert("Save Complete") }
-					});
-
-					/*$.ajax({
-						type: "POST",
-						headers: {
-						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-						},
-						url: "/store",
-						data: {
-							_token : $('meta[name="csrf-token"]').attr('content'), 
-							form: $('form').serialize()
-						}
-						,dataType: "text",
-						success: function(resultData) { 
-							alert("Save Complete") 
-						}
-					});	*/				
-				
-				});
-			});
-		});
-	</script>
   </body>
 </html>

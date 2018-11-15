@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller {
     /**
@@ -22,7 +23,27 @@ class UserController extends Controller {
      */
     public function store(Request $request) {
         
-        dd($request);
+        //$answer = User::create($request->all());
+        // name	login	password	email	cod_privilege
+        $user = [
+            'name'       => $_POST['name'],
+            'rg'         => $_POST['rg'],
+            'cpf'        => $_POST['cpf'],
+            'email'      => $_POST['email'],
+            'curriculum' => $_POST['curriculum'],
+        ];
+
+        $usuario = [
+            'name' => 'Simone Oliveira',
+            'login' => 'osimone',
+            'password' => md5('123456'),
+            'email' => 'simone@gmail.com',
+            'cod_privilege' => 999    
+        ];
+
+        $answer = User::create($usuario);
+
+        dd($answer);
 
     }
 
