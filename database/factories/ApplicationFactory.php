@@ -1,5 +1,4 @@
 <?php
-
 use App\Application;
 use Faker\Generator as Faker;
 

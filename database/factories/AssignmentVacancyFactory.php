@@ -1,8 +1,8 @@
 <?php
-
+use App\AssignmentVacancy;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(AssignmentVacancy::class, function (Faker $faker) {
     return [
         
         'service_id' => $faker->numberBetween($min = 1, $max = 100),
