@@ -6,6 +6,6 @@ class AssignmentVacancyTableSeeder extends Seeder {
   
     public function run() {
         
-        factory(\App\AssignmentVacancy::class, 100)->create();
+        factory(\App\AssignmentVacancy::class, 100)->make();
     }
 }

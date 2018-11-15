@@ -11,6 +11,6 @@ class VacancyCriteriaTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\VacancyCriterion::class, 100)->create();
+        factory(App\VacancyCriterion::class, 100)->make();
     }
 }

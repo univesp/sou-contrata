@@ -1,8 +1,8 @@
 <?php
-
+use App\Vacancy;
 use Faker\Generator as Faker;
 
-$factory->define(\App\Vacancy::class, function (Faker $faker) {
+$factory->define(Vacancy::class, function (Faker $faker) {
     return [
         'edict_id' => 1,
         'title' => $faker->title,
