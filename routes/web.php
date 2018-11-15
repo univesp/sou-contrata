@@ -18,6 +18,8 @@ Route::get('/form', function () {
     return view('user/form');
 });
 
+Route::post('/store', 'UserController@store')->name('store');
+
 Route::get('/processos-seletivos', function () {
     return view('vacancy/processos-seletivos');
 });

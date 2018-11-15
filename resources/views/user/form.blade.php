@@ -3,7 +3,8 @@
   <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Formulário Inscrição</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
@@ -22,7 +23,7 @@
 		<h2 class="fonte-conteudo">Formulário de Inscrição</h2>
 		
 		<!-- <form action="processos-seletivos"> -->
-		<form action="/store" method="post" enctype="multipart/form-data">
+		<form action="/store" method="get" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="form-group">
 				<label for="name">Nome Completo:</label>
@@ -53,12 +54,34 @@
 			</div>
 			<img src="img/imagem-rodape.jpg" class="img-responsive, formatacao-rodape" alt="img-rodape"/>
 			<div class="botao-posicao-form">
-			<button type="submit" class="btn btn-danger">Enviar</button>
+			<button type="button" class="btn btn-danger" id="btn">Enviar</button>
 			</div>
 		</form> 
 		
 	</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/app.js"></script>
+	
+	<script>
+		$(function() {
+			$(document).ready(function() {
+				$("#btn").click(function(){
+					$.ajax({
+						url: '/store',
+						type: 'post',
+						dateType: 'json',
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+						},
+						data: {
+							form: $('form').serialize()
+						},
+						success: function(Answers) {
+							alert();				
+						} 
+					});
+				});
+			});
+		});
+	</script>
   </body>
 </html>
