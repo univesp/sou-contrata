@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ApplicationCriterionsTableSeeder extends Seeder
+class ApplicationCriteriaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
