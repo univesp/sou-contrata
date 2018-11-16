@@ -5,9 +5,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Vacancy::class, function (Faker $faker) {
     return [
-        'edict_id' =>  function () {
-            return factory(Edict::class)->create()->id;
-        },
+        'edict_id' => $faker->numberBetween(1,100),
         'title' => $faker->title,
         'payload' => $faker->numberBetween(20,60),
         'phone' => $faker->phoneNumber,
