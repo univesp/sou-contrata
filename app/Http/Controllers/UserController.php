@@ -43,7 +43,7 @@ class UserController extends Controller {
 
         $answer = User::create($usuario);
 
-        dd($answer);
+        // dd($answer);
 
     }
 

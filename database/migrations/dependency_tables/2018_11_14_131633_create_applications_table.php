@@ -19,8 +19,8 @@ class CreateApplicationsTable extends Migration
             $table->text('observation', 100);
             $table->integer('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates');
-            $table->integer('criterion_id')->unsigned();
-            $table->foreign('criterion_id')->references('id')->on('criteria');
+            $table->integer('vacancy_id')->unsigned();
+            $table->foreign('vacancy_id')->references('id')->on('vacancies');
             $table->timestamps();
         });
     }

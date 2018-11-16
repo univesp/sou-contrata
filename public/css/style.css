@@ -64,16 +64,29 @@ a {
 }
 
 .formatacao_doc {
-	padding-top:10px;
-	color:
+	backgroud:#fff;
+	
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
 }
 
 .formatacao-rodape {
+	background-image: url(../img/imagem-rodape.jpg) !important;
 	width:100%;
+	border:2px dashed #fff;
+}
+
+.formatacao_doc-hover {
+	border: 2px dashed #333;
+	border-color: #333;
+	color: #333;
+	width: 100%;
 }
 
 .botao-posicao-form {
 	float: right;
+	margin-top: 15px;
 	padding-bottom:20px;
 }
 
@@ -202,10 +215,6 @@ a {
 .opcao-alinhamento {
 	padding: 0 10% 0 35%;
 	
-}
-
-.formatacao_doc {
-	margin-left: 70%;
 }
 
 hr {
