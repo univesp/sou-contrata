@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
+<<<<<<< HEAD
     protected $table = 'documents';
 
     protected $guarded = ['id', 'created_at', 'update_at'];
@@ -20,4 +21,7 @@ class Document extends Model
     }
     //
 //'id','type','number','serie_number','zone','uf_emission','section','emission_date','link'
+=======
+    //
+>>>>>>> 33387759b19e48d2dc9ab7a4c340d9c58a6c4aa5
 }
