@@ -26,4 +26,9 @@ class Candidate extends Model {
         return $this->hasMany(Application::class);
     }
 
+    public function scholarities()
+    {
+        return $this->hasMany(Scholarity::class);
+    }
+
 }
