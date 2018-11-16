@@ -10,7 +10,6 @@ class ApplicationAssignment extends Model
 
     protected $guarded = ['id', 'created_at', 'update_at'];
 
-    
     // Protect table fields
     protected $fillable = [
         'flag_ok', 'application_id', 'service_id'
