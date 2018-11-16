@@ -52,7 +52,8 @@
 			<div class="formatacao_doc">
 				Documentação
 			</div>
-			<img src="img/imagem-rodape.jpg" class="img-responsive, formatacao-rodape" alt="img-rodape"/>
+			
+			<!--<img src="img/imagem-rodape.jpg" class="img-responsive, formatacao-rodape" alt="img-rodape"/>-->
 			<div class="botao-posicao-form">
 			<button type="submit" class="btn btn-danger" id="btn">Enviar</button>
 			</div>
@@ -61,5 +62,33 @@
 	</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	
+	<script>
+		
+		$(function() {
+			
+			$(document).ready(function() {
+				
+				$('.formatacao_doc').on('dragover', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					$(this).addClass('formatacao_doc-hover ');
+				});
+				
+				$('.formatacao_doc').on('dragleave', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					$(this).removeClass('formatacao_doc-hover ');
+				});
+				
+				$('.formatacao_doc').on('drop', function(event) {
+					event.preventDefault();
+					event.stopPropagation();
+					$(this).removeClass('formatacao_doc-hover ');
+
+					console.log(event);
+				});
+			});
+		})
+	</script>
   </body>
 </html>
