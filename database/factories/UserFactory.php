@@ -24,5 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'cod_privilege' => $faker->numberBetween($min = 1, $max = 4),
         'remember_token' => str_random(10),
+        'cod_privilege' => rand(0,2),
     ];
 });

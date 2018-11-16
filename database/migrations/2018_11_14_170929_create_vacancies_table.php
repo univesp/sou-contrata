@@ -19,8 +19,8 @@ class CreateVacanciesTable extends Migration
 
             $table->string('title', 150);
             $table->decimal('payload',5);
-            $table->string('phone',12);
-            $table->string('postal_code',9);
+            $table->string('phone',30);
+            $table->string('postal_code',15);
             $table->string('matter',40);
 
             $table->foreign('edict_id')->references('id')->on('edicts');
