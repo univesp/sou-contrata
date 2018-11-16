@@ -32,8 +32,8 @@ class ApplicationCriterion extends Model
         return $this->belongsTo(VacancyCriterion::class);
     }
 
-    public function candidate()
+    public function application()
     {
-        return $this->belongsTo(Candidate::class);
+        return $this->belongsTo(Application::class);
     }
 }

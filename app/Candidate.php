@@ -26,9 +26,4 @@ class Candidate extends Model {
         return $this->hasMany(Application::class);
     }
 
-    public function applicationCriteria()
-    {
-        return $this->hasMany(ApplicationCriterion::class);
-    }
-
 }
