@@ -28,4 +28,10 @@ class Application extends Model
         'criterion_id'
     ];
 
+    // Relationships
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
+
 }
