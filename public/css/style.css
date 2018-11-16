@@ -1,6 +1,7 @@
 .cabecalho {
 	padding:5%;
 	background-image: url(../img/fundo_cabecalho.jpg);
+	background-image: no-repeat;
 
 }
 .font-cabecalho1 {
@@ -64,29 +65,15 @@ a {
 }
 
 .formatacao_doc {
-	backgroud:#fff;
-	
-	height: 70px;
-	line-height: 70px;
-	text-align: center;
+	padding-top:10px;
 }
 
 .formatacao-rodape {
-	background-image: url(../img/imagem-rodape.jpg) !important;
 	width:100%;
-	border:2px dashed #fff;
-}
-
-.formatacao_doc-hover {
-	border: 2px dashed #333;
-	border-color: #333;
-	color: #333;
-	width: 100%;
 }
 
 .botao-posicao-form {
 	float: right;
-	margin-top: 15px;
 	padding-bottom:20px;
 }
 
@@ -217,46 +204,46 @@ a {
 	
 }
 
-hr {
-	border: solid 1px #ccc;
+.formatacao_doc {
+	margin-left: 70%;
 }
 
-.ob{
-	color: red;
-	margin-top: 10px;
+.alinhamento-checkbox {
+	margin-top: 10%;
 }
 
-hr{
-	border-bottom: 1px solid #ccc;
-	width: 100%;
+.checagem {
+	margin-bottom: 0.25%!important;
 }
 
-.red{
-	color: red;
+.alinhamento-checkbox_1 {
+	padding-top: 6%;
 }
 
-.top{
-	margin-top: 15px;
+.cadastro-incones {
+	float: right !important;
 }
 
-.cor-campo{
-	color: red;
-}
-.left{
-	margin-left: 20px;
+.posicao-form-campos {
+	padding-bottom: 1% !important;
 }
 
-.cor-frase{
-	color: #ccc;
-	font-weight: 300;
+.img-incones {
+	float: right !important;
 }
 
-.fonte-cabecalho{
-	background-image: url(../img/Formulario_02.png);
-	height: 150px;
+.alinhar-form {
+	float: left !important;
 }
 
-#top-bottom{
-	margin-top: 20px;
-	margin-bottom: 20px;
+.incone-lixeira {
+	padding: 2% 0 0 4% !important;
+}
+
+.alinhamento-radio {
+	padding: 0 2% 0 2%;
+}
+
+.checagem-radio {
+	margin-bottom: 2%;
 }
