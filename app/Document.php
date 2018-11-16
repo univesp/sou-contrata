@@ -19,7 +19,6 @@ class Document extends Model {
     ];
 
     public function candidate() {
-
         return $this->belongsTo(Candidate::class);
     }
 }
