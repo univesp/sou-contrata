@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Candidate extends Model {
-    
+
     protected $table = 'candidates';
 
     protected $fillable = [
@@ -29,6 +29,16 @@ class Candidate extends Model {
     public function scholarities()
     {
         return $this->hasMany(Scholarity::class);
+    }
+
+    public function document()
+    {
+        return $this->hasMany(Document::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Document::class);
     }
 
 }

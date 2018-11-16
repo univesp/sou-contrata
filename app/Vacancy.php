@@ -31,15 +31,13 @@ class Vacancy extends Model
 
     public function edict()
     {
-        return $this->hasOne(Edict::class);
+        return $this->belongsTo(Edict::class);
     }
 
     public function criteria()
     {
         return $this->belongsToMany(Criterion::class,
-            'VacancyCriterion',
-            'vacancy_id',
-            'criterion_id');
+            'vacancy_criteria');
     }
 
 }

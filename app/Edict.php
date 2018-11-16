@@ -28,6 +28,6 @@ class Edict extends Model
 
     public function vacancy()
     {
-        return $this->belongsTo(Vacancy::class);
+        return $this->hasOne(Vacancy::class);
     }
 }

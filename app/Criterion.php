@@ -28,8 +28,6 @@ class Criterion extends Model
     public function vacancies()
     {
         return $this->belongsToMany(Vacancy::class,
-            'VacancyCriterion',
-            'criterion_id',
-            'vacancy_id');
+            'vacancy_criteria');
     }
 }

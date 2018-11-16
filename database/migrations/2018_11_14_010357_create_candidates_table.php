@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class CreateCandidatesTable extends Migration {
-    
+
     public function up() {
 
         Schema::create('candidates', function (Blueprint $table) {
@@ -15,15 +15,15 @@ class CreateCandidatesTable extends Migration {
             $table->date('date_birth');
             $table->char('genre',1);
             $table->string('curriculum_link', 150);
-            $table->char('marital_status',20);
-            $table->char('cpf',11);
+            $table->char('marital_status',25);
+            $table->char('cpf',15);
             $table->string('cell_phone',20);
             $table->tinyInteger('flag_deficient');
             $table->text('obs_deficient');
             $table->string('name_mather',150);
             $table->string('name_father',150);
             $table->string('name_social',150);
-            $table->string('nationality',20);
+            $table->string('nationality',100);
             $table->integer('user_id')->unsigned()->unique();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
