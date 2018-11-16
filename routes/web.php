@@ -20,6 +20,8 @@ Route::get('/form', function () {
 
 Route::post('/store', 'UserController@store')->name('store');
 
+Route::post('/upload', 'UserController@upload')->name('upload');
+
 Route::get('/processos-seletivos', function () {
     return view('vacancy/processos-seletivos');
 });

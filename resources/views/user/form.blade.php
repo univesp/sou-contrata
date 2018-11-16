@@ -52,6 +52,7 @@
 			<div class="formatacao_doc">
 				Documentação
 			</div>
+			<div id="upload-files"></div>
 			
 			<!--<img src="img/imagem-rodape.jpg" class="img-responsive, formatacao-rodape" alt="img-rodape"/>-->
 			<div class="botao-posicao-form">
@@ -84,8 +85,27 @@
 					event.preventDefault();
 					event.stopPropagation();
 					$(this).removeClass('formatacao_doc-hover ');
+					var data = new FormData();
+					var files = event.originalEvent.dataTransfer.files;
+					for(var i=0; i < files.length; i++) {
+						data.append('file[]', files[i]);
+					}	
 
-					console.log(event);
+					$.ajax({
+						 headers: {
+      					  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    					},
+						url: '/upload',
+						type: 'post',
+						data: data,
+						contentType:false,
+						cache: false,
+						processData:false,
+						success: function(result) {
+
+							$("#upload-files").html(result);
+						}
+					});
 				});
 			});
 		})

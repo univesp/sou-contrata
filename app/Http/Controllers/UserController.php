@@ -48,6 +48,17 @@ class UserController extends Controller {
     }
 
     /**
+     * Upload Files
+     * Método responsável por carregar os documentos.
+     */
+
+     public function upload() {
+
+        dd($_POST);
+
+     }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
