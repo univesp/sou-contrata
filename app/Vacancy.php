@@ -28,4 +28,18 @@ class Vacancy extends Model
         'postal_code',
         'matter',
     ];
+
+    public function edict()
+    {
+        return $this->hasOne(Edict::class);
+    }
+
+    public function criteria()
+    {
+        return $this->belongsToMany(Criterion::class,
+            'VacancyCriterion',
+            'vacancy_id',
+            'criterion_id');
+    }
+
 }

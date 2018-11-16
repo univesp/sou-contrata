@@ -25,4 +25,9 @@ class Edict extends Model
         'date_start',
         'date_end',
     ];
+
+    public function vacancy()
+    {
+        return $this->belongsTo(Vacancy::class);
+    }
 }

@@ -4,7 +4,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Criterion::class, function (Faker $faker) {
     return [
-        'criterion_id' => '',
-        'title' => $faker->title
+        'title' => $faker->title,
+        'subtitel' => $faker->title,
+        'name' => $faker->name,
     ];
 });

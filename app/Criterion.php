@@ -12,12 +12,24 @@ class Criterion extends Model
 
     protected $fillable = [
         'criterion_id',
-        'title'
+        'title',
+        'subtitle',
+        'name'
     ];
 
     // Protect table sorted fields
     protected $sorted = [
         'criterion_id',
-        'title'
+        'title',
+        'subtitle',
+        'name'
     ];
+
+    public function vacancies()
+    {
+        return $this->belongsToMany(Vacancy::class,
+            'VacancyCriterion',
+            'criterion_id',
+            'vacancy_id');
+    }
 }
