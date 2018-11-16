@@ -4,35 +4,24 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateApplicationAssignmentsTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
+class CreateApplicationAssignmentsTable extends Migration {
+    
+    public function up() {
+
         Schema::create('application_assignments', function (Blueprint $table) {
-           
+            $table->increments('id');
             $table->integer('application_id')->unsined();
+            //$table->foreign('application_id')->references('id')->on('applications');
+            $table->tinyInteger('flag_ok');
             $table->integer('service_id')->unsined();
-            $table->tinyint('flag_ok');
-            
-            $table->foreign('application_id')->references('id')->on('application');
-            $table->foreign('service_id')->references('id')->on('service');
+            //$table->foreign('service_id')->references('id')->on('services');
 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
+    public function down() {
+
         Schema::dropIfExists('application_assignments');
     }
 }
