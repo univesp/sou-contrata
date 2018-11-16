@@ -16,37 +16,21 @@
 	
     <div class="container">
 		<ul class="nav nav-tabs">
-			<li class="active, link"><a href="vaga-disciplina">Áreas de Interesse</a></li>
-			<li><a class="link-2" href="dados-pessoais">Dados pessoais</a></li>
-			<li><a class="link-2" href="dados-academicos">Dados Acadêmicos</a></li>
+			<li class="active, link3"><a href="vaga-disciplina">Áreas de Interesse</a></li>
+			<li><a href="dados-pessoais">Dados pessoais</a></li>
+			<li><a href="dados-academicos">Dados Acadêmicos</a></li>
 		</ul>
-		<p class="ob">*Obrigatório</p>
+		<p class="ob, cor-campo">*Obrigatório</p>
 		<p>Você esta credenciando como docente para:</p>
-		<hr>
+		<h2>História da Univesp</h2>
+		Requisitos
+		<ul>
+			<li>Docente nas universidades conveniadas com a Univesp</li>
+			<li>Minimo: Título de Doutor</li>
+		</ul>
+		<hr/>
 
 		<form>
-	    <div class="row">
-			<div class="col-md-6">
-			  <div class="form-group">
-					<label for="inputNatu" class="fonte-campos">Disciplina de Interesse<span class="cor-campo"> *</span></label>
-						<select id="inputNatu" class="form-control">
-						<option selected>História da Univesp</option>
-						<option>Chilena</option>
-						<option>Americana</option>
-						<option>Chinesa</option>
-					</select>
-				</div>
-	            <div class="col-md-6"></div>
-			</div>
-	    </div> 
-
-	    <label for="inputNatu" class="fonte-campos">Atividade de Interesse
-            <span class="cor-campo"> *</span><br>
-			<span class="cor-frase">Clique em + para ver aos requisitos da atividade</span>
-		</label>
-
-		<div class="row">
-
 			<div class="col-md-6">
 				
 
@@ -55,209 +39,151 @@
 				<div class="checkbox">
 				  <label>
 				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
+					Elaboração de roteiros de aprendizagem
+				  </label>
+					<div class="checagem"></div>
+				   <label>
+					<input type="checkbox" value="">
+					Elaboração de video aulas 
+				  </label>
+				  <div class="checagem"></div>
+				  <label>
+				    <input type="checkbox" value="">
+				    Elaboração de atividades avaliativas
 				  </label>
 				  <label>
 				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
+				    Elaboração de questões para a prova final da disciplina
 				  </label>
 				  <label>
 				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
+					Revisão do banco de questões da disciplina
 				  </label>
 				  <label>
 				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
+				      Acompanhamento de Oferta de disciplinas 
+ 				  </label>
+				  <div class="checagem"></div>
 				  <label>
 				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label class="top">
-				    <input type="checkbox" value="">
-				      <strong>Acompanhamento de Oferta de disciplinas</strong>  
+				      Validação de material 
  				  </label>
 				</div>
-
 			</div>
-
-			<div class="col-md-6">
-				
-				<h5><strong class="left">Acessibilidade</strong></h5>
-
+			<div class="col-md-12">
+				<hr />
+				<h4>Declaração de Título de Experiência</h2>
+				<div class="checagem-radio"></div>
+				<h5><strong>Título de Mestre<span class="cor-campo">*</span></strong></h5>
+				<div class="checagem-radio"></div>
 				<div class="checkbox">
 				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
+					<input type="checkbox" name="1" id="1" value="1" onclick="return itemSelect(this)"/>Área de disciplina
+					<div class="item-1, col-md-12" style="display:none">
+						<input type="radio" id="1" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="2" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="3" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="4" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
+					
 				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
+					<div class="checagem"></div>
+				   <label>
+				   <input type="checkbox" name="5" id="5" value="5" onclick="return itemSelect(this)"/>Área correlata
+					<div class="item-2, col-md-12" style="display:none">
+						<input type="radio" id="5" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="6" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="7" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="8" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
 				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-                   
-				  <label class="top">
-				    <input type="checkbox" value="">
-				      <strong>Validação de Material</strong>  
- 				  </label>
 				</div>
-
-			</div>
+				<div class="checagem-radio"></div>
+				<h5><strong>Título de Doutor<span class="cor-campo">*</span></strong></h5>
+				<div class="checagem-radio"></div>
+				<div class="checkbox">
+				  <label>
+					<input type="checkbox" name="9" id="9" value="9" onclick="return itemSelect(this)"/>Área de disciplina
+					<div class="item-3, col-md-12" style="display:none">
+						<input type="radio" id="9" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="10" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="11" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="12" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
+					
+				  </label>
+					<div class="checagem"></div>
+				   <label>
+				   
+				   <input type="checkbox" name="13" id="13" value="13" onclick="return itemSelect(this)"/>Área correlata
+					<div class="item-4, col-md-12" style="display:none">
+						<input type="radio" id="13" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="14" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="15" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="16" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
+					
+				  </label>
+				</div>
+				<div class="checagem-radio"></div>
+				<h5><strong>Experiência Docente<span class="cor-campo">*</span></strong></h5>
+				<div class="checagem-radio"></div>
+				<div class="checkbox">
+				  <label>	
+					<input type="checkbox" name="17" id="17" value="17" onclick="return itemSelect(this)"/>Área de disciplina
+					<div class="item-5, col-md-12" style="display:none">
+						<input type="radio" id="17" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="18" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="19" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="20" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
+					
+				  </label>
+					<div class="checagem"></div>
+				   <label>
+				   
+				   <input type="checkbox" name="21" id="21" value="21" onclick="return itemSelect(this)"/>Área correlata
+					<div class="item-6, col-md-12" style="display:none">
+						<input type="radio" id="21" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="22" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="23" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="24" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
+					
+				  </label>
+				</div>
+				<div class="checagem-radio"></div>
+				<h5><strong>Experiência da Modalidade a Distância<span class="cor-campo">*</span></strong></h5>
+				<div class="checagem-radio"></div>
+				<div class="checkbox">
+				  <label>
+					<input type="checkbox" name="25" id="25" value="25" onclick="return itemSelect(this)"/>Área de disciplina
+					<div class="item-7, col-md-12" style="display:none">
+						<input type="radio" id="25" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="26" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="27" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="28" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
+					
+				  </label>
+					<div class="checagem"></div>
+				   <label>
+				   
+				   <input type="checkbox" name="29" id="29" value="29" onclick="return itemSelect(this)"/>Área correlata
+					<div class="item-8, col-md-12" style="display:none">
+						<input type="radio" id="29" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
+						<input type="radio" id="30" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
+						<input type="radio" id="31" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
+						<input type="radio" id="32" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
+					</div>
+					
+				  </label>
+				</div>
 		</div>
-
-		<div class="row">
-			<div class="col-md-6">
-			    <div class="form-group">
-					<label for="inputNatu" class="fonte-campos">Disciplina de Interesse<span class="cor-campo">*</span></label>
-						<select id="inputNatu" class="form-control">
-						<option selected>História da Univesp</option>
-						<option>Chilena</option>
-						<option>Americana</option>
-						<option>Chinesa</option>
-					</select>
-					 <p class="ob">Campo Obrigatório</p>
-				</div>
-	            <div class="col-md-6"></div>
-			</div>
-	    </div> 
-
-		</form>
-
-		<hr>
-
-		<div class="row">
-			<div class="col-md-6">
-			  <div class="form-group">
-					<label for="inputNatu" class="fonte-campos">Disciplina de Interesse<span class="cor-campo"> *</span></label>
-						<select id="inputNatu" class="form-control">
-						<option selected>História da Univesp</option>
-						<option>Chilena</option>
-						<option>Americana</option>
-						<option>Chinesa</option>
-					</select>
-				</div>
-	            <div class="col-md-6"></div>
-			</div>
-			<div class="float-right">
-					<img src="img/lixeira.png">
-			</div>
-	    </div> 
-
-	    <label for="inputNatu" class="fonte-campos">Atividade de Interesse
-            <span class="cor-campo"> *</span><br>
-			<span class="cor-frase">Clique em + para ver aos requisitos da atividade</span>
-		</label>
-
-		<div class="row">
-
-			<div class="col-md-6">
-
-				<h5><strong class="left">Autoria</strong></h5>
-
-				<div class="checkbox">
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label class="top">
-				    <input type="checkbox" value="">
-				      <strong>Acompanhamento de Oferta de disciplinas</strong>  
- 				  </label>
-				</div>
-
-			</div>
-
-			<div class="col-md-6">
-				
-				<h5><strong class="left">Acessibilidade</strong></h5>
-
-				<div class="checkbox">
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-				  <label>
-				    <input type="checkbox" value="">
-				    Option one is this and that&mdash;be sure to include why it's great
-				  </label>
-                   
-				  <label class="top">
-				    <input type="checkbox" value="">
-				      <strong>Validação de Material</strong>  
- 				  </label>
-				</div>
-
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-6">
-			    <div class="form-group">
-					<label for="inputNatu" class="fonte-campos">Disciplina de Interesse<span class="cor-campo"> *</span></label>
-					<select id="inputNatu" class="form-control">
-						<option selected>História da Univesp</option>
-						<option>Chilena</option>
-						<option>Americana</option>
-						<option>Chinesa</option>
-					</select>
-					 <p class="ob">Campo Obrigatório</p>
-				</div>
-	            <div class="col-md-6"></div>
-			</div>
-	    </div> 
-
-	    <hr>
-        
+		<div class="checagem-radio"></div>
         <div class="row">
         	<div class="float-right">
-        		<p class="ob">Adicionar outra disciplina</p>
+        		<p><a class="ob, cor-campo" href="processos-seletivos">Adicionar outra disciplina</a></p>
         	</div>
         </div>
         <div class="row">
@@ -265,9 +191,34 @@
         		<button type="button" class="btn btn-danger">AVANÇAR</button>
         	</div>
         </div>
-       <br><br>
-    </div>	
+       <br /><br />
+	   </div>
 
+	   <script type="text/javascript">
+
+		function itemSelect(elem) {
+		  var si = $(elem).val();
+		  var isCheck = $(elem).is(':checked');
+
+		  if(isCheck) {
+			fadeIn($(elem).siblings());
+		  } else {
+			fadeOut($(elem).siblings());
+		  }
+		}
+
+		function fadeIn(itemClass, itemId) {
+		  $(itemClass).fadeIn();
+		  $(itemId).addClass('borda');
+		}
+
+		function fadeOut(itemClass, itemId) {
+		  $(itemClass).fadeOut();
+		  $(itemId).removeClass('borda');
+		}
+	
+	   </script>
+	   
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     
