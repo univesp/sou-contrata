@@ -22,4 +22,10 @@ class VacancyCriterion extends Model
         'vacancy_id',
         'punctuation'
     ];
+
+    // Relationships
+    public function applicationCriteria()
+    {
+        return $this->hasMany(ApplicationCriterion::class);
+    }
 }

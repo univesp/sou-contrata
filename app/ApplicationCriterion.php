@@ -25,4 +25,15 @@ class ApplicationCriterion extends Model
         'candidate_id',
         'vacancy_crit_id',
     ];
+
+    // Relationships
+    public function vacancyCriterion()
+    {
+        return $this->belongsTo(VacancyCriterion::class);
+    }
+
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
 }
