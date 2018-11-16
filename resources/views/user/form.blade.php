@@ -95,7 +95,7 @@
 						 headers: {
       					  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     					},
-						url: '/upload',
+						url: '/documents',
 						type: 'post',
 						data: data,
 						contentType:false,

@@ -14,11 +14,15 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    //name	login	password	email	cod_privilege
+
     return [
         'name' => $faker->name,
+        'login' => $faker->name,
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'cod_privilege' => $faker->numberBetween($min = 1, $max = 4),
         'remember_token' => str_random(10),
     ];
 });
