@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 class DocumentController extends Controller
 {
+<<<<<<< HEAD
+    //
+=======
     /**
      * Display a listing of the resource.
      *
@@ -60,4 +63,5 @@ class DocumentController extends Controller
     {
         //
     }
+>>>>>>> 33387759b19e48d2dc9ab7a4c340d9c58a6c4aa5
 }
