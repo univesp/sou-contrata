@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder {
         $this->call(ApplicationCriteriaTableSeeder::class);
         // $this->call(ApplicationDocumentsTableSeeder::class);
         $this->call(EdictsTableSeeder::class);
+        $this->call(ServiceSeeder::class);
+        $this->call(ApplicationAssignmentSeeder::class);
         $this->call(VacanciesTableSeeder::class);
         $this->call(CriteriaTableSeeder::class);
         $this->call(VacancyCriteriaTableSeeder::class);
