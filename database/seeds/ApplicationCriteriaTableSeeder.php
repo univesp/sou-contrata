@@ -11,6 +11,6 @@ class ApplicationCriterionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ApplicationCriterion::class, 100)->make();
+        factory(App\ApplicationCriterion::class, 100)->create();
     }
 }

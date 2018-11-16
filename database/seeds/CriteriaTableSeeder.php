@@ -11,6 +11,6 @@ class CriteriaTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Criterion::class, 100)->make();
+        factory(App\Criterion::class, 100)->create();
     }
 }
