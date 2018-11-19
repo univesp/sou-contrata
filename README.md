@@ -13,7 +13,7 @@ Os seguintes softwares, e/ou versões dos mesmos, devem estar instalados como pr
 * [PHP 7.2](http://www.php.net/) - Pré-requisito do projeto
 * [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces (Pré-requisito do projeto)
 * [arquivo .ENV do laradock](https://drive.google.com/drive/u/1/folders/1eOSw7hGyMLjj032J4HUKQRP1YLhC1CHK) - .env é necessário para a execuxão do container docker (Pré-requisito do projeto)
-* [.env](https://drive.google.com/drive/u/1/folders/1gaIZIKJ3VIAfyZOUfGTg6NRn6bXhrRh3) - arquivo .ENV de cada módulo em GDrive > #SOU > Infraestrutura > sou-docker > pasta-do-modulo > .env
+* [.env](https://drive.google.com/drive/u/1/folders/1gaIZIKJ3VIAfyZOUfGTg6NRn6bXhrRh3) - arquivo .ENV de cada módulo em GDrive > **#SOU > Infraestrutura > sou-docker > pasta-do-modulo > .env**
 
 Softwares opcionais: 
 
