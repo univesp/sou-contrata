@@ -2,7 +2,7 @@
 use App\Candidate;
 use Faker\Generator as Faker;
 
-$factory->define(Candidate::class, function (Faker $faker)
+$factory->define(Candidate::class, function ($faker) use ($factory)
 {
 
     return [
@@ -19,6 +19,7 @@ $factory->define(Candidate::class, function (Faker $faker)
         'name_mather' => $faker->name,
         'name_father' => $faker->name,
         'name_social' => $faker->name,
-        'nationality' => $faker->country
+        'nationality' => $faker->country,
+        'user_id' => $factory->create(App\User::class)->id,
     ];
 });

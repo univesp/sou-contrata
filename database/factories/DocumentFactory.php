@@ -2,15 +2,15 @@
 use App\Document;
 use Faker\Generator as Faker;
 
-$factory->define(Document::class, function (Faker $faker) {
+$factory->define(Document::class, function ($faker) use ($factory) {
     return [
-        'type'=> $faker->name,
+        'document_type'=> $faker->text($maxNbChars = 20),
         'number'=> $faker->numerify('#####'),
         'serie_number'=> $faker->numerify('#####'),
+        'date_issue'=> $faker->date($format = 'Y-m-d', $max = 'now'),
+        'uf_issue'=> 'SP',
         'zone'=> $faker->numerify('#####'),
-        'uf_emission'=> 'SP',
         'section'=> $faker->numerify('#####'),
-        'emission_date'=> date("Y-m-d H:i:s",strtotime("-120 day",strtotime("now"))),
-        'link' => __DIR__ . '/public/img/document/123456789.pdf',
+        'candidate_id' => $factory->create(App\Candidate::class)->id,
     ];
 });

@@ -16,7 +16,7 @@ class CreateDocumentsTable extends Migration
             $table->foreign('candidate_id')->references('id')->on('candidates');
             $table->string('document_type', 20);
             $table->string('number', 50);
-            $table->string('number_serie', 10);
+            $table->string('serie_number', 10);
             $table->date('date_issue');
             $table->string('uf_issue', 2);
             $table->string('zone', 6);

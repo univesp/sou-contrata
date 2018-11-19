@@ -14,14 +14,14 @@ class ApplicationCriterion extends Model
 
     // Protect table fields
     protected $fillable = [
-        'flag_on',
+        'flag_ok',
         'candidate_id',
         'vacancy_crit_id',
     ];
 
     // Protect table sorted fields
     protected $sorted = [
-        'flag_on',
+        'flag_ok',
         'candidate_id',
         'vacancy_crit_id',
     ];

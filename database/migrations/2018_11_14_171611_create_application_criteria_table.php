@@ -10,7 +10,7 @@ class CreateApplicationCriteriaTable extends Migration {
 
         Schema::create('application_criteria', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('flag_on');
+            $table->tinyInteger('flag_ok');
             $table->integer('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates');
             $table->integer('vacancy_crit_id')->unsigned();

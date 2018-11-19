@@ -3,9 +3,9 @@ use App\Vacancy;
 use App\Edict;
 use Faker\Generator as Faker;
 
-$factory->define(Vacancy::class, function (Faker $faker) {
+$factory->define(Vacancy::class, function ($faker) use ($factory) {
     return [
-        'edict_id' => $faker->numberBetween(1,100),
+        'edict_id' => $factory->create(App\Edict::class)->id,
         'title' => $faker->title,
         'payload' => $faker->numberBetween(20,60),
         'phone' => $faker->phoneNumber,
