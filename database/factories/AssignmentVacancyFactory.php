@@ -2,10 +2,10 @@
 use App\AssignmentVacancy;
 use Faker\Generator as Faker;
 
-$factory->define(AssignmentVacancy::class, function (Faker $faker) {
+$factory->define(AssignmentVacancy::class, function ($faker) use ($factory) {
     return [
         
-        'service_id' => $faker->numberBetween($min = 1, $max = 100),
-        'criterion_id' => $faker->numberBetween($min = 1, $max = 100)
+        'service_id' => $factory->create(App\Service::class)->id,
+        'criterion_id' => $factory->create(App\Criterion::class)->id,
     ];
 });

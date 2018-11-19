@@ -11,7 +11,7 @@ class Document extends Model {
     protected $guarded = ['id', 'created_at', 'update_at'];
 
     protected $fillable = [
-        'type','number','serie_number','zone','uf_emission','section','emission_date','link'
+        'document_type','number','serie_number','zone','uf_issue','section','date_issue','candidate_id'
     ];
 
     protected $hidden = [
