@@ -23,6 +23,5 @@ $factory->define(App\User::class, function (Faker $faker) {
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'remember_token' => str_random(10),
-        'cod_privilege' => rand(0,2),
     ];
 });

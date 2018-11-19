@@ -26,6 +26,18 @@ Route::get('/form', function () {
     return view('user/form');
 });
 
+Route::get('/login', function () {
+
+    return view('vacancy/login');
+});
+
+Route::post('/login', 'UserController@login')->name('login');
+
+Route::get('/process', function () {
+    
+    return view('vacancy/process');
+});
+
 Route::post('/store', 'UserController@store')->name('store');
 
 Route::post('/documents', 'UserController@documents')->name('documents');
