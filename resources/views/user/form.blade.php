@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Cadastro de Professores</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
@@ -16,7 +17,8 @@
 			<div class="formatacao-campos">
 				*Obrigatório
 			</div>
-			<form id="form" action="usuario">
+			<form action="/store" method="post">
+				{{ csrf_field() }}
 				<div class="form-group col-md-2" style="padding-right: 0px;">
 					<label for="textCodInscricao" class="control-label, fonte-campos">Código de Privilegio:<span class="cor-campo">*</span></label>
 					<input id="textCodInscricao"  class="form-control" type="text" name="code-privilege" required oninvalid="this.setCustomValidity('Digite o seu Cófdigo de Inscrição')" onchange="try{setCustomValidity('')}catch(e){}">

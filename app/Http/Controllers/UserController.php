@@ -30,28 +30,20 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        
-        //$answer = User::create($request->all());
-        // name	login	password	email	cod_privilege
-        $user = [
-            'name'       => $_POST['name'],
-            'rg'         => $_POST['rg'],
-            'cpf'        => $_POST['cpf'],
-            'email'      => $_POST['email'],
-            'curriculum' => $_POST['curriculum'],
+
+        $candidate = [
+            'name' => $_POST['name'],
+            'login' => $_POST['login'],
+            'password' => $_POST['password'],
+            'email' => $_POST['email'],
+            'cod_privilege' => $_POST['code-privilege'],            
         ];
 
-        $usuario = [
-            'name' => 'Simone Oliveira',
-            'login' => 'osimone',
-            'password' => md5('123456'),
-            'email' => 'simone@gmail.com',
-            'cod_privilege' => 999    
-        ];
+        //dd($_POST);
 
-        $answer = User::create($usuario);
+        $answer = User::create($candidate);
 
-        // dd($answer);
+        dd($answer);
 
     }
 
