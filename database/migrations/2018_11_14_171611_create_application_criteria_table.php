@@ -13,8 +13,8 @@ class CreateApplicationCriteriaTable extends Migration {
             $table->tinyInteger('flag_on');
             $table->integer('candidate_id')->unsigned();
             $table->foreign('candidate_id')->references('id')->on('candidates');
-            $table->integer('vacancy_crit_id');
-            //$table->foreign('vacancy_crit_id')->references('id')->on('vacancy_criteria');
+            $table->integer('vacancy_crit_id')->unsigned();
+            $table->foreign('vacancy_crit_id')->references('id')->on('vacancy_criteria');
             $table->timestamps(); 
         });
     }

@@ -10,11 +10,11 @@ class CreateApplicationAssignmentsTable extends Migration {
 
         Schema::create('application_assignments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('application_id')->unsined();
-            //$table->foreign('application_id')->references('id')->on('applications');
+            $table->integer('application_id')->unsigned();
+            $table->foreign('application_id')->references('id')->on('applications');
             $table->tinyInteger('flag_ok');
-            $table->integer('service_id')->unsined();
-            //$table->foreign('service_id')->references('id')->on('services');
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services');
 
             $table->timestamps(); 
         });
