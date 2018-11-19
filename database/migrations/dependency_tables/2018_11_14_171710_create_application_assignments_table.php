@@ -16,7 +16,7 @@ class CreateApplicationAssignmentsTable extends Migration {
             $table->integer('service_id')->unsined();
             //$table->foreign('service_id')->references('id')->on('services');
 
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

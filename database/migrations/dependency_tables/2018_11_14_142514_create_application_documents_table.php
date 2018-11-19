@@ -20,7 +20,7 @@ class CreateApplicationDocumentsTable extends Migration
             $table->foreign('candidate_id')->references('id')->on('candidates');
             $table->integer('document_required_id')->unsigned();
             //$table->foreign('document_required_id')->references('id')->on('document_required');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 

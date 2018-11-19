@@ -15,7 +15,7 @@ class CreateApplicationCriteriaTable extends Migration {
             $table->foreign('candidate_id')->references('id')->on('candidates');
             $table->integer('vacancy_crit_id');
             //$table->foreign('vacancy_crit_id')->references('id')->on('vacancy_criteria');
-            $table->timestamps();
+            $table->timestamps(); 
         });
     }
 
