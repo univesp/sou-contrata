@@ -12,10 +12,10 @@ class CreateAssignmentVacanciesTable extends Migration {
      */
     public function up() {
         Schema::create('assignment_vacancies', function (Blueprint $table) {
-            $table->integer('service_id')->unsigned()->unique();
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->integer('criterion_id')->unsigned()->unique();
-            $table->foreign('criterion_id')->references('id')->on('criteria')->onDelete('cascade');
+            $table->integer('service_id')->unsigned();
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->integer('criterion_id')->unsigned();
+            $table->foreign('criterion_id')->references('id')->on('criteria');
 
             $table->timestamps();
         });
