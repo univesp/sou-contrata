@@ -23,6 +23,8 @@ Route::get('/login', function () {
     return view('vacancy/login');
 });
 
+Route::post('/login', 'UserController@login')->name('login');
+
 Route::get('/process', function () {
     
     return view('vacancy/process');

@@ -161,4 +161,28 @@ class UserController extends Controller {
     public function destroy($id) {
         //
     }
+
+    /**
+     * Método restponsável pelo acesso ao perfil do candidato cadastro.
+     */
+
+    public function login(Request $request) {
+
+        $login = User::where([
+            ['login', '=', $_POST['login']],
+            ['password', '=', $_POST['password']],
+        ])->get();
+        
+        if($login && isset($login[0]->name)) {
+
+            $request->session()->put('candidate', $login);
+
+            return redirect('/process');
+
+        } else {
+
+            return redirect('/login');
+        }
+
+    }
 }
