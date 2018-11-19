@@ -17,26 +17,27 @@
 				*Obrigatório
 			</div>
 			<form id="form" action="usuario">
-				<div class="form-group col-md-4">
-					<label for="textCodInscricao" class="control-label, fonte-campos">Código de Inscrição:<span class="cor-campo">*</span></label>
-					<input id="textCodInscricao" class="form-control" type="text" name="code-registration" required oninvalid="this.setCustomValidity('Digite o seu Cófdigo de Inscrição')" onchange="try{setCustomValidity('')}catch(e){}">
+				<div class="form-group col-md-2" style="padding-right: 0px;">
+					<label for="textCodInscricao" class="control-label, fonte-campos">Código de Privilegio:<span class="cor-campo">*</span></label>
+					<input id="textCodInscricao"  class="form-control" type="text" name="code-privilege" required oninvalid="this.setCustomValidity('Digite o seu Cófdigo de Inscrição')" onchange="try{setCustomValidity('')}catch(e){}">
 				</div>
-				<div class="form-group col-md-4">
+				<div class="form-group col-md-4" style="padding-left: -5;padding-left: 10px;">
 					<label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
 					<input id="textNome" class="form-control" type="text" name="name" required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
 				</div>
-			
-				<div class="form-group form-group col-md-4">
+				<div style="clear: both;"></div>
+				<div class="form-group form-group col-md-3" style="padding-right: 0px;">
 					<label for="textLogin" class="control-label, fonte-campos">Login<span class="cor-campo">*</span></label>
 					<input id="textLogin" class="form-control" type="text" name="login" required oninvalid="this.setCustomValidity('Digite seu Login')" onchange="try{setCustomValidity('')}catch(e){}">
 				</div>
-				<div class="form-group form-group col-md-4">
+				<div class="form-group form-group col-md-3" style="padding-left: 10px;">
 					<label for="textSenha" class="control-label, fonte-campos">Senha<span class="cor-campo">*</span></label>
 					<input id="textSenha" class="form-control" type="password" name="password" required oninvalid="this.setCustomValidity('Digite sua Senha')" onchange="try{setCustomValidity('')}catch(e){}">
 				</div>
-				<div class="form-group form-group col-md-4">
+				<div style="clear: both;"></div>
+				<div class="form-group form-group col-md-6" style="padding-right: 12px;width: 541px;">
 					<label for="textSenha" class="control-label, fonte-campos">Email<span class="cor-campo">*</span></label>
-					<input id="textSenha" class="form-control" type="Email" name="email" required oninvalid="this.setCustomValidity('Digite seu Email')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+					<input id="textSenha" class="form-control" type="Email" name="email" style="width: 539px;" required oninvalid="this.setCustomValidity('Digite seu Email')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 				</div>
 				<div style="clear: both;"></div>
 				<hr />
