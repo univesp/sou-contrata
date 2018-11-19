@@ -34,7 +34,7 @@
 		Prazo de inscrição</span><br />
 	<span class="texto-formatacao">12/11/2018 (em 20 dias)</span>
 	<div class="botao-posicao">
-		<a href="form" class="btn btn-danger">LOGIN</a>
+		<a href="login" class="btn btn-danger">LOGIN</a>
 		<a href="form" class="btn btn-danger">QUERO ME CADASTRAR</a>
 	</div>
 	</div>

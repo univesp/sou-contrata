@@ -10,19 +10,14 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-	<!------ Include the above in your HEAD tag ---------->
 
   </head>
   <body>
-	<!--
-    you can substitue the span of reauth email for a input with the email and
-    include the remember me checkbox
-    -->
     <div class="container">
         <div class="card card-container">
-            <img id="profile-img" class="profile-img-card" src="img/safe_image.php.png" />
+            <img id="profile-img" class="profile-img-card" src="{{ asset('img/safe_image.php.png')}}" />
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin"action="processos-seletivos">
+            <form class="form-signin"action="/process" method="get">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" id="usuario" class="form-control" placeholder="Usuário" required oninvalid="this.setCustomValidity('Digite o usuário')" onchange="try{setCustomValidity('')}catch(e){}">
                 <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>

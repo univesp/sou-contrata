@@ -18,6 +18,16 @@ Route::get('/form', function () {
     return view('user/form');
 });
 
+Route::get('/login', function () {
+
+    return view('vacancy/login');
+});
+
+Route::get('/process', function () {
+    
+    return view('vacancy/process');
+});
+
 Route::post('/store', 'UserController@store')->name('store');
 
 Route::post('/documents', 'UserController@documents')->name('documents');
