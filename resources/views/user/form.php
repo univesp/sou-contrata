@@ -17,7 +17,11 @@
 				*Obrigatório
 			</div>
 			<form id="form" action="usuario">
-				<div class="form-group col-md-8">
+				<div class="form-group col-md-4">
+					<label for="textCodInscricao" class="control-label, fonte-campos">Código de Inscrição:<span class="cor-campo">*</span></label>
+					<input id="textCodInscricao" class="form-control" type="text" name="code-registration" required oninvalid="this.setCustomValidity('Digite o seu Cófdigo de Inscrição')" onchange="try{setCustomValidity('')}catch(e){}">
+				</div>
+				<div class="form-group col-md-4">
 					<label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
 					<input id="textNome" class="form-control" type="text" name="name" required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
 				</div>
