@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('vacancy/index');
+//Vacancy
+Route::get('/edict/{id}', function ($id) {
+    $data = \App\Vacancy::with('edict')->find($id);
+    return view('vacancy/index',compact('data', $data));
 });
+
+//Login
+Route::get('/login', function () {
+    return view('vacancy/login');
+});
+
 Route::get('/form', function () {
     return view('user/form');
 });
