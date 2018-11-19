@@ -12,54 +12,46 @@
   <body>
 	<div class="cabecalho">
 		<div class="container">
-			<span class="font-cabecalho1">Processos Seletivos</span><br />
-			<span class="font-cabecalho2">{{$data->title}} {{$data->matter}}</span>
+			<span class="font-cabecalho1">Processos Seletivos</span>
 
-            @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('d') > 0)
+           {{-- @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('d') > 0)
 			    <button type="button" class="btn btn-info">Aberto</button>
             @else
                 <button type="button" class="btn btn-danger">Fechado</button>
-            @endif
+            @endif--}}
         </div>
 	</div>
     <div class="container">
-        <p class="formatacao-resumo">
-            <ul class="nav nav-tabs">
-                <li class="active, link"><a href="#">Edital</a></li>
-                <li><a class="link-2" href="#">Convocação</a></li>
-            </ul>
-        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Cargo</th>
+                    <th scope="col">Inicio</th>
+                    <th scope="col">Termino</th>
+                    <th scope="col">#</th>
+                </tr>
+            </thead>
+            <tbody>
+             @foreach($data as $d)
+                 @if(date_diff(date_create($d->edict->date_end), date_create(now()))->format('d') > 0)
+                     <tr class="bg-danger">
+                 @else
+                     <tr>
+                 @endif
 
-        <?php
-        $link = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."documents".DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR."123456789.pdf";
-        //C:\xampp\htdocs\sou-contrata\public\documents\pdf\123456789.pdf
-        ?>
-
-            <iframe src="http://docs.google.com/gview?url=http://www.manuais.net.br/cyrela/legacy/conteudo/desenhos/101.pdf&embedded=true"
-                    style="width:100%; height:500px;padding: 30px;" frameborder="0"></iframe>
-
-        {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
-        <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
-
-
-        <span class="texto-formatacao">
-		Prazo de inscrição</span><br />
-
-        <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd-m-Y') }}
-            @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('d') > 0)
-                (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
-            @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('d') == 0)
-                Hoje é o ultimo dia
-            @endif
-
-        </span>
-
-        <div class="botao-posicao">
-            <a href="/login"><button type="button" class="btn btn-danger">Login</button></a>
-	    </div>
-        <div class="botao-posicao">
-            <a href="/form"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
-        </div>
+                    <td>{{$d->title}} {{$d->matter}}</td>
+                    <td>{{date_format(date_create($d->edict->date_start), 'd-m-Y')}}</td>
+                    <td>{{date_format(date_create($d->edict->date_end), 'd-m-Y')}}</td>
+                    <td>
+                        @if(date_diff(date_create($d->edict->date_end), date_create(now()))->format('d') > '0')
+                            <a href="/edict/{{$d->id}}"><button type="button" class="btn btn-info">Acessar</button></a>
+                        @endif
+                    </td>
+                </tr>
+             @endforeach
+            </tbody>
+        </table>
+        {{ $data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links() }}
 	</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

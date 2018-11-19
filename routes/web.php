@@ -11,10 +11,15 @@
 |
 */
 
+Route::get('/', function () {
+    $data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
+    return view('vacancy/index',compact('data', $data));
+});
+
 //Vacancy
 Route::get('/edict/{id}', function ($id) {
     $data = \App\Vacancy::with('edict')->find($id);
-    return view('vacancy/index',compact('data', $data));
+    return view('vacancy/edicts',compact('data', $data));
 });
 
 //Login
@@ -34,7 +39,7 @@ Route::get('/login', function () {
 Route::post('/login', 'UserController@login')->name('login');
 
 Route::get('/process', function () {
-    
+
     return view('vacancy/process');
 });
 
