@@ -95,11 +95,15 @@
 			<div class="form-checkbox"></div>
 			<div class="alinhamento-check, col-md-6">
 				Possui Alguma Deficiência?
-				<div class="checkbox, opcao-alinhamento">
+				<!-- <div class="checkbox, opcao-alinhamento">
 					<label><input type="checkbox" id ="opcaoNao" name="opcaoDeficiencia" onclick="return Validacao();">Não</label>
-				</div>
+				</div> -->
 				<div class="checkbox, opcao-alinhamento">
-					<label><input type="checkbox" id="opcaoSim" name="opcaoDeficiencia" onclick="return Validacao();">Sim</label>
+
+					<label>
+						<!-- <input type="hidden" id="opcaoSim" name="opcaoDeficiencia" value="0" onclick="return Validacao();"> -->
+						<input type="checkbox" id="opcaoSim" name="opcaoDeficiencia" onclick="return Validacao();">Sim
+					</label>
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -377,38 +381,56 @@
     <script src="js/bootstrap.min.js"></script>
 
 	<script>
+		// Init
          jQuery(document).ready(function () {
-             jQuery('#addSubmit').click(function () {
-              
+			// Button functonality
+             jQuery('#addSubmit').click(function (e) {
+				e.preventDefault();
+            	// Remember token
                  $.ajaxSetup({
                      headers: {
                          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                      }
                  });
                  jQuery.ajax({
-                     url: "{{ url('dados_pessoais/store') }}",
+					// Call url
+                     url: "{{ url('/dados-pessoais/store') }}",
                      method: 'post',
                      data: {
 						_token: '{{csrf_token()}}',
-                         name: jQuery('#textNome').val(),
-                         last_name: jQuery('#textSobrenome').val(),
-						 date_birth: jQuery('#textDtNasc').val(),
-						 genre: jQuery('#sexo').val(),
-						 marital_status: jQuery('#inputEstadoCivil').val(),
-						 cpf: jQuery('#inputNumDoc').val(),
-						 flag_deficient: jQuery('#opcaoSim').val(),
-						 obs_deficient: jQuery('#comentario').val(),
-						 name_mather: jQuery('#inputNomeMae').val(),
-						 name_father: jQuery('#inputNomePai').val(),
-						 name_social: jQuery('#textNomeSocial').val(),
-						 nationality: jQuery('#inputNatu').val()
-                     },
-                     success: function (result) {
-                         console.log(result);
-                     }
+
+						// Call values of fields candidates table
+						cpf: $('#inputNumDoc').val(),
+						date_birth: $('#textDtNasc').val(),
+						flag_deficient: $('#opcaoSim').val(),
+						genre: $('#sexo').val(),
+						last_name: $('#textSobrenome').val(),
+						marital_status: $('#inputEstadoCivil').val(),
+						name: $('#textNome').val(),
+						name_father: $('#inputNomePai').val(),
+						name_mother: $('#inputNomeMae').val(),
+						name_social: $('#textNomeSocial').val(),
+						nationality: $('#inputNatu').val(),
+						obs_deficient: $('#comentario').val(),
+
+						// Call values of fields addresses table
+						city: $('#inputCidade').val(),
+						complement: $('#inputComplemento').val(),
+						neighborhood: $('#inputBairro').val()
+						number: $('#inputNum').val(),
+						postal_code: $('#inputCep').val(),
+						public_place: $('#inputLogradouro').val(),
+						state: $('#inputUF').val(),
+						type_public_place: $('#inputTipoLogra').val(),
+                    },
+                    success: function (result) {	
+						// F12 or inspect on browser to show result
+                        console.log(result);
+                    }
                  });
              });
          });
+		// End
 	</script>
   </body>
 </html>
