@@ -59,8 +59,10 @@ Route::get('/vaga-disciplina1', function () {
 });
 
 Route::get('/dados-pessoais', function () {
-    return view('professor/dados-pessoais');
+    return view('teacher/dados-pessoais');
 });
+
+Route::post('/store', 'PersonalDataController@store')->name('store');
 
 Route::get('/dados-academicos', function () {
     return view('professor/dados-academicos');

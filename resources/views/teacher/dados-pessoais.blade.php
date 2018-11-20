@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>Cadastro de Professores</title>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/style.css" rel="stylesheet">
@@ -23,7 +24,8 @@
 				*Obrigatório
 			</div>
 		
-			<form id="form" action="processos-seletivos">
+			<form id="form" action="/store">
+			{{ csrf_field() }}
 				<div class="form-group">
 					<div class="col-md-4">
 						<label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
@@ -39,7 +41,7 @@
 			
 			<div class="form-group, form-alinhamento">
 				<div class="form-alinhamento_1">
-					<label for="textNomeSocial" class="control-label, fonte-campos" id="textNomeSocial">Nome social</label>
+					<label for="textNomeSocial" class="control-label, fonte-campos">Nome social</label>
 					<input id="textNomeSocial" class="form-control" type="text">
 				</div>
 			</div>
@@ -310,7 +312,7 @@
 					</div>
 				</div>
 			</div>
-			
+<!-- 			
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-6">	
@@ -323,8 +325,8 @@
 						<input  type="text" class="form-control" id="inputConfirmarEmail" required oninvalid="this.setCustomValidity('Confirme o E-mail')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 					</div>
 				</div>
-			</div>
-			<div class="col-md-12">
+			</div> -->
+			<!-- <div class="col-md-12">
 				<div class="row">
 					<div class="col-md-6">	
 						<label for="inputUsuario" class="fonte-campos">Usuário<span class="cor-campo"> *</span></label>
@@ -336,14 +338,14 @@
 						<input  type="text" class="form-control" id="inputSenha" required oninvalid="this.setCustomValidity('Digite a Senha')" onchange="try{setCustomValidity('')}catch(e){}">
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		
 	    <hr />
 
 		<div style="clear: both;"></div>
 			<div class="row">
-				<button type="submit" class="btn btn-danger float-right">AVANÇAR</button></p> 
+				<button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button></p> 
 			</div>
 			<br /><br />
     </div>	
@@ -373,5 +375,40 @@
 		
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+	<script>
+         jQuery(document).ready(function () {
+             jQuery('#addSubmit').click(function (e) {
+                 e.preventDefault();
+                 $.ajaxSetup({
+                     headers: {
+                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                     }
+                 });
+                 jQuery.ajax({
+                     url: "{{ url('/store') }}",
+                     method: 'post',
+                     data: {
+						_token: '{{csrf_token()}}',
+                         name: jQuery('#textNome').val(),
+                         last_name: jQuery('#textSobrenome').val(),
+						 date_birth: jQuery('#textDtNasc').val(),
+						 genre: jQuery('#sexo').val(),
+						 marital_status: jQuery('#inputEstadoCivil').val(),
+						 cpf: jQuery('#inputNumDoc').val(),
+						 flag_deficient: jQuery('#').val(),
+						 obs_deficient: jQuery('#comentario').val(),
+						 name_mather: jQuery('#inputNomeMae').val(),
+						 name_father: jQuery('#inputNomePai').val(),
+						 name_social: jQuery('#textNomeSocial').val(),
+						 nationality: jQuery('#inputNatu').val()
+                     },
+                     success: function (result) {
+                         console.log(result);
+                     }
+                 });
+             });
+         });
+	</script>
   </body>
 </html>
