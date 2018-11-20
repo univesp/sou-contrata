@@ -82,7 +82,7 @@ Route::get('/dados-pessoais', function () {
     return view('teacher/dados-pessoais');
 });
 
-Route::post('/store', 'PersonalDataController@store')->name('store');
+Route::post('dados-pessoais/store', 'PersonalDataController@store')->name('store');
 
 Route::get('/dados-academicos', function () {
     return view('professor/dados-academicos');

@@ -378,15 +378,15 @@
 
 	<script>
          jQuery(document).ready(function () {
-             jQuery('#addSubmit').click(function (e) {
-                 e.preventDefault();
+             jQuery('#addSubmit').click(function () {
+              
                  $.ajaxSetup({
                      headers: {
                          'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                      }
                  });
                  jQuery.ajax({
-                     url: "{{ url('/store') }}",
+                     url: "{{ url('dados_pessoais/store') }}",
                      method: 'post',
                      data: {
 						_token: '{{csrf_token()}}',
@@ -396,7 +396,7 @@
 						 genre: jQuery('#sexo').val(),
 						 marital_status: jQuery('#inputEstadoCivil').val(),
 						 cpf: jQuery('#inputNumDoc').val(),
-						 flag_deficient: jQuery('#').val(),
+						 flag_deficient: jQuery('#opcaoSim').val(),
 						 obs_deficient: jQuery('#comentario').val(),
 						 name_mather: jQuery('#inputNomeMae').val(),
 						 name_father: jQuery('#inputNomePai').val(),

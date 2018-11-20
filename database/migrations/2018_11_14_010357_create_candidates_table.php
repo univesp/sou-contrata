@@ -17,9 +17,8 @@ class CreateCandidatesTable extends Migration {
             $table->string('curriculum_link', 150);
             $table->char('marital_status',25);
             $table->char('cpf',15);
-            $table->string('cell_phone',20);
             $table->tinyInteger('flag_deficient');
-            $table->text('obs_deficient');
+            $table->text('obs_deficient')->nullable();
             $table->string('name_mather',150);
             $table->string('name_father',150);
             $table->string('name_social',150);

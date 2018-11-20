@@ -43,13 +43,13 @@ class PersonalDataController extends Controller
             $candidate->genre               = $request->genre;
             $candidate->marital_status      = $request->marital_status;
             $candidate->cpf                 = $request->cpf;
-            $candidate->flag_deficient      = ($request->flag_deficient)? true : false;
+            $candidate->flag_deficient      = ($request->flag_deficient)? 1 : 0;
             $candidate->obs_deficient       = $request->obs_deficient;
             $candidate->name_mather         = $request->name_mather;
             $candidate->name_father         = $request->name_father;
             $candidate->name_social         = $request->name_social;
             $candidate->nationality         = $request->nationality;
-
+            $candidate->user_id             = $request->user_id;
             $candidate->save();
 
             // Return in view
