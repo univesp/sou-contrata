@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use App\User;
 use Validator;
+use Illuminate\Support\Facades\Crypt;
+
 class UserController extends Controller {
 
     protected $url;
@@ -34,9 +36,8 @@ class UserController extends Controller {
         $candidate = [
             'name' => $_POST['name'],
             'login' => $_POST['login'],
-            'password' => $_POST['password'],
+            'password' => Crypt::encrypt($_POST['password']),
             'email' => $_POST['email'],
-            'cod_privilege' => $_POST['code-privilege'],            
         ];
 
         //dd($_POST);
@@ -161,5 +162,29 @@ class UserController extends Controller {
      */
     public function destroy($id) {
         //
+    }
+
+    /**
+     * Método restponsável pelo acesso ao perfil do candidato cadastro.
+     */
+
+    public function login(Request $request) {
+
+        $login = User::where([
+            ['login', '=', $_POST['login']],
+            ['password', '=', Crypt::encrypt($_POST['password'])],
+        ])->get();
+        
+        if($login && isset($login[0]->name)) {
+
+            $request->session()->put('candidate', $login);
+
+            return redirect('/process');
+
+        } else {
+
+            return redirect('/login');
+        }
+
     }
 }

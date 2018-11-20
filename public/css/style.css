@@ -21,7 +21,7 @@
 .link {
 	border:none !important;
 	border-bottom: solid 4px red !important;
-	
+
 }
 a {
 	color:#000;
@@ -39,7 +39,7 @@ a {
 .texto-formatacao {
 	margin-left: 4%;
 	position:relative;
-	top: -38px;
+	top: -15px;
 	color: #808080;
 	font-weight: bold;
 }
@@ -47,7 +47,7 @@ a {
 .botao-posicao {
 	float:right;
 	margin-top:-50px;
-	padding-bottom: 40px;
+	padding: 10px 10px 40px 10px;
 }
 
 .fonte-conteudo {
@@ -201,7 +201,7 @@ a {
 
 .opcao-alinhamento {
 	padding: 0 10% 0 35%;
-	
+
 }
 
 .formatacao_doc {

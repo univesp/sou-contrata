@@ -12,10 +12,30 @@
 */
 
 Route::get('/', function () {
-    return view('vacancy/index');
+    $data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
+    return view('vacancy/index',compact('data', $data));
 });
+
+//Vacancy
+Route::get('/edict/{id}', function ($id) {
+    $data = \App\Vacancy::with('edict')->find($id);
+    return view('vacancy/edicts',compact('data', $data));
+});
+
+//Login
+Route::get('/login', function () {
+    return view('vacancy/login');
+});
+
 Route::get('/form', function () {
     return view('user/form');
+});
+
+Route::post('/login', 'UserController@login')->name('login');
+
+Route::get('/process', function () {
+
+    return view('vacancy/process');
 });
 
 Route::post('/store', 'UserController@store')->name('store');
