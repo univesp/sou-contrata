@@ -1,25 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Processos Seletivos</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
-	</head>
-	
-	<body>
+@extends('layouts.header')
+@section('title')
+    Cadastro de Professores
+@endsection
+@section('css')
+    <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
+@endsection
+@section('content')
 	<div class="container">
-		<h2 class="fonte-conteudo">Processos Seletivos</h2>
-		<ul class="nav nav-tabs">
-			<li class="active, link"><a href="#">Abertos</a></li>
-			<li><a class="link-2" href="#">Vigentes</a></li>
-			<li><a class="link-2" href="#">Arquivados</a></li>
-		</ul>
-		
-		<div class="form_dados"></div>
-		
+	<h2 class="fonte-conteudo">Processos Seletivos</h2>
+	<ul class="nav nav-tabs">
+		<li class="active, link"><a href="#">Abertos</a></li>
+		<li><a class="link-2" href="#">Vigentes</a></li>
+		<li><a class="link-2" href="#">Arquivados</a></li>
+	</ul>
+	<div class="form_dados"></div>
 		<table id="example" class="table">
 			<thead>
 				<tr>
@@ -83,7 +77,6 @@
 			</tbody>
 		</table>
 		<div class="form_dados"></div>
-		
 		<table class="table" id="example">
 			<thead>
 				<tr>
@@ -146,7 +139,6 @@
 				</tr>
 			</tbody>
 		</table>
-		
 		<div class="form_dados"></div>
 		<table class="table">
 			<thead>
@@ -250,9 +242,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
 		<div class="form_dados"></div>
-		
 		<table class="table">
 			<thead>
 				<tr>
@@ -339,9 +329,7 @@
 				</tr>
 			</tbody>
 		</table>
-		
 		<div class="form_dados"></div>
-		
 		<table class="table">
 			<thead>
 				<tr>
@@ -428,7 +416,6 @@
 				</tr>
 			</tbody>
 		</table>
-		
 		<table class="table">
 			<thead>
 				<tr>
@@ -515,9 +502,7 @@
 				</tr>
 			</tbody>
 			</table>
-			
 			<div class="form_dados"></div>
-		
 		<table class="table">
 			<thead>
 				<tr>
@@ -596,28 +581,21 @@
 				</tr>
 			</tbody>
 			</table>
-			
 		</div>
-		
-		<script type="text/javascript">
-			var botao = document.querySelector('button#botao');
-			botao.addEventListener('click', function() {
-				var aberto = botao.classList.contains('Aplicar');
-				$('#botao').css('background-color', '#006dcc');
-				this.innerHTML = aberto ? 'Aplicar' : 'Remover Item';
-			});
-			
-			var botao = document.querySelector('button#botao1');
-			botao.addEventListener('click', function() {
-				var aberto = botao.classList.contains('Aplicar');
-				$('#botao1').css('background-color', '#006dcc');
-				this.innerHTML = aberto ? 'Aplicar' : 'Remover Item';
-			});
+@endsection
+@section('script')
+	var botao = document.querySelector('button#botao');
+	botao.addEventListener('click', function() {
+		var aberto = botao.classList.contains('Aplicar');
+		$('#botao').css('background-color', '#006dcc');
+		this.innerHTML = aberto ? 'Aplicar' : 'Remover Item';
+	});
+	var botao = document.querySelector('button#botao1');
+	botao.addEventListener('click', function() {
+		var aberto = botao.classList.contains('Aplicar');
+		$('#botao1').css('background-color', '#006dcc');
+		this.innerHTML = aberto ? 'Aplicar' : 'Remover Item';
+	});
 
-		</script>
+@endsection
 		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	  </body>
-  
-</html>
