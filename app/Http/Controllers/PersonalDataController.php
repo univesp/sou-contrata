@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Candidate;
+use App\Document;
+use App\Address;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class PersonalDataController extends Controller
@@ -37,23 +40,54 @@ class PersonalDataController extends Controller
         } else {
             // Create new candidate
             $candidate = new Candidate();
-            $candidate->name                = $request->name;
-            $candidate->last_name           = $request->last_name;
-            $candidate->date_birth          = date('Y-m-d', strtotime($request->date_birth));
-            $candidate->genre               = $request->genre;
-            $candidate->marital_status      = $request->marital_status;
             $candidate->cpf                 = $request->cpf;
-            $candidate->flag_deficient      = ($request->flag_deficient)? 1 : 0;
-            $candidate->obs_deficient       = $request->obs_deficient;
-            $candidate->name_mather         = $request->name_mather;
+            $candidate->date_birth          = date('Y-m-d', strtotime($request->date_birth));
+            
+            if($candidate->flag_deficient == 1){
+                $candidate->flag_deficient = 0;
+            } else {
+                $candidate->flag_deficient = 1;
+            }
+            
+            $candidate->genre               = $request->genre;
+            $candidate->last_name           = $request->last_name;
+            $candidate->name                = $request->name;
             $candidate->name_father         = $request->name_father;
+            $candidate->name_mother         = $request->name_mother;
             $candidate->name_social         = $request->name_social;
+            $candidate->marital_status      = $request->marital_status;
             $candidate->nationality         = $request->nationality;
-            $candidate->user_id             = $request->user_id;
+            $candidate->obs_deficient       = $request->obs_deficient;
+            $candidate->user_id             = 1;
+
+            // Save in database
             $candidate->save();
 
+            if ($candidate != null) {
+                // Create new document
+                // $document = new Document();
+                // $document->candidate_id          = $request->candidate_id;
+
+                // Save in database
+                // $document->save();
+            }
+
+            // Create new address
+            $address = new Address();
+            $address->city                      = $request->city;
+            $address->complement                = $request->complement;
+            $address->neighborhood              = $request->neighborhood;
+            $address->number                    = $request->number;
+            $address->postal_code               = $request->postal_code;
+            $address->public_place              = $request->public_place;
+            $address->state                     = $request->state;
+            $address->type_public_place         = $request->type_public_place;
+
+            // Save in database
+            $address->save();
+    
             // Return in view
-            return response()->json($candidate);
+            return response()->json($candidate, $address);
         }
     }
 
