@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro de Professores</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style-login.css" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-  </head>
+@extends('layouts.header')
+@section('title')
+    Login de Acesso
+@endsection
+@section('css')
+    <link href="css/style-login.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+@endsection
+@section('content')
   <body>
     <div class="container">
         <div class="card card-container">
@@ -29,13 +23,10 @@
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Logar</button>
-            </form><!-- /form -->
+            </form>
             <a href="#" class="forgot-password">
                 Esqueceu sua senha?
             </a>
-        </div><!-- /card-container -->
-    </div><!-- /container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+        </div>
+    </div>
+@endsection
