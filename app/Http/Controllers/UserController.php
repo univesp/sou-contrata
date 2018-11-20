@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use App\User;
 use Validator;
+use Illuminate\Support\Facades\Crypt;
+
 class UserController extends Controller {
 
     protected $url;
@@ -34,7 +36,7 @@ class UserController extends Controller {
         $candidate = [
             'name' => $_POST['name'],
             'login' => $_POST['login'],
-            'password' => $_POST['password'],
+            'password' => Crypt::encrypt($_POST['password']),
             'email' => $_POST['email'],
         ];
 
@@ -170,7 +172,7 @@ class UserController extends Controller {
 
         $login = User::where([
             ['login', '=', $_POST['login']],
-            ['password', '=', $_POST['password']],
+            ['password', '=', Crypt::encrypt($_POST['password'])],
         ])->get();
         
         if($login && isset($login[0]->name)) {

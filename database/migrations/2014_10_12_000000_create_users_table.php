@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration {
             $table->increments('id');
             $table->string('name', 100);
             $table->string('login', 40);
-            $table->string('password');
+            $table->string('password',255);
             $table->string('email',100)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
