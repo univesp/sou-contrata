@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 	<div class="fonte-cabecalho"></div>
-	<div class="container">
+	<div class="container" style="padding-left: 0px;margin-left: 85px;">
 		<ul class="nav nav-tabs">
 			<li><a href="vaga-disciplina">Áreas de interesse</a></li>
 			<li class="active, link3"><a href="dados-pessoais">Dados pessoais</a></li>
@@ -19,7 +19,7 @@
 		<form id="form" action="/store">
 			{{ csrf_field() }}
 		<div class="form-group">
-			<div class="col-md-2" style="padding-right: 0px;">
+			<div class="col-md-2" style="padding-right: 0px;padding-left: 0px;">
 				<label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
 				<input id="textNome" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
 			</div>
