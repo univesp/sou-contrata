@@ -42,50 +42,50 @@ Route::post('/store', 'UserController@store')->name('store');
 
 Route::post('/documents', 'UserController@documents')->name('documents');
 
-Route::get('/processos-seletivos', function () {
-    return view('vacancy/processos-seletivos');
+Route::get('/selective-processes', function () {
+    return view('vacancy/selective-processes');
 });
 
-Route::get('/processos-seletivos1', function () {
-    return view('vacancy/processos-seletivos1');
+Route::get('/selective-processes1', function () {
+    return view('vacancy/selective-processes1');
 });
 
-Route::get('/processos-seletivos2', function () {
-    return view('vacancy/processos-seletivos2');
+Route::get('/selective-processes2', function () {
+    return view('vacancy/selective-processes2');
 });
 
-Route::get('/processos-seletivos3', function () {
-    return view('vacancy/processos-seletivos3');
+Route::get('/selective-processes3', function () {
+    return view('vacancy/selective-processes3');
 });
 
-Route::get('/processos-seletivos4', function () {
-    return view('vacancy/processos-seletivos4');
+Route::get('/selective-processes4', function () {
+    return view('vacancy/selective-processes4');
 });
 
-Route::get('/processos-seletivos5', function () {
-    return view('vacancy/processos-seletivos5');
+Route::get('/selective-processes5', function () {
+    return view('vacancy/selective-processes5');
 });
 
-Route::get('/processos-seletivos6', function () {
-    return view('vacancy/processos-seletivos6');
+Route::get('/selective-processes6', function () {
+    return view('vacancy/selective-processes6');
 });
 
-Route::get('/vaga-disciplina', function () {
-    return view('professor/vaga-disciplina');
+Route::get('/vague-discipline', function () {
+    return view('professor/vague-discipline');
 });
 
-Route::get('/vaga-disciplina1', function () {
-    return view('professor/vaga-disciplina1');
+Route::get('/vague-discipline1', function () {
+    return view('professor/vague-discipline1');
 });
 
-Route::get('/dados-pessoais', function () {
-    return view('teacher/dados-pessoais');
+Route::get('/personal-data', function () {
+    return view('professor/personal-data');
 });
 
-Route::post('/dados-pessoais/store', 'PersonalDataController@store')->name('store');
+Route::post('/academic-data/store', 'PersonalDataController@store')->name('store');
 
-Route::get('/dados-academicos', function () {
-    return view('professor/dados-academicos');
+Route::get('/academic-data', function () {
+    return view('professor/academic-data');
 });
 
 Route::get('/process', function () {
