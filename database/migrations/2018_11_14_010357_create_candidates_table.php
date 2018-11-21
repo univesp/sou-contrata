@@ -23,6 +23,7 @@ class CreateCandidatesTable extends Migration {
             $table->string('name_father',150)->nullable();
             $table->string('name_social',150);
             $table->string('nationality',100);
+            $table->string('telefone',10);
             $table->integer('user_id')->unsigned()->unique();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

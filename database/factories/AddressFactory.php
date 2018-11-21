@@ -6,7 +6,7 @@ $factory->define(Address::class, function (Faker $faker) {
     return [
         'public_place'=> $faker->streetSuffix,
         'type_public_place'=> $faker->streetSuffix,
-        'neighborhood'=> $faker->streetSuffix,
+        'neighborhood'=> $faker->streetName,
         'number'=> $faker->numerify('#####'),
         'postal_code'=> $faker->numerify('###-####'),
         'complement'=> $faker->numerify('#####'),
