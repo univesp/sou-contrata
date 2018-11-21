@@ -75,7 +75,7 @@ Route::get('/vaga-disciplina', function () {
 });
 
 Route::get('/vaga-disciplina1', function () {
-    return view('professor/vaga-disciplina1');
+    return view('teacher/vaga-disciplina1');
 });
 
 Route::get('/dados-pessoais', function () {
