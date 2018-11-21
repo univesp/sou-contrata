@@ -85,7 +85,7 @@ Route::get('/personal-data', function () {
 Route::post('/academic-data/store', 'PersonalDataController@store')->name('store');
 
 Route::get('/academic-data', function () {
-    return view('teacher/academic-data');
+    return view('professor/academic-data');
 });
 
 Route::get('/process', function () {
