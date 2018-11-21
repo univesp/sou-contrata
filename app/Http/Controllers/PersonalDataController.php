@@ -31,7 +31,35 @@ class PersonalDataController extends Controller
     {
         // Validate all fields
         $validator = Validator::make($request->input(), [
-         
+            // Candidate validations
+            'cpf'               => 'required',
+            'date_birth'        => 'required',
+            'last_name'         => 'required',
+            'name'              => 'required',
+            'name_mother'       => 'required',
+            'marital_status'    => 'required',
+            'nationality'       => 'required',
+
+            // Documents validations
+            'elector_title'             => 'required',
+            'elector_link'              => 'required',
+            'military_certificate'      => 'required',
+            'military_link'             => 'required',
+            'number'                    => 'required',
+            'number_link'               => 'required',
+            'date_issue'                => 'required',
+            'uf_issue'                  => 'required',
+
+            // Address validations
+            'city'                      => 'required',
+            'complement'                => 'required',
+            'neighborhood'              => 'required',
+            'military_link'             => 'required',
+            'number'                    => 'required',
+            'postal_code'               => 'required',
+            'public_place'              => 'required',
+            'state'                     => 'required',
+            'type_public_place'         => 'required',
         ]);
         
         // Validate if the rules are met
@@ -42,13 +70,6 @@ class PersonalDataController extends Controller
             $candidate = new Candidate();
             $candidate->cpf                 = $request->cpf;
             $candidate->date_birth          = date('Y-m-d', strtotime($request->date_birth));
-            
-            if($candidate->flag_deficient == 1){
-                $candidate->flag_deficient = 0;
-            } else {
-                $candidate->flag_deficient = 1;
-            }
-            
             $candidate->genre               = $request->genre;
             $candidate->last_name           = $request->last_name;
             $candidate->name                = $request->name;
@@ -58,17 +79,30 @@ class PersonalDataController extends Controller
             $candidate->marital_status      = $request->marital_status;
             $candidate->nationality         = $request->nationality;
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
-            $candidate->obs_deficient       = isset($request->obs_deficient)? 1:0;
-            $candidate->user_id             = 1;
-
+            $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
+            $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
+            // $candidate->user_id             = $request->user_id;
+            $candidate->user_id             = 8;
+            
             // Save in database
             if ($candidate->save()) {
                 // Create new document
-                // $document = new Document();
-                // $document->candidate_id          = $request->candidate_id;
+                $document = new Document();
+                $document->elector_title            = $request->elector_title;
+                $document->elector_link             = $request->elector_link;
+                $document->military_certificate     = $request->military_certificate;
+                $document->military_link            = $request->military_link;
+                $document->number                   = $request->number;
+                $document->number_link              = $request->number_link;
+                $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
+                $document->uf_issue                 = $request->uf_issue;
+                // $document->zone                     = $request->zone;
+                // $document->section                  = $request->section;
+                $document->candidate_id             = $request->candidate_id;
 
                 // Save in database
-                // $document->save();
+                $document->save();
+
             }
 
             // Create new address

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use App\User;
+use function Sodium\add;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
 
@@ -172,8 +173,10 @@ class UserController extends Controller {
 
         $login = User::where([
             ['login', '=', $_POST['login']],
-            ['password', '=', Crypt::encrypt($_POST['password'])],
+            ['password', '=', $_POST['password']],
         ])->get();
+
+        
         
         if($login && isset($login[0]->name)) {
 
