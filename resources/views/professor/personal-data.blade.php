@@ -322,14 +322,9 @@
 				}
 			});
 			// Button functonality
-			$('#addSubmit').click(function () {
-				
+			$('#addSubmit').click(function (e) {
+				e.preventDefault();
 				// Remember token
-				$.ajaxSetup({
-					headers: {
-						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-					}
-				});
 				
 				var enabled = false;
 				if ($('#comentario').val()) {
@@ -338,6 +333,9 @@
 
 				$.ajax({
 					// Call url
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+					},
 					url: "{{ url('/personal-data/store') }}",
 					method: 'post',
 					data: {
