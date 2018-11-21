@@ -31,7 +31,35 @@ class PersonalDataController extends Controller
     {
         // Validate all fields
         $validator = Validator::make($request->input(), [
-         
+            // Candidate validations
+            'cpf'               => 'required',
+            'date_birth'        => 'required',
+            'last_name'         => 'required',
+            'name'              => 'required',
+            'name_mother'       => 'required',
+            'marital_status'    => 'required',
+            'nationality'       => 'required',
+
+            // Documents validations
+            'elector_title'             => 'required',
+            'elector_link'              => 'required',
+            'military_certificate'      => 'required',
+            'military_link'             => 'required',
+            'number'                    => 'required',
+            'number_link'               => 'required',
+            'date_issue'                => 'required',
+            'uf_issue'                  => 'required',
+
+            // Address validations
+            'city'                      => 'required',
+            'complement'                => 'required',
+            'neighborhood'              => 'required',
+            'military_link'             => 'required',
+            'number'                    => 'required',
+            'postal_code'               => 'required',
+            'public_place'              => 'required',
+            'state'                     => 'required',
+            'type_public_place'         => 'required',
         ]);
         
         // Validate if the rules are met
@@ -53,31 +81,43 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
+            // $candidate->user_id             = $request->user_id;
             $candidate->user_id             = 8;
             
             // Save in database
             if ($candidate->save()) {
                 // Create new document
-                // $document = new Document();
-                // $document->candidate_id          = $request->candidate_id;
+                $document = new Document();
+                $document->elector_title            = $request->elector_title;
+                $document->elector_link             = $request->elector_link;
+                $document->military_certificate     = $request->military_certificate;
+                $document->military_link            = $request->military_link;
+                $document->number                   = $request->number;
+                $document->number_link              = $request->number_link;
+                $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
+                $document->uf_issue                 = $request->uf_issue;
+                // $document->zone                     = $request->zone;
+                // $document->section                  = $request->section;
+                $document->candidate_id             = $request->candidate_id;
 
                 // Save in database
-                // $document->save();
+                $document->save();
 
-                // Create new address
-                $address = new Address();
-                $address->city                      = $request->city;
-                $address->complement                = $request->complement;
-                $address->neighborhood              = $request->neighborhood;
-                $address->number                    = $request->number;
-                $address->postal_code               = $request->postal_code;
-                $address->public_place              = $request->public_place;
-                $address->state                     = $request->state;
-                $address->type_public_place         = $request->type_public_place;
-    
-                // Save in database
-                $address->save();
             }
+
+            // Create new address
+            $address = new Address();
+            $address->city                      = $request->city;
+            $address->complement                = $request->complement;
+            $address->neighborhood              = $request->neighborhood;
+            $address->number                    = $request->number;
+            $address->postal_code               = $request->postal_code;
+            $address->public_place              = $request->public_place;
+            $address->state                     = $request->state;
+            $address->type_public_place         = $request->type_public_place;
+
+            // Save in database
+            $address->save();
     
             // Return in view
             return response()->json($candidate, $address);
