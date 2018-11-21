@@ -42,13 +42,7 @@ class PersonalDataController extends Controller
             $candidate = new Candidate();
             $candidate->cpf                 = $request->cpf;
             $candidate->date_birth          = date('Y-m-d', strtotime($request->date_birth));
-            
-            if($candidate->flag_deficient == 1){
-                $candidate->flag_deficient = 0;
-            } else {
-                $candidate->flag_deficient = 1;
-            }
-            
+            $candidate->flag_deficient      = isset($request->flag_deficient)? 1:0; 
             $candidate->genre               = $request->genre;
             $candidate->last_name           = $request->last_name;
             $candidate->name                = $request->name;
@@ -58,8 +52,8 @@ class PersonalDataController extends Controller
             $candidate->marital_status      = $request->marital_status;
             $candidate->nationality         = $request->nationality;
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
-            $candidate->obs_deficient       = isset($request->obs_deficient)? 1:0;
-            $candidate->user_id             = 1;
+            $candidate->obs_deficient       = $request->obs_deficient;
+            $candidate->user_id             = 2;
 
             // Save in database
             if ($candidate->save()) {
