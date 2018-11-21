@@ -34,17 +34,15 @@ class Vacancy extends Model
         return $this->belongsTo(Edict::class);
     }
 
-
-    public function criteria()
+    public function vacancy_criteria()
     {
-        return $this->belongsToMany(Criterion::class,
-            'vacancy_criteria');
+        return $this->hasMany(VacancyCriterion::class);
     }
 
     public function services()
     {
         return $this->belongsToMany(Service::class,
-            'vacancy_criteria');
+            'assignment_vacancies');
     }
 
 }

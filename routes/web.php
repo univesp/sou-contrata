@@ -43,8 +43,9 @@ Route::get('/selective-processes1', function () {
 
 
 Route::get('/vague-discipline/{id}', function ($id) {
-    $data = \App\Vacancy::with('criteria')->with('services')->find($id);
+    $data = \App\Vacancy::with('vacancy_criteria')->with('services')->find($id);
     //$data = \App\Vacancy::with('services')->find($id);
+    //return $data;
     return view('professor/vague-discipline', compact('data', $data));
 });
 
