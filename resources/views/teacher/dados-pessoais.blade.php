@@ -220,9 +220,9 @@
 					<label for="inputComplemento" class="fonte-campos">Complemento<span class="cor-campo"> *</span></label>
 					<input  type="text" class="form-control" id="inputComplemento" required oninvalid="this.setCustomValidity('Digite o Complemento')" onchange="try{setCustomValidity('')}catch(e){}">
 				</div>
-				<div class="col-md-3" style="padding-left: 0px;">	
+				<div class="col-md-3" style="padding-left: 0px;width: 335px;padding-right: 0px;">	
 					<label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
-					<input  type="text" class="form-control" id="inputBairro" required oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 316px;">
+					<input  type="text" class="form-control" id="inputBairro" required oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 333px;">
 				</div>
 				<div class="col-md-1" style="padding-left: 10px;">	
 					<label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
@@ -234,7 +234,7 @@
 			</div>
 		</div>
 		<div class="form-group" style="margin-left:70px;margin-top:5px;">
-			<div class="col-md-9" style="width: 950px;">	
+			<div class="col-md-9" style="width: 1000px;">	
 				<label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
 				<input  type="text" class="form-control" id="inputCidade" required oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
 			</div>
@@ -257,7 +257,7 @@
 				<div class="col-md-2" style="padding-left: 10px;">	
 					<label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
 					<input  type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{4}-[0-9]{4}" >
-					<span class="cor-campo">Adicionar outro telefone</span>
+					<!--<span class="cor-campo">Adicionar outro telefone</span>-->
 				</div>
 			</div>
 		</div>
