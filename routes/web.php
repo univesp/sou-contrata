@@ -71,15 +71,15 @@ Route::get('/selective-processes6', function () {
 });
 
 Route::get('/vague-discipline', function () {
-    return view('teacher/vague-discipline');
+    return view('professor/vague-discipline');
 });
 
 Route::get('/vague-discipline1', function () {
-    return view('teacher/vague-discipline1');
+    return view('professor/vague-discipline1');
 });
 
 Route::get('/personal-data', function () {
-    return view('teacher/personal-data');
+    return view('professor/personal-data');
 });
 
 Route::post('/academic-data/store', 'PersonalDataController@store')->name('store');
