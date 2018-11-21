@@ -8,6 +8,7 @@ use App\Document;
 use App\Address;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Response;
 
 class PersonalDataController extends Controller
 {
@@ -42,19 +43,18 @@ class PersonalDataController extends Controller
 
             // Documents validations
             'elector_title'             => 'required',
-            'elector_link'              => 'required',
+            // 'elector_link'              => 'required',
             'military_certificate'      => 'required',
-            'military_link'             => 'required',
-            'number'                    => 'required',
-            'number_link'               => 'required',
+            // 'military_link'             => 'required',
+            'rg_number'                 => 'required',
+            // 'number_link'               => 'required',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
-
+        
             // Address validations
             'city'                      => 'required',
             'complement'                => 'required',
             'neighborhood'              => 'required',
-            'military_link'             => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
             'public_place'              => 'required',
@@ -89,11 +89,11 @@ class PersonalDataController extends Controller
                 // Create new document
                 $document = new Document();
                 $document->elector_title            = $request->elector_title;
-                $document->elector_link             = $request->elector_link;
+                $document->elector_link             = __DIR__ . '/public/img/elector/arquivo.pdf';
                 $document->military_certificate     = $request->military_certificate;
-                $document->military_link            = $request->military_link;
+                $document->military_link            = __DIR__ . '/public/img/military/arquivo.pdf';
                 $document->number                   = $request->number;
-                $document->number_link              = $request->number_link;
+                $document->number_link              = __DIR__ . '/public/img/number/arquivo.pdf';
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
                 // $document->zone                     = $request->zone;
@@ -102,7 +102,6 @@ class PersonalDataController extends Controller
 
                 // Save in database
                 $document->save();
-
             }
 
             // Create new address
