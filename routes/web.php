@@ -78,16 +78,19 @@ Route::get('/vague-discipline1', function () {
     return view('professor/vague-discipline1');
 });
 
+// Personal data
 Route::get('/personal-data', function () {
     return view('professor/personal-data');
 });
 
-Route::post('/academic-data/store', 'PersonalDataController@store')->name('store');
+Route::post('/personal-data/store', 'PersonalDataController@store')->name('store');
 
+// Academic data
 Route::get('/academic-data', function () {
     return view('professor/academic-data');
 });
 
+// Process data
 Route::get('/process', function () {
     return view('vacancy/process');
 });

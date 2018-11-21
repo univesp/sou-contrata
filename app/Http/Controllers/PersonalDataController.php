@@ -63,21 +63,21 @@ class PersonalDataController extends Controller
 
                 // Save in database
                 // $document->save();
+
+                // Create new address
+                $address = new Address();
+                $address->city                      = $request->city;
+                $address->complement                = $request->complement;
+                $address->neighborhood              = $request->neighborhood;
+                $address->number                    = $request->number;
+                $address->postal_code               = $request->postal_code;
+                $address->public_place              = $request->public_place;
+                $address->state                     = $request->state;
+                $address->type_public_place         = $request->type_public_place;
+    
+                // Save in database
+                $address->save();
             }
-
-            // Create new address
-            $address = new Address();
-            $address->city                      = $request->city;
-            $address->complement                = $request->complement;
-            $address->neighborhood              = $request->neighborhood;
-            $address->number                    = $request->number;
-            $address->postal_code               = $request->postal_code;
-            $address->public_place              = $request->public_place;
-            $address->state                     = $request->state;
-            $address->type_public_place         = $request->type_public_place;
-
-            // Save in database
-            $address->save();
     
             // Return in view
             return response()->json($candidate, $address);
