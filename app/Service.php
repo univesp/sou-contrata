@@ -23,4 +23,10 @@ class Service extends Model
         'title',
         'description',
     ];
+
+    public function vacancies()
+    {
+        return $this->belongsToMany(Vacancy::class,
+            'assignment_vacancies');
+    }
 }
