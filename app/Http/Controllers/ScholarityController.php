@@ -29,11 +29,14 @@ class ScholarityController extends Controller
 
         $sessao = $request->session()->get('candidate');
 
-        $path = $request['file_graduate']->store("documents-academic/{$sessao[0]->id}");
+        // Documentos de Graduação do Candidato
+        $path = $request['file_graduate']->store("documents-graduate/{$sessao[0]->id}");
 
-        dd($request['file_graduate']);
+        // Documentos de Mestrado do Candidato
+        $path = $request['file_master']->store("documents-graduate/{$sessao[0]->id}");
         
-        dd($file = $request->image);
+        // Documentos de Doutorado do Candidato
+        $path = $request['file_doctorate']->store("documents-graduate/{$sessao[0]->id}");
 
         $scholarity = [
             [
@@ -69,9 +72,9 @@ class ScholarityController extends Controller
             $result[] = Scholarity::create($school);  
         }
 
-        //$result = Scholarity::create($request->all());
-
         dd($result);
+
+        //return view('vacancy/...');
     }
 
     /**
