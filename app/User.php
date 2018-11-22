@@ -7,14 +7,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable {
-    
+
     use Notifiable;
 
     protected $table = 'users';
 
     // Protected guarded table fields
     protected $guarded = ['id', 'created_at', 'update_at'];
-    
+
     protected $fillable = [
         'name','login','password', 'email', 'cod_privilege'
     ];
@@ -26,4 +26,9 @@ class User extends Authenticatable {
     protected $hidden = [
         'id', 'password', 'remember_token'
     ];
+
+    public function candidete()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
 }

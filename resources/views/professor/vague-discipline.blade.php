@@ -61,39 +61,39 @@
                 }
                 ?>
 
-                        @foreach($vacancies as $vacancy)
-                                <input type="hidden" name="vacancy_id" value="{{$vacancy->vacancy_criteria[0]->vacancy_id}}">
-                                @if(!empty($title[$vacancy->title]))
-                                   <h5><strong>{{$title[$vacancy->title]}}<span class="cor-campo">*</span></strong></h5>
-                                 @foreach($vacancies as $v)
-                                   @if(!empty($subtitle[$vacancy->title][$v->subtitle]))
-                                        <div class="checagem-radio"></div>
-                                        <div class="checkbox"></div>
-                                        <label id="subtitle">
-                                            <input type="checkbox" name="vc{{$v->vacancy_criteria[0]->id}}" value="{{$v->vacancy_criteria[0]->id}}" onclick="return itemSelect(this)"/>{{$subtitle[$vacancy->title][$v->subtitle]}}
-                                            @foreach($vacancies as $r)
-                                                @if(!empty($name[$vacancy->title][$v->subtitle][$r->name]))
+                @foreach($vacancies as $vacancy)
+                    <input type="hidden" name="vacancy_id" value="{{$vacancy->vacancy_criteria[0]->vacancy_id}}">
+                    @if(!empty($title[$vacancy->title]))
+                       <h5><strong>{{$title[$vacancy->title]}}<span class="cor-campo">*</span></strong></h5>
+                     @foreach($vacancies as $v)
+                       @if(!empty($subtitle[$vacancy->title][$v->subtitle]))
+                            <div class="checagem-radio"></div>
+                            <div class="checkbox"></div>
+                            <label id="subtitle">
+                                <input type="checkbox" name="vc[]" value="{{$v->vacancy_criteria[0]->id}}" onclick="return itemSelect(this)"/>{{$subtitle[$vacancy->title][$v->subtitle]}}
+                                @foreach($vacancies as $r)
+                                    @if(!empty($name[$vacancy->title][$v->subtitle][$r->name]))
 
-                                                    <div class="item-1, col-md-12" style="display:none">
-                                                        <input type="radio" name="criteria{{$r->id}}" id="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" value ="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" name="disciplina"/><span class="alinhamento-radio">{{$name[$vacancy->title][$v->subtitle][$r->name]}}</span>
-                                                    </div>
+                                        <div class="item-1, col-md-12" style="display:none">
+                                            <input type="radio" name="criteria{{$r->id}}" id="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" value ="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" name="disciplina"/><span class="alinhamento-radio">{{$name[$vacancy->title][$v->subtitle][$r->name]}}</span>
+                                        </div>
 
-                                                @endif
-                                                <?php
-                                                $name[$vacancy->title][$v->subtitle][$r->name] = null;
-                                                ?>
-                                            @endforeach
-                                        </label>
                                     @endif
-                                       <?php
-                                       $subtitle[$vacancy->title][$v->subtitle] = null;
-                                       ?>
-                                @endforeach
-                                @endif
                                     <?php
-                                    $title[$vacancy->title] = null;
-                                                                       ?>
-                        @endforeach
+                                    $name[$vacancy->title][$v->subtitle][$r->name] = null;
+                                    ?>
+                                @endforeach
+                            </label>
+                        @endif
+                           <?php
+                           $subtitle[$vacancy->title][$v->subtitle] = null;
+                           ?>
+                    @endforeach
+                    @endif
+                        <?php
+                        $title[$vacancy->title] = null;
+                                                           ?>
+                @endforeach
             <div class="checagem-radio"></div>
             <div class="row">
                 <div class="float-right">

@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Application;
 use App\AssignmentVacancy;
+use App\Candidate;
 
 class CriterionController extends Controller
 {
     //
     public function store(Request $request)
     {
+        //$id_user = $request->session()->get('candidate');
         $ap = new Application();
         $ap->candidate_id                 = 1;
-        $ap->criterion_id          = date('Y-m-d', strtotime($request->date_birth));
+        $ap->vacancy_id          = $request['vacancy_id'];
         $ap->status               = 'ok';
         $ap->observation               = "Gravando em banco!";
 
-       $ap = ApplicationAssignment::save();
+        $application = $ap->save();
+
+        if($application)
+        {
+
+        }
+
     }
 }
 

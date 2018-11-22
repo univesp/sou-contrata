@@ -17,7 +17,7 @@ class Application extends Model
         'observation',
         'status',
         'candidate_id',
-        'criterion_id',
+        'vacancy_id',
     ];
 
     // Protect table sorted fields
@@ -25,7 +25,7 @@ class Application extends Model
         'observation',
         'status',
         'candidate_id',
-        'criterion_id'
+        'vacancy_id'
     ];
 
     // Relationships

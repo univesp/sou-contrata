@@ -41,4 +41,9 @@ class Candidate extends Model {
         return $this->hasOne(Document::class);
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
 }
