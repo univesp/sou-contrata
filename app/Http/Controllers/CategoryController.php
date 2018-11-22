@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Vacancy;
-class ListEditalController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,23 @@ class ListEditalController extends Controller
      */
     public function index()
     {
-       // $vacancy= Vacancy::get();
-       $data= Vacancy::get();
-        return view('vacancy.process', compact('data'));
+        $process = \App\Models\vacancies::all();
+        //
+             // Não que esquece de utilizar o Model no inicio da classe: use App\Models\Category;
+    $process = vacancies::get();
+ 
+    // Repassando para a view
+    return view('vacancy.process', compact('process'));
+    }
 
-
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -39,6 +50,17 @@ class ListEditalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
     {
         //
     }
