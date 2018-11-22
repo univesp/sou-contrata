@@ -72,9 +72,9 @@ class ScholarityController extends Controller
             $result[] = Scholarity::create($school);  
         }
 
-        dd($result);
+        //dd($result);
 
-        //return view('vacancy/...');
+        return view('vacancy/process');
     }
 
     /**
