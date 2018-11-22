@@ -245,5 +245,15 @@ a {
 }
 
 .checagem-radio {
-	margin-bottom: 2%;
+	margin-bottom: 0%;
+}
+
+label {
+    margin-bottom: 0px !important;
+   font-weight: 10 !important;
+}
+
+.checkbox {
+    margin-top: 0px !important;
+   margin-bottom: 0px !important;
 }

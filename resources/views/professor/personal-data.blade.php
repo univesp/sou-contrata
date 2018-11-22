@@ -132,7 +132,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="inputDataEmissao" class="fonte-campos">Data emissão<span class="cor-campo"> *</span></label>
-                            <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" style="padding: 0;">
+                            <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
                         </div>
                     </div>
                 </div>
@@ -308,7 +308,7 @@
                                     </div> -->
                                     <div class="col-md-4">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                                        <input  type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{4}-[0-9]{4}" >
+                                        <input name="phone" type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{4}-[0-9]{4}" >
                                         <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
                                     </div>
                                 </div>

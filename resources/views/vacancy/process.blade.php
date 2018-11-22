@@ -7,7 +7,6 @@
 @endsection
 @section('content')
 
-@if(isset($data))
 
 {{--  dd($data) --}}
 
