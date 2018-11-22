@@ -81,7 +81,7 @@ class UserController extends Controller {
         
         if($login && isset($login[0]->name)) {
 
-            $request->session()->put('candidate', $login);
+            $request->session()->put('user', $login);
 
             return redirect('/process');
 
