@@ -42,12 +42,13 @@ class PersonalDataController extends Controller
             'name_mother'       => 'required',
             'marital_status'    => 'required',
             'nationality'       => 'required',
+            'phone'             => 'required',
 
             // Documents validations
             'elector_title'             => 'required',
-            // 'elector_link'              => 'required',
+            'elector_link'              => 'required',
             'rg_number'                 => 'required',
-            // 'number_link'               => 'required',
+            'number_link'               => 'required',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
 
@@ -85,7 +86,7 @@ class PersonalDataController extends Controller
 
             // Get user session variable
             $session = $request->session()->get('user');
-            $user_id = $session[0]['id'];
+            $user_id = $session[0]->id;
             $candidate->user_id             = $user_id;
             
             // Save in database
@@ -96,11 +97,11 @@ class PersonalDataController extends Controller
                 // Create new document
                 $document = new Document();
                 $document->elector_title            = $request->elector_title;
-                // $document->elector_link             = $request->elector_link;
+                $document->elector_link             = $request->elector_link;
                 $document->military_certificate     = $request->military_certificate;
-                // $document->military_link            = $request->military_link;
+                $document->military_link            = $request->military_link;
                 $document->number                   = $request->number;
-                // $document->number_link              = $request->number_link;
+                $document->number_link              = $request->number_link;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
                 $document->zone                     = 'Empty';
