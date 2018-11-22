@@ -44,8 +44,6 @@ class PersonalDataController extends Controller
             // Documents validations
             'elector_title'             => 'required',
             // 'elector_link'              => 'required',
-            'military_certificate'      => 'required',
-            // 'military_link'             => 'required',
             'rg_number'                 => 'required',
             // 'number_link'               => 'required',
             'date_issue'                => 'required',

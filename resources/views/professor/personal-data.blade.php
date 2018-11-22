@@ -192,8 +192,8 @@
                                 <h4>Certificado Militar</h4>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputNumDoc_2" class="fonte-campos">Número de documento<span class="cor-campo"> *</span></label>
-                                <input name="military_certificate" type="text" class="form-control" id="inputNumDoc_2" required oninvalid="this.setCustomValidity('Digite o Número do Certificado Militar')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
+                                <label for="inputNumDoc_2" class="fonte-campos">Número de documento</label>
+                                <input name="military_certificate" type="text" class="form-control" id="inputNumDoc_2">
                             </div>
                             <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
