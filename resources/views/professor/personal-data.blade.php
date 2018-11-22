@@ -136,6 +136,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="file" id="file_rg" name="file_cpf" style="margin-top:15px;">
             </div>
             <div class="col-md-11">
                 <div class="row">
@@ -146,7 +147,6 @@
                           <div class="col-md-4">
                                 <label for="inputNumDoc" class="fonte-campos">Número do documento<span class="cor-campo"> *</span></label>
                                 <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;">
                             </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -315,12 +315,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <hr />
+                        <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-12">
-			<hr />
-			<button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
-		</div>
 		<div class="row">
 			<div class="row">
 				<!--
@@ -405,7 +405,7 @@
 
                 get_cep($(this).val());
 
-            }); 
+            });
 
             $("#opcaoSim").click(function() {
 
