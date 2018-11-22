@@ -49,7 +49,7 @@ class PersonalDataController extends Controller
             // 'number_link'               => 'required',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
-        
+
             // Address validations
             'city'                      => 'required',
             'complement'                => 'required',
@@ -60,7 +60,7 @@ class PersonalDataController extends Controller
             'state'                     => 'required',
             'type_public_place'         => 'required',
         ]);
-        
+
         // Validate if the rules are met
         if ($validator->fails()) {
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
@@ -80,9 +80,8 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = 99 - 99999-9999;
-            $candidate->user_id             = 4;
-            
+            $candidate->phone               = '99 99999-9999';
+            $candidate->user_id             = $request->session()->get('user')->id;
             // Save in database
             if ($candidate->save()) {
                 // Create new document
@@ -116,7 +115,7 @@ class PersonalDataController extends Controller
 
             // Save in database
             $address->save();
-    
+
             // Return in view
             // return response()->json('funciona');
             return redirect()->route('academic-data');

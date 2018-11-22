@@ -290,7 +290,7 @@
                         </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <div class="col-md-2">
+                                    <!-- <div class="col-md-2">
                                         <label for="inputTipo" class="fonte-campos">Tipo<span class="cor-campo">*</span></label>
                                         <select id="inputTipo" class="form-control">
                                             <option>11</option>
@@ -300,11 +300,11 @@
                                     <div class="col-md-1">
                                         <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
                                         <input  type="text" class="form-control" id="inputPrefixo" required oninvalid="this.setCustomValidity('Digite o Prefixo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
-                                    </div>
-                                    <div class="col-md-3">
+                                    </div> -->
+                                    <div class="col-md-4">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
                                         <input  type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{4}-[0-9]{4}" >
-                                        <span class="cor-campo">Adicionar outro telefone</span>
+                                        <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
                                     </div>
                                 </div>
                             </div>
