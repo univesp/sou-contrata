@@ -10,7 +10,7 @@ $factory->define(Vacancy::class, function ($faker) use ($factory) {
         'phone' => $faker->phoneNumber,
         'postal_code' => $faker->postcode,
         'offer' => $faker->text(30),
-        'type' => $faker->text(30),
+        //'type' => $faker->text(30),
         'matter' => $faker->text(40),
     ];
 });
