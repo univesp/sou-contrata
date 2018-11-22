@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Response;
 use Session;
+use Auth;
 
 class PersonalDataController extends Controller
 {
@@ -80,22 +81,26 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = '99 99999-9999';
-            $candidate->user_id             = $request->session()->get('user');
+            $candidate->phone               = $request->phone;
+
+            // Get user session variable
+            $session = $request->session()->get('user');
+            $user_id = $session[0]['id'];
+            $candidate->user_id             = $user_id;
             
             // Save in database
             if ($candidate->save()) {
-                // Session variable
+                // Put candidate session variable
                 $request->session()->put('candidate', $candidate->id);
-                
+
                 // Create new document
                 $document = new Document();
                 $document->elector_title            = $request->elector_title;
-                $document->elector_link             = $request->elector_link;
+                // $document->elector_link             = $request->elector_link;
                 $document->military_certificate     = $request->military_certificate;
-                $document->military_link            = $request->military_link;
+                // $document->military_link            = $request->military_link;
                 $document->number                   = $request->number;
-                $document->number_link              = $request->number_link;
+                // $document->number_link              = $request->number_link;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
                 $document->zone                     = 'Empty';
