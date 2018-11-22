@@ -369,8 +369,43 @@
                 return false;
             }
         }
+
+        function get_cep(cep) {
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#inputLogradouro").val("...");
+                        $("#inputBairro").val("...");
+                        $("#inputCidade").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#inputLogradouro").val(dados.logradouro);
+                                $("#inputBairro").val(dados.bairro);
+                                $("#inputCidade").val(dados.localidade);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                //limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    }
+            //alert(cep);
+        }
         // Init
         $(document).ready(function () {
+
+            $("#inputCep").blur(function() {
+
+                get_cep($(this).val());
+
+            }); 
 
             $("#opcaoSim").click(function() {
 
@@ -436,7 +471,6 @@
                         // F12 or inspect on browser to show result
                         console.log(result)
                     },
-
 
                     error: function (errors) {
                         console.log(errors)

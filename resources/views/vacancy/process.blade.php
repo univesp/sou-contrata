@@ -9,7 +9,7 @@
 
 @if(isset($data))
 
-{{ dd($data) }}
+{{--  dd($data) --}}
 
 @endif
 
