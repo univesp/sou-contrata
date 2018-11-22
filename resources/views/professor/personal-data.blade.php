@@ -16,7 +16,7 @@
 		<div class="formatacao-campos">
 			*Obrigatório
 		</div>
-		<form id="form" action="/store">
+		<form id="form" method="post" action="academic-data">
             {{ csrf_field() }}
         <div class="col-md-11">
             <div class="row">
@@ -382,13 +382,14 @@
             }
 
             // Button functonality
-            $('#addSubmit').click(function () {
+            $('#addSubmit').click(function (e) {
+                e.preventDefault();
                 $.ajax({
                     // Call url
                     headers: {
 						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 					},
-                    url: "{{ url('/personal-data/store') }}",
+                    url: "/personal-data/store",
                     method: 'post',
                     data: {
                         _token: '{{csrf_token()}}',
