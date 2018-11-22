@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ApplicationAssignment;
 use Illuminate\Http\Request;
 use App\Application;
+use App\ApplicationCriterion;
 use App\AssignmentVacancy;
 use App\Candidate;
 
@@ -12,7 +14,8 @@ class CriterionController extends Controller
     //
     public function store(Request $request)
     {
-        //$id_user = $request->session()->get('candidate');
+
+        //$id_candidete = $request->session()->get('candidate');
         $ap = new Application();
         $ap->candidate_id                 = 1;
         $ap->vacancy_id          = $request['vacancy_id'];
@@ -21,26 +24,34 @@ class CriterionController extends Controller
 
         $application = $ap->save();
 
+        $resp[] = "Application cadastrado ID -" . $ap->id;
+
         if($application)
         {
+            foreach ($request['criteria'] as $criteria){
+
+                $ac = new ApplicationCriterion();
+                $ac->candidate_id                 = $ap->id;
+                $ac->vacancy_crit_id          = $criteria;
+                $ac->flag_ok               = 1;
+
+                $a_criteroin = $ac->save();
+
+                $resp[] = "ApplicationCriterion cadastrado ID - {$ap->id} | Criterio ID {$criteria} | ID - {$ac->id}";
+            }
+            foreach ($request['sevices'] as $service){
+
+                $aa = new ApplicationAssignment();
+                $aa->application_id                 = $ap->id;
+                $aa->service_id          = $service;
+                $aa->flag_ok               = 1;
+
+                $a_assigment = $aa->save();
+
+                $resp[] = "ApplicationCriterion cadastrado ID - {$ap->id} | Service ID {$service} | ID - {$aa->id}";
+            }
 
         }
-
+        return $resp;
     }
 }
-
-/*
-"sevices" => array:5 [▼
-        0 => "2"
-        1 => "5"
-        2 => "7"
-        3 => "8"
-        4 => "10"
-      ]
-      "vacancy_id" => "1"
-      "vc1" => "1"
-      "criteria1" => "1"
-      "vc3" => "3"
-      "criteria9" => "9"
-      "vc2" => "2"
-      "criteria5" => "5"*/
