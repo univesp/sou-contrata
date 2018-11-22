@@ -43,7 +43,7 @@ class UserController extends Controller {
 
         $answer = User::create($candidate);
 
-        $request->session()->put('user', $login);
+        $request->session()->put('user', $candidate);
 
         return redirect('/personal-data');
 
