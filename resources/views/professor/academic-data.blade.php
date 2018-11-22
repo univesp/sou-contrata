@@ -66,7 +66,7 @@
 					<div class="col-md-12">	 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
-							<input type="file" name="file_graduate[]" id="file_graduate" multiple/>
+							<input type="file" name="file_graduate" id="file_graduate"/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 						</div>
@@ -109,7 +109,7 @@
 						<div class="col-md-12">	 
 						<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 							<div class="display-flex">
-								<input type="file" name="file_master[]" id="file_master" multiple/>
+								<input type="file" name="file_master" id="file_master"/>
 								<!--<img src="img/arraste.png" class="img-responsive">
 								<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 							</div>
@@ -154,7 +154,7 @@
 					<div class="col-md-12">	 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
-							<input type="file" name="file_doctorate[]" id="file_doctorate" multiple/>
+							<input type="file" name="file_doctorate" id="file_doctorate"/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 						</div>

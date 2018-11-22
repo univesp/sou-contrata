@@ -29,37 +29,17 @@ class ScholarityController extends Controller
 
         $sessao = $request->session()->get('candidate');
 
-        dd($request);
-
         // Documentos de Graduação do Candidato
 
-        foreach ($request['file_graduate'] as $key => $graduate) {
-
-            $path_file_graduate .= $request['file_graduate']->store("documents-graduate/{$sessao[0]->id}") . ";";
-
-        }
-
-        //$path_file_graduate = $request['file_graduate']->store("documents-graduate/{$sessao[0]->id}");
+        $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$sessao[0]->id}");
 
         // Documentos de Mestrado do Candidato
-
-        foreach ($request['file_master'] as $key => $master) {
-
-            $path_file_master .= $request['file_master']->store("documents-master/{$sessao[0]->id}") . ";";
-
-        }
-
-        //$path_file_master = $request['file_master']->store("documents-graduate/{$sessao[0]->id}");
+        
+        $path_file_master = $request['file_master']->store("documents-graduate/{$sessao[0]->id}");
         
         // Documentos de Doutorado do Candidato
 
-        foreach ($request['file_doctorate'] as $key => $doctorate) {
-
-            $path_file_doctorate .= $request['file_doctorate']->store("documents-doctorate/{$sessao[0]->id}") . ";";
-
-        }
-
-        //$path_file_doctorate = $request['file_doctorate']->store("documents-graduate/{$sessao[0]->id}");
+        $path_file_doctorate = $request['file_doctorate']->store("documents-graduate/{$sessao[0]->id}");
 
         $scholarity = [
             [
@@ -94,8 +74,6 @@ class ScholarityController extends Controller
 
             $result[] = Scholarity::create($school);  
         }
-
-        //dd($result);
 
         return view('vacancy/process');
     }
