@@ -162,9 +162,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-11">
-                    <div class="row">
-                        <div class="form-group">
+            <div class="col-md-11">
+                <div class="row">
+                    <div class="form-group">
                             <div class="col-md-12">
                                 <h4>Titulo de eleitor</h4>
                             </div>
@@ -186,7 +186,7 @@
                                 <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
                             </div>-->
                         </div>
-                    </div>
+
                 </div>
                 <div class="col-md-11">
                     <div class="row">
@@ -213,6 +213,7 @@
                         </div>
                     </div>
                 </div>
+                <br/>
                 <div class="col-md-11">
                     <div class="row">
                         <div class="col-md-12">
