@@ -65,7 +65,7 @@
 				<div class="row col-md-12" style="margin-top:20px; margin-left:0px;">
 					<div class="col-md-1">
 						<div class="row display-flex">
-							<input type="file" name="file_graduate" />
+							<input type="file" name="file_graduate" id="file_graduate"/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 						</div>	
@@ -170,5 +170,31 @@
 		</div>
 @endsection
 @section('scripts')
-	<script src="{{URL::asset('js/dados-pessoais.js')}}"></script>
+	<script>
+		$(function(){
+			$(document).ready(function(){
+
+				/*$("#file_graduate").change(function(){
+					console.log($(this).val());
+					$.ajax({
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+						},
+						url: "{{ url('/academic-data/data') }}",
+						method: 'post',
+						dateType: 'json',
+						data: {
+							_token: '{{csrf_token()}}',
+							file_graduate: $(this).val()
+						},
+						success: function (result) {
+							// F12 or inspect on browser to show result
+							console.log(result);
+						}
+					}); 
+
+				});*/
+			});
+		});
+	</script>	
 @endsection

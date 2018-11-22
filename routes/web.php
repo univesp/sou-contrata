@@ -72,3 +72,5 @@ Route::get('/process', function () {
 });
 
 Route::post('/document_academic', 'ScholarityController@store')->name('store');
+
+Route::post('/academic-data/data', 'ScholarityController@document_academic')->name('document_academic');
