@@ -41,11 +41,11 @@ class UserController extends Controller {
             'email' => $request->email
         ];
 
-        //dd($_POST);
-
         $answer = User::create($candidate);
 
-        dd($answer);
+        $request->session()->put('user', $login);
+
+        return redirect('/personal-data');
 
     }
 
