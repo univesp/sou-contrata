@@ -18,7 +18,7 @@ class Vacancy extends Model
         'postal_code',
         'matter',
         'offer',
-        'type',
+        //'type',
     ];
 
     // Protect table sorted fields
@@ -30,7 +30,7 @@ class Vacancy extends Model
         'postal_code',
         'matter',
         'offer',
-        'type',
+        //'type',
     ];
 
     public function edict()
