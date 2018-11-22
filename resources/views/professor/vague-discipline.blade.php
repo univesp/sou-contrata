@@ -13,7 +13,7 @@
 
     <div class="container">
 		<ul class="nav nav-tabs">
-            <li><a href="{{ route('professorPersonalData') }}">Dados pessoais</a></li>
+            <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
             <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
             <li class="active, link3"><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
 		</ul>
@@ -75,7 +75,7 @@
                                     @if(!empty($name[$vacancy->title][$v->subtitle][$r->name]))
 
                                         <div class="item-1, col-md-12" style="display:none">
-                                            <input type="radio" name="criteria{{$r->id}}" id="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" value ="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" name="disciplina"/><span class="alinhamento-radio">{{$name[$vacancy->title][$v->subtitle][$r->name]}}</span>
+                                            <input type="checkbox" name="criteria[]" id="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" value ="{{$id[$vacancy->title][$v->subtitle][$r->name][$r->id]}}" name="disciplina"/><span class="alinhamento-radio">{{$name[$vacancy->title][$v->subtitle][$r->name]}}</span>
                                         </div>
 
                                     @endif

@@ -9,6 +9,7 @@ use App\Address;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Response;
+use Session;
 
 class PersonalDataController extends Controller
 {
@@ -81,7 +82,6 @@ class PersonalDataController extends Controller
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = '99 99999-9999';
             $candidate->user_id             = $request->session()->get('user')->id;
-
             // Save in database
             if ($candidate->save()) {
                 // Create new document
@@ -117,7 +117,8 @@ class PersonalDataController extends Controller
             $address->save();
 
             // Return in view
-            return response()->json($candidate, $document, $address);
+            // return response()->json('funciona');
+            return redirect()->route('academic-data');
         }
     }
 
