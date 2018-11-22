@@ -146,10 +146,7 @@
                             <div class="col-md-4">
                                 <label for="inputNumDoc" class="fonte-campos">Número do documento<span class="cor-campo"> *</span></label>
                                 <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
+                                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;">
                             </div>
                             <div class="col-md-2">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -170,11 +167,8 @@
                             <div class="col-md-4">
                                 <label for="inputNumDoc_1" class="fonte-campos">Número de documento<span class="cor-campo"> *</span></label>
                                 <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
-                            </div>
+                                <input type="file" id="file_title" name="file_title" style="margin-top:15px;">
+                                </div>
                             <div class="col-md-2">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
                                 <img src="img/visao_digitalizada.jpg" class="img-responsive" alt="versao-digitalizada">
@@ -194,10 +188,7 @@
                             <div class="col-md-4">
                                 <label for="inputNumDoc_2" class="fonte-campos">Número de documento</label>
                                 <input name="military_certificate" type="text" class="form-control" id="inputNumDoc_2">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
+                                <input type="file" id="file_military" name="file_military" style="margin-top:15px;">
                             </div>
                             <div class="col-md-2">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
