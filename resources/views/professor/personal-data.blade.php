@@ -8,11 +8,10 @@
 @section('content')
 	<div class="fonte-cabecalho"></div>
 	<div class="container">
-    <ul class="nav nav-tabs">
-@extends('layouts.header')
-<li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
+            <ul class="nav nav-tabs">
 				<li class="active, link3"><a href="{{ route('professorPersonalData') }}">Dados pessoais</a></li>
 				<li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
+                <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
 			</ul>
 		<div class="formatacao-campos">
 			*Obrigatório
