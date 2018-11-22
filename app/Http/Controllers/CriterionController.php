@@ -21,10 +21,25 @@ class CriterionController extends Controller
 
         $application = $ap->save();
 
-        if($application)
-        {
+        $vacancy_id = $request->vacancy_id;
+        $vc = $_POST['vc'];
+        $services = $_POST['sevices'];
 
+        unset($_POST['vc']);
+        unset($_POST['vacancy_id']);
+        unset($_POST['sevices']);
+        unset($_POST['_token']);
+
+        $arr = $_POST;
+        
+        foreach ($arr as $key => $val) {
+            $criteria[$vacancy_id][] = $val;
         }
+        
+        // ######################### O velho ainda funciona salve $_POST !!!! #########################
+        
+        dd($criteria);
+
 
     }
 }
