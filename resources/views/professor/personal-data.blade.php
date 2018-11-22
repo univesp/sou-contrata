@@ -304,7 +304,7 @@
                                     <div class="col-md-4">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
                                         <input  type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{4}-[0-9]{4}" >
-                                        <span class="cor-campo">Adicionar outro telefone</span>
+                                        <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
                                     </div>
                                 </div>
                             </div>
