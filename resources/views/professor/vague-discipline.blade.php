@@ -53,14 +53,13 @@
                 $name = [] ;
                 $id = [] ;
                 foreach ($vacancies as $vacancy){
-                    $title[$vacancy->title] = $vacancy->title  ;
+                    $title[$vacancy->title] = $vacancy->title;
                     $subtitle[$vacancy->title][$vacancy->subtitle] = $vacancy->subtitle ;
                     $name[$vacancy->title][$vacancy->subtitle][$vacancy->name] = $vacancy->name;
                     $id[$vacancy->title][$vacancy->subtitle][$vacancy->name][$vacancy->vacancy_criteria[0]->criterion_id] = $vacancy->vacancy_criteria[0]->criterion_id;
-
+                   
                 }
                 ?>
-
                 @foreach($vacancies as $vacancy)
                     <input type="hidden" name="vacancy_id" value="{{$vacancy->vacancy_criteria[0]->vacancy_id}}">
                     @if(!empty($title[$vacancy->title]))
@@ -94,12 +93,7 @@
                         $title[$vacancy->title] = null;
                                                            ?>
                 @endforeach
-            <div class="checagem-radio"></div>
-            <div class="row">
-                <div class="float-right">
-                    <p><a class="ob, cor-campo" href="processos-seletivos">Adicionar outra disciplina</a></p>
-                </div>
-            </div>
+          
             <div class="row">
 
                 <div class="float-right">
@@ -108,7 +102,7 @@
             </div>
            <br /><br />
             </form>
-
+            
 
 	   <script type="text/javascript">
 
