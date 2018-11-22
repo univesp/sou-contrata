@@ -136,12 +136,13 @@
                         </div>
                     </div>
                 </div>
-                <input type="file" id="file_rg" name="file_cpf" style="margin-top:15px;">
+                <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;">
             </div>
             <div class="col-md-11">
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
+                            <br/>
                             <h4>CPF</h4>
                         </div>
                           <div class="col-md-4">
@@ -166,6 +167,7 @@
                 <div class="row">
                     <div class="form-group">
                             <div class="col-md-12">
+                                <br/>
                                 <h4>Titulo de eleitor</h4>
                             </div>
                             <div class="col-md-4">
@@ -192,6 +194,7 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-12">
+                                <br/>
                                 <h4>Certificado Militar</h4>
                             </div>
                             <div class="col-md-4">
@@ -217,6 +220,7 @@
                 <div class="col-md-11">
                     <div class="row">
                         <div class="col-md-12">
+                            <br/>
                             <h4>Endereço e contato</h4>
                             <hr />
                             <div class="form-group">
@@ -290,6 +294,7 @@
                 <div class="col-md-11">
                     <div class="row">
                         <div class="col-md-12">
+                            <br/>
                             <h4>Telefone</h4>
                             <hr />
                         </div>
