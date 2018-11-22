@@ -26,7 +26,7 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($_POST);
+        $sessao = $request->session()->get('candidate');
 
         $scholarity = [
             [
@@ -36,7 +36,7 @@ class ScholarityController extends Controller
                 'link' => 'empty',
                 'scholarity_type' => $request->inputCursos,
                 'teaching_institution' => $request->inpuInstituicao,
-                'candidate_id' => 1 
+                'candidate_id' => $sessao[0]->id 
             ],[
                 'class_name' => $request->cadlettters,
                 'end_date' => Carbon::parse($request->inputDataConclusao_1)->format('Y-m-d'),
@@ -44,7 +44,7 @@ class ScholarityController extends Controller
                 'link' => 'empty',
                 'scholarity_type' => $request->inputArea,
                 'teaching_institution' => $request->inputInstiucao_1,
-                'candidate_id' => 1
+                'candidate_id' => $sessao[0]->id
             ],[
                 'class_name' => $request->cadlettters,
                 'end_date' => Carbon::parse($request->inputDataConclusao_2)->format('Y-m-d'),
@@ -52,7 +52,7 @@ class ScholarityController extends Controller
                 'link' => 'empty',
                 'scholarity_type' => $request->inputCursos_2,
                 'teaching_institution' => $request->inputInstiucao_2,
-                'candidate_id' => 1
+                'candidate_id' => $sessao[0]->id
             ]
 
         ];
