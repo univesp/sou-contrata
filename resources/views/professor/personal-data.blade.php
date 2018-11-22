@@ -16,7 +16,7 @@
 		<div class="formatacao-campos">
 			*Obrigatório
 		</div>
-		<form id="form">
+		<form id="form" name="personal-data" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
         <div class="col-md-11">
             <div class="row">
@@ -389,7 +389,7 @@
 						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 					},
                     url: "/personal-data/store",
-                    method: 'post',
+                    type: 'POST',
                     data: {
                         _token: '{{csrf_token()}}',
                         
@@ -429,7 +429,12 @@
                     },
                     success: function (result) {
                         // F12 or inspect on browser to show result
-                        console.log(result);
+                        console.log(result)
+                    },
+
+
+                    error: function (errors) {
+                        console.log(errors)
                     }
                 });
             });

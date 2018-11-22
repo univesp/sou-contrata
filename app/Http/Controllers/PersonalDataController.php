@@ -19,7 +19,7 @@ class PersonalDataController extends Controller
      */
     public function index()
     {
-        return view('professor.dados-pessoais');
+        return view('professor.personal-data');
     }
 
     /**
@@ -82,9 +82,9 @@ class PersonalDataController extends Controller
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = 9999-9999;
-            // $candidate->user_id             = $request->user_id;
+            // $candidate->user_id             = $request->session()->get('user');
             $candidate->user_id             = 1;
-
+            
             // Save in database
             if ($candidate->save()) {
                 // Create new document
