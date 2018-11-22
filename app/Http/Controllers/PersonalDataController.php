@@ -81,9 +81,10 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
+            $candidate->phone               = 9999-9999;
             // $candidate->user_id             = $request->user_id;
-            $candidate->user_id             = 8;
-            
+            $candidate->user_id             = 1;
+
             // Save in database
             if ($candidate->save()) {
                 // Create new document
@@ -96,9 +97,9 @@ class PersonalDataController extends Controller
                 $document->number_link              = __DIR__ . '/public/img/number/arquivo.pdf';
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
-                // $document->zone                     = $request->zone;
-                // $document->section                  = $request->section;
-                $document->candidate_id             = $request->candidate_id;
+                $document->zone                     = 'Empty';
+                $document->section                  = 'Empty';
+                $document->candidate_id             = $candidate->id;
 
                 // Save in database
                 $document->save();
