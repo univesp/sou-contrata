@@ -16,7 +16,7 @@
 		<div class="formatacao-campos">
 			*Obrigatório
 		</div>
-		<form id="form" method="post" action="academic-data">
+		<form id="form">
             {{ csrf_field() }}
         <div class="col-md-11">
             <div class="row">
@@ -382,8 +382,7 @@
             }
 
             // Button functonality
-            $('#addSubmit').click(function (e) {
-                e.preventDefault();
+            $('#addSubmit').click(function () {
                 $.ajax({
                     // Call url
                     headers: {
