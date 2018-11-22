@@ -374,28 +374,28 @@
             var validacep = /^[0-9]{8}$/;
 
             //Valida o formato do CEP.
-                    if(validacep.test(cep)) {
-                        //Preenche os campos com "..." enquanto consulta webservice.
-                        $("#inputLogradouro").val("...");
-                        $("#inputBairro").val("...");
-                        $("#inputCidade").val("...");
+            if(validacep.test(cep)) {
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#inputLogradouro").val("...");
+                $("#inputBairro").val("...");
+                $("#inputCidade").val("...");
 
-                        //Consulta o webservice viacep.com.br/
-                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
 
-                            if (!("erro" in dados)) {
-                                //Atualiza os campos com os valores da consulta.
-                                $("#inputLogradouro").val(dados.logradouro);
-                                $("#inputBairro").val(dados.bairro);
-                                $("#inputCidade").val(dados.localidade);
-                            } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                //limpa_formulário_cep();
-                                alert("CEP não encontrado.");
-                            }
-                        });
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#inputLogradouro").val(dados.logradouro);
+                        $("#inputBairro").val(dados.bairro);
+                        $("#inputCidade").val(dados.localidade);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        //limpa_formulário_cep();
+                        alert("CEP não encontrado.");
                     }
+                });
+            }
             //alert(cep);
         }
         // Init
