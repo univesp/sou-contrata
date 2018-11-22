@@ -14,10 +14,11 @@ class ListEditalController extends Controller
      */
     public function index()
     {
-       // $vacancy= Vacancy::get();
-       $data= Vacancy::get();
-        return view('vacancy.process', compact('data'));
+       $data = Vacancy::all();
 
+       //dd($data);
+
+        return view('vacancy.process', compact('data'));
 
     }
 

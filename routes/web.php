@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 */
 
 
-Route::get('vacancy','ListEditalController@index');
 
 Route::get('/', function () {
     $data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
@@ -21,6 +20,8 @@ Route::get('/', function () {
 });
 
 //Vacancy
+Route::get('/vacancy','ListEditalController@index');
+
 Route::get('/edict/{id}', function ($id) {
     $data = \App\Vacancy::with('edict')->find($id);
     return view('vacancy/edicts',compact('data', $data));

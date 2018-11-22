@@ -7,8 +7,11 @@
 @endsection
 @section('content')
 
-{{$data['data']}}
+@if(isset($data))
 
+{{ dd($data) }}
+
+@endif
 
 	<div class="container">
 	<h2 class="fonte-conteudo">Processos Seletivos</h2>
