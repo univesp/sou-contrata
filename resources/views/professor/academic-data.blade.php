@@ -62,9 +62,10 @@
 					</div>
 				</div>
 
-				<div class="row col-md-12" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-1">
-						<div class="row display-flex">
+				<div class="row" style="margin-top:20px; margin-left:0px;">
+					<div class="col-md-12">	 
+					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
+						<div class="display-flex">
 							<input type="file" name="file_graduate" id="file_graduate"/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
@@ -104,10 +105,11 @@
 							</div>
 						</div>
 					</div>
-					<div class="row col-md-12" style="margin-top:20px; margin-left:0px;">
-						<div class="col-md-1">
-							<div class="row display-flex">
-								<input type="file" name="file_master" />
+					<div class="row" style="margin-top:20px; margin-left:0px;">
+						<div class="col-md-12">	 
+						<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
+							<div class="display-flex">
+								<input type="file" name="file_graduate" id="file_graduate"/>
 								<!--<img src="img/arraste.png" class="img-responsive">
 								<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 							</div>
@@ -148,10 +150,11 @@
 					</div>
 				</div>
 
-				<div class="row col-md-12" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-1">
-						<div class="row display-flex">
-							<input type="file" name="file_doctorate" />
+				<div class="row" style="margin-top:20px; margin-left:0px;">
+					<div class="col-md-12">	 
+					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
+						<div class="display-flex">
+							<input type="file" name="file_graduate" id="file_graduate"/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 						</div>
