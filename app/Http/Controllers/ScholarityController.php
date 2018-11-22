@@ -25,11 +25,15 @@ class ScholarityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        dd($request->files);
-        dd($file = $request->image);
-        
+    {
+
         $sessao = $request->session()->get('candidate');
+
+        $path = $request['file_graduate']->store("documents-academic/{$sessao[0]->id}");
+
+        dd($request['file_graduate']);
+        
+        dd($file = $request->image);
 
         $scholarity = [
             [
