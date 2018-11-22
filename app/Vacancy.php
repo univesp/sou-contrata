@@ -16,7 +16,9 @@ class Vacancy extends Model
         'payload',
         'phone',
         'postal_code',
-        'matter'
+        'matter',
+        'offer',
+        'type',
     ];
 
     // Protect table sorted fields
@@ -27,6 +29,8 @@ class Vacancy extends Model
         'phone',
         'postal_code',
         'matter',
+        'offer',
+        'type',
     ];
 
     public function edict()

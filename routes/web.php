@@ -49,10 +49,16 @@ Route::get('/selective-processes1', function () {
 
 Route::get('/vague-discipline/{id}', function ($id) {
     $data = \App\Vacancy::with('vacancy_criteria')->with('services')->find($id);
-    //$data = \App\Vacancy::with('services')->find($id);
-    //return $data;
-    return view('professor/vague-discipline', compact('data', $data));
+    $vacancies = \App\Criterion::with('vacancy_criteria')
+        ->whereHas('vacancy_criteria',function ($query){
+            $query->where('vacancy_id', '=', '1');
+        },'=',$id)->get();
+    //return  $result;
+    return view('professor/vague-discipline', compact(['data','vacancies']));
 });
+
+Route::post('/vague-discipline','CriterionController@store');
+
 
 // Personal data
 Route::get('/personal-data', function () {
