@@ -6,12 +6,6 @@
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
-
-
-{{--  dd($data) --}}
-
-@endif
-
 	<div class="container">
 	<h2 class="fonte-conteudo">Processos Seletivos</h2>
 	<ul class="nav nav-tabs">
@@ -85,6 +79,7 @@
 		</div>
 @endsection
 @section('script')
+<script>
 	var botao = document.querySelector('button#botao');
 	botao.addEventListener('click', function() {
 		var aberto = botao.classList.contains('Aplicar');
@@ -97,5 +92,5 @@
 		$('#botao1').css('background-color', '#006dcc');
 		this.innerHTML = aberto ? 'Aplicar' : 'Remover Item';
 	});
-
+</script>
 @endsection
