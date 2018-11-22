@@ -128,7 +128,7 @@ class PersonalDataController extends Controller
 
             // Return in view
             // return response()->json('funciona');
-            return redirect()->route('academic-data');
+            return redirect()->route('professorAcademicData');
         }
     }
 

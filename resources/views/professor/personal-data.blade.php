@@ -36,16 +36,16 @@
                     <div class="col-md-2">
                         <label for="inputNatu" class="fonte-campos">Nacionalidade<span class="cor-campo">*</span></label>
                         <select name="nationality" id="inputNatu" class="form-control">
-                            <option selected>Brasileiro(a)</option>
-                            <option>Extrangeiros</option>
+                            <option value="0">Brasileiro(a)</option>
+                            <option value="1">Extrangeiros</option>
                         </select>
                     </div>
                     <div class="col-md-2">
                         <label class="fonte-campos" for="sexo">Sexo:</label>
                             <select class="form-control" id="sexo">
-                                <option>Masculino</option>
-                                <option>Feminino</option>
-                                <option>Não deseja Informar</option>
+                                <option value="0">Masculino</option>
+                                <option value="1">Feminino</option>
+                                <option value="2">Não deseja Informar</option>
                             </select>
                         </div>
                     </div>
