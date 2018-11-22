@@ -9,9 +9,9 @@
 		<div class="fonte-cabecalho"></div>
 		<div class="container">
 			<ul class="nav nav-tabs">
-				<li><a href="vaga-disciplina">Área de interesse</a></li>
-				<li><a href="dados-pessoais">Dados pessoais</a></li>
-				<li class="active, link3"><a href="dados-academicos">Dados academicos</a></li>
+				<!-- <li><a href="">Área de interesse</a></li> -->
+				<li><a href="{{ route('professorPersonalData') }}">Dados pessoais</a></li>
+				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
@@ -68,7 +68,7 @@
 							<input type="file" name="file_graduate" id="file_graduate"/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
-						</div>	
+						</div>
 					</div><br />
 				</div>
 			</div>
@@ -110,7 +110,7 @@
 								<input type="file" name="file_master" />
 								<!--<img src="img/arraste.png" class="img-responsive">
 								<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
-							</div>	
+							</div>
 						</div><br />
 					</div>
 
@@ -154,7 +154,7 @@
 							<input type="file" name="file_doctorate" />
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
-						</div>	
+						</div>
 					</div><br />
 				</div>
 
@@ -191,10 +191,10 @@
 							// F12 or inspect on browser to show result
 							console.log(result);
 						}
-					}); 
+					});
 
 				});*/
 			});
 		});
-	</script>	
+	</script>
 @endsection

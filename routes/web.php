@@ -63,19 +63,19 @@ Route::post('/vague-discipline','CriterionController@store');
 // Personal data
 Route::get('/personal-data', function () {
     return view('professor/personal-data');
-});
+})->name('professorPersonalData');
 
 Route::post('/personal-data/store', 'PersonalDataController@store')->name('store');
 
 // Academic data
 Route::get('/academic-data', function () {
     return view('professor/academic-data');
-});
+})->name('professorAcademicData');
 
 // Process data
 Route::get('/process', function () {
     return view('vacancy/process');
-});
+})->name('vacancyProcess');
 
 Route::post('/document_academic', 'ScholarityController@store')->name('store');
 
