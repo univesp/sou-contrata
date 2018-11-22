@@ -25,12 +25,6 @@ class Criterion extends Model
         'name'
     ];
 
-    public function vacancies()
-    {
-        return $this->belongsTo(Vacancy::class,
-            'vacancy_criteria');
-    }
-
     public function vacancy_criteria()
     {
         return $this->hasMany(VacancyCriterion::class);
