@@ -35,10 +35,10 @@ class UserController extends Controller {
     public function store(Request $request) {
 
         $candidate = [
-            'name' => $_POST['name'],
-            'login' => $_POST['login'],
-            'password' => Crypt::encrypt($_POST['password']),
-            'email' => $_POST['email'],
+            'name' => $request->name,
+            'login' => $request->login,
+            'password' => Crypt::encrypt($request->password),
+            'email' => $request->email
         ];
 
         //dd($_POST);
@@ -50,108 +50,12 @@ class UserController extends Controller {
     }
 
     /**
-     * Upload Files
-     * Método responsável por carregar os documentos.
-     */
-
-     public function documents(Request $request) {
-        
-        $validation = Validator::make($request->all(),
-         [
-                'select_file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-         ]   
-        );
-
-        //dd($validation);
-
-        /*if($validation->passes()) {
-            die('@@@');
-            $image = $request->file('select_file');
-            dd($image);
-
-        } else {
-            die('####');
-            return response()->json([
-                'message' => $validation->errors()->all(),
-                'uploaded_image' => '',
-                'class_name' => 'alert-danger'
-            ]);
-        }*/
-        
-        
-        dd($request->file('select_file'));
-        
-        //$dir = 'uploads/';
-        //$filename = uniqid() . '_' . time() . '.' . $extension;
-        //$request->file('file')->move($dir, $filename);
-
-
-        if ($request->hasFile('image')) {
-         
-            $file = $request->file('image');
-            //$name = $request['phone_number'] . $request['phone_number'] . '.' . $file->getClientOriginalExtension();
-            //$image['filePath'] = $name;
-            
-            //$file->move('uploads', $name);
-
-        } else {
-
-            die('Error');
-        }
-        
-        //$file = $request->file('image');
-
-        echo "<pre>";
-
-        print_r($file);
-
-        dd($file);
-
-        $result ='';
-        
-        $upload = $this->url->to('/upload');
-        
-        if($_FILES['file']['name'][0]) {
-
-            foreach ($_FILES['file']['name'] as $key => $file) {
-                
-                $file_name = "{$upload}/{$_FILES['file']['name'][$key]}";
-                
-                if(move_uploaded_file($_FILES['file']['name'][$key],$file_name)) {
-                    $result .= "<div class= 'image'><img src='{$file_name}'></div>";
-                
-                } else {
-
-                    //echo $_FILES['file']['name'][$key];
-                    echo $file_name;
-                }
-            }
-        }
-
-        echo json_encode($result);
-        
-        //dd($_FILES);
-
-     }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id) {
         //
     }
 
@@ -177,7 +81,7 @@ class UserController extends Controller {
         
         if($login && isset($login[0]->name)) {
 
-            $request->session()->put('candidate', $login);
+            $request->session()->put('user', $login);
 
             return redirect('/process');
 
