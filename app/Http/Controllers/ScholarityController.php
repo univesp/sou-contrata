@@ -25,7 +25,10 @@ class ScholarityController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        dd($request->files);
+        dd($file = $request->image);
+        
         $sessao = $request->session()->get('candidate');
 
         $scholarity = [
@@ -99,5 +102,25 @@ class ScholarityController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function document_academic(Request $request) {
+        
+        //$session = $request->session()->get('candidate');
+        //$user = $session[0]->id;
+
+        $input = $request->all();
+        $input['image'] = $input['file_graduate'];
+
+        // Pegando a extensão do arquivo
+
+        $arr = explode('.', $input['image']);
+        $extensao = end($arr);
+
+        $input['image'] = time() . '.' . $extensao;
+        //$request->image->move(public_path("documents-academic/{$user}/"), $input['image']);
+        
+        dd($request);
+
     }
 }
