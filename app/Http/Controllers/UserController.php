@@ -35,6 +35,7 @@ class UserController extends Controller {
     public function store(Request $request) {
 
         $candidate = [
+            'id' => $request->id,
             'name' => $request->name,
             'login' => $request->login,
             'password' => Crypt::encrypt($request->password),
