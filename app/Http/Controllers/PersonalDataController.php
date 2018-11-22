@@ -120,7 +120,7 @@ class PersonalDataController extends Controller
             $address->save();
     
             // Return in view
-            return response()->json($candidate, $address);
+            return response()->json($candidate, $document, $address);
         }
     }
 
