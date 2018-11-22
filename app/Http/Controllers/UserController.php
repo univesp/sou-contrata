@@ -171,12 +171,9 @@ class UserController extends Controller {
 
     public function login(Request $request) {
 
-        $login = User::where([
-            ['login', '=', $_POST['login']],
-            ['password', '=', $_POST['password']],
-        ])->get();
-
-        
+        $login = User::where('password', '=', Crypt::encrypt($request->password))
+            ->orWhere('login', $request->login)
+            ->get();
         
         if($login && isset($login[0]->name)) {
 

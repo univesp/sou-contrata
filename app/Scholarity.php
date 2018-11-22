@@ -20,6 +20,7 @@ class Scholarity extends Model
         'link',
         'scholarity_type',
         'teaching_institution',
+        'candidate_id'
     ];
 
     // Protect table sorted fields
@@ -30,6 +31,7 @@ class Scholarity extends Model
         'link',
         'scholarity_type',
         'teaching_institution',
+        'candidate_id',
     ];
 
     // Relationships

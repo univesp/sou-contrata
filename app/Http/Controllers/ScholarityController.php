@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Scholarity;
+use Illuminate\Support\Carbon;
 
 class ScholarityController extends Controller
 {
@@ -24,7 +26,45 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($_POST);
+
+        $scholarity = [
+            [
+                'class_name' => $request->cadlettters,
+                'end_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
+                'init_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
+                'link' => 'empty',
+                'scholarity_type' => $request->inputCursos,
+                'teaching_institution' => $request->inpuInstituicao,
+                'candidate_id' => 1 
+            ],[
+                'class_name' => $request->cadlettters,
+                'end_date' => Carbon::parse($request->inputDataConclusao_1)->format('Y-m-d'),
+                'init_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
+                'link' => 'empty',
+                'scholarity_type' => $request->inputArea,
+                'teaching_institution' => $request->inputInstiucao_1,
+                'candidate_id' => 1
+            ],[
+                'class_name' => $request->cadlettters,
+                'end_date' => Carbon::parse($request->inputDataConclusao_2)->format('Y-m-d'),
+                'init_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
+                'link' => 'empty',
+                'scholarity_type' => $request->inputCursos_2,
+                'teaching_institution' => $request->inputInstiucao_2,
+                'candidate_id' => 1
+            ]
+
+        ];
+
+        foreach ($scholarity as $school) {
+
+            $result[] = Scholarity::create($school);  
+        }
+
+        //$result = Scholarity::create($request->all());
+
+        dd($result);
     }
 
     /**

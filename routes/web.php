@@ -27,6 +27,11 @@ Route::get('/login', function () {
     return view('vacancy/login');
 });
 
+
+Route::get('/form', function () {
+    return view('user/form');
+});
+
 Route::post('/login', 'UserController@login')->name('login');
 
 Route::post('/store', 'UserController@store')->name('store');
@@ -65,3 +70,5 @@ Route::get('/academic-data', function () {
 Route::get('/process', function () {
     return view('vacancy/process');
 });
+
+Route::post('/document_academic', 'ScholarityController@store')->name('store');
