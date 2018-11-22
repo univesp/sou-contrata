@@ -13,9 +13,9 @@
 
     <div class="container">
 		<ul class="nav nav-tabs">
-			<li class="active, link3"><a href="vaga-disciplina">Áreas de Interesse</a></li>
-			<li><a href="dados-pessoais">Dados pessoais</a></li>
-			<li><a href="dados-academicos">Dados Acadêmicos</a></li>
+            <li class="active, link3"><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
+            <li><a href="{{ route('professorPersonalData') }}">Dados pessoais</a></li>
+            <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
 		</ul>
 		<p class="ob, cor-campo">*Obrigatório</p>
 		<p>Você esta credenciando como docente para:</p>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,14 +48,15 @@ Route::get('/selective-processes1', function () {
 });
 
 
-Route::get('/vague-discipline/{id}', function ($id) {
+Route::get('/vague-discipline/{id}', function ($id, Request $request) {
     $data = \App\Vacancy::with('vacancy_criteria')->with('services')->find($id);
     $vacancies = \App\Criterion::with('vacancy_criteria')
         ->whereHas('vacancy_criteria',function ($query){
             $query->where('vacancy_id', '=', '1');
         },'=',$id)->get();
     //return  $result;
-    return view('professor/vague-discipline', compact(['data','vacancies']));
+    $request->session()->put('vagueId', $id);
+    return view('professor/vague-discipline', compact(['data','vacancies', 'vagueId']));
 })->name("vagueDiscipline");
 
 Route::post('/vague-discipline','CriterionController@store');
