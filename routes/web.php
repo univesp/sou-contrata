@@ -55,7 +55,7 @@ Route::get('/vague-discipline/{id}', function ($id) {
         },'=',$id)->get();
     //return  $result;
     return view('professor/vague-discipline', compact(['data','vacancies']));
-});
+})->name("vagueDiscipline");
 
 Route::post('/vague-discipline','CriterionController@store');
 

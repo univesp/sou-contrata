@@ -32,7 +32,7 @@
 					<td>20</td>
 					<td></td>
 					<td>inédita</td>
-					<td><a href="vaga-disciplina-1"><button type="button"  id="botao" class="btn btn-danger">Aplicar</button></a></td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => 1]) }}"><button type="button"  id="botao" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
 				<tr>
 					<td>Trabalho de Conclusão de Curso I</td>
@@ -40,7 +40,7 @@
 					<td>80</td>
 					<td>2019.1</td>
 					<td>inédita</td>
-					<td><a href="vaga-disciplina-1"><button type="button"  id="botao1" class="btn btn-danger">Aplicar</button></a></td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => 2]) }}"><button type="button"  id="botao1" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
 				<tr>
 					<td>Estágio Supervisionado I</td>
@@ -48,7 +48,7 @@
 					<td>100</td>
 					<td></td>
 					<td>inédita</td>
-					<td><a href="vaga-disciplina-1"><button type="button"  id="botao2" class="btn btn-danger">Aplicar</button></a></td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => 3]) }}"><button type="button"  id="botao2" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
 				<tr>
 					<td>Tópicos Avançados em Eng. de Produção II</td>
@@ -56,7 +56,7 @@
 					<td>20</td>
 					<td></td>
 					<td>inédita</td>
-					<td><a href="vaga-disciplina-1"><button type="button"  id="botao3" class="btn btn-danger">Aplicar</button></a></td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => 4]) }}"><button type="button"  id="botao3" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
 				<tr>
 					<td>Trabalho de Conclusão de Curso II</td>
@@ -64,7 +64,7 @@
 					<td>80</td>
 					<td>2019.2</td>
 					<td>inédita</td>
-					<td><a href="vaga-disciplina-1"><button type="button"  id="botao4" class="btn btn-danger">Aplicar</button></a></td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => 5]) }}"><button type="button"  id="botao4" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
 				<tr>
 					<td>Estágio Supervisionado II</td>
@@ -72,7 +72,7 @@
 					<td>100</td>
 					<td></td>
 					<td>inédita</td>
-					<td><a href="vaga-disciplina-1"><button type="button"  id="botao5" class="btn btn-danger">Aplicar</button></a></td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => 6]) }}"><button type="button"  id="botao5" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
 			</tbody>
 		</table>
