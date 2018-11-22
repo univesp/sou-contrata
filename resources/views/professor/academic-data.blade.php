@@ -66,7 +66,7 @@
 					<div class="col-md-12">	 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
-							<input type="file" name="file_graduate" id="file_graduate"/>
+							<input type="file" name="file_graduate[]" id="file_graduate" multiple/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 						</div>
@@ -109,7 +109,7 @@
 						<div class="col-md-12">	 
 						<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 							<div class="display-flex">
-								<input type="file" name="file_graduate" id="file_graduate"/>
+								<input type="file" name="file_master[]" id="file_master" multiple/>
 								<!--<img src="img/arraste.png" class="img-responsive">
 								<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 							</div>
@@ -154,7 +154,7 @@
 					<div class="col-md-12">	 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
-							<input type="file" name="file_graduate" id="file_graduate"/>
+							<input type="file" name="file_doctorate[]" id="file_doctorate" multiple/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 						</div>
@@ -176,27 +176,7 @@
 	<script>
 		$(function(){
 			$(document).ready(function(){
-
-				/*$("#file_graduate").change(function(){
-					console.log($(this).val());
-					$.ajax({
-						headers: {
-							'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-						},
-						url: "{{ url('/academic-data/data') }}",
-						method: 'post',
-						dateType: 'json',
-						data: {
-							_token: '{{csrf_token()}}',
-							file_graduate: $(this).val()
-						},
-						success: function (result) {
-							// F12 or inspect on browser to show result
-							console.log(result);
-						}
-					});
-
-				});*/
+				
 			});
 		});
 	</script>
