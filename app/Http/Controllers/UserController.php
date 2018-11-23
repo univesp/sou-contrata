@@ -93,10 +93,10 @@ class UserController extends Controller {
             if(empty($candidados[0]->id)) {
 
                 return redirect('/personal-data');
-                
+
             } else {
 
-                return redirect('/process');
+                return redirect('/vacancy');
 
             }
 
