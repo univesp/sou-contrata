@@ -18,7 +18,7 @@
             <form class="form-signin"action="/login" method="post">
                 {{ csrf_field() }}
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" id="login" name="login" class="form-control" placeholder="Usuário" required oninvalid="this.setCustomValidity('Digite o usuário')" onchange="try{setCustomValidity('')}catch(e){}">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required oninvalid="this.setCustomValidity('Digite o email')" onchange="try{setCustomValidity('')}catch(e){}">
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Senha" required>
                 <div id="remember" class="checkbox">
                     <label>

@@ -81,10 +81,10 @@ class UserController extends Controller {
         $request->session()->flush();
 
          $login = User::where('password', '=', Crypt::encrypt($request->password))
-            ->orWhere('login', $request->login)
+            ->orWhere('email', $request->email)
             ->get();
 
-        if($login && isset($login[0]->name)) {
+        if($login && isset($login[0]->email)) {
             
 
             
