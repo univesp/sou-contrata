@@ -7,8 +7,6 @@
 @endsection
 @section('content')
 
-
-
 	<div class="container">
 	<h2 class="fonte-conteudo">Processos Seletivos</h2>
 	<ul class="nav nav-tabs">
@@ -29,54 +27,17 @@
 				</tr>
 			</thead>
 			<tbody>
+			<tbody>
+			@foreach($data as $d)
 				<tr>
-					<td>Tópicos Avançados em Eng. de Produção I</td>
-                    <td>Calculo I</td>
-					<td>20</td>
+					<td>{{$d->title}}</td>
+                    <td>{{$d->matter}}</td>
 					<td></td>
-					<td>inédita</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => 1]) }}"><button type="button"  id="botao" class="btn btn-danger">Aplicar</button></a></td>
-				</tr>
-				<tr>
-					<td>Trabalho de Conclusão de Curso I</td>
-                    <td>Calculo I e Fisica quantica</td>
-					<td>80</td>
-					<td>2019.1</td>
-					<td>inédita</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => 2]) }}"><button type="button"  id="botao1" class="btn btn-danger">Aplicar</button></a></td>
-				</tr>
-				<tr>
-					<td>Estágio Supervisionado I</td>
-                    <td></td>
-					<td>100</td>
 					<td></td>
-					<td>inédita</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => 3]) }}"><button type="button"  id="botao2" class="btn btn-danger">Aplicar</button></a></td>
+					<td>{{$d->type}}</td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
-				<tr>
-					<td>Tópicos Avançados em Eng. de Produção II</td>
-                    <td></td>
-					<td>20</td>
-					<td></td>
-					<td>inédita</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => 4]) }}"><button type="button"  id="botao3" class="btn btn-danger">Aplicar</button></a></td>
-				</tr>
-				<tr>
-					<td>Trabalho de Conclusão de Curso II</td>
-                    <td></td>
-					<td>80</td>
-					<td>2019.2</td>
-					<td>inédita</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => 5]) }}"><button type="button"  id="botao4" class="btn btn-danger">Aplicar</button></a></td>
-				</tr>
-				<tr>
-					<td>Estágio Supervisionado II</td>
-                    <td></td>
-					<td>100</td>
-					<td></td>
-					<td>inédita</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => 6]) }}"><button type="button"  id="botao5" class="btn btn-danger">Aplicar</button></a></td>
-				</tr>
+				@endforeach
 			</tbody>
 		</table>
 		</div>
