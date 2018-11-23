@@ -17,13 +17,13 @@ class ListEditalController extends Controller
         
        
 
-       $vague = Vacancy::all()->where('edict_id',1);
+       $data = Vacancy::all()->where('edict_id',1)->get();
     
        //dd($data);
-       //$data['']=Vacancy::where('edict_id',1)->get();
+       //$data = Vacancy::where('edict_id',1)->get();
        //dd($data['teste']);
 
-        return view('vacancy.process', compact('vague'));
+        return view('vacancy.process', compact('data'));
 
 
     }

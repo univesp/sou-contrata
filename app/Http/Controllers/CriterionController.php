@@ -8,6 +8,7 @@ use App\Application;
 use App\ApplicationCriterion;
 use App\AssignmentVacancy;
 use App\Candidate;
+use App\Vacancy;
 
 class CriterionController extends Controller
 {
@@ -24,7 +25,7 @@ class CriterionController extends Controller
 
         $application = $ap->save();
 
-        $resp[] = "Application cadastrado ID -" . $ap->id;
+        $resp = "Application cadastrado ID -" . $ap->id;
 
         if($application)
         {
@@ -37,7 +38,7 @@ class CriterionController extends Controller
 
                 $a_criteroin = $ac->save();
 
-                $resp[] = "ApplicationCriterion cadastrado ID - {$ap->id} | Criterio ID {$criteria} | ID - {$ac->id}";
+                $resp = "ApplicationCriterion cadastrado ID - {$ap->id} | Criterio ID {$criteria} | ID - {$ac->id}";
             }
             foreach ($request['sevices'] as $service){
 
@@ -48,10 +49,13 @@ class CriterionController extends Controller
 
                 $a_assigment = $aa->save();
 
-                $resp[] = "ApplicationCriterion cadastrado ID - {$ap->id} | Service ID {$service} | ID - {$aa->id}";
+                $resp = "ApplicationCriterion cadastrado ID - {$ap->id} | Service ID {$service} | ID - {$aa->id}";
             }
 
         }
-        return $resp;
+
+        $data = Vacancy::all()->where('edict_id',1);
+
+        return view('vacancy.process', compact(['data', 'resp']));
     }
 }
