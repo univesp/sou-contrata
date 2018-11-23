@@ -6,7 +6,7 @@
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
-
+	{{$data}}
 	<div class="container">
 	<h2 class="fonte-conteudo">Processos Seletivos</h2>
 	<ul class="nav nav-tabs">
