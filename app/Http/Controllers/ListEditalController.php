@@ -22,6 +22,7 @@ class ListEditalController extends Controller
 
 
         return view('vacancy.process', compact('data'));
+        
 
     }
 

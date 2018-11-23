@@ -7,6 +7,8 @@
 @endsection
 @section('content')
 
+
+
 	<div class="container">
 	<h2 class="fonte-conteudo">Processos Seletivos</h2>
 	<ul class="nav nav-tabs">
@@ -32,8 +34,8 @@
 				<tr>
 					<td>{{$d->title}}</td>
                     <td>{{$d->matter}}</td>
-					<td></td>
-					<td></td>
+					<td>{{$d->payload}}</td>
+					<td>{{$d->offer}}</td>
 					<td>{{$d->type}}</td>
 					<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Aplicar</button></a></td>
 				</tr>
