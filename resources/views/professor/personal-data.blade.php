@@ -226,7 +226,7 @@
                             <div class="form-group">
                                 <div class="col-md-2">
                                     <label for="inputCep" class="fonte-campos">CEP<span class="cor-campo"> *</span></label>
-                                    <input name="postal_code" type="text" class="form-control" id="inputCep" required oninvalid="this.setCustomValidity('Digite o Cep completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{5}-[0-9]{3}">
+                                    <input name="postal_code" type="text" class="form-control" id="inputCep" required oninvalid="this.setCustomValidity('Digite o Cep completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{5}[0-9]{3}">
                                     <span class="cor-campo">Pesquisar CEP *</span>
                                 </div>
                             </div>

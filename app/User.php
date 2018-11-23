@@ -16,7 +16,7 @@ class User extends Authenticatable {
     protected $guarded = ['id', 'created_at', 'update_at'];
 
     protected $fillable = [
-        'name','login','password', 'email', 'cod_privilege'
+        'id', 'name','login','password', 'email', 'cod_privilege'
     ];
 
     protected $sorted = [
@@ -24,7 +24,7 @@ class User extends Authenticatable {
     ];
 
     protected $hidden = [
-        'id', 'password', 'remember_token'
+        'password', 'remember_token'
     ];
 
     public function candidete()
