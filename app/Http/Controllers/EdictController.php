@@ -4,28 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Vacancy;
-class ListEditalController extends Controller
+class EdictController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id, Request $request)
     {
-        
-       
 
-       $vague = Vacancy::all()->where('edict_id',1);
-    
-       //dd($data);
-       //$data['']=Vacancy::where('edict_id',1)->get();
-       //dd($data['teste']);
+        //$uri = explode('/',$_SERVER {'REQUEST_URI'});
+        // $editalid=end ($uri);
+        //dd($editalid);
+        //return view('');
+        //dd($id);
 
-        return view('vacancy.process', compact('vague'));
+       // $data = \App\Vacancy::with('edict')->find($id);
+
+       // $request->session()->put('edictId', $data->id);
+        //return view('vacancy/edicts',compact('data'));
 
 
+        //
     }
 
     /**
@@ -72,4 +73,12 @@ class ListEditalController extends Controller
     {
         //
     }
+
+    public function list($id, Request $request)
+    {
+        $request->session()->put('edital_id', $id);
+        return view('vacancy/login', compact('data'));
+
+    }
 }
+
