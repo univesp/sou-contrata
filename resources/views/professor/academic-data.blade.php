@@ -37,7 +37,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input  type="text" class="form-control" maxlength="10" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">
@@ -82,7 +82,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="inputArea" class="fonte-campos">Área<span class="cor-campo"> *</span></label>
-								<input type="text" class="form-control" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
+								<input type="text" class="form-control" maxlength="10" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
 							</div>
 						</div>
 						<div class="row">
@@ -126,7 +126,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos_2" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input type="text" class="form-control" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input type="text" class="form-control" imaxlength="10" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">

@@ -8,6 +8,7 @@ use App\User;
 use function Sodium\add;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
+use App\Candidate;
 
 class UserController extends Controller {
 
@@ -84,7 +85,20 @@ class UserController extends Controller {
 
             $request->session()->put('user', $login);
 
-            return redirect('/process');
+            $candidados = Candidate::where('user_id', $login[0]->id)->get();
+
+            if(empty($candidados[0]->id)) {
+
+                return redirect('/personal-data');
+                
+            } else {
+
+                return redirect('/process');
+
+            }
+
+            dd($candidados);
+
 
         } else {
 

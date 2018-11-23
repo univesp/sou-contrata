@@ -195,12 +195,12 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <br/>
-                                <h4>Certificado Militar</h4>
+                                <h4 class="militar" style="display: none;">Certificado Militar</h4>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputNumDoc_2" class="fonte-campos">Número de documento</label>
-                                <input name="military_certificate" type="text" class="form-control" id="inputNumDoc_2">
-                                <input type="file" id="file_military" name="file_military" style="margin-top:15px;">
+                                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de documento</label>
+                                <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
+                                <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
                             </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -405,6 +405,21 @@
         }
         // Init
         $(document).ready(function () {
+
+            $("#sexo").change(function(){
+
+                var sexo = $(this).val();
+
+                if(sexo == 0) {
+
+                    $(".militar").show();
+               
+                } else if(sexo == 1 || sexo == 2) {
+
+                    $(".militar").hide();
+                }
+
+            });
 
             $("#inputCep").blur(function() {
 
