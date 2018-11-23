@@ -14,13 +14,13 @@ class ListEditalController extends Controller
      */
     public function index()
     {
-       $data = Vacancy::all()->where('edict_id',1);
+       $vague = Vacancy::all()->where('edict_id',1);
     
        //dd($data);
        //$data['']=Vacancy::where('edict_id',1)->get();
        //dd($data['teste']);
 
-        return view('vacancy.process', compact('data'));
+        return view('vacancy/process', compact('vague'));
 
     }
 
