@@ -33,7 +33,7 @@ class PersonalDataController extends Controller
     public function store(Request $request)
     {
 
-        // Capiturando a sessão do usuário
+        // Capturando a sessão do usuário
         $sessao = $request->session()->get('user');
         
         $user_id = $sessao[0]->id;
