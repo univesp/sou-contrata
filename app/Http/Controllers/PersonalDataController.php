@@ -42,7 +42,7 @@ class PersonalDataController extends Controller
             $user_id = $session->id;
         }
         
-        // Envio dos documentos para o Storage
+        // Send documents to storage
         $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
         $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
         $path_file_military = '';
@@ -106,6 +106,8 @@ class PersonalDataController extends Controller
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = trim($request->phone);
             $candidate->user_id             = $user_id;
+
+            // dd($candidate);die;
             
             // Save in database
             if ($candidate->save()) {
@@ -125,7 +127,7 @@ class PersonalDataController extends Controller
                 $document->zone                     = 'Empty';
                 $document->section                  = 'Empty';
                 $document->candidate_id             = $candidate->id;
-
+                dd($document);
                 // Save in database
                 $document->save();
             }
