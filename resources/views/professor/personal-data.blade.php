@@ -124,7 +124,7 @@
                         </div>
                         <div class="col-md-3">
                             <label for="inputNumDocs" class="fonte-campos">Número de documento RG<span class="cor-campo"> *</span></label>
-                            <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{2}\.\d{3}\.\d{3}-\d{1}">
+                            <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')" onchange="try{setCustomValidity('')}catch(e){}" maxlength="9">
                         </div>
                         <div class="col-md-2">
                             <label for="inputOrgEmissor" class="fonte-campos">Orgão emissor<span class="cor-campo"> *</span></label>
@@ -136,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;">
+                <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
             <div class="col-md-11">
                 <div class="row">
@@ -147,7 +147,7 @@
                         </div>
                           <div class="col-md-4">
                                 <label for="inputNumDoc" class="fonte-campos">Número do documento<span class="cor-campo"> *</span></label>
-                                <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+                                <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF somente números')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="11">
                             </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -172,8 +172,8 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="inputNumDoc_1" class="fonte-campos">Número de documento<span class="cor-campo"> *</span></label>
-                                <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
-                                <input type="file" id="file_title" name="file_title" style="margin-top:15px;">
+                                <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="12">
+                                <input type="file" id="file_title" name="file_title" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do Título de eleitor')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                             <!--  <div class="col-md-3">
@@ -226,7 +226,7 @@
                             <div class="form-group">
                                 <div class="col-md-2">
                                     <label for="inputCep" class="fonte-campos">CEP<span class="cor-campo"> *</span></label>
-                                    <input name="postal_code" type="text" class="form-control" id="inputCep" required oninvalid="this.setCustomValidity('Digite o Cep completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{5}[0-9]{3}">
+                                    <input name="postal_code" type="number" class="form-control" id="inputCep">
                                     <span class="cor-campo">Pesquisar CEP *</span>
                                 </div>
                             </div>
@@ -250,7 +250,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                                    <input name="number" type="text" class="form-control" id="inputNum" required oninvalid="this.setCustomValidity('Digite Somente Número')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
+                                    <input name="number" type="text" class="form-control" id="inputNum" required oninvalid="this.setCustomValidity('Digite Somente Número')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
                                 </div>
                             </div>
                         </div>
@@ -261,8 +261,8 @@
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="col-md-4">
-                                    <label for="inputComplemento" class="fonte-campos">Complemento<span class="cor-campo"> *</span></label>
-                                    <input name="complement" type="text" class="form-control" id="inputComplemento" required oninvalid="this.setCustomValidity('Digite o Complemento')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <label for="inputComplemento" class="fonte-campos">Complemento</label>
+                                    <input name="complement" type="text" class="form-control" id="inputComplemento">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
@@ -313,7 +313,7 @@
                                     </div> -->
                                     <div class="col-md-4">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                                        <input name="phone" type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{4}-[0-9]{4}" >
+                                        <input name="phone" type="number" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
                                         <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
                                     </div>
                                 </div>
