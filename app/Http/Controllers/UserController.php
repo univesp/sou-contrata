@@ -87,7 +87,6 @@ class UserController extends Controller {
         if($login && isset($login[0]->name)) {
 
             $request->session()->put('user', $login);
-<<<<<<< HEAD
 
             $candidados = Candidate::where('user_id', $login[0]->id)->get();
 
@@ -100,12 +99,6 @@ class UserController extends Controller {
                 return redirect('/process');
 
             }
-
-            dd($candidados);
-
-=======
-            return redirect('/process');
->>>>>>> a3b1c9eee767a0637e82e5d5bbf2bb103f82d456
 
         } else {
 
