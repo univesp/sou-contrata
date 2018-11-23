@@ -20,6 +20,7 @@ class ListEditalController extends Controller
        //$data['']=Vacancy::where('edict_id',1)->get();
        //dd($data['teste']);
 
+        return view('vacancy.process', compact('vague'));
 
 
     }

@@ -6,13 +6,6 @@
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
-<<<<<<< HEAD
-
-
-
-=======
-	{{-- dd($vague) --}}
->>>>>>> 75188734a6bf28c6e8d22626650ec2ac06273e1b
 	<div class="container">
 	<h2 class="fonte-conteudo">Processos Seletivos</h2>
 	<ul class="nav nav-tabs">
