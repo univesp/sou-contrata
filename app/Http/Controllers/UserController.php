@@ -33,8 +33,9 @@ class UserController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-
+    public function store(Request $request)
+    {
+        $request->session()->flush();
         $candidate = [
             'id' => $request->id,
             'name' => $request->name,
@@ -45,7 +46,7 @@ class UserController extends Controller {
 
         $answer = User::create($candidate);
 
-        $request->session()->put('user', $candidate);
+        $request->session()->put('user', $answer);
 
         return redirect('/personal-data');
 
@@ -75,15 +76,18 @@ class UserController extends Controller {
      * Método restponsável pelo acesso ao perfil do candidato cadastro.
      */
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
+        $request->session()->flush();
 
-        $login = User::where('password', '=', Crypt::encrypt($request->password))
+         $login = User::where('password', '=', Crypt::encrypt($request->password))
             ->orWhere('login', $request->login)
             ->get();
-        
+
         if($login && isset($login[0]->name)) {
 
             $request->session()->put('user', $login);
+<<<<<<< HEAD
 
             $candidados = Candidate::where('user_id', $login[0]->id)->get();
 
@@ -99,6 +103,9 @@ class UserController extends Controller {
 
             dd($candidados);
 
+=======
+            return redirect('/process');
+>>>>>>> a3b1c9eee767a0637e82e5d5bbf2bb103f82d456
 
         } else {
 
