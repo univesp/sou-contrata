@@ -125,7 +125,7 @@ class PersonalDataController extends Controller
                 $document->zone                     = 'Empty';
                 $document->section                  = 'Empty';
                 $document->candidate_id             = $candidate->id;
-                dd($document);
+                
                 // Save in database
                 $document->save();
             }
