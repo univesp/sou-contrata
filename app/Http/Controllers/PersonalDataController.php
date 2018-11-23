@@ -32,18 +32,28 @@ class PersonalDataController extends Controller
      */
     public function store(Request $request)
     {
-
-        // Capturando a sessão do usuário
-        $sessao = $request->session()->get('user');
+        // Get user session variable
+        $session = $request->session()->get('user');
         
-        $user_id = $sessao[0]->id;
-
+        // Validate if user session exist
+        if (isset($session[0]->id)) {
+            $user_id = $session[0]->id;
+        } elseif(isset($session->id)) {
+            $user_id = $session->id;
+        }
+        
         // Envio dos documentos para o Storage
-
         $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
         $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
-        $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
-
+        $path_file_military = '';
+        
+        // Validate if file military exist
+        if (empty($request['file_military'])) {
+            $path_file_military = 'Empty';
+        } else {
+            $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
+        }
+        
         // Validate all fields
         $validator = Validator::make($request->input(), [
             // Candidate validations
@@ -58,15 +68,14 @@ class PersonalDataController extends Controller
 
             // Documents validations
             'elector_title'             => 'required',
-            'elector_link'              => 'required',
+            // 'file_title'                => 'required',
             'rg_number'                 => 'required',
-            'number_link'               => 'required',
+            // 'file_rg'                   => 'required',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
 
             // Address validations
             'city'                      => 'required',
-            'complement'                => 'required',
             'neighborhood'              => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
@@ -95,11 +104,7 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = $request->phone;
-
-            // Get user session variable
-            $session = $request->session()->get('user');
-            $user_id = $session[0]->id;
+            $candidate->phone               = trim($request->phone);
             $candidate->user_id             = $user_id;
             
             // Save in database
@@ -110,11 +115,11 @@ class PersonalDataController extends Controller
                 // Create new document
                 $document = new Document();
                 $document->elector_title            = $request->elector_title;
-                $document->elector_link             = $request->elector_link;
-                $document->military_certificate     = $request->military_certificate;
-                $document->military_link            = $request->military_link;
+                $document->elector_link             = $path_file_title;
+                $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : 'Empty' ;
+                $document->military_link            = $path_file_military;
                 $document->number                   = $request->number;
-                $document->number_link              = $request->number_link;
+                $document->number_link              = $path_file_rg;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
                 $document->zone                     = 'Empty';
