@@ -406,6 +406,11 @@
         // Init
         $(document).ready(function () {
 
+            if($("#sexo").val() == 0) {
+
+                $(".militar").show();
+            }
+
             $("#sexo").change(function(){
 
                 var sexo = $(this).val();
