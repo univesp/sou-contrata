@@ -36,16 +36,16 @@
                     <div class="col-md-2">
                         <label for="inputNatu" class="fonte-campos">Nacionalidade<span class="cor-campo">*</span></label>
                         <select name="nationality" id="inputNatu" class="form-control">
-                            <option selected>Brasileiro(a)</option>
-                            <option>Extrangeiros</option>
+                            <option value="0">Brasileiro(a)</option>
+                            <option value="1">Extrangeiros</option>
                         </select>
                     </div>
                     <div class="col-md-2">
                         <label class="fonte-campos" for="sexo">Sexo:</label>
                             <select class="form-control" id="sexo">
-                                <option>Masculino</option>
-                                <option>Feminino</option>
-                                <option>Não deseja Informar</option>
+                                <option value="0">Masculino</option>
+                                <option value="1">Feminino</option>
+                                <option value="2">Não deseja Informar</option>
                             </select>
                         </div>
                     </div>
@@ -136,17 +136,18 @@
                         </div>
                     </div>
                 </div>
+                <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;">
             </div>
             <div class="col-md-11">
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
+                            <br/>
                             <h4>CPF</h4>
                         </div>
                           <div class="col-md-4">
                                 <label for="inputNumDoc" class="fonte-campos">Número do documento<span class="cor-campo"> *</span></label>
                                 <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-                                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;">
                             </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -166,6 +167,7 @@
                 <div class="row">
                     <div class="form-group">
                             <div class="col-md-12">
+                                <br/>
                                 <h4>Titulo de eleitor</h4>
                             </div>
                             <div class="col-md-4">
@@ -192,12 +194,13 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-12">
-                                <h4>Certificado Militar</h4>
+                                <br/>
+                                <h4 class="militar" style="display: none;">Certificado Militar</h4>
                             </div>
                             <div class="col-md-4">
-                                <label for="inputNumDoc_2" class="fonte-campos">Número de documento</label>
-                                <input name="military_certificate" type="text" class="form-control" id="inputNumDoc_2">
-                                <input type="file" id="file_military" name="file_military" style="margin-top:15px;">
+                                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de documento</label>
+                                <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
+                                <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
                             </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -217,12 +220,13 @@
                 <div class="col-md-11">
                     <div class="row">
                         <div class="col-md-12">
+                            <br/>
                             <h4>Endereço e contato</h4>
                             <hr />
                             <div class="form-group">
                                 <div class="col-md-2">
                                     <label for="inputCep" class="fonte-campos">CEP<span class="cor-campo"> *</span></label>
-                                    <input name="postal_code" type="text" class="form-control" id="inputCep" required oninvalid="this.setCustomValidity('Digite o Cep completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{5}-[0-9]{3}">
+                                    <input name="postal_code" type="text" class="form-control" id="inputCep" required oninvalid="this.setCustomValidity('Digite o Cep completo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]{5}[0-9]{3}">
                                     <span class="cor-campo">Pesquisar CEP *</span>
                                 </div>
                             </div>
@@ -290,6 +294,7 @@
                 <div class="col-md-11">
                     <div class="row">
                         <div class="col-md-12">
+                            <br/>
                             <h4>Telefone</h4>
                             <hr />
                         </div>
@@ -315,12 +320,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <hr />
+                        <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-12">
-			<hr />
-			<button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
-		</div>
 		<div class="row">
 			<div class="row">
 				<!--
@@ -369,8 +374,63 @@
                 return false;
             }
         }
+
+        function get_cep(cep) {
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#inputLogradouro").val("...");
+                $("#inputBairro").val("...");
+                $("#inputCidade").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#inputLogradouro").val(dados.logradouro);
+                        $("#inputBairro").val(dados.bairro);
+                        $("#inputCidade").val(dados.localidade);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        //limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            }
+            //alert(cep);
+        }
         // Init
         $(document).ready(function () {
+
+            if($("#sexo").val() == 0) {
+
+                $(".militar").show();
+            }
+
+            $("#sexo").change(function(){
+
+                var sexo = $(this).val();
+
+                if(sexo == 0) {
+
+                    $(".militar").show();
+               
+                } else if(sexo == 1 || sexo == 2) {
+
+                    $(".militar").hide();
+                }
+
+            });
+
+            $("#inputCep").blur(function() {
+
+                get_cep($(this).val());
+
+            });
 
             $("#opcaoSim").click(function() {
 
@@ -436,7 +496,6 @@
                         // F12 or inspect on browser to show result
                         console.log(result)
                     },
-
 
                     error: function (errors) {
                         console.log(errors)

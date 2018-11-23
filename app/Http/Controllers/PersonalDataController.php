@@ -32,6 +32,18 @@ class PersonalDataController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Capturando a sessão do usuário
+        $sessao = $request->session()->get('user');
+        
+        $user_id = $sessao[0]->id;
+
+        // Envio dos documentos para o Storage
+
+        $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
+        $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
+        $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
+
         // Validate all fields
         $validator = Validator::make($request->input(), [
             // Candidate validations
@@ -67,6 +79,7 @@ class PersonalDataController extends Controller
         if ($validator->fails()) {
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         } else {
+
             // Create new candidate
             $candidate = new Candidate();
             $candidate->cpf                 = $request->cpf;
@@ -128,7 +141,7 @@ class PersonalDataController extends Controller
 
             // Return in view
             // return response()->json('funciona');
-            return redirect()->route('academic-data');
+            return redirect()->route('professorAcademicData');
         }
     }
 

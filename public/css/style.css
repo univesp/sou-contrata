@@ -257,3 +257,11 @@ label {
     margin-top: 0px !important;
    margin-bottom: 0px !important;
 }
+
+.row {
+  margin-right: 0px !important;
+}
+
+.btn {
+	margin-bottom: 15px;
+}

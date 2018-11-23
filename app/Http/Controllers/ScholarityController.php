@@ -30,39 +30,46 @@ class ScholarityController extends Controller
         $sessao = $request->session()->get('candidate');
 
         // Documentos de Graduação do Candidato
-        $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$sessao[0]->id}");
+        
+        dd($sessao);
+        
+        $id = $sessao[0]->id;
+
+        $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$id}");
 
         // Documentos de Mestrado do Candidato
-        $path_file_master = $request['file_master']->store("documents-graduate/{$sessao[0]->id}");
+        
+        $path_file_master = $request['file_master']->store("documents-master/{$id}");
         
         // Documentos de Doutorado do Candidato
-        $path_file_doctorate = $request['file_doctorate']->store("documents-graduate/{$sessao[0]->id}");
+
+        $path_file_doctorate = $request['file_doctorate']->store("documents-doctorate/{$id}");
 
         $scholarity = [
             [
                 'class_name' => $request->cadlettters,
-                'end_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
-                'init_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
+                'end_date' => $this->br_to_bank($request->inputDataConclusao),
+                'init_date' => $this->br_to_bank($request->inputDataConclusao),
                 'link' => $path_file_graduate,
                 'scholarity_type' => $request->inputCursos,
                 'teaching_institution' => $request->inpuInstituicao,
-                'candidate_id' => $sessao[0]->id 
+                'candidate_id' => $id 
             ],[
                 'class_name' => $request->cadlettters,
-                'end_date' => Carbon::parse($request->inputDataConclusao_1)->format('Y-m-d'),
-                'init_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
+                'end_date' =>  $this->br_to_bank($request->inputAnoConclusao_1),
+                'init_date' => $this->br_to_bank($request->inputAnoConclusao_1),
                 'link' => $path_file_master,
                 'scholarity_type' => $request->inputArea,
                 'teaching_institution' => $request->inputInstiucao_1,
-                'candidate_id' => $sessao[0]->id
+                'candidate_id' => $id
             ],[
                 'class_name' => $request->cadlettters,
-                'end_date' => Carbon::parse($request->inputDataConclusao_2)->format('Y-m-d'),
-                'init_date' => Carbon::parse($request->inputDataConclusao)->format('Y-m-d'),
+                'end_date' =>  $this->br_to_bank($request->inputAnoConclusao_2),
+                'init_date' => $this->br_to_bank($request->inputAnoConclusao_2),
                 'link' => $path_file_doctorate,
                 'scholarity_type' => $request->inputCursos_2,
                 'teaching_institution' => $request->inputInstiucao_2,
-                'candidate_id' => $sessao[0]->id
+                'candidate_id' => $id
             ]
 
         ];
@@ -72,11 +79,16 @@ class ScholarityController extends Controller
             $result[] = Scholarity::create($school);  
         }
 
-        //dd($result);
-
         return view('vacancy/process');
     }
 
+    public function br_to_bank($now) {
+
+        $data = explode('/', $now);
+        $dt = $data[2] . "-" . $data[1] . '-' . $data[0];
+
+        return $dt;
+    }
     /**
      * Display the specified resource.
      *

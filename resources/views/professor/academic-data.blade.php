@@ -37,7 +37,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input  type="text" class="form-control" maxlength="10" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">
@@ -82,7 +82,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="inputArea" class="fonte-campos">Área<span class="cor-campo"> *</span></label>
-								<input type="text" class="form-control" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
+								<input type="text" class="form-control" maxlength="10" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
 							</div>
 						</div>
 						<div class="row">
@@ -109,7 +109,7 @@
 						<div class="col-md-12">	 
 						<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 							<div class="display-flex">
-								<input type="file" name="file_graduate" id="file_graduate"/>
+								<input type="file" name="file_master" id="file_master"/>
 								<!--<img src="img/arraste.png" class="img-responsive">
 								<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 							</div>
@@ -126,7 +126,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos_2" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input type="text" class="form-control" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input type="text" class="form-control" imaxlength="10" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">
@@ -154,7 +154,7 @@
 					<div class="col-md-12">	 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
-							<input type="file" name="file_graduate" id="file_graduate"/>
+							<input type="file" name="file_doctorate" id="file_doctorate"/>
 							<!--<img src="img/arraste.png" class="img-responsive">
 							<img src="img/lixeira.jpg" class="img-responsive img-lixeira">-->
 						</div>
@@ -176,27 +176,7 @@
 	<script>
 		$(function(){
 			$(document).ready(function(){
-
-				/*$("#file_graduate").change(function(){
-					console.log($(this).val());
-					$.ajax({
-						headers: {
-							'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-						},
-						url: "{{ url('/academic-data/data') }}",
-						method: 'post',
-						dateType: 'json',
-						data: {
-							_token: '{{csrf_token()}}',
-							file_graduate: $(this).val()
-						},
-						success: function (result) {
-							// F12 or inspect on browser to show result
-							console.log(result);
-						}
-					});
-
-				});*/
+				
 			});
 		});
 	</script>
