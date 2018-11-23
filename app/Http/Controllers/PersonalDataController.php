@@ -76,7 +76,6 @@ class PersonalDataController extends Controller
 
             // Address validations
             'city'                      => 'required',
-            'complement'                => 'required',
             'neighborhood'              => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
@@ -105,7 +104,7 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = $request->phone;
+            $candidate->phone               = trim($request->phone);
             $candidate->user_id             = $user_id;
             
             // Save in database
@@ -117,7 +116,7 @@ class PersonalDataController extends Controller
                 $document = new Document();
                 $document->elector_title            = $request->elector_title;
                 $document->elector_link             = $path_file_title;
-                $document->military_certificate     = $request->military_certificate;
+                $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : 'Empty' ;
                 $document->military_link            = $path_file_military;
                 $document->number                   = $request->number;
                 $document->number_link              = $path_file_rg;
