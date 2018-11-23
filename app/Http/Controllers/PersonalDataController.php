@@ -106,8 +106,6 @@ class PersonalDataController extends Controller
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = trim($request->phone);
             $candidate->user_id             = $user_id;
-
-            // dd($candidate);die;
             
             // Save in database
             if ($candidate->save()) {
