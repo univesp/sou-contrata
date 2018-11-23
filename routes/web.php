@@ -22,9 +22,9 @@ Route::get('/', function () {
 //Vacancy
 Route::get('/vacancy','ListEditalController@index');
 
+Route::post('/edict/{id}', 'EdictController@list');
 
-
-Route::get('/edict/{id}', function ($id) {
+Route::get('/edict/{id}', function ($id ) {
     $data = \App\Vacancy::with('edict')->find($id);
     return view('vacancy/edicts',compact('data', $data));
 });

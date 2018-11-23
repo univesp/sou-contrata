@@ -6,6 +6,10 @@
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
+
+{{Session::put('edital_id', $data['id'])}}
+
+
     <div class="cabecalho">
 		<div class="container">
 			<span class="font-cabecalho1">Processos Seletivos</span><br />
