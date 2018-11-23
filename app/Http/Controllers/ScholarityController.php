@@ -31,7 +31,6 @@ class ScholarityController extends Controller
 
         // Documentos de Graduação do Candidato
         
-        dd($sessao);
         
         $id = $sessao[0]->id;
 
