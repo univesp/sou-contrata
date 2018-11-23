@@ -473,11 +473,11 @@
 
                         // Call values of fields addresses table
                         elector_title: $('#inputNumDoc_1').val(),
-                        // elector_link: $('#inputComplemento').val(),
+                        elector_link: $('#file_title').val(),
                         military_certificate: $('#inputNumDoc_2').val(),
-                        // military_link: $('#inputNum').val(),
+                        military_link: $('#file_military').val(),
                         rg_number: $('#inputNumDocs').val(),
-                        // rg_number_link: $('#inputLogradouro').val(),
+                        rg_number_link: $('#file_rg').val(),
                         date_issue: $('#inputDataEmissao').val(),
                         uf_issue: $('#inputOrgEmissor').val(),
 
