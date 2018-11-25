@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ssl-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+    - secretName: laravel-app-tls-secrets
+      hosts:
+        - kubernetes.test
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: kubernetes.test
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: nginx-service
+            servicePort: 80
