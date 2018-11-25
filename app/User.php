@@ -6,25 +6,29 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    protected $table = 'users';
+
+    // Protected guarded table fields
+    protected $guarded = ['id', 'created_at', 'update_at'];
+
     protected $fillable = [
-        'name', 'email', 'password',
+        'id', 'name','login','password', 'email', 'cod_privilege'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
+    protected $sorted = [
+        'name','login','password', 'email', 'cod_privilege'
     ];
+
+    protected $hidden = [
+        'password', 'remember_token'
+    ];
+
+    public function candidete()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
 }

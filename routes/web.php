@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,57 +12,81 @@
 |
 */
 
+
+
 Route::get('/', function () {
-    return view('vacancy/index');
+    $data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
+    return view('vacancy/index',compact('data', $data));
 });
+
+//Vacancy
+Route::get('/vacancy','ListEditalController@index');
+
+Route::post('/edict/{id}', 'EdictController@list');
+
+Route::get('/edict/{id}', function ($id ) {
+    $data = \App\Vacancy::with('edict')->find($id);
+    return view('vacancy/edicts',compact('data', $data));
+});
+
+//Login
+Route::get('/login', function () {
+    return view('vacancy/login');
+});
+
+
 Route::get('/form', function () {
     return view('user/form');
 });
 
-Route::get('/processos-seletivos', function () {
-    return view('vacancy/processos-seletivos');
+Route::post('/login', 'UserController@login')->name('login');
+
+Route::post('/store', 'UserController@store')->name('store');
+
+Route::post('/documents', 'UserController@documents')->name('documents');
+
+Route::get('/selective-processes', function () {
+    return view('vacancy/selective-processes');
 });
 
-Route::get('/processos-seletivos1', function () {
-    return view('vacancy/processos-seletivos1');
+Route::get('/selective-processes1', function () {
+    return view('vacancy/selective-processes1');
 });
 
-Route::get('/processos-seletivos2', function () {
-    return view('vacancy/processos-seletivos2');
-});
 
-Route::get('/processos-seletivos3', function () {
-    return view('vacancy/processos-seletivos3');
-});
+Route::get('/vague-discipline/{id}', function ($id, Request $request) {
+    $data = \App\Vacancy::with('vacancy_criteria')->with('services')->find($id);
+    $vacancies = \App\Criterion::with('vacancy_criteria')
+        ->whereHas('vacancy_criteria',function ($query) use (&$id){
+            $query->where('vacancy_id', '=', $id);
+        })->get();
+    //return  $result;
+    $request->session()->put('vagueId', $id);
+    return view('professor/vague-discipline', compact(['data','vacancies', 'vagueId']));
+})->name("vagueDiscipline");
 
-Route::get('/processos-seletivos4', function () {
-    return view('vacancy/processos-seletivos4');
-});
+Route::post('/vague-discipline','CriterionController@store');
 
-Route::get('/processos-seletivos5', function () {
-    return view('vacancy/processos-seletivos5');
-});
 
-Route::get('/processos-seletivos6', function () {
-    return view('vacancy/processos-seletivos6');
-});
+// Personal data
+// Route::get('/personal-data', function () {
+//     return view('professor/personal-data');
+// })->name('professorPersonalData');
 
-Route::get('/vaga-disciplina', function () {
-    return view('professor/vaga-disciplina');
-});
+// Route::post('/personal-data/store', 'PersonalDataController@store')->name('store');
 
-Route::get('/vaga-disciplina1', function () {
-    return view('professor/vaga-disciplina1');
-});
+Route::resource('/personal-data', 'PersonalDataController', ['only' => ['index', 'store']]);
 
-Route::get('/dados-pessoais', function () {
-    return view('professor/dados-pessoais');
-});
+// Academic data
+Route::get('/academic-data', function () {
+    return view('professor/academic-data');
+})->name('professorAcademicData');
 
-Route::get('/dados-academicos', function () {
-    return view('professor/dados-academicos');
-});
-
+// Process data
 Route::get('/process', function () {
     return view('vacancy/process');
-});
+})->name('vacancyProcess');
+
+Route::post('/document_academic', 'ScholarityController@store')->name('store');
+
+Route::post('/academic-data/data', 'ScholarityController@document_academic')->name('document_academic');

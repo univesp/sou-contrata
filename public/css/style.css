@@ -1,6 +1,7 @@
 .cabecalho {
 	padding:5%;
 	background-image: url(../img/fundo_cabecalho.jpg);
+	background-image: no-repeat;
 
 }
 .font-cabecalho1 {
@@ -20,7 +21,7 @@
 .link {
 	border:none !important;
 	border-bottom: solid 4px red !important;
-	
+
 }
 a {
 	color:#000;
@@ -38,7 +39,7 @@ a {
 .texto-formatacao {
 	margin-left: 4%;
 	position:relative;
-	top: -38px;
+	top: -15px;
 	color: #808080;
 	font-weight: bold;
 }
@@ -46,7 +47,7 @@ a {
 .botao-posicao {
 	float:right;
 	margin-top:-50px;
-	padding-bottom: 40px;
+	padding: 10px 10px 40px 10px;
 }
 
 .fonte-conteudo {
@@ -65,7 +66,6 @@ a {
 
 .formatacao_doc {
 	padding-top:10px;
-	color:
 }
 
 .formatacao-rodape {
@@ -201,53 +201,67 @@ a {
 
 .opcao-alinhamento {
 	padding: 0 10% 0 35%;
-	
+
 }
 
 .formatacao_doc {
 	margin-left: 70%;
 }
 
-hr {
-	border: solid 1px #ccc;
+.alinhamento-checkbox {
+	margin-top: 10%;
 }
 
-.ob{
-	color: red;
-	margin-top: 10px;
+.checagem {
+	margin-bottom: 0.25%!important;
 }
 
-hr{
-	border-bottom: 1px solid #ccc;
-	width: 100%;
+.alinhamento-checkbox_1 {
+	padding-top: 6%;
 }
 
-.red{
-	color: red;
+.cadastro-incones {
+	float: right !important;
 }
 
-.top{
-	margin-top: 15px;
+.posicao-form-campos {
+	padding-bottom: 1% !important;
 }
 
-.cor-campo{
-	color: red;
-}
-.left{
-	margin-left: 20px;
+.img-incones {
+	float: right !important;
 }
 
-.cor-frase{
-	color: #ccc;
-	font-weight: 300;
+.alinhar-form {
+	float: left !important;
 }
 
-.fonte-cabecalho{
-	background-image: url(../img/Formulario_02.png);
-	height: 150px;
+.incone-lixeira {
+	padding: 2% 0 0 4% !important;
 }
 
-#top-bottom{
-	margin-top: 20px;
-	margin-bottom: 20px;
+.alinhamento-radio {
+	padding: 0 2% 0 2%;
+}
+
+.checagem-radio {
+	margin-bottom: 0%;
+}
+
+label {
+    margin-bottom: 0px !important;
+   font-weight: 10 !important;
+}
+
+.checkbox {
+    margin-top: 0px !important;
+   margin-bottom: 0px !important;
+}
+
+.row {
+  margin-right: 0px !important;
+}
+
+.btn {
+	margin-bottom: 15px;
 }
