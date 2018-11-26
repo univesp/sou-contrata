@@ -5,12 +5,15 @@
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
+
 @section('content')
-        <div class="fonte-cabecalho">
-				<div class="container">
-				<button class="btn btn-danger sair" >Sair</button>
-				</div>
-		</div>
+@section('cabecalho')
+    FORMULÁRIO DE INSCRIÇÃO
+@endsection
+@section('username')
+    TESTE 
+@endsection
+@section('content')
 
 		<div class="container">
 			<ul class="nav nav-tabs">
