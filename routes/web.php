@@ -41,7 +41,7 @@ Route::get('/form', function () {
 
 Route::post('/login', 'UserController@login')->name('login');
 
-Route::post('/store', 'UserController@store')->name('store')->middleware(['check.user']);
+Route::post('/store', 'UserController@store')->name('store');
 
 Route::post('/documents', 'UserController@documents')->name('documents')->middleware(['check.user']);
 
