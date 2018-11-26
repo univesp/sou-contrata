@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Candidate;
 
-class CheckUserLogin
+class CheckCandidate
 {
     /**
      * Handle an incoming request.
@@ -15,10 +16,12 @@ class CheckUserLogin
      */
     public function handle($request, Closure $next)
     {
-        $user = $request->session()->get('user');
-        if (!$user){
-            return redirect()->route('login');
-        }
+        /*$user = $request->session()->get('user');
+        $candidate = Candidate::where('user_id','=',$user)->first();
+
+        if (!empty($candidate['user_id'])){
+            return redirect('/process');
+        }*/
 
         return $next($request);
     }

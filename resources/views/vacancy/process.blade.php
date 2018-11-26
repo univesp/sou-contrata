@@ -8,7 +8,7 @@
 @section('content')
 
 	<div class="container">
-	@if($resp)
+	@if(!empty($resp))
 		<h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
 	@endif
 	<h2 class="fonte-conteudo">Credenciamento</h2>

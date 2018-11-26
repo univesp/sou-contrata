@@ -12,7 +12,7 @@
 
     <div class="cabecalho">
        <div class="container">
-       <button class="btn btn-danger" style="font-weight:bold;">Sair</button>
+            <button class="btn btn-danger" style="font-weight:bold;">Sair</button>
        </div>
        </div>
 		<div class="container">
