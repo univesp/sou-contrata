@@ -6,7 +6,11 @@
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
-	<div class="fonte-cabecalho"></div>
+<div class="fonte-cabecalho">
+				<div class="container">
+				<button class="btn btn-danger sair" >Sair</button>
+				</div>
+		</div>
 	<div class="container">
             <ul class="nav nav-tabs">
 				<li class="active, link3"><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
