@@ -9,9 +9,6 @@
 @section('cabecalho')
     CADASTRO DE PROFESSORES
 @endsection
-@section('username')
-{{Session::get('user')->name}} 
-@endsection
 
 @section('content')
     <div class="container">

@@ -11,7 +11,7 @@
 	DADOS ACADÊMICOS	
 @endsection
 @section('username')
-{{Session::get('user')->name}}
+{{isset(Session::get('user')->name) ? Session::get('user')->name : ''}}
 @endsection
 @section('content')
 

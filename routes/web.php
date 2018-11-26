@@ -90,3 +90,5 @@ Route::get('/process', function () {
 Route::post('/document_academic', 'ScholarityController@store')->name('store')->middleware(['check.user']);
 
 Route::post('/academic-data/data', 'ScholarityController@document_academic')->name('document_academic')->middleware(['check.user']);
+
+Route::get('/logoff', 'UserController@logoff')->name('logoff');

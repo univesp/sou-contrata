@@ -109,4 +109,10 @@ class UserController extends Controller {
         }
 
     }
+
+    public function logoff(Request $request) 
+    {
+        $request->session()->flush();
+        return redirect('/login');
+    }
 }
