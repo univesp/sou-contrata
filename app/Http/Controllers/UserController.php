@@ -45,8 +45,13 @@ class UserController extends Controller {
         ];
 
         $answer = User::create($candidate);
+        $userSession = [
+            'id' => $answer->id,
+            'user' => $answer->name,
+            'email' => $answer->email,
+        ];
 
-        $request->session()->put('user', $answer);
+        $request->session()->put('user', $userSession);
 
         return redirect('/personal-data');
 
@@ -82,26 +87,24 @@ class UserController extends Controller {
 
          $login = User::where('password', '=', Crypt::encrypt($request->password))
             ->orWhere('email', $request->email)
-            ->get();
+            ->first();
 
-        if($login && isset($login[0]->email)) {
+        if($login && isset($login->email)) {
+            $userSession = [
+                'id' => $login->id,
+                'user' => $login->name,
+                'email' => $login->email,
+            ];
+            $request->session()->put('user', $userSession);
+            $candidados = Candidate::where('user_id', $login->id)->get();
 
-            $request->session()->put('user', $login);
-
-            $candidados = Candidate::where('user_id', $login[0]->id)->get();
-
-            if(empty($candidados[0]->id)) {
-
+            if(empty($candidados->id)) {
                 return redirect('/personal-data');
-
             } else {
-
                 return redirect('/vacancy');
-
             }
 
         } else {
-
             return redirect('/login');
         }
 

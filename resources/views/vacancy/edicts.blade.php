@@ -45,13 +45,18 @@
                 Hoje é o ultimo dia
             @endif
         </span>
-        <div class="botao-posicao">
-            <a href="/login"><button type="button" class="btn btn-danger">Login</button></a>
-	    </div>
-        <div class="botao-posicao">
-            <a href="/form"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
-        </div>
+        @if(!Session::get('user'))
+            <div class="botao-posicao">
+                <a href="/login"><button type="button" class="btn btn-danger">Login</button></a>
+            </div>
+            <div class="botao-posicao">
+                <a href="/form"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
+            </div>
+        @else
+            <div class="botao-posicao">
+                <a href="/personal-data"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
+            </div>
+        @endif
     </div>
 @endsection
 
-    

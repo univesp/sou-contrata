@@ -12,14 +12,12 @@ class ListEditalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-       
-
-       $data = Vacancy::all()->where('edict_id',1)->get();
+        $id =  $request->session()->get('edital_id');
+        $data = Vacancy::all()->where('edict_id', $id)->get();
     
-       //dd($data);
+       dd($data);
        //$data = Vacancy::where('edict_id',1)->get();
        //dd($data['teste']);
 

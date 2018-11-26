@@ -14,7 +14,8 @@ use Illuminate\Http\Request;
 
 
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    $request->session()->flush();
     $data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
     return view('vacancy/index',compact('data', $data));
 });
