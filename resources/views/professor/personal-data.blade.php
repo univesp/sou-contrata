@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="form-group">
                     <div class="col-md-3">
-                        <label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
+                        <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
                         <input name="name" id="textNome" class="form-control" type="text"   required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
                     </div>
                     <div class="col-md-3">
@@ -31,13 +31,14 @@
                     </div>
                     <div class="col-md-2">
                         <label for="textDtNasc" class="control-label, fonte-campos">Data de nascimento<span class="cor-campo">*</span></label>
-                        <input name="date_birth" id="textDtNasc" class="form-control" type="date" required oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}" <input id="textDtNasc" class="form-control" type="date" required="" oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
+                        <input name="date_birth" id="textDtNasc" class="form-control" type="date" required oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}" <input id="textDtNasc" class="form-control" type="date" required="" oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}"
+                        ">
                     </div>
                     <div class="col-md-2">
                         <label for="inputNatu" class="fonte-campos">Nacionalidade<span class="cor-campo">*</span></label>
                         <select name="nationality" id="inputNatu" class="form-control">
                             <option value="0">Brasileiro(a)</option>
-                            <option value="1">Extrangeiros</option>
+                            <option value="1">Estrangeiros</option>
                         </select>
                     </div>
                     <div class="col-md-2">

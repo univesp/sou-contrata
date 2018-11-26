@@ -34,26 +34,26 @@ class PersonalDataController extends Controller
     {
         // Get user session variable
         $session = $request->session()->get('user');
-        
+
         // Validate if user session exist
         if (isset($session[0]->id)) {
             $user_id = $session[0]->id;
         } elseif(isset($session->id)) {
             $user_id = $session->id;
         }
-        
+
         // Send documents to storage
         $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
         $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
         $path_file_military = '';
-        
+
         // Validate if file military exist
         if (empty($request['file_military'])) {
             $path_file_military = 'Empty';
         } else {
             $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
         }
-        
+
         // Validate all fields
         $validator = Validator::make($request->input(), [
             // Candidate validations
@@ -104,9 +104,13 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = trim($request->phone);
+            $candidate->phone               = $request->phone;
+
+            // Get user session variable
+            $session = $request->session()->get('user');
+            $user_id = $session[0]['id'];
             $candidate->user_id             = $user_id;
-            
+
             // Save in database
             if ($candidate->save()) {
                 // Put candidate session variable
