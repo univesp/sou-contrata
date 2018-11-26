@@ -35,8 +35,7 @@
                     </div>
                     <div class="col-md-2">
                         <label for="textDtNasc" class="control-label, fonte-campos">Data de nascimento<span class="cor-campo">*</span></label>
-                        <input name="date_birth" id="textDtNasc" class="form-control" type="date" required oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}" <input id="textDtNasc" class="form-control" type="date" required="" oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}"
-                        ">
+                        <input name="date_birth" id="textDtNasc" class="form-control" type="date" required oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}" <input id="textDtNasc" class="form-control" type="date" required="" oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
                     </div>
                     <div class="col-md-2">
                         <label for="inputNatu" class="fonte-campos">Nacionalidade<span class="cor-campo">*</span></label>
@@ -304,14 +303,26 @@
                         </div>
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <!-- <div class="col-md-2">
-                                        <label for="inputTipo" class="fonte-campos">Tipo<span class="cor-campo">*</span></label>
+                                     <div class="col-md-2">
+                                        <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                                         <select id="inputTipo" class="form-control">
-                                            <option>11</option>
+                                        
+                                        <!--<option>11</option>
                                             <option>21</option>
+                                        -->
+                                            
+                                                                                  
+                                            <!--<select name=id_pais>--> 
+                                            <option value=1>(+55) Brasil
+                                            <option value=2>(+351) Portugal
+                                            <option value=3>(+54) Argentina
+                                            <option value=4>(+1) EUA
+                                            <option value=5>(+86) China
+                                            </select>
+
                                         </select>
                                     </div>
-                                    <div class="col-md-1">
+                                        <!--<div class="col-md-1">
                                         <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
                                         <input  type="text" class="form-control" id="inputPrefixo" required oninvalid="this.setCustomValidity('Digite o Prefixo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
                                     </div> -->
@@ -324,7 +335,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                   <div class="col-md-12">
                         <hr />
                         <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
                     </div>
@@ -422,7 +433,7 @@
                 if(sexo == 0) {
 
                     $(".militar").show();
-
+               
                 } else if(sexo == 1 || sexo == 2) {
 
                     $(".militar").hide();
