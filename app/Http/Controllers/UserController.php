@@ -85,11 +85,7 @@ class UserController extends Controller {
             ->get();
 
         if($login && isset($login[0]->email)) {
-            
 
-            
-
-            
             $request->session()->put('user', $login);
 
             $candidados = Candidate::where('user_id', $login[0]->id)->get();
