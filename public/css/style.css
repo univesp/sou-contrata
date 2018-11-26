@@ -265,3 +265,7 @@ label {
 .btn {
 	margin-bottom: 15px;
 }
+
+.form-control {
+	padding: 6px 6px !important;
+}
