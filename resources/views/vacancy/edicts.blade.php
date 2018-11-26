@@ -11,6 +11,10 @@
 
 
     <div class="cabecalho">
+       <div class="container">
+       <button class="btn btn-danger" style="font-weight:bold;">Sair</button>
+       </div>
+       </div>
 		<div class="container">
 			<span class="font-cabecalho1">Processos Seletivos</span><br />
 			<span class="font-cabecalho2">{{$data->title}} {{$data->matter}}</span>
