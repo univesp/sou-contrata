@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Scholarity;
 use Illuminate\Support\Carbon;
+use App\Helpers\functions;
 use App\Vacancy;
 
 class ScholarityController extends Controller
@@ -32,7 +33,12 @@ class ScholarityController extends Controller
 
         // Documentos de Graduação do Candidato
         
-        $inputDataConclusao = $request->inputDataConclusao;
+        echo $inputDataConclusao = $request->inputDataConclusao;
+
+        echo "<br/>";
+        echo formatDateAndTime($inputDataConclusao, 'd-m-Y');
+
+        echo formatText($request->cadlettters, 'upper'); 
 
         dd($request);
         

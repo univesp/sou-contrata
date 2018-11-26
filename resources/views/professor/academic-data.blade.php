@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-    Cadastro de Professores
+
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
