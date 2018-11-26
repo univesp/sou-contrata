@@ -1,10 +1,11 @@
+
   @extends('layouts.header')
   @section('title')
       Cadastro de Professores
   @endsection
   @section('css')
-      <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
       <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
+      <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
   @endsection
   @section('content')
 
@@ -16,23 +17,21 @@
             <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
             <li class="active, link3"><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
 		</ul>
-        <div class="vague-information">
-            <p class="ob, cor-campo">*Obrigatório</p>
-            <p>Você esta credenciando como docente para:</p>
-            <p><strong>{{$data->title}}</strong></p>
-            Requisitos
-            <ul>
-                <li>Docente nas universidades conveniadas com a Univesp</li>
-                <li>Minimo: Título de Doutor</li>
-            </ul>
-        </div>
+		<p class="ob, cor-campo">*Obrigatório</p>
+		<p>Você esta credenciando como docente para:</p>
+		<h2></h2>
+		Requisitos
+		<ul>
+			<li>Docente nas universidades conveniadas com a Univesp</li>
+			<li>Minimo: Título de Doutor</li>
+		</ul>
 		<hr/>
 
         <form action="/vague-discipline" method="post">
             {{ csrf_field() }}
 			<div class="col-md-6">
 
-				<h5><strong class="left">Serviços</strong></h5>
+				<h5><strong class="left">Autoria</strong></h5>
 
 				<div class="checkbox" >
                  @foreach($data->services as $services)
@@ -45,10 +44,11 @@
 			</div>
 			<div class="col-md-12">
 				<hr />
-				<h4>Declaração de Título e Experiência</h4>
+				<h4>Declaração de Título de Experiência</h4>
 				<div class="checagem-radio"></div>
 
                 <?php
+                dd($vacancies);
                 $title = [] ;
                 $subtitle = [] ;
                 $name = [] ;
