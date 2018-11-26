@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckUserLogin
+class CheckUserLogout
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class CheckUserLogin
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->get('user')){
-            return redirect()->route('login');
+        if ($request->session()->get('user')){
+            return redirect('/');
         }
-
         return $next($request);
     }
 }

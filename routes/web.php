@@ -32,16 +32,16 @@ Route::get('/edict/{id}', function ($id ) {
 //Login
 Route::get('/login', function () {
     return view('vacancy/login');
-});
+})->middleware(['check.logout']);
 
 
 Route::get('/form', function () {
     return view('user/form');
-});
+})->middleware(['check.logout']);
 
-Route::post('/login', 'UserController@login')->name('login');
+Route::post('/login', 'UserController@login')->name('login')->middleware(['check.logout']);
 
-Route::post('/store', 'UserController@store')->name('store');
+Route::post('/store', 'UserController@store')->name('store')->middleware(['check.logout']);
 
 Route::post('/documents', 'UserController@documents')->name('documents')->middleware(['check.user']);
 
