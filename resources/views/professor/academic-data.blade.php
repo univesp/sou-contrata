@@ -57,7 +57,7 @@
 						</div>-->
 						<div class="col-md-3">
 							<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>
-							<input  type="date" class="form-control" id="inputDataConclusao" name="inputDataConclusao" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
+							<input  type="date" class="form-control dataYear" id="inputDataConclusao" name="inputDataConclusao" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
 						</div>
 					</div>
 				</div>
@@ -101,7 +101,7 @@
 							</div>-->
 							<div class="col-md-3">
 								<label for="inputAnoConclusao_1" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>
-								<input  type="date" class="form-control" id="inputAnoConclusao_1" name="inputAnoConclusao_1" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
+								<input  type="date" class="form-control dataYear" id="inputAnoConclusao_1" name="inputAnoConclusao_1" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
 							</div>
 						</div>
 					</div>
@@ -145,7 +145,7 @@
 						</div>-->
 						<div class="col-md-3">
 							<label for="inputAnoConclusao_2" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>
-							<input  type="date" class="form-control" id="inputAnoConclusao_2" name="inputAnoConclusao_2" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
+							<input  type="date" class="form-control dataYear" id="inputAnoConclusao_2" name="inputAnoConclusao_2" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
 						</div>
 					</div>
 				</div>
@@ -166,7 +166,7 @@
 
 	    <div style="clear: both;"></div>
 		<div class="row">
-			<p class="top">Adicionar formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right">AVANÇAR</button></p>
+			<p class="top">Adicionar formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
 		</div>
 		<br /><br />
 			</form>
@@ -177,6 +177,9 @@
 		$(function(){
 			$(document).ready(function(){
 				
+				$(".submit").click(function(e){
+
+				})
 			});
 		});
 	</script>
