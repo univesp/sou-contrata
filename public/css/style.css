@@ -1,11 +1,37 @@
+
+
+.imagem-topo-sou img{
+   margin-bottom: 10px;
+}
+
+.text-pequeno span{
+    font-size: 20px;
+    margin-top: 15px;
+    color:#fff;
+}
+
+.text-big span{
+    font-size: 30px;
+    margin-top: 5px;
+    color:#fff;
+}
+.imagem-univesp img{
+    margin-top: 25px;
+    margin-bottom: 30px;
+    float:right;
+    margin-right: 100px;
+}
+
+.text-user{
+  margin-top: 5px;
+}
+
 .btn-danger{
 	float: right !important;
 	
 }
 
 .sair{
-	position: relative;
-	margin-top: 80px;
 	font-weight: bold !important;
 }
 .cabecalho {
@@ -131,11 +157,15 @@ a {
     float: right;
 }
 
+.float-left{
+    float: left;
+}
+
 /* css style */
 
 .fonte-cabecalho {
     height: 150px;
-    background-image: url(../img/Formulario_02.jpg);
+    background-image: url(../img/banner.png);
 }
 
 .link3 {
