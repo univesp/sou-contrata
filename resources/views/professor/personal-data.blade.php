@@ -1,5 +1,4 @@
 @extends('layouts.header')
-@extends('layouts.header')
 @section('title')
     Cadastro de Professores
 @endsection
@@ -418,7 +417,7 @@
                 if(sexo == 0) {
 
                     $(".militar").show();
-               
+
                 } else if(sexo == 1 || sexo == 2) {
 
                     $(".militar").hide();
