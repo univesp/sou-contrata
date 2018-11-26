@@ -10,7 +10,7 @@
     FORMULÁRIO DE INSCRIÇÃO
 @endsection
 @section('username')
-    TESTE 
+{{Session::get('user')->name}} 
 @endsection
 
 @section('content')

@@ -1,15 +1,15 @@
 @extends('layouts.header')
 @section('title')
-    Cadastro de Professores
+	Credênciamento
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('cabecalho')
-    FORMULÁRIO DE INSCRIÇÃO
+	Credênciamento
 @endsection
 @section('username')
-    TESTE 
+{{Session::get('user')->name}} 
 @endsection
 
 @section('content')

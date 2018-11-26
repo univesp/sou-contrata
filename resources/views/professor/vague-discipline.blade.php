@@ -7,10 +7,10 @@
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('cabecalho')
-    FORMULÁRIO DE INSCRIÇÃO
+    ÁREA DE INTERESSE
 @endsection
 @section('username')
-    TESTE 
+{{Session::get('user')->name}}
 @endsection
 @section('content')
     <div class="container">

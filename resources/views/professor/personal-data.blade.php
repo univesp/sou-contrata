@@ -7,10 +7,10 @@
 @endsection
 @section('content')
 @section('cabecalho')
-    FORMULÁRIO DE INSCRIÇÃO
+    DADOS PESSOAIS 
 @endsection
 @section('username')
-    TESTE 
+    {{Session::get('user')->name}}
 @endsection
 
 	<div class="container">

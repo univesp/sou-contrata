@@ -8,10 +8,10 @@
 
 @section('content')
 @section('cabecalho')
-    FORMULÁRIO DE INSCRIÇÃO
+	DADOS ACADÊMICOS	
 @endsection
 @section('username')
-    TESTE 
+{{Session::get('user')->name}}
 @endsection
 @section('content')
 
