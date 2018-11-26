@@ -33,14 +33,8 @@ class PersonalDataController extends Controller
     public function store(Request $request)
     {
         // Get user session variable
-        $session = $request->session()->get('user');
+        $user_id = $request->session()->get('user')['id'];
 
-        // Validate if user session exist
-        if (isset($session[0]->id)) {
-            $user_id = $session[0]->id;
-        } elseif(isset($session->id)) {
-            $user_id = $session->id;
-        }
 
         // Send documents to storage
         $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
@@ -106,9 +100,6 @@ class PersonalDataController extends Controller
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = $request->phone;
 
-            // Get user session variable
-            $session = $request->session()->get('user');
-            $user_id = $session[0]['id'];
             $candidate->user_id             = $user_id;
 
             // Save in database

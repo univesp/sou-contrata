@@ -28,15 +28,11 @@ class ScholarityController extends Controller
     public function store(Request $request)
     {
 
-        $sessao = $request->session()->get('candidate');
+        $id = $request->session()->get('candidate');
 
         // Documentos de Graduação do Candidato
         
         $inputDataConclusao = $request->inputDataConclusao;
-
-        dd($request);
-        
-        $id = $sessao[0]['id'];
 
         $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$id}");
 
