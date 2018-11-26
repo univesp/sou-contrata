@@ -1,4 +1,5 @@
 @extends('layouts.header')
+@extends('layouts.header')
 @section('title')
     Cadastro de Professores
 @endsection
