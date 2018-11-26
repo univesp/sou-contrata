@@ -37,7 +37,7 @@ Route::get('/login', function () {
 
 Route::get('/form', function () {
     return view('user/form');
-})->middleware(['check.user']);
+});
 
 Route::post('/login', 'UserController@login')->name('login');
 
