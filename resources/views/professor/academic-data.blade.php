@@ -37,7 +37,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control" maxlength="10" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input  type="text" class="form-control" maxlength="20" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">
@@ -57,7 +57,7 @@
 						</div>-->
 						<div class="col-md-3">
 							<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control" id="inputDataConclusao" name="inputDataConclusao" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
+							<input  type="date" class="form-control" id="inputDataConclusao" name="inputDataConclusao" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
 						</div>
 					</div>
 				</div>
@@ -82,7 +82,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="inputArea" class="fonte-campos">Área<span class="cor-campo"> *</span></label>
-								<input type="text" class="form-control" maxlength="10" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
+								<input type="text" class="form-control" maxlength="20" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
 							</div>
 						</div>
 						<div class="row">
@@ -101,7 +101,7 @@
 							</div>-->
 							<div class="col-md-3">
 								<label for="inputAnoConclusao_1" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>
-								<input  type="text" class="form-control" id="inputAnoConclusao_1" name="inputAnoConclusao_1" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
+								<input  type="date" class="form-control" id="inputAnoConclusao_1" name="inputAnoConclusao_1" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
 							</div>
 						</div>
 					</div>
@@ -126,7 +126,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos_2" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input type="text" class="form-control" imaxlength="10" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input type="text" class="form-control" imaxlength="20" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">
@@ -145,7 +145,7 @@
 						</div>-->
 						<div class="col-md-3">
 							<label for="inputAnoConclusao_2" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control" id="inputAnoConclusao_2" name="inputAnoConclusao_2" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
+							<input  type="date" class="form-control" id="inputAnoConclusao_2" name="inputAnoConclusao_2" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
 						</div>
 					</div>
 				</div>

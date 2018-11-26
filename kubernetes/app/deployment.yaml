@@ -1,0 +1,86 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: laravel-app
+  labels:
+    app: laravel-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: laravel-app
+    spec:
+      volumes:
+        - name: laravel-app-volume
+          emptyDir: {}
+        - name: nginx-config-volume
+          configMap:
+            name: nginx-config
+      hostAliases:
+        - ip: "127.0.0.1"
+          hostnames:
+            - "backend"
+      initContainers:
+        - name: app
+          image: us.gcr.io/univesp-201808/sou-contrata:1.0.2
+          command: ['/bin/sh', '-c', 'cp -rp /var/www/* /app/']
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 150m
+              memory: 128Mi
+            requests:
+              cpu: 150m
+              memory: 128Mi
+          volumeMounts:
+            - name: laravel-app-volume
+              mountPath: /app
+          envFrom:
+            - secretRef:
+                name: laravel-app-secrets
+      containers:
+        - name: php-fpm
+          image: us.gcr.io/univesp-201808/php-fpm:7.2.3
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 150m
+              memory: 128Mi
+            requests:
+              cpu: 150m
+              memory: 128Mi
+          ports:
+            - containerPort: 9000
+          volumeMounts:
+            - name: laravel-app-volume
+              mountPath: /var/www
+          envFrom:
+            - secretRef:
+                name: laravel-app-secrets
+        - name: nginx
+          image: nginx:latest
+          imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: laravel-app-volume
+              mountPath: /var/www
+            - name: nginx-config-volume
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf

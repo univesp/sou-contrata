@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+  labels:
+    app: mongo
+spec:
+  selector:
+    matchLabels:
+      app: mongo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      volumes:
+        - name: mongo-persistent-volume
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+      containers:
+        - image: mongo:4.0
+          name: mongo
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: mongo-secrets
+          resources:
+            limits:
+              cpu: 100m
+              memory: 64Mi
+            requests:
+              cpu: 100m
+              memory: 64Mi
+          ports:
+            - containerPort: 27017
+              name: mongo
+          volumeMounts:
+            - name: mongo-persistent-volume
+              mountPath: /data/db 

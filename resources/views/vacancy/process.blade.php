@@ -6,7 +6,11 @@
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
+
 	<div class="container">
+	@if($resp)
+		<h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
+	@endif
 	<h2 class="fonte-conteudo">Credenciamento</h2>
 	<ul class="nav nav-tabs">
 		<li class="active, link"><a href="#">Abertos</a></li>
@@ -25,7 +29,8 @@
 			</thead>
 			<tbody>
 			<tbody>
-			@foreach($vague as $d)
+
+			@foreach($data as $d)
 				<tr>
 					<td>{{$d->title}}</td>
                     <td>{{$d->matter}}</td>

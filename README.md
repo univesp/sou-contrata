@@ -36,3 +36,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 Quaisquer dúvidas ou questionamentos, procurem:
 * Marcus Vinicius **(Vinny)** - *DevOps/BackEnd/PHP* - [marcus.coimbra@connectcom.univesp.br](mailto:marcus.coimbra@connectcom.univesp.br).
 * **Ezequiel Ramos** - *Infra/BackEnd/PHP* - [ezequiel.ramos@connectcom.univesp.br](mailto:ezequiel.ramos@connectcom.univesp.br).
+* **Lucas Teles** - *TI Univesp* - [lucas.teles@univesp.br](mailto:lucas.teles@univesp.br).

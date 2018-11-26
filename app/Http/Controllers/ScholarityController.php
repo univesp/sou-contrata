@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Scholarity;
 use Illuminate\Support\Carbon;
+use App\Vacancy;
 
 class ScholarityController extends Controller
 {
@@ -31,9 +32,8 @@ class ScholarityController extends Controller
 
         // Documentos de Graduação do Candidato
         
-        dd($sessao);
         
-        $id = $sessao[0]->id;
+        $id = $sessao[0]['id'];
 
         $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$id}");
 
@@ -79,13 +79,17 @@ class ScholarityController extends Controller
             $result[] = Scholarity::create($school);  
         }
 
-        return view('vacancy/process');
+        $data = Vacancy::all()->where('edict_id',1);
+
+        $resp = $result;
+
+        return view('vacancy.process', compact(['resp', 'data']));
     }
 
     public function br_to_bank($now) {
 
         $data = explode('/', $now);
-        $dt = $data[2] . "-" . $data[1] . '-' . $data[0];
+        $dt = date('Y-m-d', strtotime($now));
 
         return $dt;
     }
@@ -139,7 +143,7 @@ class ScholarityController extends Controller
         $input['image'] = time() . '.' . $extensao;
         //$request->image->move(public_path("documents-academic/{$user}/"), $input['image']);
         
-        dd($request);
+       
 
     }
 }
