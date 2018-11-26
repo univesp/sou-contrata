@@ -418,7 +418,7 @@
                 if(sexo == 0) {
 
                     $(".militar").show();
-               
+
                 } else if(sexo == 1 || sexo == 2) {
 
                     $(".militar").hide();
@@ -474,7 +474,7 @@
 
                         // Call values of fields addresses table
                         elector_title: $('#inputNumDoc_1').val(),
-                        // elector_link: $('#inputComplemento').val(),
+                        elector_link: $('#inputComplemento').val(),
                         military_certificate: $('#inputNumDoc_2').val(),
                         // military_link: $('#inputNum').val(),
                         rg_number: $('#inputNumDocs').val(),

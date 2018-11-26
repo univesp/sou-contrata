@@ -7,11 +7,9 @@
 @endsection
 @section('content')
 	<div class="container">
-	<h2 class="fonte-conteudo">Processos Seletivos</h2>
+	<h2 class="fonte-conteudo">Credenciamento</h2>
 	<ul class="nav nav-tabs">
 		<li class="active, link"><a href="#">Abertos</a></li>
-		<li><a class="link-2" href="#">Vigentes</a></li>
-		<li><a class="link-2" href="#">Arquivados</a></li>
 	</ul>
 	<div class="form_dados"></div>
 		<table id="example" class="table">
@@ -34,7 +32,7 @@
 					<td>{{$d->payload}}</td>
 					<td>{{$d->offer}}</td>
 					<td>{{$d->type}}</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Aplicar</button></a></td>
+					<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
 				</tr>
 				@endforeach
 			</tbody>
@@ -45,15 +43,15 @@
 <script>
 	var botao = document.querySelector('button#botao');
 	botao.addEventListener('click', function() {
-		var aberto = botao.classList.contains('Aplicar');
+		var aberto = botao.classList.contains('Candidatar');
 		$('#botao').css('background-color', '#006dcc');
-		this.innerHTML = aberto ? 'Aplicar' : 'Remover Item';
+		this.innerHTML = aberto ? 'Candidatar' : 'Remover Item';
 	});
 	var botao = document.querySelector('button#botao1');
 	botao.addEventListener('click', function() {
-		var aberto = botao.classList.contains('Aplicar');
+		var aberto = botao.classList.contains('Candidatar');
 		$('#botao1').css('background-color', '#006dcc');
-		this.innerHTML = aberto ? 'Aplicar' : 'Remover Item';
+		this.innerHTML = aberto ? 'Candidatar' : 'Remover Item';
 	});
 </script>
 @endsection

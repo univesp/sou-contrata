@@ -15,7 +15,7 @@ class ListEditalController extends Controller
     public function index()
     {
        $vague = Vacancy::all()->where('edict_id',1);
-    
+
        //dd($data);
        //$data['']=Vacancy::where('edict_id',1)->get();
        //dd($data['teste']);

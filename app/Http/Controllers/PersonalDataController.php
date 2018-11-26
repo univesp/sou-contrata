@@ -35,8 +35,8 @@ class PersonalDataController extends Controller
 
         // Capturando a sessão do usuário
         $sessao = $request->session()->get('user');
-        
-        $user_id = $sessao[0]->id;
+
+        $user_id = $sessao[0]['id'];
 
         // Envio dos documentos para o Storage
 
@@ -99,9 +99,9 @@ class PersonalDataController extends Controller
 
             // Get user session variable
             $session = $request->session()->get('user');
-            $user_id = $session[0]->id;
+            $user_id = $session[0]['id'];
             $candidate->user_id             = $user_id;
-            
+
             // Save in database
             if ($candidate->save()) {
                 // Put candidate session variable
