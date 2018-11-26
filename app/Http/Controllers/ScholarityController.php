@@ -32,6 +32,9 @@ class ScholarityController extends Controller
 
         // Documentos de Graduação do Candidato
         
+        $inputDataConclusao = $request->inputDataConclusao;
+
+        dd($request);
         
         $id = $sessao[0]['id'];
 
