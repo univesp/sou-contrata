@@ -275,10 +275,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                                    <select name="state" id="inputUF" class="form-control">
-                                        <option value="0">SP</option>
-                                        <option value="1">RJ</option>
-                                    </select>
+                                    <input name="state" type="text" class="form-control" id="inputUF" required oninvalid="this.setCustomValidity('Digite o UF')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                         </div>
@@ -401,6 +398,7 @@
                 $("#inputLogradouro").val("...");
                 $("#inputBairro").val("...");
                 $("#inputCidade").val("...");
+                $("#inputUF").val("...");
 
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
@@ -410,6 +408,7 @@
                         $("#inputLogradouro").val(dados.logradouro);
                         $("#inputBairro").val(dados.bairro);
                         $("#inputCidade").val(dados.localidade);
+                        $("#inputUF").val(dados.uf);
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
