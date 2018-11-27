@@ -34,7 +34,12 @@
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-danger sair" >Sair</button>
-                    </div>
+
+                    @if (Session::get('user')['user'])
+                        <div class="col-md-2">
+                            <button class="btn btn-danger sair" >Sair</button>
+                        </div>                        
+                    @endif
                 </div>
             </div>
         </div>

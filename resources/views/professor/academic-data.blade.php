@@ -11,7 +11,7 @@
 	DADOS ACADÊMICOS	
 @endsection
 @section('username')
-{{isset(Session::get('user')->name) ? Session::get('user')->name : ''}}
+{{ "Bem vindo ". Session::get('user')['user'] }}
 @endsection
 @section('content')
 
@@ -23,7 +23,7 @@
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
-			<form action="/document_academic" method="post" enctype="multipart/form-data">
+			<form action="/academic-data" method="post" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			<div  class="row">
 				<div class="col-md-7">

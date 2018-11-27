@@ -10,7 +10,7 @@
     DADOS PESSOAIS 
 @endsection
 @section('username')
-    {{isset(Session::get('user')->name) ? Session::get('user')->name : ''}}
+    {{ "Bem vindo ". Session::get('user')['user'] }}
 @endsection
 
 	<div class="container">
@@ -138,7 +138,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="inputDataEmissao" class="fonte-campos">Data emissão<span class="cor-campo"> *</span></label>
-                            <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
+                            <input name="date_issue" type="date" class="form-control " id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
                         </div>
                     </div>
                 </div>
@@ -251,7 +251,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
-                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -271,14 +271,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
-                                    <input name="neighborhood" type="text" class="form-control" id="inputBairro" required oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 316px;">
+                                    <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 316px;">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                                    <select name="state" id="inputUF" class="form-control">
-                                        <option value="0">SP</option>
-                                        <option value="1">RJ</option>
-                                    </select>
+                                    <input name="state" type="text" class="form-control" id="inputUF" required readonly oninvalid="this.setCustomValidity('Digite o UF')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                         </div>
@@ -290,7 +287,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-9">
                                     <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                                    <input name="city" type="text" class="form-control" id="inputCidade" required oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <input name="city" type="text" class="form-control" id="inputCidade" required readonly oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                         </div>
@@ -401,6 +398,7 @@
                 $("#inputLogradouro").val("...");
                 $("#inputBairro").val("...");
                 $("#inputCidade").val("...");
+                $("#inputUF").val("...");
 
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
@@ -410,6 +408,7 @@
                         $("#inputLogradouro").val(dados.logradouro);
                         $("#inputBairro").val(dados.bairro);
                         $("#inputCidade").val(dados.localidade);
+                        $("#inputUF").val(dados.uf);
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.

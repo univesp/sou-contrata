@@ -10,27 +10,17 @@
     FORMULÁRIO DE INSCRIÇÃO
 @endsection
 @section('username')
-{{Session::get('user')->name}} 
+{{ "Bem vindo ". Session::get('user')['user'] }}
 @endsection
 
 @section('content')
 
-{{Session::put('edital_id', $data['id'])}}
-		<div class="container">
-			<span class="font-cabecalho1">Processos Seletivos</span><br />
-			<span class="font-cabecalho2">{{$data->title}} {{$data->matter}}</span>
-            <!--@if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
-			    <button type="button" class="btn btn-info">Aberto</button>
-            @else
-                <button type="button" class="btn btn-danger">Fechado</button>
-            @endif-->
-        </div>
-	</div>
+    
     <div class="container">
         <p class="formatacao-resumo">
             <ul class="nav nav-tabs">
                 <li class="active, link"><a href="#">Edital</a></li>
-                <li><a class="link-2" href="#">Convocação</a></li>
+                <!--<li><a class="link-2" href="#">Convocação</a></li>-->
             </ul>
         </p>
         <?php

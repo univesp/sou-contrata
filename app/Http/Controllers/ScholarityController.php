@@ -28,17 +28,9 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-
         $id = $request->session()->get('candidate');
 
         // Documentos de Graduação do Candidato
-        
-        echo $inputDataConclusao = $request->inputDataConclusao;
-
-        echo "<br/>";
-        echo formatDateAndTime($inputDataConclusao, 'd-m-Y');
-
-        echo formatText($request->cadlettters, 'upper'); 
 
         $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$id}");
 
@@ -80,19 +72,17 @@ class ScholarityController extends Controller
         ];
 
         foreach ($scholarity as $school) {
-
             $result[] = Scholarity::create($school);  
         }
 
-        $data = Vacancy::all()->where('edict_id',1);
-
         $resp = $result;
+        $data = Vacancy::all()->where('edict_id', 1);
 
-        return view('vacancy.process', compact(['resp', 'data']));
+        return view('vacancy/process', compact(['resp','data']));
     }
 
-    public function br_to_bank($now) {
-
+    public function br_to_bank($now)
+    {
         $data = explode('/', $now);
         $dt = date('Y-m-d', strtotime($now));
 
