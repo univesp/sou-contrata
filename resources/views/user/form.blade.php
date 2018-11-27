@@ -15,8 +15,6 @@
 
 @section('content')
 	<body>
-		<div class="fonte-cabecalho">
-			</div>
 			<div class="container">
 				<div class="formatacao-campos">
 					*Obrigatório
