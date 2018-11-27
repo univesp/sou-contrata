@@ -297,7 +297,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-11">
+                <div class="col-md-12">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-14">
@@ -331,25 +331,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-11">
+                <div class="col-md-20">
                     <div class="row">
                         <div class="col-md-12">
                             <br/>
+
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <br/>
+                                <h4 class="militar" style="display: none;">Comprovante de Residência</h4>
+                            </div>
+                           <div class="col-md-4">
+                                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Água, Luz, Gás e Telefone</label>
+                                <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
+                                <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
+                </div>
+
+                <div class="col-md-11">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12">
                             <h4>Telefone</h4>
-                            <hr />
-                        </div>
-                            <div class="form-group">
-                                <div class="col-md-14">
-                                     <div class="col-md-2">
+                        <hr />
+                </div>
+
+                           <!--<div class="form-group">-->
+                                <div class="col-md-2">
+                                     <div class="col-md-25">
                                         <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                                         <select id="inputTipo" class="form-control">
                                         
                                         <!--<option>11</option>
-                                            <option>21</option>
-                                        -->
-                                            
-                                                                                  
-                                            <!--<select name=id_pais>--> 
+                                            <option>21</option> -->
+                                                                                                                          
+                                        <!--<select name=id_pais>--> 
+                                        
                                             <option value=1>(+55) Brasil
                                             <option value=2>(+351) Portugal
                                             <option value=3>(+54) Argentina
@@ -359,11 +377,15 @@
 
                                         </select>
                                     </div>
+
                                         <!--<div class="col-md-1">
                                         <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
                                         <input  type="text" class="form-control" id="inputPrefixo" required oninvalid="this.setCustomValidity('Digite o Prefixo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
-                                    </div> -->
-                                    <div class="col-md-4">
+                                        </div> -->
+
+                           <div class="form-group">
+                               <div class="col-md-10">   
+                                    <div class="col-md-5">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
                                         <input name="phone" type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
                                         <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
@@ -380,6 +402,7 @@
             </div>
 		<div class="row">
 			<div class="row"> 
+
 				<!--
 				<div class="col-md-12">
 					<div class="row">
@@ -405,6 +428,7 @@
 						</div>
 					</div>
 				</div> -->
+
 				</div>
         </div>
 		</form>
