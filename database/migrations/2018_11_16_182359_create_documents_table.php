@@ -14,8 +14,8 @@ class CreateDocumentsTable extends Migration
             $table->increments('id');
             $table->integer('candidate_id')->unsigned()->index();
             $table->foreign('candidate_id')->references('id')->on('candidates');
-            $table->string('elector_title');
-            $table->text('elector_link');
+            $table->string('elector_title')->nullable();
+            $table->text('elector_link')->nullable();
             $table->string('military_certificate')->nullable();
             $table->text('military_link')->nullable();
             $table->string('number', 50);
