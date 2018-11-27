@@ -12,7 +12,7 @@
     <body>
     <div class="fonte-cabecalho">
         <div class="container">
-            <div  class="col-md-6">
+            <div  class="col-sm-6 col-xs-6 col-md-6">
                 <div class="imagem-topo-sou">
                     <img src="../img/logo-sou.png">
                 </div>
@@ -26,10 +26,10 @@
                     <img src="../img/logo-abaixo.jpg">
                 </div>
             </div>
-            <div style="color:white;" class="col-md-6 imagem-univesp float-right">
+            <div style="color:white;" class="col-sm-6 col-xs-6 col-md-6 imagem-univesp float-right">
                 <img src="../img/univesp.png">
-                <div class="col-md-12">
-                    <div class="col-md-10">
+                <div class="col-sm-12 col-xs-12 col-md-12">
+                    <div class="col-sm-12 col-xs-12 col-md-10">
                         <span class="float-right text-user">Ola, eu sou @yield('username')</span>
                     </div>
                     <div class="col-md-2">

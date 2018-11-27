@@ -1,8 +1,6 @@
 
 
-.imagem-topo-sou img{
-   margin-bottom: 10px;
-}
+
 
 .text-pequeno span{
     font-size: 20px;
@@ -16,10 +14,10 @@
     color:#fff;
 }
 .imagem-univesp img{
-    margin-top: 25px;
-    margin-bottom: 30px;
+    margin-top: 5%;
+    margin-bottom:5%;
     float:right;
-    margin-right: 100px;
+    margin-right: auto;
 }
 
 .text-user{
@@ -164,7 +162,9 @@ a {
 /* css style */
 
 .fonte-cabecalho {
-    height: 150px;
+    height: auto;
+    min-width:100%;
+    background-size:cover;
     background-image: url(../img/banner.png);
 }
 
@@ -316,3 +316,53 @@ label {
 	
     width: 161px;
 }
+
+@media screen and (min-width:320px) and (max-width: 414px) {
+    .imagem-univesp {
+        margin-top: 5%;
+    } 
+    .text-pequeno span {
+        font-size: 12px;
+    }
+    .text-big span {
+        font-size: 20px;
+    }
+    
+    
+  }
+
+  @media screen and (min-width:415px) and (max-width: 519px) {
+    .text-big span {
+        font-size: 19px;
+        margin-top: 5px;
+        color: #fff;
+    }
+    .text-pequeno span {
+        font-size: 15px;
+        margin-top: 15px;
+        color: #fff;
+    }
+    
+}
+
+  @media screen and (min-width:520px) and (max-width: 767px) {
+        .text-big span {
+            font-size: 25px;
+            margin-top: 5px;
+            color: #fff;
+        }
+  }
+
+  @media screen and (min-width:768px) and (max-width: 1024px) {
+   
+    .text-pequeno span {
+        font-size: 20px;
+    }
+    .text-big span {
+        font-size: 35px;
+    }
+    
+    
+  }
+ 
+  
