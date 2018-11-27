@@ -34,7 +34,7 @@
         <p class="formatacao-resumo">
             <ul class="nav nav-tabs">
                 <li class="active, link"><a href="#">Edital</a></li>
-                <li><a class="link-2" href="#">Convocação</a></li>
+                <!--<li><a class="link-2" href="#">Convocação</a></li>-->
             </ul>
         </p>
         <?php

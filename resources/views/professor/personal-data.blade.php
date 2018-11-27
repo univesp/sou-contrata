@@ -10,7 +10,7 @@
     DADOS PESSOAIS 
 @endsection
 @section('username')
-    {{isset(Session::get('user')->name) ? Session::get('user')->name : ''}}
+    {{ "Bem vindo ". Session::get('user')['user'] }}
 @endsection
 
 	<div class="container">
@@ -138,7 +138,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="inputDataEmissao" class="fonte-campos">Data emissão<span class="cor-campo"> *</span></label>
-                            <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
+                            <input name="date_issue" type="date" class="form-control " id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
                         </div>
                     </div>
                 </div>

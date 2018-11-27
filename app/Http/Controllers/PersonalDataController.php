@@ -98,7 +98,7 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = $request->phone;
+            $candidate->phone               = trim($request->phone);
 
             $candidate->user_id             = $user_id;
 
