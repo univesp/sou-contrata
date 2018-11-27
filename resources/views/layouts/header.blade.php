@@ -17,7 +17,7 @@
                     <img src="../img/logo-sou.png">
                 </div>
                 <div class="text-pequeno">
-                    <span>Processos Seletivos</span>
+                    <span>Credênciamento</span>
                 </div>
                 <div class="text-big">
                     <span>@yield('cabecalho')</span>
