@@ -19,7 +19,6 @@ class CheckUserLogin
         if (!$user){
             return redirect()->route('login');
         }
-
         return $next($request);
     }
 }

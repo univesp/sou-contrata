@@ -67,15 +67,7 @@ Route::get('/vague-discipline/{id}', function ($id, Request $request) {
 
 Route::post('/vague-discipline','CriterionController@store')->middleware(['check.user']);
 
-
-// Personal data
-// Route::get('/personal-data', function () {
-//     return view('professor/personal-data');
-// })->name('professorPersonalData');
-
-// Route::post('/personal-data/store', 'PersonalDataController@store')->name('store');
-
-Route::resource('/personal-data', 'PersonalDataController', ['only' => ['index', 'store']])->middleware(['check.user','check.candidate']);
+Route::resource('/personal-data', 'PersonalDataController', ['only' => ['index', 'store']])->middleware(['check.user']);
 
 // Academic data
 Route::get('/academic-data', function () {
@@ -84,13 +76,10 @@ Route::get('/academic-data', function () {
 
 // Process data
 Route::get('/process', function () {
-    return view('vacancy/process');
-})->name('vacancyProcess')->middleware(['check.user','check.candidate']);
+    return view('vacancy.process');
+})->name('vacancy_process')->middleware(['check.user']);
 
-Route::post('/document_academic', 'ScholarityController@store')->name('store')->middleware(['check.user']);
-
-
-Route::post('/academic-data/data', 'ScholarityController@document_academic')->name('document_academic')->middleware(['check.user']);
+Route::post('/academic-data', 'ScholarityController@store')->name('document_academic')->middleware(['check.user']);
 
 Route::get('/logoff', 'UserController@logoff')->name('logoff');
 

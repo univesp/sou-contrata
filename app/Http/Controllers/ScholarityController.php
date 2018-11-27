@@ -28,7 +28,6 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-
         $id = $request->session()->get('candidate');
 
         // Documentos de Graduação do Candidato
@@ -76,10 +75,10 @@ class ScholarityController extends Controller
             $result[] = Scholarity::create($school);  
         }
 
-        $data = Vacancy::all()->where('edict_id', 1);
         $resp = $result;
+        $data = Vacancy::all()->where('edict_id', 1);
 
-        return view('vacancy.process', compact(['resp', 'data']));
+        return view('vacancy/process', compact(['resp','data']));
     }
 
     public function br_to_bank($now)
