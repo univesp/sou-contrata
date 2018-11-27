@@ -24,7 +24,7 @@
                     <th scope="col">Cargo</th>
                     <th scope="col">Inicio</th>
                     <th scope="col">Termino</th>
-                    <th scope="col">Editais</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
