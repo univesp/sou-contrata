@@ -9,6 +9,8 @@ use function Sodium\add;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
 use App\Candidate;
+use App\Scholarity;
+use App\Document;
 
 class UserController extends Controller {
 
@@ -97,13 +99,26 @@ class UserController extends Controller {
                 'email' => $login->email,
             ];
             $request->session()->put('user', $userSession);
-            $candidados = Candidate::where('user_id', $login->id)->get();
+            $candidate = Candidate::where('user_id', $login->id)->first();
+            $document_candidate = Scholarity::where('candidate_id', $candidate->id)->first();
+            $scholarities_candidate = Document::where('candidate_id', $candidate->id)->first();
+            $page = 0;
 
-            if(empty($candidados->id)) {
-                return redirect('/personal-data');
+            if(empty($candidate->id)) {
+                if(empty($document_candidate->id)) {
+                    $page = 2;
+                } else {
+                    $page = 0;
+                }
+                if(empty($scholarities_candidate->id)) {
+                    $page = 3;
+                } else {
+                    $page = 0;
+                }
             } else {
-                return redirect('/vacancy');
+                $page = 1;
             }
+
 
         } else {
             return redirect('/login');
