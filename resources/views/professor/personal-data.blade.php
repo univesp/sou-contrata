@@ -16,8 +16,10 @@
 	<div class="container">
             <ul class="nav nav-tabs">
 				<li class="active, link3"><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li>
-				<li><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
-                <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li>
+                {{-- <li><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li> --}}
+                <li class="enabled"><a href="#">Dados Academicos</a></li>
+                {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li> --}}
+                <li class="enabled"><a href="#">Área de Interesse</a></li>
 			</ul>
 		<div class="formatacao-campos">
 			*Obrigatório
@@ -70,7 +72,7 @@
                                 <select name="marital_status" id="inputEstadoCivil" class="form-control">
                                     <option value="0">Solteiro</option>
                                     <option value="1">Casado</option>
-                                    <option value="3">Divorsiado</option>
+                                    <option value="3">Divorciado</option>
                                     <option value="4">Viúvo</option>
                                     <!--<option value="4">Amasiado</option>-->
                                 </select>
@@ -285,7 +287,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
-                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -307,20 +309,11 @@
                 
                                 <div class="col-md-4">
                                     <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
-                                    <input name="neighborhood" type="text" class="form-control" id="inputBairro" required oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 280px;">
+                                    <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 280px;">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                                    <select name="state" id="inputUF" class="form-control">
-                                        <option value="0">SP</option>
-                                        <option value="1">RJ</option>
-                                        <option value="2">AP</option>
-                                        <option value="3">AC</option>
-                                        <option value="4">ES</option>
-                                        <option value="5">MT</option>
-                                        <option value="6">AL</option>
-                                        <option value="7">MG</option>
-                                    </select>
+                                    <input name="state" type="text" class="form-control" id="inputUF" required readonly oninvalid="this.setCustomValidity('Digite o UF')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                         </div>
@@ -332,7 +325,7 @@
                             <div class="col-md-14">
                                 <div class="col-md-9">
                                     <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                                    <input name="city" type="text" class="form-control" id="inputCidade" required oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <input name="city" type="text" class="form-control" id="inputCidade" required readonly oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                         </div>
@@ -386,7 +379,7 @@
                 </div>
             </div>
 		<div class="row">
-			<div class="row">
+			<div class="row"> 
 				<!--
 				<div class="col-md-12">
 					<div class="row">
@@ -443,6 +436,7 @@
                 $("#inputLogradouro").val("...");
                 $("#inputBairro").val("...");
                 $("#inputCidade").val("...");
+                $("#inputUF").val("...");
 
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
@@ -452,6 +446,7 @@
                         $("#inputLogradouro").val(dados.logradouro);
                         $("#inputBairro").val(dados.bairro);
                         $("#inputCidade").val(dados.localidade);
+                        $("#inputUF").val(dados.uf);
                     } //end if.
                     else {
                         //CEP pesquisado não foi encontrado.
