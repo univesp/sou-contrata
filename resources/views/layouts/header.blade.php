@@ -17,7 +17,7 @@
                     <img src="../img/logo-sou.png">
                 </div>
                 <div class="text-pequeno">
-                    <span>Processos Seletivos</span>
+                    <span>Credênciamento</span>
                 </div>
                 <div class="text-big">
                     <span>@yield('cabecalho')</span>
@@ -30,7 +30,7 @@
                 <img src="../img/univesp.png">
                 <div class="col-sm-12 col-xs-12 col-md-12">
                     <div class="col-sm-12 col-xs-12 col-md-10">
-                        <span class="float-right text-user">Ola, eu sou @yield('username')</span>
+                        <span class="float-right text-user">@yield('username')</span>
                     </div>
                     @if (Session::get('user')['user'])
                         <div class="col-md-2">

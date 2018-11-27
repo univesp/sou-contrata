@@ -17,7 +17,6 @@ class ListEditalController extends Controller
         $id =  $request->session()->get('edital_id');
         $data = Vacancy::all()->where('edict_id', $id)->get();
     
-       dd($data);
        //$data = Vacancy::where('edict_id',1)->get();
        //dd($data['teste']);
 
