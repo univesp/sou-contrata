@@ -16,8 +16,8 @@
 @section('content')
 
 	<div class="container">
-	@if(isset($resp))
-		<h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
+	@if(!empty($resp))
+            <h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
 	@endif
 	<h2 class="fonte-conteudo">Credenciamento</h2>
 	<ul class="nav nav-tabs">

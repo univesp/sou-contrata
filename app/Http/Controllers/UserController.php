@@ -45,12 +45,11 @@ class UserController extends Controller {
         $user->password = Crypt::encrypt($request->password);
         $user->email = $request->email;
 
-        $answer = User::save($user);
-        
+        $user->save();
         $userSession = [
-            'id' => $answer->id,
-            'user' => $answer->name,
-            'email' => $answer->email,
+            'id' => $user->id,
+            'user' => $user->name,
+            'email' => $user->email,
         ];
 
         $request->session()->put('user', $userSession);
@@ -115,6 +114,6 @@ class UserController extends Controller {
     public function logoff(Request $request) 
     {
         $request->session()->flush();
-        return redirect('/login');
+        return redirect('/');
     }
 }

@@ -15,10 +15,10 @@ class CheckUserLogin
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->get('user')){
+        $user = $request->session()->get('user');
+        if (!$user){
             return redirect()->route('login');
         }
-
         return $next($request);
     }
 }
