@@ -323,7 +323,7 @@
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-14">
-                                <div class="col-md-9">
+                                <div class="col-md-10">
                                     <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
                                     <input name="city" type="text" class="form-control" id="inputCidade" required readonly oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
