@@ -9,7 +9,13 @@
 @section('cabecalho')
     CADASTRO DE PROFESSORES
 @endsection
-
+@section('username')
+@if (Session::get('user')['user'])
+    {{ "Bem vindo ". Session::get('user')['user'] }}
+@else
+    {{ "Bem vindo"}}
+@endif
+@endsection
 @section('content')
     <div class="container">
         <table class="table">
