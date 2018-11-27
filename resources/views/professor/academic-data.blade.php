@@ -5,12 +5,15 @@
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
+
 @section('content')
-        <div class="fonte-cabecalho">
-				<div class="container">
-				<button class="btn btn-danger sair" >Sair</button>
-				</div>
-		</div>
+@section('cabecalho')
+	DADOS ACADÊMICOS	
+@endsection
+@section('username')
+{{Session::get('user')->name}}
+@endsection
+@section('content')
 
 		<div class="container">
 			<ul class="nav nav-tabs">
@@ -42,7 +45,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control" maxlength="20" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input  type="text" class="form-control" maxlength="50" id="inputCursos" name="inputCursos" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">
@@ -87,7 +90,7 @@
 						<div class="row">
 							<div class="col-md-12">
 								<label for="inputArea" class="fonte-campos">Área<span class="cor-campo"> *</span></label>
-								<input type="text" class="form-control" maxlength="20" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
+								<input type="text" class="form-control" maxlength="50" id="inputArea" name="inputArea" required oninvalid="this.setCustomValidity('Digite a Área')" onchange="try{setCustomValidity('')}catch(e){}">
 							</div>
 						</div>
 						<div class="row">
@@ -131,7 +134,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<label for="inputCursos_2" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
-							<input type="text" class="form-control" imaxlength="20" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+							<input type="text" class="form-control" imaxlength="50" id="inputCursos_2" name="inputCursos_2" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
 					<div class="row">

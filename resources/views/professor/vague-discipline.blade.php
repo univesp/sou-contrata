@@ -1,19 +1,18 @@
-  @extends('layouts.header')
-  @section('title')
-      Cadastro de Professores
-  @endsection
-  @section('css')
-      <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-      <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
-  @endsection
-  @section('content')
-
-	<div class="fonte-cabecalho">
-				<div class="container">
-				<button class="btn btn-danger sair" >Sair</button>
-				</div>
-		</div>
-
+@extends('layouts.header')
+@section('title')
+    Cadastro de Professores
+@endsection
+@section('css')
+    <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
+@endsection
+@section('cabecalho')
+    ÁREA DE INTERESSE
+@endsection
+@section('username')
+{{Session::get('user')->name}}
+@endsection
+@section('content')
     <div class="container">
 		<ul class="nav nav-tabs">
             <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>

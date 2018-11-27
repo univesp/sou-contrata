@@ -5,6 +5,14 @@
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
+
+@section('cabecalho')
+    FORMULÁRIO DE INSCRIÇÃO
+@endsection
+@section('username')
+    TESTE 
+@endsection
+
 @section('content')
 	<body>
 		<div class="fonte-cabecalho">

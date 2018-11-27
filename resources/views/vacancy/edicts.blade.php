@@ -5,10 +5,15 @@
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
+
+@section('cabecalho')
+    FORMULÁRIO DE INSCRIÇÃO
+@endsection
+@section('username')
+{{Session::get('user')->name}} 
+@endsection
+
 @section('content')
-
-{{Session::put('edital_id', $data['id'])}}
-
 
     <div class="cabecalho">
        <div class="container">
@@ -18,11 +23,11 @@
 		<div class="container">
 			<span class="font-cabecalho1">Processos Seletivos</span><br />
 			<span class="font-cabecalho2">{{$data->title}} {{$data->matter}}</span>
-            @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
+            <!--@if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
 			    <button type="button" class="btn btn-info">Aberto</button>
             @else
                 <button type="button" class="btn btn-danger">Fechado</button>
-            @endif
+            @endif-->
         </div>
 	</div>
     <div class="container">

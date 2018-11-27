@@ -1,15 +1,22 @@
 @extends('layouts.header')
 @section('title')
-    Cadastro de Professores
+	Credênciamento
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
+@section('cabecalho')
+	Credênciamento
+@endsection
+@section('username')
+{{Session::get('user')->name}} 
+@endsection
+
 @section('content')
 
 	<div class="container">
 	@if(!empty($resp))
-		<h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
+            <h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
 	@endif
 	<h2 class="fonte-conteudo">Credenciamento</h2>
 	<ul class="nav nav-tabs">
@@ -29,17 +36,18 @@
 			</thead>
 			<tbody>
 			<tbody>
-
-			@foreach($data as $d)
-				<tr>
-					<td>{{$d->title}}</td>
-                    <td>{{$d->matter}}</td>
-					<td>{{$d->payload}}</td>
-					<td>{{$d->offer}}</td>
-					<td>{{$d->type}}</td>
-					<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
-				</tr>
+			@if(isset($data))
+				@foreach($data as $d)
+					<tr>
+						<td>{{$d->title}}</td>
+						<td>{{$d->matter}}</td>
+						<td>{{$d->payload}}</td>
+						<td>{{$d->offer}}</td>
+						<td>{{$d->type}}</td>
+						<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
+					</tr>
 				@endforeach
+			@endif
 			</tbody>
 		</table>
 		</div>
