@@ -8,13 +8,6 @@
       <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
   @endsection
   @section('content')
-
-	<div class="fonte-cabecalho">
-				<div class="container">
-				<button class="btn btn-danger sair" >Sair</button>
-				</div>
-		</div>
-
     <div class="container">
 		<ul class="nav nav-tabs">
             <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
