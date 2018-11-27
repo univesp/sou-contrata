@@ -16,8 +16,10 @@
 	<div class="container">
             <ul class="nav nav-tabs">
 				<li class="active, link3"><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
-				<li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
-                <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
+                {{-- <li ><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li> --}}
+                <li class="disabled"><a href="#">Dados academicos</a></li>
+                {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li> --}}
+                <li class="disabled"><a href="#">Área de interesse</a></li>
 			</ul>
 		<div class="formatacao-campos">
 			*Obrigatório
