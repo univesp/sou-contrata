@@ -40,10 +40,22 @@
         </div>
     </div>
 
-        <div style="clear:both;"></div>
+    <div style="clear:both;"></div>
         @yield('content')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         @yield('scripts')
+
+        <script>
+            $(function() {
+                $(document).ready(function(){
+
+                    $(".sair").click(function(){
+
+                        window.location.href = "/logoff";
+                    });
+                });
+            });
+        </script>
     </body>
 </html>

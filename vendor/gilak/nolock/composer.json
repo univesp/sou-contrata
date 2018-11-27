@@ -1,0 +1,15 @@
+{
+  "name": "gilak/nolock",
+  "description": "get read of locking file in both laravel and the way laravel use league filesystem",
+  "keywords": [
+    "package",
+    "filesystem",
+    "lock"
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "NoLock\\": "src/"
+    }
+  }
+}

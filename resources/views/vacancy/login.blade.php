@@ -1,14 +1,6 @@
-@extends('layouts.header')
-@section('title')
-    Login de Acesso
-@endsection
-@section('css')
-    <link href="css/style-login.css" rel="stylesheet">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-@endsection
-@section('content')
 
-
+<link href="css/style-login.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
   <body>
     <div class="container">
@@ -32,4 +24,3 @@
             </a>
         </div>
     </div>
-@endsection
