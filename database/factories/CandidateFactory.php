@@ -13,6 +13,7 @@ $factory->define(Candidate::class, function ($faker) use ($factory)
         'curriculum_link' => __DIR__ . '/public/img/curriculum/123456789.pdf',
         'marital_status' => array_rand(array('Casado','Solteiro','Viuvo','Disquitado'), 1),
         'cpf' => $faker->numerify('#########-##'),
+        'file_cpf' =>  __DIR__ . '/public/img/cpf/arquivo.pdf',
         // 'cell_phone' => $faker->numerify('## #####-####'),
         'flag_deficient' => $faker->numberBetween($min = 0, $max = 1),
         'obs_deficient' => $faker->text(100),
