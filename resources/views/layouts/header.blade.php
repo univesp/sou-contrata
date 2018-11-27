@@ -30,7 +30,7 @@
                 <img src="../img/univesp.png">
                 <div class="col-md-12">
                     <div class="col-md-10">
-                        <span class="float-right text-user">Ola, eu sou @yield('username')</span>
+                        <span class="float-right text-user">@yield('username')</span>
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-danger sair" >Sair</button>

@@ -10,7 +10,7 @@
     FORMULÁRIO DE INSCRIÇÃO
 @endsection
 @section('username')
-{{Session::get('user')->name}} 
+{{ "Bem vindo ". Session::get('user')['user'] }}
 @endsection
 
 @section('content')

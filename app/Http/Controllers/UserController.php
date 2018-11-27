@@ -36,15 +36,17 @@ class UserController extends Controller {
     public function store(Request $request)
     {
         $request->session()->flush();
-        $candidate = [
-            'id' => $request->id,
-            'name' => $request->name,
-            'login' => $request->login,
-            'password' => Crypt::encrypt($request->password),
-            'email' => $request->email
-        ];
 
-        $answer = User::create($candidate);
+        $user = new User();
+
+        $user->id = $request->id;
+        $user->name = $request->name;
+        $user->login = $request->login;
+        $user->password = Crypt::encrypt($request->password);
+        $user->email = $request->email;
+
+        $answer = User::save($user);
+        
         $userSession = [
             'id' => $answer->id,
             'user' => $answer->name,
