@@ -10,7 +10,7 @@
     FORMULÁRIO DE INSCRIÇÃO
 @endsection
 @section('username')
-    TESTE 
+     
 @endsection
 
 @section('content')
