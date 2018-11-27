@@ -251,7 +251,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
-                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -271,11 +271,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
-                                    <input name="neighborhood" type="text" class="form-control" id="inputBairro" required oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 316px;">
+                                    <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 316px;">
                                 </div>
                                 <div class="col-md-2">
                                     <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                                    <input name="state" type="text" class="form-control" id="inputUF" required oninvalid="this.setCustomValidity('Digite o UF')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <input name="state" type="text" class="form-control" id="inputUF" required readonly oninvalid="this.setCustomValidity('Digite o UF')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                         </div>
@@ -287,7 +287,7 @@
                             <div class="col-md-12">
                                 <div class="col-md-9">
                                     <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                                    <input name="city" type="text" class="form-control" id="inputCidade" required oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
+                                    <input name="city" type="text" class="form-control" id="inputCidade" required readonly oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                             </div>
                         </div>
