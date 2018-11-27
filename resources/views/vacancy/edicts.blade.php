@@ -15,21 +15,7 @@
 
 @section('content')
 
-    <div class="cabecalho">
-       <div class="container">
-            <button class="btn btn-danger" style="font-weight:bold;">Sair</button>
-       </div>
-       </div>
-		<div class="container">
-			<span class="font-cabecalho1">Processos Seletivos</span><br />
-			<span class="font-cabecalho2">{{$data->title}} {{$data->matter}}</span>
-            <!--@if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
-			    <button type="button" class="btn btn-info">Aberto</button>
-            @else
-                <button type="button" class="btn btn-danger">Fechado</button>
-            @endif-->
-        </div>
-	</div>
+    
     <div class="container">
         <p class="formatacao-resumo">
             <ul class="nav nav-tabs">
