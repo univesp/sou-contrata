@@ -9,7 +9,7 @@
 	Credenciamento
 @endsection
 @section('username')
-{{ "Bem vindo ". Session::get('user')['user'] }}
+{{ "Bem vindo, ". Session::get('user')['user'] }}
 
 @endsection
 
@@ -28,7 +28,7 @@
 			<thead>
 				<tr>
 					<th scope="col">Curso</th>
-                    <th scope="col">Matéria</th>
+                    <th scope="col">Disciplina</th>
 					<th scope="col">Carga Horária</th>
 					<th scope="col">Oferta</th>
 					<th scope="col">Tipo</th>
@@ -45,7 +45,7 @@
 						<td>{{$d->payload}}</td>
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
-						<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
+						<td><a href="{{ route('professorPosition', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
 					</tr>
 				@endforeach
 			@endif

@@ -8,20 +8,20 @@
 
 @section('content')
 @section('cabecalho')
-	DADOS ACADÊMICOS	
+	DADOS ACADÊMICOS
 @endsection
 @section('username')
-{{ "Bem vindo ". Session::get('user')['user'] }}
+{{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 @section('content')
 
 		<div class="container">
 			<ul class="nav nav-tabs">
-				{{-- <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li> --}}
-				<li class="disabled"><a href="#">Dados pessoais</a></li>
-				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
-                {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li> --}}
-				<li class="disabled"><a href="#">Área de interesse</a></li>
+				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
+				<li class="disabled"><a href="#">Dados Pessoais</a></li>
+				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
+                {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li> --}}
+				<li class="disabled"><a href="#">Área de Interesse</a></li>
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
@@ -38,7 +38,8 @@
 			<br />
 			<hr />
 			<div class="row">
-				<h3>Formação acadêmica</h3>
+				<h3>Formação Acadêmica</h3>
+
 
 			<hr />
 			<div class="col-md-7">
@@ -58,7 +59,7 @@
 				<div class="col-md-7">
 					<div class="row" style="margin-top:10px;">
 						<div class="col-md-12">
-							<label for="inputCursos" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>
+							<label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
 							<input  type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
@@ -70,13 +71,15 @@
 					</div>
 					<div class="row" style="margin-top:10px;">
 						<div class="col-md-3">
-							<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>
+							<label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
 							<input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
 						</div>
 					</div>
 				</div>
+
 				<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-6" style="margin-top:10px;">	 
+					<div class="col-md-6" style="margin-top:10px;">
+
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
 							<input type="file" name="file_graduate[]" class="file_graduate"/>
@@ -92,7 +95,7 @@
 			<hr />
 	    <div style="clear: both;"></div>
 		<div class="row">
-			<p class="top">Adicionar formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
+			<p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
 		</div>
 		<br /><br />
 			</form>
@@ -108,12 +111,12 @@
 
 				var HTML = new Array();
 				var codigo;
-				
+
 				if(!id) {
 					codigo = CONTADOR;
-				
+
 				} else {
-				
+
 					codigo = id;
 				}
 
@@ -154,7 +157,7 @@
 			    HTML.push('<button type="button" class="btn btn-success btn-sm novo" novo='+ codigo +'>Novo</button>');
 			    HTML.push('<button type="button" class="btn btn-danger btn-sm remove" remove=' + codigo + '>Remover</button>');
 			    HTML.push('</div></div>');
-					
+
 				$("#father").append(HTML.join(''));
 
 				CONTADOR++;
@@ -167,14 +170,14 @@
 				})
 
 			});
-			
+
 			$(document).on('click', '.remove', function(){
 
 				var id = $(this).attr('remove');
 
 				$("#grad_" + id).remove();
 			});
-			
+
 			$(document).on('click', '.novo', function(){
 
 				var id = $(this).attr('novo');

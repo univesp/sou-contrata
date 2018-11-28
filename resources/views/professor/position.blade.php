@@ -1,51 +1,60 @@
-
-  @extends('layouts.header')
-  @section('title')
-      Cadastro de Professores
-  @endsection
-  @section('css')
-      <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
-      <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-  @endsection
-  @section('content')
+@extends('layouts.header')
+@section('title')
+    Cadastro de Professores
+@endsection
+@section('css')
+    <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
+@endsection
+@section('cabecalho')
+    ÁREA DE INTERESSE
+@endsection
+@section('username')
+    {{ "Bem vindo, ". Session::get('user')['user'] }}
+@endsection
+@section('content')
     <div class="container">
 		<ul class="nav nav-tabs">
-            <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
-            <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
-            <li class="active, link3"><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
+            {{-- <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li> --}}
+            <li class="disabled"><a href="#">Dados pessoais</a></li>
+            {{-- <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li> --}}
+            <li class="disabled"><a href="#">Dados academicos</a></li>
+            <li class="active, link3"><a href="{{ route('professorPosition', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
 		</ul>
-		<p class="ob, cor-campo">*Obrigatório</p>
-		<p>Você esta credenciando como docente para:</p>
-		<h2></h2>
-		Requisitos
-		<ul>
-			<li>Docente nas universidades conveniadas com a Univesp</li>
-			<li>Minimo: Título de Doutor</li>
-		</ul>
+        <div class="vague-information">
+            <p class="ob, cor-campo">*Obrigatório</p>
+            <p>Você esta se credenciando</p>
+            <p><strong>{{$data->title}}</strong></p>
+            Requisitos
+            <ul>
+                <li>Docente nas universidades conveniadas com a Univesp</li>
+                <li>Minimo: Título de Doutor</li>
+            </ul>
+        </div>
 		<hr/>
 
         <form action="/vague-discipline" method="post">
             {{ csrf_field() }}
-			<div class="col-md-6">
-
-				<h5><strong class="left">Autoria</strong></h5>
-
-				<div class="checkbox" >
+			<div class="col-md-12">
+				<h5><strong class="left">Serviços</strong></h5>
+                <i>Você pode se credenciar para vários serviços</i>
+				<div class="checkbox">
+                <div class="row">
                  @foreach($data->services as $services)
-                      <label>
-                        <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
+                 <div class="col-md-4"><label>
+                      <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
 
-                      </label>
+                      </label></div>
                  @endforeach
+                 </div>
 				</div>
 			</div>
 			<div class="col-md-12">
 				<hr />
-				<h4>Declaração de Título de Experiência</h4>
+				<h4>Declaração de Título e Experiência</h4>
 				<div class="checagem-radio"></div>
 
                 <?php
-                dd($vacancies);
                 $title = [] ;
                 $subtitle = [] ;
                 $name = [] ;
