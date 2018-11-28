@@ -35,17 +35,18 @@
 
         <form action="/vague-discipline" method="post">
             {{ csrf_field() }}
-			<div class="col-md-6">
-
+			<div class="col-md-12">
 				<h5><strong class="left">Serviços</strong></h5>
                 <i>Você pode se credenciar para vários serviços</i>
-				<div class="checkbox" >
+				<div class="checkbox">
+                <div class="row">
                  @foreach($data->services as $services)
-                      <label>
-                        <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
+                 <div class="col-md-4"><label>
+                      <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
 
-                      </label>
+                      </label></div>
                  @endforeach
+                 </div>
 				</div>
 			</div>
 			<div class="col-md-12">
