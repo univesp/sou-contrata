@@ -26,7 +26,7 @@
         </div>
         <form id="form" name="personal-data" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
-        
+
             <div class="row">
                     <div class="col-md-3">
                         <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
@@ -56,8 +56,8 @@
                             </select>
                         </div>
                 </div>
-            
-           
+
+
                 <div class="row">
                         <div class="col-md-6">
                             <label for="textNomeSocial" class="control-label, fonte-campos">Nome Social</label>
@@ -76,8 +76,8 @@
                             </div>
                         </div>
                 </div>
-           
-            
+
+
                 <div class="row">
                         <div class="col-md-6">
                             <label for="inputNomeMae" class="control-label fonte-campos">Nome da Mãe<span class="cor-campo">*</span></label>
@@ -88,7 +88,7 @@
                             <input name="name_father" id="inputNomePai" class="form-control" type="text">
                         </div>
                 </div>
-            
+
                 <div class="row">
                     <div class="col-md-6">
                         Possui Alguma Deficiência?
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-        
+
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -114,14 +114,14 @@
                         </div>
                     </div>
                 </div>
-            
-            
+
+
                 <div class="row">
-                
+
                             <h3>Documentos</h3>
                             <hr />
                             <h4>Documento de Indentidade</h4>
-                      
+
                         <div class="col-md-3">
                             <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
                             <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')" onchange="try{setCustomValidity('')}catch(e){}" maxlength="9">
@@ -134,23 +134,27 @@
                             <label for="inputDataEmissao" class="fonte-campos">Data Emissão<span class="cor-campo"> *</span></label>
                             <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
                         </div>
-                   
+
                 </div>
                 <div class="row">
                   <div class="col-md-3">
                     <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')" onchange="try{setCustomValidity('')}catch(e){}">
                   </div>
                 </div>
-            
-            
+
+
                 <div class="row">
-        
+
                             <br/>
                             <h4>CPF</h4>
-                        
+
                           <div class="col-md-4">
                                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                                 <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF somente números')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="11">
+                            </div>
+                </div>
+                <div class="row">
+                            <div class="col-md-3">
                                 <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do CPF')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                            <!--   <div class="col-md-3">
@@ -164,22 +168,20 @@
                             <div class="col-md-2">
                                 <img src="img/lixeira.jpg" class="img-responsive img-lixeira" alt="lixeira">
                             </div>-->
-                        
+
                     </div>
-                </div>
-            <div class="col-md-11 elector_title">
-                <div class="row">
-                    <div class="form-group">
-                            <div class="col-md-12">
+
+
+                         <div class="row elector_title">
                                 <br/>
-                                <h4 class="elector_title">Titulo de Eleitor</h4>
-                            </div>
-                            <div class="col-md-4 elector_title">
+                                <h4>Titulo de Eleitor</h4>
+
+                            <div class="col-md-4">
                                 <label for="inputNumDoc_1" class="fonte-campos">Número de Documento<span class="cor-campo"> *</span></label>
                                 <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="12">
-                            </div>    
+                            </div>
                           </div>
-                          <div class="row">
+                          <div class="row elector_title">
                               <div class="col-md-3">
                                 <input type="file" id="file_title" name="file_title" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do Título de eleitor')" onchange="try{setCustomValidity('')}catch(e){}">
                               </div>
@@ -195,13 +197,11 @@
                             <div class="col-md-2">
                                 <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
                             </div>-->
-                </div>
-                <div class="col-md-11 militar">
-                    <div class="row">
+                    <div class="row militar">
                                 <br/>
                                 <h4 class="militar" style="display: none;">Certificado Militar</h4>
-                            </div>
-                           <div class="col-md-4 militar">
+
+                           <div class="col-md-4">
                                 <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento</label>
                                 <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
                                 <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
@@ -216,9 +216,9 @@
                             </div>
                             <div class="col-md-2">
                                 <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
-                            </div>-->   
+                            </div>-->
                     </div>
-               
+
                 <br/>
 
 <!--<div class="col-md-11">
@@ -249,7 +249,7 @@
                 </div>
                 <br/>-->
 
-              <div class="row"> 
+              <div class="row">
                            <br/>
                             <h4>Endereço e Contato</h4>
                             <hr />
@@ -258,7 +258,7 @@
                             <input name="postal_code" type="number" class="form-control" id="inputCep" required oninvalid="this.setCustomValidity('Digite o CEP')" onchange="try{setCustomValidity('')}catch(e){}">
                         </div>
                 </div>
-            
+
                     <div class="row">
                                 <div class="col-md-2">
                                     <label for="inputTipoLogra" class="fonte-campos">Tipo Logradouro<span class="cor-campo">*</span></label>
@@ -276,8 +276,8 @@
                                     <input name="number" type="text" class="form-control" id="inputNum" required oninvalid="this.setCustomValidity('Digite Somente Número')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
                                 </div>
                     </div>
-                
-               
+
+
                     <div class="row">
                                 <div class="col-md-3">
                                     <label for="inputComplemento" class="fonte-campos">Complemento</label>
@@ -294,8 +294,8 @@
                                     <input name="state" type="text" class="form-control" id="inputUF" required readonly oninvalid="this.setCustomValidity('Digite o UF')" onchange="try{setCustomValidity('')}catch(e){}">
                                 </div>
                     </div>
-             
-              
+
+
                     <div class="row">
                                 <div class="col-md-8">
                                     <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
@@ -313,23 +313,23 @@
                                 <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
                            </div>
                     </div>
-                    
+
                     <br>
-                
+
                     <div class="row">
                             <h4>Telefone</h4>
                         <hr />
                            <!--<div class="form-group">-->
                                 <div class="col-md-2">
-                                     
+
                                         <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                                         <select id="inputTipo" class="form-control">
 
                                         <!--<option>11</option>
                                             <option>21</option> -->
-                                                                                                                          
-                                        <!--<select name=id_pais>--> 
-                                        
+
+                                        <!--<select name=id_pais>-->
+
                                             <option value=55>(+55) Brasil
                                             <option value=351>(+351) Portugal
                                             <option value=54>(+54) Argentina
@@ -360,13 +360,13 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                    <div class="row">
                         <hr />
                         <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
                     </div>
-              
-         
+
+
 
                 <!--
                 <div class="col-md-12">
@@ -393,7 +393,7 @@
                         </div>
                     </div>
                 </div> -->
-        
+
         </form>
     </div>
 @endsection
