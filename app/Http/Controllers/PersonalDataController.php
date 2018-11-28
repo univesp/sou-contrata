@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Candidate;
 use App\Document;
 use App\Address;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Redirect;
 use Response;
 use Session;
 use Auth;
@@ -37,7 +39,7 @@ class PersonalDataController extends Controller
 
         // Send documents to storage
         $path_file_address = $request['file_address']->store("documents-address/{$user_id}");
-        $path_file_cpf = $request['file_cpf']->store("documents-cpf/{$user_id}");
+        // $path_file_cpf = $request['file_cpf']->store("documents-cpf/{$user_id}");
         $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
         $path_file_military = '';
         $path_file_title = ''; 
@@ -57,10 +59,10 @@ class PersonalDataController extends Controller
         }
 
         // Validate all fields
-        $validator = Validator::make($request->input(), [
+        $validator = Validator::make($request->all(), [
             // Candidate validations
             'cpf'               => 'required',
-            // 'file_cpf'                => 'required',
+            'file_cpf'          => 'required',
             'date_birth'        => 'required',
             'last_name'         => 'required',
             'name'              => 'required',
@@ -71,26 +73,29 @@ class PersonalDataController extends Controller
 
             // Documents validations
             'elector_title'             => 'required',
-            // 'file_title'                => 'required',
+            'file_title'                => 'required',
             'rg_number'                 => 'required',
-            // 'file_rg'                   => 'required',
+            'file_rg'                   => 'required',
+            'military_certificate'      => 'required',
+            'file_military'             => 'required',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
 
             // Address validations
             'city'                      => 'required',
-            // 'file_address'              => 'required',
+            'file_address'              => 'required',
             'neighborhood'              => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
             'public_place'              => 'required',
             'state'                     => 'required',
             'type_public_place'         => 'required',
-        ]);
-
+        ]);     
+ 
         // Validate if the rules are met
         if ($validator->fails()) {
-            return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
+            dd($validator->messages());
+            // return \Redirect::back()->withInput()->withErrors($validator);
         } else {
             // Create new candidate
             $candidate = new Candidate();
@@ -151,6 +156,7 @@ class PersonalDataController extends Controller
 
             // Return in view
             // return response()->json('funciona');
+            Helper::alterSession($request, 2);
             return redirect()->route('professorAcademicData');
         }
     }

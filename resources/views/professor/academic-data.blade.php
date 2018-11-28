@@ -8,7 +8,7 @@
 
 @section('content')
 @section('cabecalho')
-	DADOS ACADÊMICOS	
+	DADOS ACADÊMICOS
 @endsection
 @section('username')
 {{ "Bem vindo, ". Session::get('user')['user'] }}
@@ -39,6 +39,7 @@
 			<hr />
 			<div class="row">
 				<h3>Formação Acadêmica</h3>
+
 
 			<hr />
 			<div class="col-md-7">
@@ -75,8 +76,10 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-6" style="margin-top:10px;">	 
+					<div class="col-md-6" style="margin-top:10px;">
+
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
 							<input type="file" name="file_graduate[]" class="file_graduate"/>
@@ -108,12 +111,12 @@
 
 				var HTML = new Array();
 				var codigo;
-				
+
 				if(!id) {
 					codigo = CONTADOR;
-				
+
 				} else {
-				
+
 					codigo = id;
 				}
 
@@ -154,7 +157,7 @@
 			    HTML.push('<button type="button" class="btn btn-success btn-sm novo" novo='+ codigo +'>Novo</button>');
 			    HTML.push('<button type="button" class="btn btn-danger btn-sm remove" remove=' + codigo + '>Remover</button>');
 			    HTML.push('</div></div>');
-					
+
 				$("#father").append(HTML.join(''));
 
 				CONTADOR++;
@@ -167,14 +170,14 @@
 				})
 
 			});
-			
+
 			$(document).on('click', '.remove', function(){
 
 				var id = $(this).attr('remove');
 
 				$("#grad_" + id).remove();
 			});
-			
+
 			$(document).on('click', '.novo', function(){
 
 				var id = $(this).attr('novo');

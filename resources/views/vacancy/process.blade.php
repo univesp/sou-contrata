@@ -45,7 +45,7 @@
 						<td>{{$d->payload}}</td>
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
-						<td><a href="{{ route('vagueDiscipline', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
+						<td><a href="{{ route('professorPosition', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
 					</tr>
 				@endforeach
 			@endif

@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Helpers;
+use App\Candidate;
+use App\Scholarity;
+use App\Document;
 
 class Helper
 {
@@ -11,7 +14,7 @@ class Helper
     }
 
 
-    static function formatText($value, $type = 'upper') 
+    static function formatText($value, $type = 'upper')
     {
         switch($type) {
             case 'upper':
@@ -27,6 +30,41 @@ class Helper
                 $text = '###';
         }
         return $text;
+    }
+    static function alterSession($request, $permission)
+    {
+        $user = $request->session()->get('user');
+        $user['permission'] = $permission;
+        $request->session()->flush();
+        $request->session()->put('user', $user);
+    }
+
+    static function createSession($user_object, $request)
+    {
+        $request->session()->flush();
+
+        $candidate = Candidate::where('user_id', $user_object->id)->first();
+        if(!empty($candidate->id)){
+            $scholarities_candidate = Scholarity::where('candidate_id', $candidate->id)->first();
+        }
+        $page = 0;
+
+        if(!empty($candidate->id)) {
+            $page = 2;
+            if(!empty($scholarities_candidate->id)) {
+                $page = 3;
+            }
+        } else {
+            $page = 1;
+        }
+
+        $userSession = [
+            'id' => $user_object->id,
+            'user' => $user_object->name,
+            'email' => $user_object->email,
+            'permission' => $page,
+        ];
+        $request->session()->put('user', $userSession);
     }
 }
 

@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 @section('cabecalho')
-    DADOS PESSOAIS 
+    DADOS PESSOAIS
 @endsection
 @section('username')
     {{ "Bem vindo, ". Session::get('user')['user'] }}
@@ -306,7 +306,7 @@
                                     <input name="complement" type="text" class="form-control" id="inputComplemento">
                                 </div>
 
-                
+
                                 <div class="col-md-4">
                                     <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
                                     <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}" style="width: 280px;">
@@ -362,12 +362,12 @@
                                      <div class="col-md-25">
                                         <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                                         <select id="inputTipo" class="form-control">
-                                        
+
                                         <!--<option>11</option>
                                             <option>21</option> -->
-                                                                                                                          
-                                        <!--<select name=id_pais>--> 
-                                        
+
+                                        <!--<select name=id_pais>-->
+
                                             <option value=1>(+55) Brasil
                                             <option value=2>(+351) Portugal
                                             <option value=3>(+54) Argentina
@@ -385,7 +385,7 @@
                                         </div> -->
 
                            <div class="form-group">
-                               <div class="col-md-10">   
+                               <div class="col-md-10">
                                     <div class="col-md-5">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
                                         <input name="phone" type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
@@ -402,7 +402,7 @@
                 </div>
             </div>
 		<div class="row">
-			<div class="row"> 
+			<div class="row">
 
 				<!--
 				<div class="col-md-12">
@@ -497,7 +497,7 @@
                 if(sexo == 0) {
 
                     $(".militar").show();
-               
+
                 } else if(sexo == 1 || sexo == 2) {
 
                     $(".militar").hide();
