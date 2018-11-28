@@ -40,11 +40,7 @@
 			<div class="row">
 				<h3>Formação Acadêmica</h3>
 
-<<<<<<< HEAD
-	    	<hr />
-                {{ Session::get('user')['user'] }}
-	    	<h4>Graduação</h4>
-=======
+
 			<hr />
 			<div class="col-md-7">
 				<div class="row">
@@ -60,7 +56,6 @@
 			</div>
 			<br>
 			<div id="father">
->>>>>>> 9e75663cd29e2c4061bde885c2e9cae058d1bf77
 				<div class="col-md-7">
 					<div class="row" style="margin-top:10px;">
 						<div class="col-md-12">
@@ -81,14 +76,10 @@
 						</div>
 					</div>
 				</div>
-<<<<<<< HEAD
 
-				<div class="row" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-12">
-=======
 				<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-6" style="margin-top:10px;">	 
->>>>>>> 9e75663cd29e2c4061bde885c2e9cae058d1bf77
+					<div class="col-md-6" style="margin-top:10px;">
+
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
 							<input type="file" name="file_graduate[]" class="file_graduate"/>
@@ -113,8 +104,6 @@
 @section('scripts')
 	<script>
 		$(function(){
-<<<<<<< HEAD
-=======
 
 			var CONTADOR = 0;
 
@@ -122,12 +111,12 @@
 
 				var HTML = new Array();
 				var codigo;
-				
+
 				if(!id) {
 					codigo = CONTADOR;
-				
+
 				} else {
-				
+
 					codigo = id;
 				}
 
@@ -168,13 +157,12 @@
 			    HTML.push('<button type="button" class="btn btn-success btn-sm novo" novo='+ codigo +'>Novo</button>');
 			    HTML.push('<button type="button" class="btn btn-danger btn-sm remove" remove=' + codigo + '>Remover</button>');
 			    HTML.push('</div></div>');
-					
+
 				$("#father").append(HTML.join(''));
 
 				CONTADOR++;
 			}
 
->>>>>>> 9e75663cd29e2c4061bde885c2e9cae058d1bf77
 			$(document).ready(function(){
 
 				$(".submit").click(function(e){
@@ -182,14 +170,14 @@
 				})
 
 			});
-			
+
 			$(document).on('click', '.remove', function(){
 
 				var id = $(this).attr('remove');
 
 				$("#grad_" + id).remove();
 			});
-			
+
 			$(document).on('click', '.novo', function(){
 
 				var id = $(this).attr('novo');
