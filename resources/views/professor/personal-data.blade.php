@@ -152,6 +152,11 @@
                                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                                 <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF somente números')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="11">
                             </div>
+                </div>
+                <div class="row">
+                            <div class="col-md-3">
+                                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do CPF')" onchange="try{setCustomValidity('')}catch(e){}">
+                            </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
                                 <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
@@ -167,7 +172,7 @@
                     </div>
 
 
-                         <div class="row">
+                         <div class="row elector_title">
                                 <br/>
                                 <h4>Titulo de Eleitor</h4>
 
@@ -176,7 +181,7 @@
                                 <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="12">
                             </div>
                           </div>
-                          <div class="row">
+                          <div class="row elector_title">
                               <div class="col-md-3">
                                 <input type="file" id="file_title" name="file_title" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do Título de eleitor')" onchange="try{setCustomValidity('')}catch(e){}">
                               </div>
@@ -192,11 +197,7 @@
                             <div class="col-md-2">
                                 <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
                             </div>-->
-
-
-
-
-                    <div class="row">
+                    <div class="row militar">
                                 <br/>
                                 <h4 class="militar" style="display: none;">Certificado Militar</h4>
 
@@ -446,6 +447,14 @@
         }
         // Init
         $(document).ready(function () {
+            $("#inputNatu").change(function(){
+
+                var natural = $(this).val();
+
+                natural == 1 ? $(".militar").hide() : $(".militar").show();
+                natural == 1 ? $(".elector_title").hide() : $(".elector_title").show();
+
+            });
 
             if($("#sexo").val() == 0) {
 
