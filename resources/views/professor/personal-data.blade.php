@@ -297,21 +297,21 @@
 
 
                     <div class="row">
-                                <div class="col-md-8">
-                                    <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                                    <input name="city" type="text" class="form-control" id="inputCidade" required readonly oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
-                                </div>
+                        <div class="col-md-8">
+                            <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
+                            <input name="city" type="text" class="form-control" id="inputCidade" required readonly oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
+                        </div>
                     </div>
                             <br/>
 
                     <div class="row">
-                                <br/>
-                                <h4 class="militar" style="display: none;">Comprovante de Residência</h4>
-                                <hr/>
-                           <div class="col-md-4">
-                                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Água, Luz, Gás e Telefone</label>
-                                <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
-                           </div>
+                        <br/>
+                        <h4>Comprovante de Residência</h4>
+                        <hr/>
+                        <div class="col-md-4">
+                            <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás e Telefone</label>
+                            <input type="file" id="file_address" class="proof_address" name="file_address" style="margin-top:15px;">
+                        </div>
                     </div>
 
                     <br>
