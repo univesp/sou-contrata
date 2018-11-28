@@ -72,12 +72,12 @@ class PersonalDataController extends Controller
             'phone'             => 'required',
 
             // Documents validations
-            'elector_title'             => 'required',
-            'file_title'                => 'required',
+            'elector_title'             => ($request->nationality == 0) ? 'required' : '',
+            'file_title'                => ($request->nationality == 0) ? 'required' : '',
             'rg_number'                 => 'required',
             'file_rg'                   => 'required',
-            'military_certificate'      => 'required',
-            'file_military'             => 'required',
+            'military_certificate'      => ($request->genre == 0 && $request->nationality == 0) ? 'required' : '',
+            'file_military'             => ($request->genre == 0 && $request->nationality == 0) ? 'required' : '',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
 
@@ -95,7 +95,12 @@ class PersonalDataController extends Controller
         // Validate if the rules are met
         if ($validator->fails()) {
             dd($validator->messages());
-            // return \Redirect::back()->withInput()->withErrors($validator);
+
+            return redirect()
+                ->route('personal-data.index')
+                ->withInput($request->all())
+                ->withErrors($validator->messages())
+            ;
         } else {
             // Create new candidate
             $candidate = new Candidate();
