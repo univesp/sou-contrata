@@ -10,8 +10,8 @@
   @section('content')
     <div class="container">
 		<ul class="nav nav-tabs">
-            <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
-            <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
+            <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li>
+            <li><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
             <li class="active, link3"><a href="{{ route('professorPosition', ['id' => Session::get('positionId')]) }}">Área de interesse</a></li>
 		</ul>
 		<p class="ob, cor-campo">*Obrigatório</p>

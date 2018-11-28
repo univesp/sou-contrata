@@ -31,7 +31,8 @@
 				<div class="col-md-7">
 					<div  class="form-group">
 						<label for="cadlettters" class="fonte-campos">Curriculo Lattes<span class="cor-campo"> *</span></label>
-                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes">
+                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="Acesse o Link Abaixo">
+						<span id="link"> <a target="_blank" href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar">Preencha este campo com a url do seu curriculo Latttes</a></span>
 					</div>
 				</div>
 			</div>
@@ -39,9 +40,31 @@
 			<hr />
 			<div class="row">
 				<h3>Formação Acadêmica</h3>
-
-
 			<hr />
+			
+				<div class="row">
+				  <div class="col-md-7">
+					<div class="col-md-6">
+					   <label class="area">Selecione a sua Área</label>
+						<select name="graduations[]" class="form-control graduations">
+							<option value="" selected>AREA0</option>
+							<option value="1">AREA1</option>
+							<option value="2">AREA2</option>
+							<option value="3">AREA3</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label class="area">Selecione a sua Sub-Área</label>
+						<select name="graduations[]" class="form-control graduations">
+							<option value="" selected>AREA0</option>
+							<option value="1">AREA1</option>
+							<option value="2">AREA2</option>
+							<option value="3">AREA3</option>
+						</select>
+					</div>
+                  </div>
+				</div>
+			<br>
 			<div class="col-md-7">
 				<div class="row">
 					<div class="col-md-12">
@@ -78,7 +101,7 @@
 				</div>
 
 				<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-6" style="margin-top:10px;">
+					<div class="col-md-6" style="margin-top:10px;padding-left:0px;">
 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
