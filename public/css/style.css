@@ -305,7 +305,8 @@ a {
 }
 
 label {
-    margin-bottom: 0px !important;
+    margin-bottom:5px;
+    margin-top: 10px;
     font-weight: 10 !important;
 }
 
