@@ -10,7 +10,7 @@
     ÁREA DE INTERESSE
 @endsection
 @section('username')
-    {{ "Bem vindo ". Session::get('user')['user'] }}
+    {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 @section('content')
     <div class="container">
@@ -23,7 +23,7 @@
 		</ul>
         <div class="vague-information">
             <p class="ob, cor-campo">*Obrigatório</p>
-            <p>Você esta credenciando como docente para:</p>
+            <p>Você esta se credenciando</p>
             <p><strong>{{$data->title}}</strong></p>
             Requisitos
             <ul>
@@ -38,7 +38,7 @@
 			<div class="col-md-6">
 
 				<h5><strong class="left">Serviços</strong></h5>
-
+                <i>Você pode se credenciar para vários serviços</i>
 				<div class="checkbox" >
                  @foreach($data->services as $services)
                       <label>
