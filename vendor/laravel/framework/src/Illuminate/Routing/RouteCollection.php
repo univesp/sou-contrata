@@ -285,6 +285,7 @@ class RouteCollection implements Countable, IteratorAggregate
      */
     public function getByName($name)
     {
+        //dd($this->nameList);
         return $this->nameList[$name] ?? null;
     }
 
