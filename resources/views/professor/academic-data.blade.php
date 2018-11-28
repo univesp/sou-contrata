@@ -40,9 +40,31 @@
 			<hr />
 			<div class="row">
 				<h3>Formação Acadêmica</h3>
-
-
 			<hr />
+			
+				<div class="row">
+				  <div class="col-md-7">
+					<div class="col-md-6">
+					   <label class="area">Selecione a sua Área</label>
+						<select name="graduations[]" class="form-control graduations">
+							<option value="" selected>AREA0</option>
+							<option value="1">AREA1</option>
+							<option value="2">AREA2</option>
+							<option value="3">AREA3</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label class="area">Selecione a sua Sub-Área</label>
+						<select name="graduations[]" class="form-control graduations">
+							<option value="" selected>AREA0</option>
+							<option value="1">AREA1</option>
+							<option value="2">AREA2</option>
+							<option value="3">AREA3</option>
+						</select>
+					</div>
+                  </div>
+				</div>
+			<br>
 			<div class="col-md-7">
 				<div class="row">
 					<div class="col-md-12">
