@@ -28,57 +28,49 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-        $id = $request->session()->get('candidate');
 
-        // Documentos de Graduação do Candidato
+        $id = !empty($request->session()->get('candidate')) ? $request->session()->get('candidate') : 1 ;
 
-        $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$id}");
+        $school = new Scholarity();
 
-        // Documentos de Mestrado do Candidato
-        
-        $path_file_master = $request['file_master']->store("documents-master/{$id}");
-        
-        // Documentos de Doutorado do Candidato
+        foreach ($request['graduations'] as $k => $d) {
+            
+            switch ($d) {
+                case '1':
+                    // se for 1 é Graduação  
+                    // Documentos de Graduação do Candidato
+                    $path_file = $request['file_graduate'][$k]->store("documents-graduate/{$id}");
+                    break;
 
-        $path_file_doctorate = $request['file_doctorate']->store("documents-doctorate/{$id}");
+                case '2':
+                    // se for 2 é Mestrado
+                    // Documentos de Mestrado do Candidato
+                    $path_file = $request['file_graduate'][$k]->store("documents-master/{$id}");
+                    break;
+                
+                case '3':
+                    // se for 3 é Doutorado
+                    // Documentos de Doutorado do Candidato
+                    $path_file = $request['file_graduate'][$k]->store("documents-doctorate/{$id}");
+                    break;
+            }
 
-        $scholarity = [
-            [
-                'class_name' => $request->cadlettters,
-                'end_date' => $this->br_to_bank($request->inputDataConclusao),
-                'init_date' => $this->br_to_bank($request->inputDataConclusao),
-                'link' => $path_file_graduate,
-                'scholarity_type' => $request->inputCursos,
-                'teaching_institution' => $request->inpuInstituicao,
-                'candidate_id' => $id 
-            ],[
-                'class_name' => $request->cadlettters,
-                'end_date' =>  $this->br_to_bank($request->inputAnoConclusao_1),
-                'init_date' => $this->br_to_bank($request->inputAnoConclusao_1),
-                'link' => $path_file_master,
-                'scholarity_type' => $request->inputArea,
-                'teaching_institution' => $request->inputInstiucao_1,
-                'candidate_id' => $id
-            ],[
-                'class_name' => $request->cadlettters,
-                'end_date' =>  $this->br_to_bank($request->inputAnoConclusao_2),
-                'init_date' => $this->br_to_bank($request->inputAnoConclusao_2),
-                'link' => $path_file_doctorate,
-                'scholarity_type' => $request->inputCursos_2,
-                'teaching_institution' => $request->inputInstiucao_2,
-                'candidate_id' => $id
-            ]
+            $school->class_name = $request->cadlettters;
+            $school->end_date = $this->br_to_bank($request->inputDataConclusao[$k]);
+            $school->init_date = $this->br_to_bank($request->inputDataConclusao[$k]);
+            $school->link = $path_file;
+            $school->scholarity_type = $request->inputCursos[$k];
+            $school->teaching_institution = $request->inpuInstituicao[$k];
+            $school->candidate_id = $id; 
 
-        ];
-
-        foreach ($scholarity as $school) {
-            $result[] = Scholarity::create($school);  
+            $school->save();
         }
 
-        $resp = $result;
+        $resp = $school;
         $data = Vacancy::all()->where('edict_id', 1);
 
-        return view('vacancy/process', compact(['resp','data']));
+        return view('vacancy/process', compact(['resp', 'data']));
+        
     }
 
     public function br_to_bank($now)
