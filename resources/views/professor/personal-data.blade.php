@@ -151,6 +151,7 @@
                           <div class="col-md-4">
                                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                                 <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF somente números')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="11">
+                                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do CPF')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -165,13 +166,15 @@
                             </div>-->
                         
                     </div>
-            
-            
-                         <div class="row">           
+                </div>
+            <div class="col-md-11 elector_title">
+                <div class="row">
+                    <div class="form-group">
+                            <div class="col-md-12">
                                 <br/>
-                                <h4>Titulo de Eleitor</h4>
-                               
-                            <div class="col-md-4">
+                                <h4 class="elector_title">Titulo de Eleitor</h4>
+                            </div>
+                            <div class="col-md-4 elector_title">
                                 <label for="inputNumDoc_1" class="fonte-campos">Número de Documento<span class="cor-campo"> *</span></label>
                                 <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="12">
                             </div>    
@@ -192,15 +195,13 @@
                             <div class="col-md-2">
                                 <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
                             </div>-->
-                        
-
-            
-                
+                </div>
+                <div class="col-md-11 militar">
                     <div class="row">
                                 <br/>
                                 <h4 class="militar" style="display: none;">Certificado Militar</h4>
-                                
-                           <div class="col-md-4">
+                            </div>
+                           <div class="col-md-4 militar">
                                 <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento</label>
                                 <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
                                 <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
@@ -349,7 +350,7 @@
                                         <input  type="text" class="form-control" id="inputPrefixo" required oninvalid="this.setCustomValidity('Digite o Prefixo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
                                         </div> -->
 
-                           <div class="form-group">
+                           <!--<div class="form-group">
                                <div class="col-md-10">
                                     <div class="col-md-5">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -446,6 +447,14 @@
         }
         // Init
         $(document).ready(function () {
+            $("#inputNatu").change(function(){
+
+                var natural = $(this).val();
+
+                natural == 1 ? $(".militar").hide() : $(".militar").show();
+                natural == 1 ? $(".elector_title").hide() : $(".elector_title").show();
+
+            });
 
             if($("#sexo").val() == 0) {
 
