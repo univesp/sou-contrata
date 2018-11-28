@@ -22,7 +22,7 @@ class PositionController extends Controller
             ->whereHas('vacancy_criteria',function ($query) use (&$id){
                 $query->where('vacancy_id', '=', $id);
             })->get();
-        $request->session()->put('vagueId', $id);
+        $request->session()->put('positionId', $id);
         return view('professor.position', compact(['data','vacancies', 'vagueId']));
 
     }

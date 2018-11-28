@@ -12,7 +12,7 @@
 		<ul class="nav nav-tabs">
             <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
             <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
-            <li class="active, link3"><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
+            <li class="active, link3"><a href="{{ route('professorPosition', ['id' => Session::get('positionId')]) }}">Área de interesse</a></li>
 		</ul>
 		<p class="ob, cor-campo">*Obrigatório</p>
 		<p>Você esta credenciando como docente para:</p>
@@ -24,7 +24,7 @@
 		</ul>
 		<hr/>
 
-        <form action="/vague-discipline" method="post">
+        <form action="/position" method="post">
             {{ csrf_field() }}
 			<div class="col-md-6">
 

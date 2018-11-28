@@ -8,7 +8,7 @@
 
 @section('content')
 @section('cabecalho')
-	DADOS ACADÊMICOS	
+	DADOS ACADÊMICOS
 @endsection
 @section('username')
 {{ "Bem vindo ". Session::get('user')['user'] }}
@@ -20,7 +20,7 @@
 				{{-- <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li> --}}
 				<li class="disabled"><a href="#">Dados pessoais</a></li>
 				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
-                {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li> --}}
+                {{-- <li><a href="{{ route('professorPosition', ['id' => Session::get('positionId')]) }}">Área de interesse</a></li> --}}
 				<li class="disabled"><a href="#">Área de interesse</a></li>
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
@@ -73,7 +73,7 @@
 				</div>
 
 				<div class="row" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-12">	 
+					<div class="col-md-12">
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
 							<input type="file" name="file_graduate" id="file_graduate"/>
@@ -116,7 +116,7 @@
 						</div>
 					</div>
 					<div class="row" style="margin-top:20px; margin-left:0px;">
-						<div class="col-md-12">	 
+						<div class="col-md-12">
 						<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 							<div class="display-flex">
 								<input type="file" name="file_master" id="file_master"/>
@@ -161,7 +161,7 @@
 				</div>
 
 				<div class="row" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-12">	 
+					<div class="col-md-12">
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
 							<input type="file" name="file_doctorate" id="file_doctorate"/>
@@ -186,7 +186,7 @@
 	<script>
 		$(function(){
 			$(document).ready(function(){
-				
+
 				$(".submit").click(function(e){
 
 				})

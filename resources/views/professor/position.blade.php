@@ -19,7 +19,7 @@
             <li class="disabled"><a href="#">Dados pessoais</a></li>
             {{-- <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li> --}}
             <li class="disabled"><a href="#">Dados academicos</a></li>
-            <li class="active, link3"><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
+            <li class="active, link3"><a href="{{ route('professorPosition', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
 		</ul>
         <div class="vague-information">
             <p class="ob, cor-campo">*Obrigatório</p>

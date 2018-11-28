@@ -36,11 +36,12 @@ class PersonalDataController extends Controller
         // Get user session variable
         $user_id = $request->session()->get('user')['id'];
 
-
         // Send documents to storage
+        $path_file_address = $request['file_address']->store("documents-address/{$user_id}");
+        $path_file_cpf = $request['file_cpf']->store("documents-cpf/{$user_id}");
         $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
-        $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
         $path_file_military = '';
+        $path_file_title = ''; 
 
         // Validate if file military exist
         if (empty($request['file_military'])) {
@@ -49,10 +50,18 @@ class PersonalDataController extends Controller
             $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
         }
 
+        // Validate if file tittle exist
+        if (empty($request['file_title'])) {
+            $path_file_title = 'Empty';
+        } else {
+            $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
+        }
+
         // Validate all fields
         $validator = Validator::make($request->input(), [
             // Candidate validations
             'cpf'               => 'required',
+            // 'file_cpf'                => 'required',
             'date_birth'        => 'required',
             'last_name'         => 'required',
             'name'              => 'required',
@@ -71,6 +80,7 @@ class PersonalDataController extends Controller
 
             // Address validations
             'city'                      => 'required',
+            // 'file_address'              => 'required',
             'neighborhood'              => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
@@ -83,10 +93,10 @@ class PersonalDataController extends Controller
         if ($validator->fails()) {
             return Response::json(array('errors' => $validator->getMessageBag()->toArray()));
         } else {
-
             // Create new candidate
             $candidate = new Candidate();
             $candidate->cpf                 = $request->cpf;
+            $candidate->file_cpf            = $path_file_cpf;
             $candidate->date_birth          = date('Y-m-d', strtotime($request->date_birth));
             $candidate->genre               = $request->genre;
             $candidate->last_name           = $request->last_name;
@@ -100,7 +110,6 @@ class PersonalDataController extends Controller
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = trim($request->phone);
-
             $candidate->user_id             = $user_id;
 
             // Save in database
@@ -110,7 +119,7 @@ class PersonalDataController extends Controller
 
                 // Create new document
                 $document = new Document();
-                $document->elector_title            = $request->elector_title;
+                $document->elector_title            = isset($request->elector_title)? $request->elector_title : 'Empty' ;
                 $document->elector_link             = $path_file_title;
                 $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : 'Empty' ;
                 $document->military_link            = $path_file_military;
@@ -130,6 +139,7 @@ class PersonalDataController extends Controller
             $address = new Address();
             $address->city                      = $request->city;
             $address->complement                = $request->complement;
+            $address->file_address              = $path_file_address;
             $address->neighborhood              = $request->neighborhood;
             $address->number                    = $request->number;
             $address->postal_code               = $request->postal_code;
