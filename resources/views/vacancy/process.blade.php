@@ -28,7 +28,7 @@
 			<thead>
 				<tr>
 					<th scope="col">Curso</th>
-                    <th scope="col">Matéria</th>
+                    <th scope="col">Disciplina</th>
 					<th scope="col">Carga Horária</th>
 					<th scope="col">Oferta</th>
 					<th scope="col">Tipo</th>
