@@ -3,25 +3,27 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Helpers\Helper;
+use App\Scholarity;
 use App\Vacancy;
-class ListEditalController extends Controller
+use App\Criterion;
+
+class PositionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index($id, Request $request)
     {
-        $id =  $request->session()->get('edital_id');
-        $data = Vacancy::all()->where('edict_id', $id)->get();
-    
-       //$data = Vacancy::where('edict_id',1)->get();
-       //dd($data['teste']);
-
-        return view('vacancy.process', compact('data'));
-
+        $data = Vacancy::with('vacancy_criteria')->with('services')->find($id);
+        $vacancies = Criterion::with('vacancy_criteria')
+            ->whereHas('vacancy_criteria',function ($query) use (&$id){
+                $query->where('vacancy_id', '=', $id);
+            })->get();
+        $request->session()->put('positionId', $id);
+        return view('professor.position', compact(['data','vacancies', 'vagueId']));
 
     }
 
@@ -33,7 +35,7 @@ class ListEditalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -69,4 +71,5 @@ class ListEditalController extends Controller
     {
         //
     }
+
 }

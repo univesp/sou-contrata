@@ -5,136 +5,252 @@
  * General styles
  */
 body, html {
-    height: 100%;
-    background-color: #B22222;
-}
-
-.card-container.card {
-    max-width: 350px;
-    padding: 40px 40px;
-}
-
-.btn {
-    font-weight: 700;
-    height: 36px;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: default;
-}
-
-/*
- * Card component
- */
-.card {
-    background-color: #F7F7F7;
-    /* just in case there no content*/
-    padding: 20px 25px 30px;
-    margin: 0 auto 25px;
-    margin-top: 50px;
-    /* shadows and rounded borders */
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.profile-img-card {
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-
-/*
- * Form styles
- */
-.profile-name-card {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    margin: 10px 0 0;
-    min-height: 1em;
-}
-
-.reauth-email {
-    display: block;
-    color: #404040;
-    line-height: 2;
-    margin-bottom: 10px;
-    font-size: 14px;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.form-signin #inputEmail,
-.form-signin #inputPassword {
-    direction: ltr;
-    height: 44px;
-    font-size: 16px;
-}
-
-.form-signin input[type=email],
-.form-signin input[type=password],
-.form-signin input[type=text],
-.form-signin button {
-    width: 100%;
-    display: block;
-    margin-bottom: 10px;
-    z-index: 1;
-    position: relative;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.form-signin .form-control:focus {
-    border-color: rgb(104, 145, 162);
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
-}
-
-.btn.btn-signin {
-    /*background-color: #4d90fe; */
-    background-color: #B22222;
-    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    margin:0px;
     padding: 0px;
-    font-weight: 700;
-    font-size: 14px;
-    height: 36px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
+}
+
+body.login {
+    background: url("../img/background-login.png") right no-repeat;
+    width:100%;
+    background-size: cover;
+}
+
+body.login header .logo {
+    margin: 15px 0 0 15px;
+    display: inline-block;
+    float: left;
+}
+
+
+main.centeredContent {
+    height: 100vh;
+}
+
+.block {
+    text-align: center;
+    white-space: nowrap;
+}
+
+main {
+    padding-top: 65px;
+}
+
+.centered {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    white-space: normal;
+}
+
+section#login .loginBox {
+    background: #fff;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto;
+}
+
+section#login .loginBox .logo {
+    width: 100px;
+    margin: -80px 0 15px;
+}
+
+img {
+    max-width: 100%;
+}
+main .container {
+    margin: 0 auto;
+}
+
+section#login .loginBox .login-header {
+    height: 80px;
+    margin-bottom: 15px;
+}
+
+section#login .loginBox .login-header h1 {
+    font-weight: normal;
+    color: #d13239;
+    font-size: 20px;
+}
+
+section#login .loginBox .login-header h2 {
+    font-weight: normal;
+    color: #354551;
+    font-size: 18px;
+}
+
+section#login .loginBox form .form-group {
+    position: relative;
+}
+
+section#login .loginBox form .form-control {
     border: none;
-    -o-transition: all 0.218s;
-    -moz-transition: all 0.218s;
-    -webkit-transition: all 0.218s;
-    transition: all 0.218s;
+    border-bottom: 1px solid #354551;
+    padding: 6px 10px;
+    font-size: 15px;
+    color: #38303b;
+    width: 100%;
+    box-shadow: none !important;
+    border-radius:0 !important;
 }
 
-.btn.btn-signin:hover,
-.btn.btn-signin:active,
-.btn.btn-signin:focus {
-    background-color: rgb(12, 97, 33);
+section#login .loginBox form .form-control:focus + .form-control-placeholder, section#login .loginBox form :valid.form-control + .form-control-placeholder {
+    font-size: 12px;
+    transform: translate3d(0px, -100%, 0px);
+    opacity: 1;
+    color: #d13239;
 }
 
-.forgot-password {
-    color: rgb(104, 145, 162);
+section#login .loginBox form .form-control-placeholder {
+    position: absolute;
+    top: 0px;
+    padding: 7px 0 0 0;
+    transition: all 200ms;
+    opacity: 1;
+    left: 0px;
+    color: #38303b;
+    font-size: 15px;
+}
+section#login .loginBox form .step-footer {
+    height: 33px;
+    line-height: 33px;
+    margin-top: 20px;
 }
 
-.forgot-password:hover,
-.forgot-password:active,
-.forgot-password:focus{
-    color: rgb(12, 97, 33);
+section#login .loginBox form .step-footer a {
+    float: left;
+    color: #d13239;
+    text-decoration: none;
+    font-size: 14px;
 }
+
+section#login .loginBox form .step-footer button {
+    float: right;
+    cursor: pointer;
+}
+
+.btn-red {
+    background: #d13239;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 16px;
+    padding: 5px 15px;
+    font-weight: 300;
+    border: none;
+    height: 40px;
+}
+
+section#login .loginBox form .step {
+    display: none;
+}
+
+section#login .loginBox form .form-group {
+    position: relative;
+}
+
+section#login .loginBox form #password {
+    letter-spacing: 6px;
+}
+
+section#login .loginBox form .form-control:focus + .form-control-placeholder, section#login .loginBox form :valid.form-control + .form-control-placeholder {
+    font-size: 12px;
+    transform: translate3d(0px, -100%, 0px);
+    opacity: 1;
+    color: #d13239;
+}
+
+section#login .loginBox form .form-control-placeholder {
+    position: absolute;
+    top: 0px;
+    padding: 7px 0 0 0;
+    transition: all 200ms;
+    opacity: 1;
+    left: 0px;
+    color: #38303b;
+    font-size: 15px;
+}
+
+section#login .loginBox form .showPassword {
+    padding: 0;
+    border: none;
+    background: transparent;
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    cursor: pointer;
+}
+
+section#login .loginBox form .showPassword i {
+    color: #627989;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: "liga" 1;
+}
+
+section#login .loginBox form .showPassword .hide {
+    display: none;
+}
+
+section#login .loginBox form .showPassword i {
+    color: #627989;
+}
+
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    font-feature-settings: "liga" 1;
+}
+
+
+
+@media all and (min-width:992px){
+section#login .loginBox {
+    margin: 0;
+    width: 420px;
+    padding: 30px;
+}
+
+section#login .loginBox form .step-footer a {
+    font-size: 16px;
+}
+
+section#login .loginBox form {
+    text-align: left;
+}
+
+section#login .loginBox form .step-footer {
+    margin-top: 50px;
+}
+
+body.login header .logo {
+    margin: 25px 0 0 25px;
+}
+
+body.login header .logo img {
+    width: 160px;
+}
+
+
+}
+
+

@@ -5,10 +5,16 @@
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
+
+@section('cabecalho')
+    FORMULÁRIO DE INSCRIÇÃO
+@endsection
+@section('username')
+     
+@endsection
+
 @section('content')
 	<body>
-		<div class="fonte-cabecalho">
-			</div>
 			<div class="container">
 				<div class="formatacao-campos">
 					*Obrigatório

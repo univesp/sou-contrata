@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use App\User;
@@ -9,6 +10,8 @@ use function Sodium\add;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
 use App\Candidate;
+use App\Scholarity;
+use App\Document;
 
 class UserController extends Controller {
 
@@ -36,18 +39,18 @@ class UserController extends Controller {
     public function store(Request $request)
     {
         $request->session()->flush();
-        $candidate = [
-            'id' => $request->id,
-            'name' => $request->name,
-            'login' => $request->login,
-            'password' => Crypt::encrypt($request->password),
-            'email' => $request->email
-        ];
 
-        $answer = User::create($candidate);
+        $user = new User();
 
-        $request->session()->put('user', $answer);
+        $user->id = $request->id;
+        $user->name = $request->name;
+        $user->login = $request->login;
+        $user->password = Crypt::encrypt($request->password);
+        $user->email = $request->email;
 
+        $user->save();
+
+        Helper::createSession($user, $request);
         return redirect('/personal-data');
 
     }
@@ -78,36 +81,22 @@ class UserController extends Controller {
 
     public function login(Request $request)
     {
-        $request->session()->flush();
-
          $login = User::where('password', '=', Crypt::encrypt($request->password))
             ->orWhere('email', $request->email)
-            ->get();
+            ->first();
 
-        if($login && isset($login[0]->email)) {
-            
-
-            
-
-            
-            $request->session()->put('user', $login);
-
-            $candidados = Candidate::where('user_id', $login[0]->id)->get();
-
-            if(empty($candidados[0]->id)) {
-
-                return redirect('/personal-data');
-
-            } else {
-
-                return redirect('/vacancy');
-
-            }
-
+        if($login && isset($login->email)) {
+            Helper::createSession($login, $request);
+            return redirect('/login');
         } else {
-
             return redirect('/login');
         }
 
+    }
+
+    public function logoff(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('/');
     }
 }

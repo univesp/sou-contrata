@@ -8,14 +8,11 @@
       <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
   @endsection
   @section('content')
-
-	<div class="fonte-cabecalho"></div>
-
     <div class="container">
 		<ul class="nav nav-tabs">
             <li><a href="{{ route('personal-data.index') }}">Dados pessoais</a></li>
             <li><a href="{{ route('professorAcademicData') }}">Dados academicos</a></li>
-            <li class="active, link3"><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de interesse</a></li>
+            <li class="active, link3"><a href="{{ route('professorPosition', ['id' => Session::get('positionId')]) }}">Área de interesse</a></li>
 		</ul>
 		<p class="ob, cor-campo">*Obrigatório</p>
 		<p>Você esta credenciando como docente para:</p>
@@ -27,7 +24,7 @@
 		</ul>
 		<hr/>
 
-        <form action="/vague-discipline" method="post">
+        <form action="/position" method="post">
             {{ csrf_field() }}
 			<div class="col-md-6">
 
@@ -48,6 +45,7 @@
 				<div class="checagem-radio"></div>
 
                 <?php
+                dd($vacancies);
                 $title = [] ;
                 $subtitle = [] ;
                 $name = [] ;
@@ -57,9 +55,10 @@
                     $subtitle[$vacancy->title][$vacancy->subtitle] = $vacancy->subtitle ;
                     $name[$vacancy->title][$vacancy->subtitle][$vacancy->name] = $vacancy->name;
                     $id[$vacancy->title][$vacancy->subtitle][$vacancy->name][$vacancy->vacancy_criteria[0]->criterion_id] = $vacancy->vacancy_criteria[0]->criterion_id;
-                   
+
                 }
                 ?>
+
                 @foreach($vacancies as $vacancy)
                     <input type="hidden" name="vacancy_id" value="{{$vacancy->vacancy_criteria[0]->vacancy_id}}">
                     @if(!empty($title[$vacancy->title]))
@@ -93,7 +92,7 @@
                         $title[$vacancy->title] = null;
                                                            ?>
                 @endforeach
-          
+
             <div class="row">
 
                 <div class="float-right">
@@ -102,7 +101,7 @@
             </div>
            <br /><br />
             </form>
-            
+
 
 	   <script type="text/javascript">
 
