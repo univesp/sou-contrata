@@ -10,7 +10,7 @@
     DADOS PESSOAIS 
 @endsection
 @section('username')
-    {{ "Bem vindo ". Session::get('user')['user'] }}
+    {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 
 	<div class="container">
