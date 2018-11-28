@@ -2,6 +2,10 @@ input[type=date].form-control, input[type=time].form-control, input[type=datetim
     line-height: 0px !important;
 }
 
+.form-group {
+  margin-bottom: 0px !important;
+}
+
 a:hover{
   text-decoration: none;
 }
