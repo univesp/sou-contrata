@@ -1,6 +1,12 @@
 
+a:hover{
+  text-decoration: none;
+}
 
-
+#link a{
+    font-size: 12px;
+    color: #808080;
+}
 
 .text-pequeno span{
     font-size: 20px;
