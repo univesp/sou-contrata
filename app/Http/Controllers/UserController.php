@@ -86,6 +86,7 @@ class UserController extends Controller {
          
         if($login && isset($login->email)) {
             Helper::createSession($login, $request);
+            //pegando candidato cadastrado
             $candidate = Candidate::where('user_id', $request->id)->first();
 
             if($candidate) {
