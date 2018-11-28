@@ -21,7 +21,6 @@ Route::get('', function () {
 
 //Vacancy
 Route::get('vacancy','ListEditalController@index')->middleware(['check.user']);
-
 Route::post('edict/{id}', 'EdictController@list');
 
 Route::get('edict/{id}', function ($id ) {
@@ -32,54 +31,45 @@ Route::get('edict/{id}', function ($id ) {
 //Login
 Route::get('login', function () {
     return view('vacancy/login');
-})->middleware(['check.logout']);
+})->middleware('logout');
 
 
 Route::get('form', function () {
     return view('user/form');
-})->middleware(['check.logout']);
+})->middleware('logout');
 
-Route::post('login', 'UserController@login')->name('login')->middleware(['check.logout']);
-
-Route::post('store', 'UserController@store')->name('store')->middleware(['check.logout']);
-
-Route::post('documents', 'UserController@documents')->name('documents')->middleware(['check.user']);
+Route::post('login', 'UserController@login')->name('login')->middleware('logout');
+Route::post('store', 'UserController@store')->name('store')->middleware('logout');
+Route::post('documents', 'UserController@documents')->name('documents')->middleware('login');
 
 Route::get('selective-processes', function () {
     return view('vacancy/selective-processes');
-})->middleware(['check.user']);
+})->middleware('login');
 
 Route::get('selective-processes1', function () {
-    return view('vacancy/selective-processes1')->middleware(['check.user']);
+    return view('vacancy/selective-processes1')->middleware('login');
 });
 
+//PERSONAL-DATA
+Route::resource('personal-data', 'PersonalDataController', [
+    'only' => ['index', 'store'],
+ ])->middleware('login');
 
-Route::get('vague-discipline/{id}', function ($id, Request $request) {
-    $data = \App\Vacancy::with('vacancy_criteria')->with('services')->find($id);
-    $vacancies = \App\Criterion::with('vacancy_criteria')
-        ->whereHas('vacancy_criteria',function ($query) use (&$id){
-            $query->where('vacancy_id', '=', $id);
-        })->get();
-    //return  $result;
-    $request->session()->put('vagueId', $id);
-    return view('professor/vague-discipline', compact(['data','vacancies', 'vagueId']));
-})->name("vagueDiscipline")->middleware(['check.user']);
+//ACADEMIC-DATA
+Route::resource('academic-data', 'ScholarityController', [
+    'only' => ['index', 'store'],
+    'names' => ['index'=>'professorAcademicData'],
+    ])->middleware('login');
 
-Route::post('vague-discipline','CriterionController@store')->middleware(['check.user']);
+//POSITION
+Route::get('position/{id}','PositionController@index')->name("professorPosition")->middleware('login');
+Route::post('position','CriterionController@store')->middleware('login');
 
-Route::resource('personal-data', 'PersonalDataController', ['only' => ['index', 'store']])->middleware(['check.user']);
-
-// Academic data
-Route::get('academic-data', function () {
-    return view('professor/academic-data');
-})->name('professorAcademicData')->middleware(['check.user']);
-
-// Process data
+//PROCESS
 Route::get('process', function () {
     return view('vacancy.process');
-})->name('vacancy_process')->middleware(['check.user']);
+})->middleware('login');
 
-Route::post('academic-data', 'ScholarityController@store')->name('document_academic')->middleware(['check.user']);
-
+//LOGOFF
 Route::get('logoff', 'UserController@logoff')->name('logoff');
 

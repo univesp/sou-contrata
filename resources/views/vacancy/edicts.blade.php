@@ -15,7 +15,6 @@
 
 @section('content')
 
-    
     <div class="container">
         <p class="formatacao-resumo">
             <ul class="nav nav-tabs">

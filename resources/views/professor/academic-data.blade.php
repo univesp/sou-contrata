@@ -8,7 +8,7 @@
 
 @section('content')
 @section('cabecalho')
-	DADOS ACADÊMICOS	
+	DADOS ACADÊMICOS
 @endsection
 @section('username')
 {{ "Bem vindo ". Session::get('user')['user'] }}
@@ -41,7 +41,7 @@
 				<h3>Formação acadêmica</h3>
 
 	    	<hr />
-
+                {{ Session::get('user')['user'] }}
 	    	<h4>Graduação</h4>
 				<div class="col-md-7">
 					<div class="row">
@@ -65,7 +65,7 @@
 				</div>
 
 				<div class="row" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-12">	 
+					<div class="col-md-12">
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
 							<input type="file" name="file_graduate" id="file_graduate"/>
@@ -87,7 +87,7 @@
 	<script>
 		$(function(){
 			$(document).ready(function(){
-				
+
 				$(".submit").click(function(e){
 
 				})

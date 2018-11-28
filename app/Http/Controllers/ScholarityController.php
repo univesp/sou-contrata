@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Scholarity;
-use Illuminate\Support\Carbon;
-use App\Helpers\functions;
 use App\Vacancy;
 
 class ScholarityController extends Controller
@@ -17,7 +16,7 @@ class ScholarityController extends Controller
      */
     public function index()
     {
-        //
+        return view('professor.academic-data');
     }
 
     /**
@@ -35,9 +34,9 @@ class ScholarityController extends Controller
         $path_file_graduate = $request['file_graduate']->store("documents-graduate/{$id}");
 
         // Documentos de Mestrado do Candidato
-        
+
         $path_file_master = $request['file_master']->store("documents-master/{$id}");
-        
+
         // Documentos de Doutorado do Candidato
 
         $path_file_doctorate = $request['file_doctorate']->store("documents-doctorate/{$id}");
@@ -50,7 +49,7 @@ class ScholarityController extends Controller
                 'link' => $path_file_graduate,
                 'scholarity_type' => $request->inputCursos,
                 'teaching_institution' => $request->inpuInstituicao,
-                'candidate_id' => $id 
+                'candidate_id' => $id
             ],[
                 'class_name' => $request->cadlettters,
                 'end_date' =>  $this->br_to_bank($request->inputAnoConclusao_1),
@@ -72,12 +71,12 @@ class ScholarityController extends Controller
         ];
 
         foreach ($scholarity as $school) {
-            $result[] = Scholarity::create($school);  
+            $result[] = Scholarity::create($school);
         }
 
         $resp = $result;
         $data = Vacancy::all()->where('edict_id', 1);
-
+        Helper::alterSession($request, 3);
         return view('vacancy/process', compact(['resp','data']));
     }
 
@@ -123,7 +122,7 @@ class ScholarityController extends Controller
     }
 
     public function document_academic(Request $request) {
-        
+
         //$session = $request->session()->get('candidate');
         //$user = $session[0]->id;
 
@@ -137,8 +136,6 @@ class ScholarityController extends Controller
 
         $input['image'] = time() . '.' . $extensao;
         //$request->image->move(public_path("documents-academic/{$user}/"), $input['image']);
-        
-       
 
     }
 }

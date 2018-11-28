@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Response;
 
 class CheckUserLogin
 {
@@ -13,6 +14,7 @@ class CheckUserLogin
      * @param  \Closure  $next
      * @return mixed
      */
+
     public function handle($request, Closure $next)
     {
         $user = $request->session()->get('user');

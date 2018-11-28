@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Candidate;
 use App\Document;
 use App\Address;
@@ -141,6 +142,7 @@ class PersonalDataController extends Controller
 
             // Return in view
             // return response()->json('funciona');
+            Helper::alterSession($request, 2);
             return redirect()->route('professorAcademicData');
         }
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use App\User;
@@ -48,14 +49,8 @@ class UserController extends Controller {
         $user->email = $request->email;
 
         $user->save();
-        $userSession = [
-            'id' => $user->id,
-            'user' => $user->name,
-            'email' => $user->email,
-        ];
 
-        $request->session()->put('user', $userSession);
-
+        Helper::createSession($user, $request);
         return redirect('/personal-data');
 
     }
@@ -86,47 +81,20 @@ class UserController extends Controller {
 
     public function login(Request $request)
     {
-        $request->session()->flush();
-
          $login = User::where('password', '=', Crypt::encrypt($request->password))
             ->orWhere('email', $request->email)
             ->first();
 
         if($login && isset($login->email)) {
-            $userSession = [
-                'id' => $login->id,
-                'user' => $login->name,
-                'email' => $login->email,
-            ];
-            $request->session()->put('user', $userSession);
-            $candidate = Candidate::where('user_id', $login->id)->first();
-            $document_candidate = Scholarity::where('candidate_id', $candidate->id)->first();
-            $scholarities_candidate = Document::where('candidate_id', $candidate->id)->first();
-            $page = 0;
-
-            if(empty($candidate->id)) {
-                if(empty($document_candidate->id)) {
-                    $page = 2;
-                } else {
-                    $page = 0;
-                }
-                if(empty($scholarities_candidate->id)) {
-                    $page = 3;
-                } else {
-                    $page = 0;
-                }
-            } else {
-                $page = 1;
-            }
-
-
+            Helper::createSession($login, $request);
+            return redirect('/login');
         } else {
             return redirect('/login');
         }
 
     }
 
-    public function logoff(Request $request) 
+    public function logoff(Request $request)
     {
         $request->session()->flush();
         return redirect('/');
