@@ -1,12 +1,12 @@
 @extends('layouts.header')
 @section('title')
-	Credênciamento
+	Credenciamento
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('cabecalho')
-	Credênciamento
+	Credenciamento
 @endsection
 @section('username')
 {{ "Bem vindo ". Session::get('user')['user'] }}
