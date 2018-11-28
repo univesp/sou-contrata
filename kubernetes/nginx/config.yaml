@@ -40,7 +40,7 @@ data:
           try_files $uri $uri/ /index.php?$query_string;
 
           location ~ \.php$ {
-              fastcgi_pass php-upstream;
+              fastcgi_pass 127.0.0.1:9000;
               fastcgi_param SCRIPT_FILENAME $request_filename;
               include fastcgi_params;
           }
