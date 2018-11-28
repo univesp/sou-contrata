@@ -18,7 +18,7 @@ class CreateDocumentsTable extends Migration
             $table->text('elector_link')->nullable();
             $table->string('military_certificate')->nullable();
             $table->text('military_link')->nullable();
-            $table->string('number', 50);
+            $table->string('rg_number', 50);
             $table->text('number_link');
             $table->date('date_issue');
             $table->string('uf_issue', 20);

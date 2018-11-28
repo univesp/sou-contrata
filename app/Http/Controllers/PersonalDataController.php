@@ -38,30 +38,41 @@ class PersonalDataController extends Controller
         $user_id = $request->session()->get('user')['id'];
 
         // Send documents to storage
-        $path_file_address = $request['file_address']->store("documents-address/{$user_id}");
-        // $path_file_cpf = $request['file_cpf']->store("documents-cpf/{$user_id}");
-        $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
+        $path_file_address = '';
+        $path_file_cpf = '';
+        $path_file_rg = '';
         $path_file_military = '';
         $path_file_title = ''; 
 
+        // Validate if file address exist
+        if (!empty($request['file_address'])) {
+            $path_file_address = $request['file_address']->store("documents-address/{$user_id}");
+        }
+
+        // Validate if file cpf exist
+        if (!empty($request['file_cpf'])) {
+            $path_file_cpf = $request['file_cpf']->store("documents-cpf/{$user_id}");
+        }
+
+        // Validate if file RG exist
+         if (!empty($request['file_rg'])) {
+            $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
+        }
+
         // Validate if file military exist
-        if (empty($request['file_military'])) {
-            $path_file_military = 'Empty';
-        } else {
+        if (!empty($request['file_military'])) {
             $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
         }
 
         // Validate if file tittle exist
-        if (empty($request['file_title'])) {
-            $path_file_title = 'Empty';
-        } else {
+        if (!empty($request['file_title'])) {
             $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
         }
 
         // Validate all fields
         $validator = Validator::make($request->all(), [
             // Candidate validations
-            'cpf'               => 'required',
+            'cpf'               => 'required|unique:candidates',
             'file_cpf'          => 'required',
             'date_birth'        => 'required',
             'last_name'         => 'required',
@@ -72,12 +83,12 @@ class PersonalDataController extends Controller
             'phone'             => 'required',
 
             // Documents validations
-            'elector_title'             => 'required',
-            'file_title'                => 'required',
-            'rg_number'                 => 'required',
+            'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents' : '',
+            'file_title'                => ($request->nationality == 0) ? 'required' : '',
+            'rg_number'                 => 'required|unique:documents',
             'file_rg'                   => 'required',
-            'military_certificate'      => 'required',
-            'file_military'             => 'required',
+            'military_certificate'      => ($request->genre == 0 && $request->nationality == 0) ? 'required|unique:documents' : '',
+            'file_military'             => ($request->genre == 0 && $request->nationality == 0) ? 'required' : '',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
 
@@ -95,7 +106,12 @@ class PersonalDataController extends Controller
         // Validate if the rules are met
         if ($validator->fails()) {
             dd($validator->messages());
-            // return \Redirect::back()->withInput()->withErrors($validator);
+
+            return redirect()
+                ->route('personal-data.index')
+                ->withInput($request->all())
+                ->withErrors($validator->messages())
+            ;
         } else {
             // Create new candidate
             $candidate = new Candidate();
