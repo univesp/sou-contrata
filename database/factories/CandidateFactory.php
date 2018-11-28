@@ -21,7 +21,8 @@ $factory->define(Candidate::class, function ($faker) use ($factory)
         'name_father' => $faker->name,
         'name_social' => $faker->name,
         'nationality' => $faker->country,
-        'phone' => $faker->numerify('## #####-####'),
+        'phone' => $faker->numerify('## ####-####'),
+        'celular' => $faker->numerify('## #####-####'),
         'user_id' => $factory->create(App\User::class)->id,
     ];
 });
