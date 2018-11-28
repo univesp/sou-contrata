@@ -41,25 +41,19 @@
 			<div class="row">
 				<h3>Formação Acadêmica</h3>
 			<hr />
-			
+
 				<div class="row">
 				  <div class="col-md-7">
 					<div class="col-md-6">
 					   <label class="area">Selecione a sua Área</label>
-						<select name="graduations[]" class="form-control graduations">
-							<option value="" selected>AREA0</option>
-							<option value="1">AREA1</option>
-							<option value="2">AREA2</option>
-							<option value="3">AREA3</option>
+						<select name="graduations[]" class="form-control graduations" id="area" required>
+							<option value="">Selecione a área</option>
 						</select>
 					</div>
 					<div class="col-md-6">
-						<label class="area">Selecione a sua Sub-Área</label>
-						<select name="graduations[]" class="form-control graduations">
-							<option value="" selected>AREA0</option>
-							<option value="1">AREA1</option>
-							<option value="2">AREA2</option>
-							<option value="3">AREA3</option>
+						<label class="area">Selecione a sua Subárea</label>
+						<select name="graduations[]" class="form-control graduations" id="subarea" required>
+							<option value="">Selecione a subárea</option>
 						</select>
 					</div>
                   </div>
@@ -127,7 +121,6 @@
 @section('scripts')
 	<script>
 		$(function(){
-
 			var CONTADOR = 0;
 
 			function mount_form_graduation(id) {
@@ -185,6 +178,32 @@
 
 				CONTADOR++;
 			}
+            function getSelectData() {
+                $.ajax({
+                    // Call url
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: "area",
+                    type: 'get',
+                    data: {
+                        _token: '{{csrf_token()}}'
+
+                    },
+                    success: function (result) {
+                        result = JSON.parse(result);
+                        Object.keys(result).forEach(function (key) {
+                            $('#area').append(`<option value="${key}">${result[key]}</option>`)
+                        });
+                    },
+
+
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+                });
+            }
+
 
 			$(document).ready(function(){
 
@@ -192,6 +211,7 @@
 
 				})
 
+                getSelectData();
 			});
 
 			$(document).on('click', '.remove', function(){
@@ -208,6 +228,32 @@
 				mount_form_graduation(id);
 
 			});
+
+            $('#area').on('change', function(e) {
+                $('#subarea').children().not(':first').remove();
+                $.ajax({
+                    // Call url
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: `subarea/${e.target.value}`,
+                    type: 'get',
+                    data: {
+                        _token: '{{csrf_token()}}',
+                    },
+                    success: function (result) {
+                        result = JSON.parse(result);
+                        Object.keys(result).forEach(function (key) {
+                            $('#subarea').append(`<option value="${key}">${result[key]}</option>`)
+                        });
+                    },
+
+
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+                });
+            });
 		});
 	</script>
 @endsection
