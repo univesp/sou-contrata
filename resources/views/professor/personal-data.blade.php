@@ -13,6 +13,7 @@
     {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 
+
 	<div class="container">
             <ul class="nav nav-tabs">
 				<li class="active, link3"><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li>
