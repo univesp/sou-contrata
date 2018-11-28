@@ -349,7 +349,7 @@
                                         <input  type="text" class="form-control" id="inputPrefixo" required oninvalid="this.setCustomValidity('Digite o Prefixo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
                                         </div> -->
 
-                           <div class="form-group">
+                           <!--<div class="form-group">
                                <div class="col-md-10">
                                     <div class="col-md-5">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
