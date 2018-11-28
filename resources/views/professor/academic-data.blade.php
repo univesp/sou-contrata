@@ -65,8 +65,9 @@
                   </div>
 				</div>
 			<br>
-			<div class="col-md-7">
-				<div class="row">
+			
+			<div class="row">
+				 <div class="col-md-7">
 					<div class="col-md-12">
 						<select name="graduations[]" class="form-control graduations">
 							<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>
