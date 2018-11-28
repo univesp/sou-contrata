@@ -157,6 +157,7 @@
                           <div class="col-md-4">
                                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                                 <input name="cpf" type="text" class="form-control" id="inputNumDoc"  required oninvalid="this.setCustomValidity('Digite o CPF somente números')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="11">
+                                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do CPF')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                            <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
