@@ -75,7 +75,7 @@ DADOS PESSOAIS
                         <option value="1">Casado</option>
                         <option value="3">Divorciado</option>
                         <option value="4">Viúvo</option>
-                        <!--<option value="4">Amasiado</option>-->
+                    <!--<option value="5">Amasiado</option>-->
                     </select>
                 </div>
             </div>
@@ -390,7 +390,7 @@ DADOS PESSOAIS
                 <select id="inputTipo" class="form-control">
 
                     <!--<option>11</option>
-                                                        <option>21</option> -->
+                        <option>21</option> -->
 
                     <!--<select name=id_pais>-->
 
