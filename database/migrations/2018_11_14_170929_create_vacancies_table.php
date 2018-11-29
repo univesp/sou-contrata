@@ -22,6 +22,8 @@ class CreateVacanciesTable extends Migration
             $table->string('matter',100);
             //$table->string('offer',40);
             //$table->string('type',40);
+            $table->foreign('vacancy_id')->references('id')->on('vacancies');
+            $table->foreign('vacancy_id')->references('id')->on('vacancies');
             $table->timestamps();
         });
     }
