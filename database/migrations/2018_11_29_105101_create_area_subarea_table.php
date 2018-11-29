@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVacancyCriteriaTable extends Migration
+class CreateAreaSubareaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateVacancyCriteriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('vacancy_criteria', function (Blueprint $table) {
+        Schema::create('area_subarea', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('punctuation');
+
+            $table->Integer('area_id')->unsigned();
+            $table->foreign('area_id')->references('id')->on('areas');
+
+            $table->Integer('subarea_id')->unsigned();
+            $table->foreign('subarea_id')->references('id')->on('subareas');
+
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateVacancyCriteriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vacancy_criteria');
+        Schema::dropIfExists('area_subarea');
     }
 }

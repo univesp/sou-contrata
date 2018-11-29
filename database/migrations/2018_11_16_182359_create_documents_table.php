@@ -12,14 +12,12 @@ class CreateDocumentsTable extends Migration
 
         Schema::create('documents', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('candidate_id')->unsigned()->index();
-            $table->foreign('candidate_id')->references('id')->on('candidates');
-            $table->string('elector_title')->nullable();
-            $table->text('elector_link')->nullable();
-            $table->string('military_certificate')->nullable();
-            $table->text('military_link')->nullable();
-            $table->string('rg_number', 50);
-            $table->text('number_link');
+            //$table->string('elector_title');
+            //$table->text('elector_link');
+            //$table->string('military_certificate')->nullable();
+            //$table->text('military_link')->nullable();
+            $table->string('number', 50);
+            $table->text('link');
             $table->date('date_issue');
             $table->string('uf_issue', 20);
             $table->string('zone', 6);

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVacancyCriteriaTable extends Migration
+class CreateCourseAreaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,15 @@ class CreateVacancyCriteriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('vacancy_criteria', function (Blueprint $table) {
+        Schema::create('course_area', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('punctuation');
+
+            $table->Integer('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses');
+
+            $table->Integer('area_id')->unsigned();
+            $table->foreign('area_id')->references('id')->on('areas');
+
             $table->timestamps();
         });
     }
@@ -27,6 +33,6 @@ class CreateVacancyCriteriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vacancy_criteria');
+        Schema::dropIfExists('course_area');
     }
 }

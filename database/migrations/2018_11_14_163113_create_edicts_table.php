@@ -14,12 +14,10 @@ class CreateEdictsTable extends Migration
     public function up()
     {
         Schema::create('edicts', function (Blueprint $table) {
-
             $table->increments('id');
             $table->text('edict_link');
             $table->date('date_start');
             $table->date('date_end');
-
             $table->timestamps();
         });
     }
