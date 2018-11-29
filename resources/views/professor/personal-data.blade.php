@@ -367,7 +367,7 @@ DADOS PESSOAIS
             <div class="col-md-2">
 
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
-                <select id="inputTipo" class="form-control">
+                <select id="inputTipo" class="form-control" name="area_code_phone">
 
                     <!--<option>11</option>
                                             <option>21</option> -->
@@ -411,7 +411,7 @@ DADOS PESSOAIS
             <div class="col-md-2">
 
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
-                <select id="inputTipo" class="form-control">
+                <select id="inputTipo" class="form-control" name="area_code_mobile">
 
                     <!--<option>11</option>
                                                         <option>21</option> -->
