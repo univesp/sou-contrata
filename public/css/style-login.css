@@ -15,242 +15,435 @@ body.login {
     background-size: cover;
 }
 
-body.login header .logo {
-    margin: 15px 0 0 15px;
-    display: inline-block;
-    float: left;
-}
-
-
-main.centeredContent {
-    height: 100vh;
-}
-
-.block {
+body {
+    font-family: "Barlow", sans-serif;
+    font-size: 12px;
+    color: #000;
+    overflow-x: hidden;
+    background: #fff; }
+  
+  img {
+    max-width: 100%; }
+  
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  
+  /* This parent can be any width and height */
+  .block {
     text-align: center;
-    white-space: nowrap;
-}
-
-main {
-    padding-top: 65px;
-}
-
-.centered {
+    /* May want to do this if there is risk the container may be narrower than the element inside */
+    white-space: nowrap; }
+  
+  /* The ghost, nudged to maintain perfect centering */
+  .block:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+    /* Adjusts for spacing */ }
+  
+  /* The element to be centered, can also be of any width and height */
+  .centered {
     display: inline-block;
     vertical-align: middle;
     width: 100%;
-    white-space: normal;
-}
-
-section#login .loginBox {
-    background: #fff;
-    padding: 20px;
-    width: 300px;
-    margin: 0 auto;
-}
-
-section#login .loginBox .logo {
-    width: 100px;
-    margin: -80px 0 15px;
-}
-
-img {
-    max-width: 100%;
-}
-main .container {
-    margin: 0 auto;
-}
-
-section#login .loginBox .login-header {
-    height: 80px;
-    margin-bottom: 15px;
-}
-
-section#login .loginBox .login-header h1 {
-    font-weight: normal;
-    color: #d13239;
-    font-size: 20px;
-}
-
-section#login .loginBox .login-header h2 {
-    font-weight: normal;
-    color: #354551;
-    font-size: 18px;
-}
-
-section#login .loginBox form .form-group {
-    position: relative;
-}
-
-section#login .loginBox form .form-control {
-    border: none;
-    border-bottom: 1px solid #354551;
-    padding: 6px 10px;
-    font-size: 15px;
-    color: #38303b;
-    width: 100%;
-    box-shadow: none !important;
-    border-radius:0 !important;
-}
-
-section#login .loginBox form .form-control:focus + .form-control-placeholder, section#login .loginBox form :valid.form-control + .form-control-placeholder {
-    font-size: 12px;
-    transform: translate3d(0px, -100%, 0px);
-    opacity: 1;
-    color: #d13239;
-}
-
-section#login .loginBox form .form-control-placeholder {
-    position: absolute;
-    top: 0px;
-    padding: 7px 0 0 0;
-    transition: all 200ms;
-    opacity: 1;
-    left: 0px;
-    color: #38303b;
-    font-size: 15px;
-}
-section#login .loginBox form .step-footer {
-    height: 33px;
-    line-height: 33px;
-    margin-top: 20px;
-}
-
-section#login .loginBox form .step-footer a {
-    float: left;
-    color: #d13239;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-section#login .loginBox form .step-footer button {
-    float: right;
-    cursor: pointer;
-}
-
-.btn-red {
+    white-space: normal; }
+  
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table; }
+  
+  .xs-hide {
+    display: none; }
+    @media (min-width: 992px) {
+      .xs-hide {
+        display: inline-block; } }
+  
+  @media (min-width: 992px) {
+    .md-hide {
+      display: block; } }
+  
+  .btn-primary {
     background: #d13239;
     text-transform: uppercase;
     color: #fff;
     font-size: 16px;
-    padding: 5px 15px;
+    padding: 8px 15px;
     font-weight: 300;
     border: none;
-    height: 40px;
-}
-
-section#login .loginBox form .step {
-    display: none;
-}
-
-section#login .loginBox form .form-group {
-    position: relative;
-}
-
-section#login .loginBox form #password {
-    letter-spacing: 6px;
-}
-
-section#login .loginBox form .form-control:focus + .form-control-placeholder, section#login .loginBox form :valid.form-control + .form-control-placeholder {
-    font-size: 12px;
-    transform: translate3d(0px, -100%, 0px);
-    opacity: 1;
-    color: #d13239;
-}
-
-section#login .loginBox form .form-control-placeholder {
-    position: absolute;
-    top: 0px;
-    padding: 7px 0 0 0;
-    transition: all 200ms;
-    opacity: 1;
-    left: 0px;
-    color: #38303b;
-    font-size: 15px;
-}
-
-section#login .loginBox form .showPassword {
-    padding: 0;
-    border: none;
-    background: transparent;
-    position: absolute;
-    top: 4px;
-    right: 0px;
-    cursor: pointer;
-}
-
-section#login .loginBox form .showPassword i {
-    color: #627989;
-}
-
-.material-icons {
-    font-family: "Material Icons";
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    font-feature-settings: "liga" 1;
-}
-
-section#login .loginBox form .showPassword .hide {
-    display: none;
-}
-
-section#login .loginBox form .showPassword i {
-    color: #627989;
-}
-
-.material-icons {
-    font-family: "Material Icons";
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    white-space: nowrap;
-    word-wrap: normal;
-    direction: ltr;
-    font-feature-settings: "liga" 1;
-}
-
-
-
-@media all and (min-width:992px){
-section#login .loginBox {
-    margin: 0;
-    width: 420px;
-    padding: 30px;
-}
-
-section#login .loginBox form .step-footer a {
-    font-size: 16px;
-}
-
-section#login .loginBox form {
-    text-align: left;
-}
-
-section#login .loginBox form .step-footer {
-    margin-top: 50px;
-}
-
-body.login header .logo {
-    margin: 25px 0 0 25px;
-}
-
-body.login header .logo img {
-    width: 160px;
-}
-
-
-}
-
-
+    height: 40px; }
+  
+  .main-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: normal; }
+  
+  .uppercase {
+    text-transform: uppercase; }
+  
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #627989;
+    text-align: center;
+    height: 65px;
+    z-index: 10; }
+    header .logo {
+      margin: 15px 0 0 15px;
+      display: inline-block;
+      float: left; }
+      header .logo img {
+        width: 90px; }
+    header .user-info {
+      float: right;
+      color: #fff;
+      height: 65px; }
+      header .user-info .username {
+        font-size: 16px;
+        font-weight: 100;
+        display: none; }
+        @media (min-width: 992px) {
+          header .user-info .username {
+            display: inline-block;
+            height: 65px;
+            line-height: 65px;
+            vertical-align: top;
+            font-size: 20px;
+            margin-right: 10px; } }
+        header .user-info .username strong {
+          font-weight: 300; }
+      header .user-info .image {
+        margin-right: 10px;
+        display: inline-block; }
+        header .user-info .image img {
+          height: 65px; }
+      header .user-info .logout {
+        vertical-align: top;
+        display: inline-block;
+        margin: 12px 10px 0 0; }
+        header .user-info .logout img {
+          height: 40px; }
+  
+  main {
+    padding-top: 65px;
+    /* CONTENT */ }
+    main.centeredContent {
+      height: 100vh; }
+    main .container {
+      margin: 0 auto; }
+      @media (min-width: 768px) {
+        main .container {
+          width: 750px; } }
+      @media (min-width: 992px) {
+        main .container {
+          width: 970px; } }
+      @media (min-width: 1200px) {
+        main .container {
+          width: 1170px; } }
+    main .main-sidebar ~ .content {
+      width: calc(100% - 170px); }
+    main .content {
+      height: calc(100vh - 65px);
+      overflow: hidden;
+      float: left; }
+      main .content .heading {
+        background: #162833;
+        width: 100%;
+        padding: 0 40px;
+        height: 120px;
+        text-align: left; }
+        main .content .heading .breadcrumb {
+          color: #fff;
+          font-size: 16px;
+          font-weight: 100;
+          margin-bottom: 5px; }
+          main .content .heading .breadcrumb a {
+            color: #fff;
+            text-decoration: none; }
+            main .content .heading .breadcrumb a:hover {
+              text-decoration: underline; }
+        main .content .heading h2 {
+          color: #fff;
+          text-transform: uppercase;
+          font-weight: 400;
+          font-size: 26px; }
+  
+  .main-sidebar {
+    background: #b23239;
+    width: 170px;
+    height: calc( 100vh - 65px );
+    float: left; }
+    .main-sidebar > ul > li {
+      border-bottom: 1px solid #93222a;
+      display: block;
+      list-style: none;
+      font-weight: 100;
+      font-size: 16px; }
+      .main-sidebar > ul > li.active a.dropdown-toggle::after {
+        -moz-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg); }
+      .main-sidebar > ul > li a {
+        text-decoration: none;
+        padding: 10px 10px;
+        display: block;
+        position: relative;
+        transition: all 0.2s ease-out; }
+        .main-sidebar > ul > li a:hover {
+          background: #93222a; }
+        .main-sidebar > ul > li a.dropdown-toggle::after {
+          content: 'chevron_right';
+          font-family: 'Material Icons';
+          font-size: 20px;
+          color: #c4d1d6;
+          display: block;
+          position: absolute;
+          top: calc( 50% - 12px );
+          right: 15px;
+          transition: all 0.3s ease-out; }
+        .main-sidebar > ul > li a .menu-text {
+          vertical-align: top; }
+        .main-sidebar > ul > li a i {
+          font-size: 14px;
+          margin-right: 5px;
+          margin-top: 3px; }
+      .main-sidebar > ul > li > a {
+        color: #dee5e8; }
+      .main-sidebar > ul > li ul.submenu {
+        display: none; }
+        .main-sidebar > ul > li ul.submenu li {
+          list-style: none;
+          border-top: 1px solid #93222a; }
+          .main-sidebar > ul > li ul.submenu li a {
+            color: #c4d1d6;
+            font-size: 15px;
+            padding: 10px 10px 10px 32px; }
+  
+  /* LOGIN */
+  
+    body.login header {
+      background: transparent; }
+      body.login header .logo {
+        margin: 15px 0 0 15px;
+        display: inline-block;
+        float: left; }
+        @media (min-width: 992px) {
+          body.login header .logo {
+            margin: 25px 0 0 25px; } }
+        body.login header .logo img {
+          width: 90px; }
+          @media (min-width: 992px) {
+            body.login header .logo img {
+              width: 160px; } }
+  
+  section#login .loginBox {
+    background: #fff;
+    padding: 20px;
+    width: 300px;
+    margin: 0 auto; }
+    @media (min-width: 992px) {
+      section#login .loginBox {
+        margin: 0;
+        width: 420px;
+        padding: 30px; } }
+    section#login .loginBox .logo {
+      width: 100px;
+      margin: -80px 0 15px; }
+    section#login .loginBox .login-header {
+      height: 80px;
+      margin-bottom: 15px; }
+      section#login .loginBox .login-header h1 {
+        font-weight: normal;
+        color: #d13239;
+        font-size: 20px; }
+      section#login .loginBox .login-header h2 {
+        font-weight: normal;
+        color: #354551;
+        font-size: 18px; }
+    @media (min-width: 992px) {
+      section#login .loginBox form {
+        text-align: left; } }
+    section#login .loginBox form h3 {
+      color: #354551;
+      font-size: 16px;
+      font-weight: normal;
+      margin-bottom: 20px; }
+    section#login .loginBox form .step {
+      display: none; }
+    section#login .loginBox form .form-group {
+      position: relative; }
+    section#login .loginBox form .form-control {
+      border: none;
+      border-bottom: 1px solid #354551;
+      padding: 6px 10px;
+      font-size: 15px;
+      color: #38303b;
+      width: 100%; }
+    section#login .loginBox form .form-control-placeholder {
+      position: absolute;
+      top: 0;
+      padding: 7px 0 0 0;
+      transition: all 200ms;
+      opacity: 1;
+      left: 0;
+      color: #38303b;
+      font-size: 15px; }
+    section#login .loginBox form .form-control:focus + .form-control-placeholder,
+    section#login .loginBox form .form-control:valid + .form-control-placeholder {
+      font-size: 12px;
+      transform: translate3d(0, -100%, 0);
+      opacity: 1;
+      color: #d13239; }
+    section#login .loginBox form #password {
+      letter-spacing: 6px; }
+      section#login .loginBox form #password.active {
+        letter-spacing: normal; }
+    section#login .loginBox form .step-footer {
+      height: 33px;
+      line-height: 33px;
+      margin-top: 20px; }
+      @media (min-width: 992px) {
+        section#login .loginBox form .step-footer {
+          margin-top: 50px; } }
+      section#login .loginBox form .step-footer a {
+        float: left;
+        color: #d13239;
+        text-decoration: none;
+        font-size: 14px; }
+        @media (min-width: 992px) {
+          section#login .loginBox form .step-footer a {
+            font-size: 16px; } }
+      section#login .loginBox form .step-footer button {
+        float: right;
+        cursor: pointer; }
+    section#login .loginBox form .showPassword {
+      padding: 0;
+      border: none;
+      background: transparent;
+      position: absolute;
+      top: 4px;
+      right: 0;
+      cursor: pointer; }
+      section#login .loginBox form .showPassword i {
+        color: #627989; }
+      section#login .loginBox form .showPassword .hide {
+        display: none; }
+      section#login .loginBox form .showPassword.active .show {
+        display: none; }
+      section#login .loginBox form .showPassword.active .hide {
+        display: inline-block; }
+  
+  /* DESTINOS */
+  body.destinos {
+    background: #e2ebed; }
+  
+  section#destinos {
+    padding: 30px 0;
+    text-align: center; }
+    section#destinos h2 {
+      color: #627989; }
+      @media (min-width: 768px) {
+        section#destinos h2 {
+          text-align: left;
+          width: 700px;
+          margin: 0 auto 20px;
+          display: block;
+          font-size: 26px; } }
+    section#destinos .destination-list {
+      width: 300px;
+      margin: 0 auto; }
+      @media (min-width: 768px) {
+        section#destinos .destination-list {
+          width: 350px;
+          display: inline-block;
+          vertical-align: top; } }
+      section#destinos .destination-list > li {
+        list-style: none;
+        margin-bottom: 15px;
+        transition: all 0.2s ease-out; }
+        section#destinos .destination-list > li:hover {
+          -webkit-box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2); }
+        @media (min-width: 768px) {
+          section#destinos .destination-list > li {
+            margin-right: 15px; } }
+        section#destinos .destination-list > li.big .image {
+          height: 150px; }
+          @media (min-width: 768px) {
+            section#destinos .destination-list > li.big .image {
+              height: 215px; } }
+        section#destinos .destination-list > li.big .content {
+          height: 150px;
+          padding-top: 25px; }
+          @media (min-width: 768px) {
+            section#destinos .destination-list > li.big .content {
+              height: 215px;
+              padding-top: 35px; } }
+        section#destinos .destination-list > li .image {
+          background: #d13239;
+          color: #fff;
+          float: left;
+          width: 100px;
+          height: 100px;
+          line-height: 130px;
+          display: block; }
+          section#destinos .destination-list > li .image img {
+            height: 40px; }
+        section#destinos .destination-list > li .content {
+          float: left;
+          width: calc(100% - 100px);
+          background: #fff;
+          height: 100px;
+          text-align: left;
+          color: #000;
+          font-size: 16px;
+          padding: 0 15px;
+          position: relative; }
+          section#destinos .destination-list > li .content.outbound-link::after {
+            content: 'launch';
+            font-family: 'Material Icons';
+            font-size: 14px;
+            color: #c4d1d6;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 5px; }
+          section#destinos .destination-list > li .content .title {
+            color: #607989;
+            margin-bottom: 10px;
+            display: block; }
+          section#destinos .destination-list > li .content .outbound-list li {
+            list-style: none;
+            margin-bottom: 2px; }
+            section#destinos .destination-list > li .content .outbound-list li a {
+              color: #000;
+              text-decoration: none;
+              font-size: 16px;
+              position: relative;
+              display: block; }
+              section#destinos .destination-list > li .content .outbound-list li a::after {
+                content: 'launch';
+                font-family: 'Material Icons';
+                font-size: 14px;
+                color: #c4d1d6;
+                display: inline-block;
+                vertical-align: top;
+                margin: 3px 0 0 4px; }
+              section#destinos .destination-list > li .content .outbound-list li a:hover {
+                text-decoration: underline; }
+  
+  /* PORTAL DO ALUNO */
+  
+  /*# sourceMappingURL=style.css.map */
+  
