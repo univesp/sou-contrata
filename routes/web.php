@@ -74,3 +74,7 @@ Route::get('process', function () {
 //LOGOFF
 Route::get('logoff', 'UserController@logoff')->name('logoff');
 
+//CHECKEMAIL
+Route::post('email-check','UserController@checkEmail');
+
+

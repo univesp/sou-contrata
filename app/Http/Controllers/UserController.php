@@ -106,4 +106,18 @@ class UserController extends Controller {
         $request->session()->flush();
         return redirect('/');
     }
+
+    public function checkEmail(Request $request)
+    {
+        if (!preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', (string)$request->email)) {
+            return "Eok";
+        }
+
+        $email = User::where('email', '=', $request->email)->first();
+
+        if(!empty($email)){
+            return "Nok";
+        }
+        return "Ok";
+    }
 }
