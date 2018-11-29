@@ -206,8 +206,6 @@
                             $('#area').append(`<option value="${key}">${result[key]}</option>`)
                         });
                     },
-
-
                     error: function (errors) {
                         console.log(errors)
                     }

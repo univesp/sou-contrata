@@ -119,8 +119,6 @@ DADOS PESSOAIS
                 </div>
             </div>
         </div>
-
-
         <div class="row">
 
             <h3>Documentos</h3>
@@ -351,10 +349,7 @@ DADOS PESSOAIS
                 <input type="file" id="file_address" class="proof_address" name="file_address" style="margin-top:15px;">
             </div>
         </div>
-
         <br>
-
-
         <div class="row">
             <h4>Telefone</h4>
             <hr />
@@ -363,12 +358,9 @@ DADOS PESSOAIS
 
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                 <select id="inputTipo" class="form-control" name="area_code_phone">
-
                     <!--<option>11</option>
                                             <option>21</option> -->
-
                     <!--<select name=id_pais>-->
-
                     <option value=55>(+55) Brasil
                     <option value=351>(+351) Portugal
                     <option value=54>(+54) Argentina
@@ -519,7 +511,6 @@ DADOS PESSOAIS
         $("#inputNatu").change(function () {
 
             var natural = $(this).val();
-
 
             if (natural == 1) {
                 $(".militar").hide()

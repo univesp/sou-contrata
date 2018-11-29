@@ -81,21 +81,18 @@ class UserController extends Controller {
 
     public function login(Request $request)
     {
-         $login = User::where('password', '=', Crypt::encrypt($request->password))
+        $login = User::where('password', '=', Crypt::encrypt($request->password))
             ->orWhere('email', $request->email)->select('id', 'name' , 'email')->first();
         if($login && isset($login->email)) {
             Helper::createSession($login, $request);
             //pegando candidato cadastrado
             $candidate = Candidate::where('user_id', $request->id)->first();
-
             if($candidate) {
-
                return redirect('/process');
-
             } else {
                 return redirect('personal-data');
             }
-              } else {
+        } else {
             return redirect('/login');
         }
 
