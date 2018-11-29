@@ -131,6 +131,9 @@ DADOS PESSOAIS
                 <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
                 <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')"
                     onchange="try{setCustomValidity('')}catch(e){}" maxlength="9">
+                @if($errors->has('rg_number'))
+                    <p class="alert">{{ $error['rg_number'] }}</p>
+                @endif
             </div>
             <div class="col-md-2">
                 <label for="inputOrgEmissor" class="fonte-campos">Orgão Emissor<span class="cor-campo"> *</span></label>
@@ -148,6 +151,9 @@ DADOS PESSOAIS
             <div class="col-md-3">
                 <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')"
                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('file_rg'))
+                    <p class="alert">{{ $error['file_rg'] }}</p>
+                @endif
             </div>
         </div>
 
@@ -162,12 +168,18 @@ DADOS PESSOAIS
                 <input name="cpf" type="text" class="form-control" id="inputNumDoc" required oninvalid="this.setCustomValidity('Digite o CPF somente números')"
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="11">
             </div>
+            @if($errors->has('cpf'))
+                <p class="alert">{{ $error['cpf'] }}</p>
+            @endif
         </div>
         <div class="row">
             <div class="col-md-3">
                 <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do CPF')"
                     onchange="try{setCustomValidity('')}catch(e){}">
             </div>
+            @if($errors->has('file_cpf'))
+                <p class="alert">{{ $error['file_cpf'] }}</p>
+            @endif
             <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
                                 <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
@@ -192,12 +204,18 @@ DADOS PESSOAIS
                 <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')"
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="12">
             </div>
+            @if($errors->has('elector_title'))
+                <p class="alert">{{ $error['elector_title'] }}</p>
+            @endif
         </div>
         <div class="row elector_title">
             <div class="col-md-3">
                 <input type="file" id="file_title" name="file_title" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do Título de eleitor')"
                     onchange="try{setCustomValidity('')}catch(e){}">
             </div>
+            @if($errors->has('file_title'))
+                <p class="alert">{{ $error['file_title'] }}</p>
+            @endif
         </div>
         <!--  <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -217,8 +235,14 @@ DADOS PESSOAIS
             <div class="col-md-4">
                 <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento</label>
                 <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
+                @if($errors->has('military_certificate'))
+                    <p class="alert">{{ $error['military_certificate'] }}</p>
+                @endif
                 <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
             </div>
+            @if($errors->has('file_military'))
+                <p class="alert">{{ $error['file_military'] }}</p>
+            @endif
             <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
                                 <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
