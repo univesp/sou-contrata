@@ -22,26 +22,13 @@ class Criterion extends Model
         'name'
     ];
 
-
     public function vacancies()
     {
-        return $this->belongsToMany(Vacancy::class,
-            'vacancy_criteria');
+        return $this->belongsToMany(Vacancy::class, 'vacancy_criteria');
     }
 
     public function title()
     {
-        return $this->belongsTo(Title::class);
-    }
-
-    public function criterion_types()
-    {
-        return $this->belongsToMany(CriterionType::class,
-            'criteria_type');
-    }
-
-
-    public function title(){
         return $this->belongsTo(Title::class);
     }
 

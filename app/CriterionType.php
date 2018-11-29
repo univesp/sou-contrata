@@ -12,7 +12,6 @@ class CriterionType extends Model
         'description',
     ];
 
-
     public function criteria(){
         return $this->belongsToMany(Criterion::class, 'criteria_type');
     }

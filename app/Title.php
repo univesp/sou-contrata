@@ -14,9 +14,18 @@ class Title extends Model
         'description',
     ];
 
+    // Protect table sorted fields
+    protected $sorted = [
+        'description',
+    ];
 
-    public function criteria(){
+    public function vacancy()
+    {
+        return $this->hasOne(Vacancy::class);
+    }
+
+    public function criteria()
+    {
         return $this->hasMany(Criterion::class);
-
     }
 }
