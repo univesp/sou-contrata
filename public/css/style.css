@@ -78,13 +78,6 @@ input[type="checkbox"] {
     transform: rotate(45deg);
     display: none;
   }
-  
-  
-
-
-input[type=date].form-control, input[type=time].form-control, input[type=datetime-local].form-control, input[type=month].form-control {
-    line-height: 0px !important;
-}
 
 .form-group {
   margin-bottom: 0px !important;
