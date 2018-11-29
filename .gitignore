@@ -2,11 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
-<<<<<<< HEAD
-/vendo
-=======
-# /vendor
->>>>>>> upstream/devel
+/vendor
 kubernetes/app/secrets.yaml
 /.idea
 /.vscode
