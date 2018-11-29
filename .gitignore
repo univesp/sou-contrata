@@ -2,7 +2,7 @@
 /public/hot
 /public/storage
 /storage/*.key
-# /vendor
+/vendor
 kubernetes/app/secrets.yaml
 /.idea
 /.vscode
