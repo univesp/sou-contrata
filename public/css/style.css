@@ -1,6 +1,23 @@
+input[type=date].form-control, input[type=time].form-control, input[type=datetime-local].form-control, input[type=month].form-control {
+    line-height: 0px !important;
+}
 
+.form-group {
+  margin-bottom: 0px !important;
+}
 
+a:hover{
+  text-decoration: none;
+}
 
+#link a{
+    font-size: 12px;
+    color: #808080;
+}
+
+.area{
+  color: #808080;
+}
 
 .text-pequeno span{
     font-size: 20px;
@@ -294,7 +311,8 @@ a {
 }
 
 label {
-    margin-bottom: 0px !important;
+    margin-bottom:5px;
+    margin-top: 10px;
     font-weight: 10 !important;
 }
 

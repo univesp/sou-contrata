@@ -31,7 +31,7 @@
 				<div class="col-md-7">
 					<div  class="form-group">
 						<label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Latttes</a><span class="cor-campo"> *</span></label>
-                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes">
+                <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes">
 					</div>
 				</div>
 			</div>
@@ -52,6 +52,23 @@
 					</div>
 				</div>
 			</div>
+				<div class="row">
+				  <div class="col-md-7">
+					<div class="col-md-6">
+					   <label class="area">Selecione a sua Área</label>
+						<select name="graduations[]" class="form-control graduations" id="area" required>
+							<option value="">Selecione a área</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label class="area">Selecione a sua Subárea</label>
+						<select name="graduations[]" class="form-control graduations" id="subarea" required>
+							<option value="">Selecione a subárea</option>
+						</select>
+					</div>
+                  </div>
+				</div>
+			<br>
 			<br>
 			<div id="father">
 				<div class="col-md-7">
@@ -76,7 +93,7 @@
 				</div>
 
 				<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-6" style="margin-top:10px;">
+					<div class="col-md-6" style="margin-top:10px;padding-left:0px;">
 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
@@ -171,6 +188,32 @@
 
 				CONTADOR++;
 			}
+            function getSelectData() {
+                $.ajax({
+                    // Call url
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: "area",
+                    type: 'get',
+                    data: {
+                        _token: '{{csrf_token()}}'
+
+                    },
+                    success: function (result) {
+                        result = JSON.parse(result);
+                        Object.keys(result).forEach(function (key) {
+                            $('#area').append(`<option value="${key}">${result[key]}</option>`)
+                        });
+                    },
+
+
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+                });
+            }
+
 
 			$(document).ready(function(){
 
@@ -179,6 +222,7 @@
 				
 				});
 
+                getSelectData();
 			});
 
 			$(document).on('click', '.remove', function(){
@@ -195,6 +239,32 @@
 				mount_form_graduation(id);
 
 			});
+
+            $('#area').on('change', function(e) {
+                $('#subarea').children().not(':first').remove();
+                $.ajax({
+                    // Call url
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: `subarea/${e.target.value}`,
+                    type: 'get',
+                    data: {
+                        _token: '{{csrf_token()}}',
+                    },
+                    success: function (result) {
+                        result = JSON.parse(result);
+                        Object.keys(result).forEach(function (key) {
+                            $('#subarea').append(`<option value="${key}">${result[key]}</option>`)
+                        });
+                    },
+
+
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+                });
+            });
 		});
 	</script>
 @endsection

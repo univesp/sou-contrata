@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(Document::class, function ($faker) use ($factory) {
     return [
         // 'document_type'=> $faker->text($maxNbChars = 20),
-        'number'=> $faker->numerify('#####'),
+        'rg_number'=> $faker->numerify('#####'),
         // 'serie_number'=> $faker->numerify('#####'),
         'number_link'=> __DIR__ . '/public/img/number/arquivo.pdf',
         'elector_title'=> $faker->numerify('#####'),
