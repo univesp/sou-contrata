@@ -33,16 +33,25 @@ DADOS PESSOAIS
                 <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
                 <input name="name" id="textNome" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite seu Nome')"
                     onchange="try{setCustomValidity('')}catch(e){}">
+                    @if($errors->has('name'))
+                        <p class="text-danger">{{ $errors->first('name') }}</p>
+                    @endif
             </div>
             <div class="col-md-3">
                 <label for="textSobrenome" class="control-label, fonte-campos">Sobrenome<span class="cor-campo">*</span></label>
                 <input name="last_name" id="textSobrenome" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite seu Sobrenome')"
                     onchange="try{setCustomValidity('')}catch(e){}">
+                    @if($errors->has('last_name'))
+                        <p class="text-danger">{{ $errors->first('last_name') }}</p>
+                    @endif
             </div>
             <div class="col-md-2">
                 <label for="textDtNasc" class="control-label, fonte-campos">Data de Nascimento<span class="cor-campo">*</span></label>
                 <input name="date_birth" id="textDtNasc" class="form-control" type="date" required oninvalid="this.setCustomValidity('Digite Data de Nascimento')"
                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('date_birth'))
+                    <p class="text-danger">{{ $errors->first('date_birth') }}</p>
+                @endif
             </div>
             <div class="col-md-2">
                 <label for="inputNatu" class="fonte-campos">Nacionalidade<span class="cor-campo">*</span></label>
@@ -50,6 +59,9 @@ DADOS PESSOAIS
                     <option value="0">Brasileiro(a)</option>
                     <option value="1">Estrangeiros</option>
                 </select>
+                @if($errors->has('nationality'))
+                    <p class="text-danger">{{ $errors->first('nationality') }}</p>
+                @endif
             </div>
             <div class="col-md-2">
                 <label class="fonte-campos" for="sexo">Sexo:</label>
@@ -77,6 +89,9 @@ DADOS PESSOAIS
                         <option value="4">Viúvo</option>
                         <!--<option value="4">Amasiado</option>-->
                     </select>
+                    @if($errors->has('marital_status'))
+                        <p class="text-danger">{{ $errors->first('marital_status') }}</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -87,6 +102,9 @@ DADOS PESSOAIS
                 <label for="inputNomeMae" class="control-label fonte-campos">Nome da Mãe<span class="cor-campo">*</span></label>
                 <input name="name_mother" id="inputNomeMae" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite o Nome da Mãe')"
                     onchange="try{setCustomValidity('')}catch(e){}">
+                    @if($errors->has('name_mother'))
+                        <p class="text-danger">{{ $errors->first('name_mother') }}</p>
+                    @endif
             </div>
             <div class="col-md-6">
                 <label for="inputNomePai" class="control-label fonte-campos">Nome do Pai</label>
@@ -230,7 +248,7 @@ DADOS PESSOAIS
             <h4 class="militar" style="display: none;">Certificado Militar</h4>
 
             <div class="col-md-4">
-                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento</label>
+                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento<span class="cor-campo"> *</span></label>
                 <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
                 @if($errors->has('military_certificate'))
                     <p class="text-danger">{{ $errors->first('military_certificate') }}</p>
@@ -289,7 +307,10 @@ DADOS PESSOAIS
             <hr />
             <div class="col-md-2">
                 <label for="inputCep" class="fonte-campos">CEP<span class="cor-campo"> *</span></label>
-                <input name="postal_code" type="number" class="form-control" id="inputCep" required                     onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="postal_code" type="text" class="form-control" id="inputCep" required                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('postal_code'))
+                    <p class="text-danger">{{ $errors->first('postal_code') }}</p>
+                @endif
             </div>
         </div>
 
@@ -305,10 +326,16 @@ DADOS PESSOAIS
                 <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
                 <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly
                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('public_place'))
+                    <p class="text-danger">{{ $errors->first('public_place') }}</p>
+                @endif
             </div>
             <div class="col-md-2">
                 <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
                 <input name="number" type="text" class="form-control" id="inputNum" required                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
+                @if($errors->has('number'))
+                    <p class="text-danger">{{ $errors->first('number') }}</p>
+                @endif
             </div>
         </div>
 
@@ -324,10 +351,16 @@ DADOS PESSOAIS
                 <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
                 <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly
                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('neighborhood'))
+                    <p class="text-danger">{{ $errors->first('neighborhood') }}</p>
+                @endif
             </div>
             <div class="col-md-1">
                 <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
                 <input name="state" type="text" class="form-control" id="inputUF" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('state'))
+                    <p class="text-danger">{{ $errors->first('state') }}</p>
+                @endif
             </div>
         </div>
 
@@ -336,6 +369,9 @@ DADOS PESSOAIS
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
                 <input name="city" type="text" class="form-control" id="inputCidade" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('city'))
+                    <p class="text-danger">{{ $errors->first('city') }}</p>
+                @endif
             </div>
         </div>
         <br />
@@ -345,8 +381,11 @@ DADOS PESSOAIS
             <h4>Comprovante de Residência</h4>
             <hr />
             <div class="col-md-4">
-                <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás e Telefone</label>
-                <input type="file" id="file_address" class="proof_address" name="file_address" style="margin-top:15px;">
+                <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás e Telefone<span class="cor-campo"> *</span></label>
+                <input type="file" id="file_address" class="proof_address" name="file_address" style="margin-top:15px;" required onchange="try{setCustomValidity('')}catch(e){}" >
+                @if($errors->has('file_address'))
+                    <p class="text-danger">{{ $errors->first('file_address') }}</p>
+                @endif
             </div>
         </div>
         <br>
@@ -373,7 +412,9 @@ DADOS PESSOAIS
                 <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
                 <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')"
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15">
-                <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
+                @if($errors->has('phone'))
+                    <p class="text-danger">{{ $errors->first('phone') }}</p>
+                @endif
             </div>
 
 
@@ -417,7 +458,9 @@ DADOS PESSOAIS
                 <label for="inputNum_2" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
                 <input name="mobile" type="text" class="form-control" id="inputNum_1" required
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15">
-                <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
+                @if($errors->has('mobile'))
+                    <p class="text-danger">{{ $errors->first('mobile') }}</p>
+                @endif
             </div>
         </div>
 
