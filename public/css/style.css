@@ -36,7 +36,13 @@ input[type="checkbox"] {
     transform: rotate(45deg);
     display: none;
   }  
-
+  .block::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em;
+}
   /**/
 
   input[type="radio"] {
