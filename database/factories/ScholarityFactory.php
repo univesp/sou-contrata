@@ -12,6 +12,5 @@ $factory->define(Scholarity::class, function ($faker) use ($factory) {
         'scholarity_type' => $faker->text($maxNbChars = 20),
         'teaching_institution' => $faker->numberBetween($min = 1, $max = 4),
         'candidate_id' => $factory->create(App\Candidate::class)->id,
-        'area_id' => $factory->create(App\Candidate::class)->id,
     ];
 });
