@@ -17,16 +17,14 @@ class CreateCandidatesTable extends Migration {
             $table->string('curriculum_link', 150);
             $table->char('marital_status',25);
             $table->char('cpf',15);
-            $table->text('file_cpf');
             $table->tinyInteger('flag_deficient');
             $table->text('obs_deficient')->nullable();
             $table->string('name_mother',150);
             $table->string('name_father',150)->nullable();
             $table->string('name_social',150)->nullable();
             $table->string('nationality',100);
-            $table->string('phone',15);
-            $table->integer('user_id')->unsigned()->unique();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('phone',20);
+            $table->string('mobile',20);
             $table->timestamps();
         });
     }
