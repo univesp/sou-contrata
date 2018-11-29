@@ -106,8 +106,6 @@ class PersonalDataController extends Controller
         // Validate if the rules are met
         if ($validator->fails()) {
           
-            dd($validator->messages());
-
             return redirect()
                 ->route('personal-data.index')
                 ->withInput($request->all())
