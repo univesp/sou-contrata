@@ -20,7 +20,8 @@ class Scholarity extends Model
         'link',
         'scholarity_type',
         'teaching_institution',
-        'candidate_id'
+        'candidate_id',
+        // 'area_id'
     ];
 
     // Protect table sorted fields
@@ -32,11 +33,17 @@ class Scholarity extends Model
         'scholarity_type',
         'teaching_institution',
         'candidate_id',
+        // 'area_id'
     ];
 
     // Relationships
     public function candidate()
     {
         return $this->belongsTo(Candidate::class);
+    }
+
+    public function scholarityAreas()
+    {
+        return $this->hasMany(ScholarityArea::class);
     }
 }
