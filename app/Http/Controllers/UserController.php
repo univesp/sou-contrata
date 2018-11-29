@@ -81,22 +81,18 @@ class UserController extends Controller {
 
     public function login(Request $request)
     {
-         $login = User::where('password', '=', Crypt::encrypt($request->password))
-            ->orWhere('email', $request->email)->select('name' , 'email')->first();
-         
+        $login = User::where('password', '=', Crypt::encrypt($request->password))
+            ->orWhere('email', $request->email)->select('id', 'name' , 'email')->first();
         if($login && isset($login->email)) {
             Helper::createSession($login, $request);
             //pegando candidato cadastrado
             $candidate = Candidate::where('user_id', $request->id)->first();
-
             if($candidate) {
-
                return redirect('/process');
-
             } else {
                 return redirect('personal-data');
-            }    
-              } else {
+            }
+        } else {
             return redirect('/login');
         }
 
@@ -106,5 +102,19 @@ class UserController extends Controller {
     {
         $request->session()->flush();
         return redirect('/');
+    }
+
+    public function checkEmail(Request $request)
+    {
+        if (!preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', (string)$request->email)) {
+            return "Eok";
+        }
+
+        $email = User::where('email', '=', $request->email)->first();
+
+        if(!empty($email)){
+            return "Nok";
+        }
+        return "Ok";
     }
 }

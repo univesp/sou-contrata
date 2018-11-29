@@ -75,7 +75,7 @@ DADOS PESSOAIS
                         <option value="1">Casado</option>
                         <option value="3">Divorciado</option>
                         <option value="4">Viúvo</option>
-                    <!--<option value="5">Amasiado</option>-->
+                        <!--<option value="4">Amasiado</option>-->
                     </select>
                 </div>
             </div>
@@ -120,13 +120,18 @@ DADOS PESSOAIS
             </div>
         </div>
         <div class="row">
+
             <h3>Documentos</h3>
             <hr />
             <h4>Documento de Indentidade</h4>
+
             <div class="col-md-3">
                 <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
                 <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')"
                     onchange="try{setCustomValidity('')}catch(e){}" maxlength="9">
+                @if($errors->has('rg_number'))
+                    <p class="text-danger">{{ $errors->first('rg_number') }}</p>
+                @endif
             </div>
             <div class="col-md-2">
                 <label for="inputOrgEmissor" class="fonte-campos">Orgão Emissor<span class="cor-campo"> *</span></label>
@@ -144,6 +149,9 @@ DADOS PESSOAIS
             <div class="col-md-3">
                 <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')"
                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('file_rg'))
+                    <p class="text-danger">{{ $errors->first('file_rg') }}</p>
+                @endif
             </div>
         </div>
 
@@ -157,12 +165,18 @@ DADOS PESSOAIS
                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                 <input name="cpf" type="text" class="form-control" id="inputNumDoc" required oninvalid="this.setCustomValidity('Digite o CPF somente números')"
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="11">
+                @if($errors->has('cpf'))
+                    <p class="text-danger">{{ $errors->first('cpf') }}</p>
+                @endif
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do CPF')"
+                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required
                     onchange="try{setCustomValidity('')}catch(e){}">
+                @if($errors->has('file_cpf'))
+                    <p class="text-danger">{{ $errors->first('file_cpf') }}</p>
+                @endif
             </div>
             <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -185,14 +199,19 @@ DADOS PESSOAIS
 
             <div class="col-md-4">
                 <label for="inputNumDoc_1" class="fonte-campos">Número de Documento<span class="cor-campo"> *</span></label>
-                <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" required oninvalid="this.setCustomValidity('Digite o Título de Eleitor')"
+                <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1"
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="12">
+            @if($errors->has('elector_title'))
+                <p class="text-danger">{{ $errors->first('elector_title') }}</p>
+            @endif
             </div>
         </div>
         <div class="row elector_title">
             <div class="col-md-3">
-                <input type="file" id="file_title" name="file_title" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do Título de eleitor')"
-                    onchange="try{setCustomValidity('')}catch(e){}">
+                <input type="file" id="file_title" name="file_title" style="margin-top:15px;">
+            @if($errors->has('file_title'))
+                <p class="text-danger">{{ $errors->first('file_title') }}</p>
+            @endif
             </div>
         </div>
         <!--  <div class="col-md-3">
@@ -213,7 +232,13 @@ DADOS PESSOAIS
             <div class="col-md-4">
                 <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento</label>
                 <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
+                @if($errors->has('military_certificate'))
+                    <p class="text-danger">{{ $errors->first('military_certificate') }}</p>
+                @endif
                 <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
+                @if($errors->has('file_military'))
+                    <p class="text-danger">{{ $errors->first('file_military') }}</p>
+                @endif
             </div>
             <!--   <div class="col-md-3">
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
@@ -264,8 +289,7 @@ DADOS PESSOAIS
             <hr />
             <div class="col-md-2">
                 <label for="inputCep" class="fonte-campos">CEP<span class="cor-campo"> *</span></label>
-                <input name="postal_code" type="number" class="form-control" id="inputCep" required oninvalid="this.setCustomValidity('Digite o CEP')"
-                    onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="postal_code" type="number" class="form-control" id="inputCep" required                     onchange="try{setCustomValidity('')}catch(e){}">
             </div>
         </div>
 
@@ -280,12 +304,11 @@ DADOS PESSOAIS
             <div class="col-md-4">
                 <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
                 <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly
-                    oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
+                    onchange="try{setCustomValidity('')}catch(e){}">
             </div>
             <div class="col-md-2">
                 <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                <input name="number" type="text" class="form-control" id="inputNum" required oninvalid="this.setCustomValidity('Digite Somente Número')"
-                    onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
+                <input name="number" type="text" class="form-control" id="inputNum" required                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
             </div>
         </div>
 
@@ -300,12 +323,11 @@ DADOS PESSOAIS
             <div class="col-md-4">
                 <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
                 <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly
-                    oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}">
+                    onchange="try{setCustomValidity('')}catch(e){}">
             </div>
             <div class="col-md-1">
                 <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                <input name="state" type="text" class="form-control" id="inputUF" required readonly oninvalid="this.setCustomValidity('Digite o UF')"
-                    onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="state" type="text" class="form-control" id="inputUF" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
             </div>
         </div>
 
@@ -313,8 +335,7 @@ DADOS PESSOAIS
         <div class="row">
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                <input name="city" type="text" class="form-control" id="inputCidade" required readonly oninvalid="this.setCustomValidity('Digite a Cidade')"
-                    onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="city" type="text" class="form-control" id="inputCidade" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
             </div>
         </div>
         <br />
@@ -328,10 +349,7 @@ DADOS PESSOAIS
                 <input type="file" id="file_address" class="proof_address" name="file_address" style="margin-top:15px;">
             </div>
         </div>
-
         <br>
-
-
         <div class="row">
             <h4>Telefone</h4>
             <hr />
@@ -339,13 +357,10 @@ DADOS PESSOAIS
             <div class="col-md-2">
 
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
-                <select id="inputTipo" class="form-control">
-
+                <select id="inputTipo" class="form-control" name="area_code_phone">
                     <!--<option>11</option>
                                             <option>21</option> -->
-
                     <!--<select name=id_pais>-->
-
                     <option value=55>(+55) Brasil
                     <option value=351>(+351) Portugal
                     <option value=54>(+54) Argentina
@@ -356,7 +371,7 @@ DADOS PESSOAIS
             </div>
             <div class="col-md-3">
                 <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                <input name="phone" type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')"
+                <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')"
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15">
                 <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
             </div>
@@ -364,14 +379,14 @@ DADOS PESSOAIS
 
             <!--<div class="col-md-1">
                                         <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
-                                        <input  type="text" class="form-control" id="inputPrefixo" required oninvalid="this.setCustomValidity('Digite o Prefixo')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
+                                        <input  type="text" class="form-control" id="inputPrefixo" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
                                         </div> -->
 
             <!--<div class="form-group">
                                <div class="col-md-10">
                                     <div class="col-md-5">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                                        <input name="phone" type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
+                                        <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
                                         <span class="cor-campo">Adicionar outro telefone</span> -->
         </div>
 
@@ -383,10 +398,10 @@ DADOS PESSOAIS
             <div class="col-md-2">
 
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
-                <select id="inputTipo" class="form-control">
+                <select id="inputTipo" class="form-control" name="area_code_mobile">
 
                     <!--<option>11</option>
-                        <option>21</option> -->
+                                                        <option>21</option> -->
 
                     <!--<select name=id_pais>-->
 
@@ -400,7 +415,7 @@ DADOS PESSOAIS
             </div>
             <div class="col-md-3">
                 <label for="inputNum_2" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                <input name="celular" type="text" class="form-control" id="inputNum_1" required oninvalid="this.setCustomValidity('Digite o número de celular')"
+                <input name="mobile" type="text" class="form-control" id="inputNum_1" required
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15">
                 <!-- <span class="cor-campo">Adicionar outro telefone</span> -->
             </div>
@@ -419,11 +434,11 @@ DADOS PESSOAIS
                     <div class="row">
                         <div class="col-md-6">
                             <label for="inputEmail" class="fonte-campos">E-mail<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputEmail" required oninvalid="this.setCustomValidity('Digite o E-mail')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            <input  type="text" class="form-control" id="inputEmail" required )" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                         </div>
                         <div class="col-md-6">
                             <label for="inputConfirmarEmail" class="fonte-campos">Confirmar e-mail<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputConfirmarEmail" required oninvalid="this.setCustomValidity('Confirme o E-mail')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                            <input  type="text" class="form-control" id="inputConfirmarEmail" required )" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                         </div>
                     </div>
                 </div> -->
@@ -431,11 +446,11 @@ DADOS PESSOAIS
                     <div class="row">
                         <div class="col-md-6">
                             <label for="inputUsuario" class="fonte-campos">Usuário<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputUsuario" required oninvalid="this.setCustomValidity('Digite o Usuário')" onchange="try{setCustomValidity('')}catch(e){}">
+                            <input  type="text" class="form-control" id="inputUsuario" required onchange="try{setCustomValidity('')}catch(e){}">
                         </div>
                         <div class="col-md-6">
                             <label for="inputSenha" class="fonte-campos">Senha<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputSenha" required oninvalid="this.setCustomValidity('Digite a Senha')" onchange="try{setCustomValidity('')}catch(e){}">
+                            <input  type="text" class="form-control" id="inputSenha" required onchange="try{setCustomValidity('')}catch(e){}">
                         </div>
                     </div>
                 </div> -->
@@ -497,14 +512,27 @@ DADOS PESSOAIS
 
             var natural = $(this).val();
 
-            natural == 1 ? $(".militar").hide() : $(".militar").show();
-            natural == 1 ? $(".elector_title").hide() : $(".elector_title").show();
+            if (natural == 1) {
+                $(".militar").hide()
+                $("#file_military").prop('required',null);
+            } else {
+                $(".militar").show();
+                $("#file_military").prop('required',true);
+            }
+            if (natural == 1) {
+                $(".elector_title").hide();
+                $("#file_title").prop('required',null);
+            } else {
+                $(".elector_title").show();
+                $("#file_title").prop('required',true);
+            }
 
         });
 
         if ($("#sexo").val() == 0) {
 
             $(".militar").show();
+            $("#file_military").prop('required',true);
         }
 
         $("#sexo").change(function () {
@@ -514,10 +542,12 @@ DADOS PESSOAIS
             if (sexo == 0) {
 
                 $(".militar").show();
+                $("#file_military").prop('required',true);
 
             } else if (sexo == 1 || sexo == 2) {
 
                 $(".militar").hide();
+                $("#file_military").prop('required',null);
             }
 
         });
