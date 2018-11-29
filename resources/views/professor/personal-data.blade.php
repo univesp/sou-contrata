@@ -119,14 +119,10 @@ DADOS PESSOAIS
                 </div>
             </div>
         </div>
-
-
         <div class="row">
-
             <h3>Documentos</h3>
             <hr />
             <h4>Documento de Indentidade</h4>
-
             <div class="col-md-3">
                 <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
                 <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')"
