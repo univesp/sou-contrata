@@ -80,6 +80,38 @@ class ScholarityController extends Controller
 
         return $dt;
     }
+
+    public function area() {
+        $area = ['Engenharia', 'Medicina', 'Advocacia', 'Administração', 'Finança'];
+        echo json_encode($area);
+    }
+
+    public function subarea($area) {
+        $area = (int) $area;
+        switch($area) {
+            case 0: {
+                $subarea = ['Cívil', 'Mecânica'];
+                break;
+            }
+            case 1: {
+                $subarea = ['Fisioterapia', 'Biomedicina'];
+                break;
+            }
+            case 2: {
+                $subarea = ['Civíl', 'Criminal'];
+                break;
+            }
+            case 3: {
+                $subarea = ['Vendas', 'Marketing'];
+                break;
+            }
+            case 4: {
+                $subarea = ['Empresarial', 'Contabilidade'];
+                break;
+            }
+        }
+        echo json_encode($subarea);
+    }
     /**
      * Display the specified resource.
      *

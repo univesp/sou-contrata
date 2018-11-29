@@ -72,6 +72,7 @@ class PersonalDataController extends Controller
         // Validate all fields
         $validator = Validator::make($request->all(), [
             // Candidate validations
+            'celular'           => 'required',
             'cpf'               => 'required|unique:candidates',
             'file_cpf'          => 'required',
             'date_birth'        => 'required',
@@ -102,9 +103,9 @@ class PersonalDataController extends Controller
             'state'                     => 'required',
             'type_public_place'         => 'required',
         ]);     
- 
         // Validate if the rules are met
         if ($validator->fails()) {
+          
             dd($validator->messages());
 
             return redirect()
@@ -130,6 +131,7 @@ class PersonalDataController extends Controller
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = trim($request->phone);
+            $candidate->celular             = trim($request->celular);
             $candidate->user_id             = $user_id;
 
             // Save in database
@@ -143,7 +145,7 @@ class PersonalDataController extends Controller
                 $document->elector_link             = $path_file_title;
                 $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : 'Empty' ;
                 $document->military_link            = $path_file_military;
-                $document->number                   = $request->number;
+                $document->rg_number                = $request->rg_number;
                 $document->number_link              = $path_file_rg;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;

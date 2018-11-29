@@ -59,6 +59,9 @@ Route::resource('academic-data', 'ScholarityController', [
     'names' => ['index'=>'professorAcademicData'],
     ])->middleware('login');
 
+Route::get('area','ScholarityController@area')->middleware('login');
+Route::get('subarea/{area}','ScholarityController@subarea')->middleware('login');
+
 //POSITION
 Route::get('position/{id}','PositionController@index')->name("professorPosition")->middleware('login');
 Route::post('position','CriterionController@store')->middleware('login');
