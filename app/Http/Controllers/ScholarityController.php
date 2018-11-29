@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Scholarity;
 use App\Vacancy;
+use Illuminate\Support\Facades\Validator;
 
 class ScholarityController extends Controller
 {
@@ -31,38 +32,59 @@ class ScholarityController extends Controller
         $id = !empty($request->session()->get('candidate')) ? $request->session()->get('candidate') : 1 ;
 
         $school = new Scholarity();
-
+        
         foreach ($request['graduations'] as $k => $d) {
 
-            switch ($d) {
-                case '1':
-                    // se for 1 é Graduação
-                    // Documentos de Graduação do Candidato
-                    $path_file = $request['file_graduate'][$k]->store("documents-graduate/{$id}");
-                    break;
+            $validator = Validator::make($request->all(),[
 
-                case '2':
-                    // se for 2 é Mestrado
-                    // Documentos de Mestrado do Candidato
-                    $path_file = $request['file_graduate'][$k]->store("documents-master/{$id}");
-                    break;
+                'file_graduate.*'  => 'required|mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'
+            ]);
+            
+            dd($validator->messages());
 
-                case '3':
-                    // se for 3 é Doutorado
-                    // Documentos de Doutorado do Candidato
-                    $path_file = $request['file_graduate'][$k]->store("documents-doctorate/{$id}");
-                    break;
+            if ($validator->fails()) {
+                dd($validator->messages());
+    
+                return redirect()
+                    ->route('personal-data.index')
+                    ->withInput($request->all())
+                    ->withErrors($validator->messages())
+                ;
+            } else {
+
+                switch ($d) {
+
+                    case '1':
+                        // se for 1 é Graduação
+                        // Documentos de Graduação do Candidato
+
+                        $path_file = $request['file_graduate'][$k]->store("documents-graduate/{$id}");
+                        break;
+
+                    case '2':
+                        // se for 2 é Mestrado
+                        // Documentos de Mestrado do Candidato
+                        $path_file = $request['file_graduate'][$k]->store("documents-master/{$id}");
+                        break;
+
+                    case '3':
+                        // se for 3 é Doutorado
+                        // Documentos de Doutorado do Candidato
+                        $path_file = $request['file_graduate'][$k]->store("documents-doctorate/{$id}");
+                        break;
+                
+                    }
+
+                $school->class_name = $request->cadlettters;
+                $school->end_date = $this->br_to_bank($request->inputDataConclusao[$k]);
+                $school->init_date = $this->br_to_bank($request->inputDataConclusao[$k]);
+                $school->link = $path_file;
+                $school->scholarity_type = $request->inputCursos[$k];
+                $school->teaching_institution = $request->inpuInstituicao[$k];
+                $school->candidate_id = $id;
+
+                $school->save();
             }
-
-            $school->class_name = $request->cadlettters;
-            $school->end_date = $this->br_to_bank($request->inputDataConclusao[$k]);
-            $school->init_date = $this->br_to_bank($request->inputDataConclusao[$k]);
-            $school->link = $path_file;
-            $school->scholarity_type = $request->inputCursos[$k];
-            $school->teaching_institution = $request->inpuInstituicao[$k];
-            $school->candidate_id = $id;
-
-            $school->save();
         }
 
         $resp = $school;

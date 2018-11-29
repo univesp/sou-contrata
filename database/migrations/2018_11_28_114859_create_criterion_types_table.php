@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVacancyCriteriaTable extends Migration
+class CreateCriterionTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateVacancyCriteriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('vacancy_criteria', function (Blueprint $table) {
+        Schema::create('criterion_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('punctuation');
+            $table->string('description', 30);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateVacancyCriteriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vacancy_criteria');
+        Schema::dropIfExists('criterion_types');
     }
 }
