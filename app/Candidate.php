@@ -9,11 +9,11 @@ class Candidate extends Model {
     protected $table = 'candidates';
 
     protected $fillable = [
-        'name','last_name','date_birth', 'genre', 'curriculum_link', 'marital_status','cpf', 'file_cpf', 'flag_deficient', 'obs_deficient', 'name_mother', 'name_father', 'name_social', 'nationality', 'phone', 'celular', 'user_id'
+        'name','last_name','date_birth', 'genre', 'curriculum_link', 'marital_status','cpf', 'file_cpf', 'flag_deficient', 'obs_deficient', 'name_mother', 'name_father', 'name_social', 'nationality', 'phone', 'mobile', 'user_id'
     ];
 
     protected $sorted =  [
-        'name','last_name','date_birth', 'genre', 'curriculum_link', 'marital_status','cpf', 'file_cpf', 'flag_deficient', 'obs_deficient', 'name_mother', 'name_father', 'name_social', 'nationality', 'phone', 'celular','user_id'
+        'name','last_name','date_birth', 'genre', 'curriculum_link', 'marital_status','cpf', 'file_cpf', 'flag_deficient', 'obs_deficient', 'name_mother', 'name_father', 'name_social', 'nationality', 'phone', 'mobile','user_id'
     ];
 
     protected $hidden = [

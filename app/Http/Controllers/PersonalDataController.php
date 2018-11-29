@@ -68,11 +68,11 @@ class PersonalDataController extends Controller
         if (!empty($request['file_title'])) {
             $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
         }
-
+        
         // Validate all fields
         $validator = Validator::make($request->all(), [
             // Candidate validations
-            'celular'           => 'required',
+            'mobile'            => 'required',
             'cpf'               => 'required|unique:candidates',
             'file_cpf'          => 'required',
             'date_birth'        => 'required',
@@ -130,8 +130,8 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = trim($request->phone);
-            $candidate->celular             = trim($request->celular);
+            $candidate->phone               = trim($request->area_code_phone.' '.$request->phone);
+            $candidate->mobile              = trim($request->area_code_mobile.' '.$request->mobile);
             $candidate->user_id             = $user_id;
 
             // Save in database
