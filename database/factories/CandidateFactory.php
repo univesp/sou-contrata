@@ -14,14 +14,14 @@ $factory->define(Candidate::class, function ($faker) use ($factory)
         'marital_status' => array_rand(array('Casado','Solteiro','Viuvo','Disquitado'), 1),
         'cpf' => $faker->numerify('#########-##'),
         'file_cpf' =>  __DIR__ . '/public/img/cpf/arquivo.pdf',
+        // 'cell_phone' => $faker->numerify('## #####-####'),
         'flag_deficient' => $faker->numberBetween($min = 0, $max = 1),
         'obs_deficient' => $faker->text(100),
         'name_mother' => $faker->name,
         'name_father' => $faker->name,
         'name_social' => $faker->name,
         'nationality' => $faker->country,
-        'phone' => $faker->numerify('## ####-####'),
-        'mobile' => $faker->numerify('## #####-####'),
+        'phone' => $faker->numerify('## #####-####'),
         'user_id' => $factory->create(App\User::class)->id,
     ];
 });
