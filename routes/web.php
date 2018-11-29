@@ -68,6 +68,8 @@ Route::get('process', function () {
     return view('vacancy.process');
 })->middleware('login');
 
+
+
 //LOGOFF
 Route::get('logoff', 'UserController@logoff')->name('logoff');
 
