@@ -36,7 +36,7 @@
                 {{ csrf_field() }}
 				<div class="step stepUsername" style="display: block;">
 					<div class="form-group">
-                    <input type="email" id="email" name="email" class="form-control"  required oninvalid="this.setCustomValidity('Digite o email')" onchange="try{setCustomValidity('')}catch(e){}">
+                    <input style="box-shadow:none;border-radius:0px;" type="email" id="email" name="email" class="form-control"  required oninvalid="this.setCustomValidity('Digite o email')" onchange="try{setCustomValidity('')}catch(e){}">
 						<label class="form-control-placeholder" for="username">Usuário</label>
 					</div>
 					<div class="step-footer">
@@ -47,7 +47,7 @@
 				</div>
 				<div class="step stepPassword">
 					<div class="form-group">
-                    <input type="password" id="inputPassword" name="password" class="form-control" required>
+                    <input style="box-shadow:none;border-radius:0px" type="password" id="inputPassword" name="password" class="form-control" required>
 						<label class="form-control-placeholder" for="password">Senha</label>
 						<button class="showPassword" type="button">
 							<i class="material-icons show">visibility</i>
