@@ -4,6 +4,7 @@
 /storage/*.key
 # /vendo
 kubernetes/app/secrets.yaml
+kubernetes/app/tls-secrets.yaml
 /.idea
 /.vscode
 /nbproject
