@@ -16,10 +16,10 @@ class EdictController extends Controller
         $data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
         return view('vacancy/index',compact('data', $data));
     }
-   
+
     public function edict($id, Request $request)
     {
-        $data = \App\Vacancy::with('edict')->find($id);
+        $data = \App\Vacancy::with('edict')->where('edict_id','=', $id)->first();
         return view('vacancy/edicts',compact('data', $data));
     }
 

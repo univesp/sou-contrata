@@ -30,6 +30,7 @@ Route::get('logoff', 'UserController@logoff')->name('logoff');
 
 // CANDIDATE
 Route::get('form','UserController@form')->name('form')->middleware('logout');
+
 Route::post('store', 'UserController@store')->name('store')->middleware('logout');
 
 Route::post('documents', 'UserController@documents')->name('documents')->middleware('login');
