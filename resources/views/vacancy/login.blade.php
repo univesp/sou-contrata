@@ -6,28 +6,25 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>LOGIN</title>
-	<link href="css/style-login.css" rel="stylesheet">
+	<link href="{{URL::asset('/css/style-login.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
 </head>
 <body class="login">
     <header>
 		<div class="container">
 			<a class="logo" href="#">
-				<img class="img-responsive" alt="" src="../img/logo-univesp.png">
+				<img class="img-responsive" alt="" src="{{URL::asset('/img/logo-univesp.png')}}">
 			</a>
 			<div class="clearfix"></div>
 		</div>
 	</header>
-
 <main class="centeredContent block">
 	<div class="centered">
-
-
 <section id="login">
 	<div class="container">
 		<div class="loginBox">
-			<img class="logo" alt="#SOU" src="../img/logo-sou2.png">
+			<img class="logo" alt="#SOU" src="{{URL::asset('/img/logo-sou2.png')}}">
 			<div class="login-header">
 				<h1>Sistema Operacional Univesp</h1>
 				<h2>Login</h2>
@@ -41,7 +38,7 @@
 					</div>
 					<div class="step-footer">
 						<a href="">Esqueci minha senha</a>
-						<button class="btn-red btn-danger" type="button">Próxima</button>
+						<button class="btn-red btn-danger" id="btnNext" type="button">Próxima</button>
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -65,60 +62,61 @@
 		</div>
 	</div>
 </section>
-
 	<!-- #content -->
 </div>
 
 </main>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="{{URL::asset('/js/jquery.min.js')}}"></script>
 <script>
-$(document).ready(function() {
-	$("#email").focus();
-	$("#password").focus();
-    $("#btnSubmit").click(function(){
-        $("#btnSubmit").submit();
-    })
-var login = (function() {
-    return {
-        vars: {
-            windowWidth: $(window).width(),
-            mobile: ( $(window).width() > 768 ) ? false : true,
-        },
-        init: function() {
-            this.initFeatures();
-        },
-        initFeatures: function() {
-            var that = this;
+	$(document).ready(function () {
 
-            $('.stepUsername button').click(function() {
-                $('.stepUsername').hide();
-                $('.stepPassword').fadeIn();
-            });
+		$("#email").focus();
+		$("#password").focus();
+		$("#btnSubmit").click(function () {
+			$("#btnSubmit").submit();
+		})
 
-            $('.showPassword').click(function() {
-                if( !$(this).hasClass('active') ) {
-                    $('input#password').prop('type', 'text').addClass('active');
-                } else {
-                    $('input#password').prop('type', 'password').removeClass('active');
-                }
-                $(this).toggleClass('active');
-            });
+		var login = (function () {
+			return {
+				vars: {
+					windowWidth: $(window).width(),
+					mobile: ($(window).width() > 768) ? false : true,
+				},
+				init: function () {
+					this.initFeatures();
+				},
+				initFeatures: function () {
+					var that = this;
 
-            $('form').submit(function(e) {
-                if($(this).is('[action="login"]')) return true;
-                if( $('.stepUsername').is(':visible') ) {
-                    $('.stepUsername').hide();
-                    $('.stepPassword').fadeIn();
-                  /*return false; */  
-                  window.location.href = "/login";
-                }
-                if( !$('#email').val() || !$('#password').val() ) return false;
-            });
+					$('.stepUsername button').click(function () {
+						$('.stepUsername').hide();
+						$('.stepPassword').fadeIn();
+					});
 
-        },
-    }
-})();
+					$('.showPassword').click(function () {
+						if (!$(this).hasClass('active')) {
+							$('input#password').prop('type', 'text').addClass('active');
+						} else {
+							$('input#password').prop('type', 'password').removeClass('active');
+						}
+						$(this).toggleClass('active');
+					});
 
-login.init();
+					$('form').submit(function (e) {
+						if ($(this).is('[action="login"]')) return true;
+						if ($('.stepUsername').is(':visible')) {
+							$('.stepUsername').hide();
+							$('.stepPassword').fadeIn();
+							/*return false; */
+							window.location.href = "login";
+						}
+						if (!$('#email').val() || !$('#password').val()) return false;
+					});
+
+				},
+			}
+		})();
+
+		login.init();
 });
 </script>

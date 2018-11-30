@@ -66,6 +66,14 @@ class Helper
         ];
         $request->session()->put('user', $userSession);
     }
+
+    static function br_to_bank($now)
+    {
+        $data = explode('/', $now);
+        $dt = date('Y-m-d', strtotime($now));
+
+        return $dt;
+    }
 }
 
 
