@@ -4,32 +4,34 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Area extends Model
+class AreaSubarea extends Model
 {
     // Protect table name
-    protected $table = 'areas';
+    protected $table = 'area_subarea';
 
     // Protected guarded table fields
     protected $guarded = ['id', 'created_at', 'update_at'];
 
     // Protect table fields
     protected $fillable = [
-        'description'
+        'area_id',
+        'subarea_id'
     ];
- 
+
     // Protect table sorted fields
     protected $sorted = [
-        'description'
+        'area_id',
+        'subarea_id'
     ];
 
     // Relationships
-    public function scholarityAreas()
+    public function area()
     {
-        return $this->hasMany(ScholarityArea::class);
+        return $this->belongsTo(Area::class);
     }
-
-    public function areaSubareas()
+    
+    public function subArea()
     {
-        return $this->hasMany(AreaSubarea::class);
+        return $this->belongsTo(SubArea::class);
     }
 }
