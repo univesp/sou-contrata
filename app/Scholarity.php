@@ -18,7 +18,7 @@ class Scholarity extends Model
         'end_date',
         'init_date',
         'link',
-        'scholarity_type',
+        // 'scholarity_type',
         'teaching_institution',
         'candidate_id',
         'area_id'
@@ -30,7 +30,7 @@ class Scholarity extends Model
         'end_date',
         'init_date',
         'link',
-        'scholarity_type',
+        // 'scholarity_type',
         'teaching_institution',
         'candidate_id',
         'area_id'

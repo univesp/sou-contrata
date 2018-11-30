@@ -55,7 +55,8 @@
 				<div class="row">
 				  <div class="col-md-7">
 					<div class="col-md-6">
-					   <label class="area">Selecione a sua Área</label>
+					   	<label class="area">Selecione a sua Área</label>
+					   	<input type="hidden" name="area_id" id="area_id"/>
 						<select name="graduations[]" class="form-control graduations" id="area" required>
 							<option value="">Selecione a área</option>
 						</select>
@@ -239,6 +240,7 @@
 			});
 
             $('#area').on('change', function(e) {
+				$("#area_id").val($('#area').val());
                 $('#subarea').children().not(':first').remove();
                 $.ajax({
                     // Call url
