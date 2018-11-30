@@ -3,17 +3,17 @@ kind: Ingress
 metadata:
   name: nginx-ssl-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.global-static-ip-name: autores-ip
 spec:
   tls:
     - secretName: laravel-app-tls-secrets
       hosts:
-        - kubernetes.test
+        - autores.univesp.br
   backend:
     serviceName: default-http-backend
     servicePort: 80
   rules:
-  - host: kubernetes.test
+  - host: autores.univesp.br
     http:
       paths:
         - path: /
