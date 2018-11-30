@@ -14,7 +14,7 @@
 {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 @section('content')
-		<div class="container">
+	<div class="container">
 			<div id="msgFail"></div>
 			<ul class="nav nav-tabs">
 				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
@@ -25,7 +25,7 @@
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
-			<form action="{{ route('academic-data.index') }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('academic-data.store') }}" method="post" enctype="multipart/form-data">
 				{{ csrf_field() }}
 			<div  class="row">
 				<div class="col-md-7">

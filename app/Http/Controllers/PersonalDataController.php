@@ -167,6 +167,7 @@ class PersonalDataController extends Controller
             $address->public_place              = $request->public_place;
             $address->state                     = $request->state;
             $address->type_public_place         = $request->type_public_place;
+            $address->candidate_id              = $candidate->id;
 
             // Save in database
             $address->save();
