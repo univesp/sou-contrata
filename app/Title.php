@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Title extends Model
 {
-    protected $table = 'titles';
 
-    // Protected guarded table fields
     protected $guarded = ['id', 'created_at', 'update_at'];
 
-    // Protect table fields
+
     protected $fillable = [
         'description',
     ];
@@ -24,5 +22,10 @@ class Title extends Model
     public function vacancy()
     {
         return $this->hasOne(Vacancy::class);
+    }
+
+    public function criteria()
+    {
+        return $this->hasMany(Criterion::class);
     }
 }
