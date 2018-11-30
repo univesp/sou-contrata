@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Scholarity;
 use App\Vacancy;
+use App\Area;
+use App\Subarea;
+use App\AreaSubarea;
+use DB;
 use Illuminate\Support\Facades\Validator;
 
 class ScholarityController extends Controller
@@ -32,7 +36,7 @@ class ScholarityController extends Controller
         $id = !empty($request->session()->get('candidate')) ? $request->session()->get('candidate') : 1 ;
 
         $school = new Scholarity();
-        
+
         foreach ($request['graduations'] as $k => $d) {
 
             $validator = Validator::make($request->all(),[
@@ -82,6 +86,7 @@ class ScholarityController extends Controller
                 $school->scholarity_type = $request->inputCursos[$k];
                 $school->teaching_institution = $request->inpuInstituicao[$k];
                 $school->candidate_id = $id;
+                $school->area_id = $this->area();
 
                 $school->save();
             }
@@ -104,35 +109,26 @@ class ScholarityController extends Controller
     }
 
     public function area() {
-        $area = ['Engenharia', 'Medicina', 'Advocacia', 'Administração', 'Finança'];
+        // Create area list to select box
+        $area = Area::pluck('description', 'id');
+
+        // Return area
         echo json_encode($area);
     }
 
     public function subarea($area) {
+        // Add area value
         $area = (int) $area;
-        switch($area) {
-            case 0: {
-                $subarea = ['Cívil', 'Mecânica'];
-                break;
-            }
-            case 1: {
-                $subarea = ['Fisioterapia', 'Biomedicina'];
-                break;
-            }
-            case 2: {
-                $subarea = ['Civíl', 'Criminal'];
-                break;
-            }
-            case 3: {
-                $subarea = ['Vendas', 'Marketing'];
-                break;
-            }
-            case 4: {
-                $subarea = ['Empresarial', 'Contabilidade'];
-                break;
-            }
-        }
-        echo json_encode($subarea);
+
+        // Create query to list subarea
+        $subareas = DB::table('subareas')
+            ->leftJoin('area_subarea', 'subareas.id', '=', 'area_subarea.subarea_id')
+            ->select('subareas.id', 'subareas.description')
+            ->where('area_subarea.area_id', $area)
+            ->pluck('subareas.description', 'subareas.id');
+            
+        // Return subareas value
+        echo json_encode($subareas);
     }
     /**
      * Display the specified resource.
