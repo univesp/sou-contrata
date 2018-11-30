@@ -26,8 +26,8 @@ class Edict extends Model
         'date_end',
     ];
 
-    public function vacancy()
+    public function vacancies()
     {
-        return $this->hasOne(Vacancy::class);
+        return $this->hasMany(Vacancy::class);
     }
 }

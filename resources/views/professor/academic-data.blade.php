@@ -14,8 +14,8 @@
 {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 @section('content')
-
 		<div class="container">
+			<div id="msgFail"></div>
 			<ul class="nav nav-tabs">
 				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
 				<li class="disabled"><a href="#">Dados Pessoais</a></li>
@@ -25,14 +25,13 @@
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
-			<form action="/academic-data" method="post" enctype="multipart/form-data">
-			{{ csrf_field() }}
+			<form action="academic-data" method="post" enctype="multipart/form-data">
+				{{ csrf_field() }}
 			<div  class="row">
 				<div class="col-md-7">
 					<div  class="form-group">
-						<label for="cadlettters" class="fonte-campos">Curriculo Lattes<span class="cor-campo"> *</span></label>
-                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="Acesse o Link Abaixo">
-						<span id="link"> <a target="_blank" href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar">Preencha este campo com a url do seu curriculo Latttes</a></span>
+						<label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Latttes</a><span class="cor-campo"> *</span></label>
+                <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes">
 					</div>
 				</div>
 			</div>
@@ -41,30 +40,6 @@
 			<div class="row">
 				<h3>Formação Acadêmica</h3>
 			<hr />
-			
-				<div class="row">
-				  <div class="col-md-7">
-					<div class="col-md-6">
-					   <label class="area">Selecione a sua Área</label>
-						<select name="graduations[]" class="form-control graduations">
-							<option value="" selected>AREA0</option>
-							<option value="1">AREA1</option>
-							<option value="2">AREA2</option>
-							<option value="3">AREA3</option>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<label class="area">Selecione a sua Sub-Área</label>
-						<select name="graduations[]" class="form-control graduations">
-							<option value="" selected>AREA0</option>
-							<option value="1">AREA1</option>
-							<option value="2">AREA2</option>
-							<option value="3">AREA3</option>
-						</select>
-					</div>
-                  </div>
-				</div>
-			<br>
 			<div class="col-md-7">
 				<div class="row">
 					<div class="col-md-12">
@@ -77,6 +52,24 @@
 					</div>
 				</div>
 			</div>
+				<div class="row">
+				  <div class="col-md-7">
+					<div class="col-md-6">
+					   	<label class="area">Selecione a sua Área</label>
+					   	<input type="hidden" name="area_id" id="area_id"/>
+						<select name="graduations[]" class="form-control graduations" id="area" required>
+							<option value="">Selecione a área</option>
+						</select>
+					</div>
+					<div class="col-md-6">
+						<label class="area">Selecione a sua Subárea</label>
+						<select name="graduations[]" class="form-control graduations" id="subarea" required>
+							<option value="">Selecione a subárea</option>
+						</select>
+					</div>
+                  </div>
+				</div>
+			<br>
 			<br>
 			<div id="father">
 				<div class="col-md-7">
@@ -105,7 +98,7 @@
 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
-							<input type="file" name="file_graduate[]" class="file_graduate"/>
+							<input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
 						</div>
 					</div><br />
 					<div class="col-md-1" style="margin-top:0px;">
@@ -127,8 +120,19 @@
 @section('scripts')
 	<script>
 		$(function(){
-
 			var CONTADOR = 0;
+			function validateExtension(file) {
+				if(file.get(0).files[0].size > 20000 || file.get(0).files[0].type != 'application/pdf') {
+                    $("#msgFail").addClass('msgFail');
+					$("#msgFail").append('<div class="alert alert-danger" role="alert">Arquivo Inválido ou maior que 2 Mega-byte (Mb)</div>');
+                    $("#cadlettters").focus();
+					$(".file_graduate").val('');
+					$(".file_graduate").focus();
+					$('html, body').animate({scrollTop:0}, 'slow');
+				} else{
+					$("#msgFail").empty();
+				}
+			}
 
 			function mount_form_graduation(id) {
 
@@ -185,13 +189,39 @@
 
 				CONTADOR++;
 			}
+            function getSelectData() {
+                $.ajax({
+                    // Call url
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: "area",
+                    type: 'get',
+                    data: {
+                        _token: '{{csrf_token()}}'
+
+                    },
+                    success: function (result) {
+                        result = JSON.parse(result);
+                        Object.keys(result).forEach(function (key) {
+                            $('#area').append(`<option value="${key}">${result[key]}</option>`)
+                        });
+                    },
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+                });
+            }
+
 
 			$(document).ready(function(){
 
-				$(".submit").click(function(e){
+				$(".file_graduate").change(function () { 
+					validateExtension($(this));
+				
+				});
 
-				})
-
+                getSelectData();
 			});
 
 			$(document).on('click', '.remove', function(){
@@ -208,6 +238,33 @@
 				mount_form_graduation(id);
 
 			});
+
+            $('#area').on('change', function(e) {
+				$("#area_id").val($('#area').val());
+                $('#subarea').children().not(':first').remove();
+                $.ajax({
+                    // Call url
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: `subarea/${e.target.value}`,
+                    type: 'get',
+                    data: {
+                        _token: '{{csrf_token()}}',
+                    },
+                    success: function (result) {
+                        result = JSON.parse(result);
+                        Object.keys(result).forEach(function (key) {
+                            $('#subarea').append(`<option value="${key}">${result[key]}</option>`)
+                        });
+                    },
+
+
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+                });
+            });
 		});
 	</script>
 @endsection

@@ -18,9 +18,10 @@ class Scholarity extends Model
         'end_date',
         'init_date',
         'link',
-        'scholarity_type',
+        // 'scholarity_type',
         'teaching_institution',
-        'candidate_id'
+        'candidate_id',
+        'area_id'
     ];
 
     // Protect table sorted fields
@@ -29,14 +30,20 @@ class Scholarity extends Model
         'end_date',
         'init_date',
         'link',
-        'scholarity_type',
+        // 'scholarity_type',
         'teaching_institution',
         'candidate_id',
+        'area_id'
     ];
 
     // Relationships
     public function candidate()
     {
         return $this->belongsTo(Candidate::class);
+    }
+
+    public function scholarityAreas()
+    {
+        return $this->hasMany(ScholarityArea::class);
     }
 }

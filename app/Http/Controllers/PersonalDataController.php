@@ -42,7 +42,7 @@ class PersonalDataController extends Controller
         $path_file_cpf = '';
         $path_file_rg = '';
         $path_file_military = '';
-        $path_file_title = ''; 
+        $path_file_title = '';
 
         // Validate if file address exist
         if (!empty($request['file_address'])) {
@@ -101,14 +101,13 @@ class PersonalDataController extends Controller
             'public_place'              => 'required',
             'state'                     => 'required',
             'type_public_place'         => 'required',
-        ]);     
- 
+        ]);
         // Validate if the rules are met
         if ($validator->fails()) {
             return redirect()
                 ->route('personal-data.index')
                 ->withInput($request->all())
-                ->withErrors($validator->messages())
+                ->withErrors($validator)
             ;
         } else {
             // Create new candidate
