@@ -28,50 +28,6 @@
     <form id="form" name="personal-data" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
-        <div class="row">
-            <div class="col-md-3">
-                <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
-                <input name="name" id="textNome" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite seu Nome')"
-                    onchange="try{setCustomValidity('')}catch(e){}">
-                    @if($errors->has('name'))
-                        <p class="text-danger">{{ $errors->first('name') }}</p>
-                    @endif
-            </div>
-            <div class="col-md-3">
-                <label for="textSobrenome" class="control-label, fonte-campos">Sobrenome<span class="cor-campo">*</span></label>
-                <input name="last_name" id="textSobrenome" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite seu Sobrenome')"
-                    onchange="try{setCustomValidity('')}catch(e){}">
-                    @if($errors->has('last_name'))
-                        <p class="text-danger">{{ $errors->first('last_name') }}</p>
-                    @endif
-            </div>
-            <div class="col-md-2">
-                <label for="textDtNasc" class="control-label, fonte-campos">Data de Nascimento<span class="cor-campo">*</span></label>
-                <input name="date_birth" id="textDtNasc" class="form-control" type="date" required oninvalid="this.setCustomValidity('Digite Data de Nascimento')"
-                    onchange="try{setCustomValidity('')}catch(e){}">
-                @if($errors->has('date_birth'))
-                    <p class="text-danger">{{ $errors->first('date_birth') }}</p>
-                @endif
-            </div>
-            <div class="col-md-2">
-                <label for="inputNatu" class="fonte-campos">Nacionalidade<span class="cor-campo">*</span></label>
-                <select name="nationality" id="inputNatu" class="form-control">
-                    <option value="0">Brasileiro(a)</option>
-                    <option value="1">Estrangeiros</option>
-                </select>
-                @if($errors->has('nationality'))
-                    <p class="text-danger">{{ $errors->first('nationality') }}</p>
-                @endif
-            </div>
-            <div class="col-md-2">
-                <label class="fonte-campos" for="sexo">Sexo:</label>
-                <select name="genre" class="form-control" id="sexo">
-                    <option value="0">Masculino</option>
-                    <option value="1">Feminino</option>
-                    <option value="2">Não deseja Informar</option>
-                </select>
-            </div>
-        </div>
         <form id="form" name="personal-data" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 
@@ -123,8 +79,6 @@
                         <p class="text-danger">{{ $errors->first('marital_status') }}</p>
                     @endif
                 </div>
-
-        <div class="row">
             <div class="col-md-6">
                 <label for="inputNomeMae" class="control-label fonte-campos">Nome da Mãe<span class="cor-campo">*</span></label>
                 <input name="name_mother" id="inputNomeMae" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite o Nome da Mãe')"
@@ -137,9 +91,6 @@
                 <label for="inputNomePai" class="control-label fonte-campos">Nome do Pai</label>
                 <input name="name_father" id="inputNomePai" class="form-control" type="text">
             </div>
-        </div>
-
-
                 <div class="row">
                     <div class="col-md-6">
                         Possui Alguma Deficiência?
@@ -154,7 +105,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
@@ -165,15 +115,12 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="row">
-
             <h3>Documentos</h3>
             <hr />
             <h4>Documento de Indentidade</h4>
-
             <div class="col-md-3">
                 <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
                 <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')"
@@ -192,7 +139,6 @@
                 <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')"
                     onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
             </div>
-
         </div>
         <div class="row">
             <div class="col-md-3">
@@ -203,10 +149,7 @@
                 @endif
             </div>
         </div>
-
         <div class="row">
-
-
             <div class="col-md-4">
                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                 <input name="cpf" type="text" class="form-control" id="inputNumDoc" required oninvalid="this.setCustomValidity('Digite o CPF somente números')"
@@ -224,19 +167,6 @@
                     <p class="text-danger">{{ $errors->first('file_cpf') }}</p>
                 @endif
             </div>
-            <!--   <div class="col-md-3">
-
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
-                            </div>
-                            <div class="col-md-2">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/visao_digitalizada.jpg" class="img-responsive" alt="versao-digitalizada">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/lixeira.jpg" class="img-responsive img-lixeira" alt="lixeira">
-                            </div>-->
-
                     </div>
 
         <div class="row elector_title">
@@ -260,18 +190,6 @@
             @endif
             </div>
         </div>
-        <!--  <div class="col-md-3">
-
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
-                            </div>
-                            <div class="col-md-2">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/visao_digitalizada.jpg" class="img-responsive" alt="versao-digitalizada">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
-                            </div>-->
         <div class="row militar">
             <br />
             <h4 class="militar" style="display: none;">Certificado Militar</h4>
@@ -287,51 +205,8 @@
                     <p class="text-danger">{{ $errors->first('file_military') }}</p>
                 @endif
             </div>
-            <!--   <div class="col-md-3">
-
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
-                            </div>
-                            <div class="col-md-2">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/visao_digitalizada.jpg" class="img-responsive" alt="versao-digitalizada">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
-                            </div>-->
                     </div>
-
                 <br/>
-
-<!--<div class="col-md-11">
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <br/>
-                                <h4 class="militar" style="display: none;">Endereço e Contato</h4>
-                            </div>
-                          <div class="col-md-4">
-                                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento</label>
-                                <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
-                                <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
-                            </div>
-                            <div class="col-md-3">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
-                            </div>
-                            <div class="col-md-2">
-                                <label for="arraste" class="fonte-campos">Versão digitalizada</label>
-                                <img src="img/visao_digitalizada.jpg" class="img-responsive" alt="versao-digitalizada">
-                            </div>
-                            <div class="col-md-2">
-                                <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br/>-->
-
-
         <div class="row">
             <br />
             <h4>Endereço e Contato</h4>
@@ -344,7 +219,6 @@
                 @endif
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-2">
                 <label for="inputTipoLogra" class="fonte-campos">Tipo Logradouro<span class="cor-campo">*</span></label>
@@ -369,15 +243,11 @@
                 @endif
             </div>
         </div>
-
-
         <div class="row">
             <div class="col-md-3">
                 <label for="inputComplemento" class="fonte-campos">Complemento</label>
                 <input name="complement" type="text" class="form-control" id="inputComplemento">
             </div>
-
-
             <div class="col-md-4">
                 <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
                 <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly
@@ -394,7 +264,6 @@
                 @endif
             </div>
         </div>
-
         <div class="row">
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
@@ -405,7 +274,6 @@
             </div>
         </div>
         <br />
-
         <div class="row">
             <br />
             <h4>Comprovante de Residência</h4>
@@ -422,13 +290,9 @@
         <div class="row">
             <h4>Telefone</h4>
             <hr />
-            <!--<div class="form-group">-->
             <div class="col-md-2">
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                 <select id="inputTipo" class="form-control" name="area_code_phone">
-                    <!--<option>11</option>
-                    <option>21</option> -->
-                    <!--<select name=id_pais>-->
                     <option value=55>(+55) Brasil
                     <option value=351>(+351) Portugal
                     <option value=54>(+54) Argentina
@@ -444,40 +308,20 @@
                     <p class="text-danger">{{ $errors->first('phone') }}</p>
                 @endif
             </div>
-            <!--<div class="col-md-1">
-                <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
-                <input  type="text" class="form-control" id="inputPrefixo" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
-            </div> -->
-            <!--<div class="form-group">
-                <div class="col-md-10">
-                    <div class="col-md-5">
-                        <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                        <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
-                        <span class="cor-campo">Adicionar outro telefone</span> -->
-
         </div>
-
         <br/>
-
         <div class="row">
             <h4>Celular</h4>
             <hr />
             <div class="col-md-2">
-
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                 <select id="inputTipo" class="form-control" name="area_code_mobile">
-
-                    <!--<option>11</option>
-                        <option>21</option> -->
-                    <!--<select name=id_pais>-->
-
                     <option value=55>(+55) Brasil
                     <option value=351>(+351) Portugal
                     <option value=54>(+54) Argentina
                     <option value=1>(+1) EUA
                     <option value=86>(+86) China
                 </select>
-
             </div>
             <div class="col-md-3">
                 <label for="inputNum_2" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -488,46 +332,15 @@
                 @endif
             </div>
         </div>
-
         <div class="row">
             <hr />
             <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
         </div>
-
-<!--
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="inputEmail" class="fonte-campos">E-mail<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputEmail" required )" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputConfirmarEmail" class="fonte-campos">Confirmar e-mail<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputConfirmarEmail" required )" onchange="try{setCustomValidity('')}catch(e){}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="inputUsuario" class="fonte-campos">Usuário<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputUsuario" required onchange="try{setCustomValidity('')}catch(e){}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputSenha" class="fonte-campos">Senha<span class="cor-campo"> *</span></label>
-                            <input  type="text" class="form-control" id="inputSenha" required onchange="try{setCustomValidity('')}catch(e){}">
-                        </div>
-                    </div>
-                </div> -->
-
         </form>
     </div>
 @endsection
 @section('scripts')
-    <!-- <script src="{{URL::asset('js/dados-pessoais.js')}}"></script> -->
-
     <script>
-        /* Validação de checkedbox deficiencia */
         function Validacao() {
             var checkboxes = document.getElementsByName("opcaoDeficiencia");
             var numberOfCheckedItems = 0;
@@ -600,7 +413,6 @@
             $("#file_military").prop('required',true);
         }
 
-
             $("#sexo").change(function(){
 
                 var sexo = $(this).val();
@@ -615,7 +427,6 @@
                 $(".militar").hide();
                 $("#file_military").prop('required',null);
             }
-
 
             });
 
@@ -689,8 +500,6 @@
                         // F12 or inspect on browser to show result
                         console.log(result)
                     },
-
-
                     error: function (errors) {
                         console.log(errors)
                     }

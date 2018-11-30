@@ -19,7 +19,7 @@
 			<ul class="nav nav-tabs">
 				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
 				<li class="disabled"><a href="#">Dados Pessoais</a></li>
-				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
+				<li class="active, link3"><a href="{{ route('academic-data.index') }}">Dados Academicos</a></li>
                 {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li> --}}
 				<li class="disabled"><a href="#">Área de Interesse</a></li>
 			</ul>
@@ -151,7 +151,7 @@
 				HTML.push('<div class="col-md-7">');
 				HTML.push('<div class="row">');
 				HTML.push('<div class="col-md-12">');
-				HTML.push('<select name="graduations[]" class="form-control graduations">');
+				HTML.push('<select name="graduations[]" class="form-control graduations graduate-select">');
 				HTML.push('<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>');
 				HTML.push('<option value="1">GRADUAÇÃO</option>');
 				HTML.push('<option value="2">MESTRADO</option>');
