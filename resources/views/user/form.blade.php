@@ -19,7 +19,7 @@
         <div class="formatacao-campos">
             *Obrigatório
         </div>
-        <form action="/store" method="post">
+        <form action="{{route('store')}}" method="post">
             {{ csrf_field() }}
             <div id="msgError" style="display: none;" class="alert alert-danger" role="alert">
             </div>

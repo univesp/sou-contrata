@@ -45,10 +45,9 @@ class Vacancy extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function criteria()
+    public function vacancy_criteria()
     {
-        return $this->belongsToMany(Criterion::class,
-            'vacancy_criteria');
+        return $this->hasMany(VacancyCriterion::class);
     }
 
     public function services()

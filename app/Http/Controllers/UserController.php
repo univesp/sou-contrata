@@ -26,8 +26,9 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        //
+    public function index() 
+    {
+        return view('vacancy/login');
     }
 
     /**
@@ -42,9 +43,9 @@ class UserController extends Controller {
 
         $user = new User();
 
-        $user->id = $request->id;
         $user->name = $request->name;
         $user->login = $request->login;
+        $user->cod_privilege = 1;
         $user->password = Crypt::encrypt($request->password);
         $user->email = $request->email;
 
@@ -116,5 +117,10 @@ class UserController extends Controller {
             return "Nok";
         }
         return "Ok";
+    }
+
+    public function form() 
+    {
+        return view('user/form');
     }
 }

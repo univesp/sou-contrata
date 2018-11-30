@@ -12,9 +12,7 @@
 {{ "Bem vindo, ". Session::get('user')['user'] }}
 
 @endsection
-
 @section('content')
-
 	<div class="container">
 	@if(!empty($resp))
             <h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
