@@ -96,7 +96,6 @@ DADOS PESSOAIS
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-6">
                 <label for="inputNomeMae" class="control-label fonte-campos">Nome da Mãe<span class="cor-campo">*</span></label>
@@ -173,7 +172,6 @@ DADOS PESSOAIS
             </div>
         </div>
 
-
         <div class="row">
 
             <br />
@@ -210,11 +208,9 @@ DADOS PESSOAIS
 
         </div>
 
-
         <div class="row elector_title">
             <br />
             <h4>Titulo de Eleitor</h4>
-
             <div class="col-md-4">
                 <label for="inputNumDoc_1" class="fonte-campos">Número de Documento<span class="cor-campo"> *</span></label>
                 <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1"
@@ -307,7 +303,7 @@ DADOS PESSOAIS
             <hr />
             <div class="col-md-2">
                 <label for="inputCep" class="fonte-campos">CEP<span class="cor-campo"> *</span></label>
-                <input name="postal_code" type="text" class="form-control" id="inputCep" required                     onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="postal_code" type="text" class="form-control" id="inputCep" required onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('postal_code'))
                     <p class="text-danger">{{ $errors->first('postal_code') }}</p>
                 @endif
@@ -339,13 +335,11 @@ DADOS PESSOAIS
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-3">
                 <label for="inputComplemento" class="fonte-campos">Complemento</label>
                 <input name="complement" type="text" class="form-control" id="inputComplemento">
             </div>
-
 
             <div class="col-md-4">
                 <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
@@ -357,18 +351,17 @@ DADOS PESSOAIS
             </div>
             <div class="col-md-1">
                 <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                <input name="state" type="text" class="form-control" id="inputUF" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="state" type="text" class="form-control" id="inputUF" required readonly onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('state'))
                     <p class="text-danger">{{ $errors->first('state') }}</p>
                 @endif
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                <input name="city" type="text" class="form-control" id="inputCidade" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="city" type="text" class="form-control" id="inputCidade" required readonly onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('city'))
                     <p class="text-danger">{{ $errors->first('city') }}</p>
                 @endif
@@ -394,11 +387,10 @@ DADOS PESSOAIS
             <hr />
             <!--<div class="form-group">-->
             <div class="col-md-2">
-
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                 <select id="inputTipo" class="form-control" name="area_code_phone">
                     <!--<option>11</option>
-                                            <option>21</option> -->
+                    <option>21</option> -->
                     <!--<select name=id_pais>-->
                     <option value=55>(+55) Brasil
                     <option value=351>(+351) Portugal
@@ -406,7 +398,6 @@ DADOS PESSOAIS
                     <option value=1>(+1) EUA
                     <option value=86>(+86) China
                 </select>
-
             </div>
             <div class="col-md-3">
                 <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -416,19 +407,16 @@ DADOS PESSOAIS
                     <p class="text-danger">{{ $errors->first('phone') }}</p>
                 @endif
             </div>
-
-
             <!--<div class="col-md-1">
-                                        <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
-                                        <input  type="text" class="form-control" id="inputPrefixo" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
-                                        </div> -->
-
+                <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
+                <input  type="text" class="form-control" id="inputPrefixo" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
+            </div> -->
             <!--<div class="form-group">
-                               <div class="col-md-10">
-                                    <div class="col-md-5">
-                                        <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                                        <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
-                                        <span class="cor-campo">Adicionar outro telefone</span> -->
+                <div class="col-md-10">
+                    <div class="col-md-5">
+                        <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
+                        <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
+                        <span class="cor-campo">Adicionar outro telefone</span> -->
         </div>
 
         <br/>
@@ -442,8 +430,7 @@ DADOS PESSOAIS
                 <select id="inputTipo" class="form-control" name="area_code_mobile">
 
                     <!--<option>11</option>
-                                                        <option>21</option> -->
-
+                        <option>21</option> -->
                     <!--<select name=id_pais>-->
 
                     <option value=55>(+55) Brasil
@@ -464,13 +451,10 @@ DADOS PESSOAIS
             </div>
         </div>
 
-
         <div class="row">
             <hr />
             <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
         </div>
-
-
 
 <!--
                 <div class="col-md-12">

@@ -40,7 +40,7 @@
                     <td>{{date_format(date_create($d->edict->date_end), 'd/m/Y')}}</td>
                     <td>
                         @if(date_diff(date_create($d->edict->date_end), date_create(now()))->format('d') > '0')
-                            <a href="/edict/{{$d->id}}"><button type="button" class="btn btn-info">Acessar</button></a>
+                            <a href="{{route('edict', $d->id)}}"><button type="button" class="btn btn-info">Acessar</button></a>
                         @endif
                     </td>
                 </tr>

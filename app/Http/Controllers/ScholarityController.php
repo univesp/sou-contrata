@@ -40,10 +40,11 @@ class ScholarityController extends Controller
                 'file_graduate.*'  => 'required|mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'
             ]);
             
-            dd($validator->messages());
+            //dd($validator->messages());
 
             if ($validator->fails()) {
-                dd($validator->messages());
+                
+                //dd($validator->messages());
     
                 return redirect()
                     ->route('personal-data.index')
@@ -72,12 +73,11 @@ class ScholarityController extends Controller
                         // Documentos de Doutorado do Candidato
                         $path_file = $request['file_graduate'][$k]->store("documents-doctorate/{$id}");
                         break;
-                
-                    }
+                }
 
                 $school->class_name = $request->cadlettters;
-                $school->end_date = $this->br_to_bank($request->inputDataConclusao[$k]);
-                $school->init_date = $this->br_to_bank($request->inputDataConclusao[$k]);
+                $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
+                $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->link = $path_file;
                 $school->scholarity_type = $request->inputCursos[$k];
                 $school->teaching_institution = $request->inpuInstituicao[$k];
@@ -95,14 +95,7 @@ class ScholarityController extends Controller
 
     }
 
-    public function br_to_bank($now)
-    {
-        $data = explode('/', $now);
-        $dt = date('Y-m-d', strtotime($now));
-
-        return $dt;
-    }
-
+    
     public function area() {
         $area = ['Engenharia', 'Medicina', 'Advocacia', 'Administração', 'Finança'];
         echo json_encode($area);

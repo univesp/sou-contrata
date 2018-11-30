@@ -33,7 +33,7 @@
         </div>
 		<hr/>
 
-        <form action="/vague-discipline" method="post">
+        <form action="position" method="post">
             {{ csrf_field() }}                
         
           <h5><strong class="left">Serviços</strong> <span class="cor-campo"> *</span></h5>

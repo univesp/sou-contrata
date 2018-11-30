@@ -14,7 +14,7 @@
         <div class="container">
             <div  class="col-sm-6 col-xs-6 col-md-6">
                 <div class="imagem-topo-sou">
-                    <img src="../img/logo-sou.png">
+                    <img src="{{URL::asset('img/logo-sou.png')}}">
                 </div>
                 <div class="text-pequeno">
                     <span>Processo de Credenciamento</span>
@@ -23,19 +23,21 @@
                     <span>@yield('cabecalho')</span>
                 </div>
                 <div class="imagem-topo-sou">
-                    <img src="../img/logo-abaixo.jpg">
+                    <img src="{{URL::asset('img/logo-abaixo.jpg')}}">
                 </div>
             </div>
             <div style="color:white;" class="col-sm-6 col-xs-6 col-md-6 imagem-univesp float-right">
-                <img src="../img/univesp.png">
+                <img src="{{URL::asset('/img/univesp.png')}}">
                 <div class="col-sm-12 col-xs-12 col-md-12">
                     <div class="col-sm-12 col-xs-12 col-md-10">
                         <span class="float-right text-user">@yield('username')</span>
                     </div>
                     @if (Session::get('user')['user'])
-                        <div class="col-md-2">
-                            <button class="btn btn-danger sair" >Sair</button>
-                        </div>                        
+                    <form action="{{route('logoff')}}">
+                            <div class="col-md-2">
+                                <button class="btn btn-danger" type="submit">Sair</button>
+                            </div>
+                        </form>
                     @endif
                 </div>
             </div>
@@ -44,18 +46,14 @@
 
     <div style="clear:both;"></div>
         @yield('content')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="{{URL::asset('/js/jquery.min.js')}}"></script>
+        <script src="{{URL::asset('/js/bootstrap.min.js')}}"></script>
         @yield('scripts')
 
         <script>
             $(function() {
                 $(document).ready(function(){
-
-                    $(".sair").click(function(){
-
-                        window.location.href = "/logoff";
-                    });
+                    
                 });
             });
         </script>

@@ -26,8 +26,9 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        //
+    public function index() 
+    {
+        return view('vacancy/login');
     }
 
     /**
@@ -116,5 +117,10 @@ class UserController extends Controller {
             return "Nok";
         }
         return "Ok";
+    }
+
+    public function form() 
+    {
+        return view('user/form');
     }
 }
