@@ -42,9 +42,9 @@ class UserController extends Controller {
 
         $user = new User();
 
-        $user->id = $request->id;
         $user->name = $request->name;
         $user->login = $request->login;
+        $user->cod_privilege = 1;
         $user->password = Crypt::encrypt($request->password);
         $user->email = $request->email;
 

@@ -22,19 +22,19 @@ Route::get('vacancy','ListEditalController@index')->middleware(['check.user']);
 Route::post('edict/{id}', 'EdictController@list');
 
 Route::get('edict/{id}', function ($id ) {
-    $data = \App\Vacancy::with('edict')->find($id);
+    $data = \App\Vacancy::with('edict')->where('edict_id','=', $id)->first();
     return view('vacancy/edicts',compact('data', $data));
-});
+})->name('edict');
 
 //Login
 Route::get('login', function () {
     return view('vacancy/login');
-})->middleware('logout');
+})->name('login')->middleware('logout');
 
 
 Route::get('form', function () {
     return view('user/form');
-})->middleware('logout');
+})->name('form')->middleware('logout');
 
 Route::post('login', 'UserController@login')->name('login')->middleware('logout');
 Route::post('store', 'UserController@store')->name('store')->middleware('logout');
