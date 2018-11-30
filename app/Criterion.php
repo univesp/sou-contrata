@@ -22,9 +22,9 @@ class Criterion extends Model
         'name'
     ];
 
-    public function vacancies()
+    public function vacancy_criteria()
     {
-        return $this->belongsToMany(Vacancy::class, 'vacancy_criteria');
+        return $this->hasMany(VacancyCriterion::class);
     }
 
     public function title()

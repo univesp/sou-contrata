@@ -25,7 +25,7 @@
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
-			<form action="academic-data" method="post" enctype="multipart/form-data">
+			<form action="{{ route('academic-data.index') }}" method="post" enctype="multipart/form-data">
 				{{ csrf_field() }}
 			<div  class="row">
 				<div class="col-md-7">
@@ -258,7 +258,6 @@
                             $('#subarea').append(`<option value="${key}">${result[key]}</option>`)
                         });
                     },
-
 
                     error: function (errors) {
                         console.log(errors)

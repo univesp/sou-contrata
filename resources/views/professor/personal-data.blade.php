@@ -124,7 +124,6 @@
                     @endif
                 </div>
 
-
         <div class="row">
             <div class="col-md-6">
                 <label for="inputNomeMae" class="control-label fonte-campos">Nome da Mãe<span class="cor-campo">*</span></label>
@@ -205,27 +204,7 @@
             </div>
         </div>
 
-
-                        <div class="col-md-3">
-                            <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
-                            <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')" onchange="try{setCustomValidity('')}catch(e){}" maxlength="9">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="inputOrgEmissor" class="fonte-campos">Orgão Emissor<span class="cor-campo"> *</span></label>
-                            <input name="uf_issue" type="text" class="form-control" id="inputOrgEmissor" required oninvalid="this.setCustomValidity('Digite o Orgão Emissor')" onchange="try{setCustomValidity('')}catch(e){}">
-                        </div>
-                        <div class="col-md-2">
-                            <label for="inputDataEmissao" class="fonte-campos">Data Emissão<span class="cor-campo"> *</span></label>
-                            <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
-                        </div>
-
-                </div>
-                <div class="row">
-                  <div class="col-md-3">
-                    <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')" onchange="try{setCustomValidity('')}catch(e){}">
-                  </div>
-                </div>
-
+        <div class="row">
 
 
             <div class="col-md-4">
@@ -260,11 +239,9 @@
 
                     </div>
 
-
-                         <div class="row elector_title">
-                                <br/>
-                                <h4>Titulo de Eleitor</h4>
-
+        <div class="row elector_title">
+            <br />
+            <h4>Titulo de Eleitor</h4>
 
             <div class="col-md-4">
                 <label for="inputNumDoc_1" class="fonte-campos">Número de Documento<span class="cor-campo"> *</span></label>
@@ -361,7 +338,7 @@
             <hr />
             <div class="col-md-2">
                 <label for="inputCep" class="fonte-campos">CEP<span class="cor-campo"> *</span></label>
-                <input name="postal_code" type="text" class="form-control" id="inputCep" required                     onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="postal_code" type="text" class="form-control" id="inputCep" required onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('postal_code'))
                     <p class="text-danger">{{ $errors->first('postal_code') }}</p>
                 @endif
@@ -394,25 +371,11 @@
         </div>
 
 
-
-                    <div class="row">
-                                <div class="col-md-2">
-                                    <label for="inputTipoLogra" class="fonte-campos">Tipo Logradouro<span class="cor-campo">*</span></label>
-                                    <select name="type_public_place" id="inputTipoLogra" class="form-control">
-                                        <option value="0">Avenida</option>
-                                        <option value="1">Rua</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
-                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                                    <input name="number" type="text" class="form-control" id="inputNum" required oninvalid="this.setCustomValidity('Digite Somente Número')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
-                                </div>
-                    </div>
-
+        <div class="row">
+            <div class="col-md-3">
+                <label for="inputComplemento" class="fonte-campos">Complemento</label>
+                <input name="complement" type="text" class="form-control" id="inputComplemento">
+            </div>
 
 
             <div class="col-md-4">
@@ -425,18 +388,17 @@
             </div>
             <div class="col-md-1">
                 <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                <input name="state" type="text" class="form-control" id="inputUF" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="state" type="text" class="form-control" id="inputUF" required readonly onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('state'))
                     <p class="text-danger">{{ $errors->first('state') }}</p>
                 @endif
             </div>
         </div>
 
-
         <div class="row">
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                <input name="city" type="text" class="form-control" id="inputCidade" required readonly                     onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="city" type="text" class="form-control" id="inputCidade" required readonly onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('city'))
                     <p class="text-danger">{{ $errors->first('city') }}</p>
                 @endif
@@ -462,11 +424,10 @@
             <hr />
             <!--<div class="form-group">-->
             <div class="col-md-2">
-
                 <label for="inputTipo" class="fonte-campos">Código País<span class="cor-campo">*</span></label>
                 <select id="inputTipo" class="form-control" name="area_code_phone">
                     <!--<option>11</option>
-                                            <option>21</option> -->
+                    <option>21</option> -->
                     <!--<select name=id_pais>-->
                     <option value=55>(+55) Brasil
                     <option value=351>(+351) Portugal
@@ -474,7 +435,6 @@
                     <option value=1>(+1) EUA
                     <option value=86>(+86) China
                 </select>
-
             </div>
             <div class="col-md-3">
                 <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -484,20 +444,17 @@
                     <p class="text-danger">{{ $errors->first('phone') }}</p>
                 @endif
             </div>
+            <!--<div class="col-md-1">
+                <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
+                <input  type="text" class="form-control" id="inputPrefixo" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
+            </div> -->
+            <!--<div class="form-group">
+                <div class="col-md-10">
+                    <div class="col-md-5">
+                        <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
+                        <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
+                        <span class="cor-campo">Adicionar outro telefone</span> -->
 
-
-
-                                        <!--<div class="col-md-1">
-                                        <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
-                                        <input  type="text" class="form-control" id="inputPrefixo" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
-                                        </div> -->
-
-                           <!--<div class="form-group">
-                               <div class="col-md-10">
-                                    <div class="col-md-5">
-                                        <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                                        <input name="phone" type="text" class="form-control" id="inputNum_1" required telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15" >
-                                        <span class="cor-campo">Adicionar outro telefone</span> -->
         </div>
 
         <br/>
@@ -511,8 +468,7 @@
                 <select id="inputTipo" class="form-control" name="area_code_mobile">
 
                     <!--<option>11</option>
-                                                        <option>21</option> -->
-
+                        <option>21</option> -->
                     <!--<select name=id_pais>-->
 
                     <option value=55>(+55) Brasil
@@ -533,16 +489,12 @@
             </div>
         </div>
 
+        <div class="row">
+            <hr />
+            <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
+        </div>
 
-
-                   <div class="row">
-                        <hr />
-                        <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
-                    </div>
-
-
-
-                <!--
+<!--
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
