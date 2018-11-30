@@ -68,11 +68,10 @@ class PersonalDataController extends Controller
         if (!empty($request['file_title'])) {
             $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
         }
-        
+
         // Validate all fields
         $validator = Validator::make($request->all(), [
             // Candidate validations
-            'mobile'            => 'required',
             'cpf'               => 'required|unique:candidates',
             'file_cpf'          => 'required',
             'date_birth'        => 'required',
@@ -127,8 +126,7 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = trim($request->area_code_phone.' '.$request->phone);
-            $candidate->mobile              = trim($request->area_code_mobile.' '.$request->mobile);
+            $candidate->phone               = trim($request->phone);
             $candidate->user_id             = $user_id;
 
             // Save in database
@@ -142,7 +140,7 @@ class PersonalDataController extends Controller
                 $document->elector_link             = $path_file_title;
                 $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : 'Empty' ;
                 $document->military_link            = $path_file_military;
-                $document->rg_number                = $request->rg_number;
+                $document->number                   = $request->number;
                 $document->number_link              = $path_file_rg;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;

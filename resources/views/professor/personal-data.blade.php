@@ -1,16 +1,16 @@
 @extends('layouts.header')
 @section('title')
-Cadastro de Professores
+    Cadastro de Professores
 @endsection
 @section('css')
-<link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('content')
 @section('cabecalho')
-DADOS PESSOAIS
+    DADOS PESSOAIS
 @endsection
 @section('username')
-{{ "Bem vindo, ". Session::get('user')['user'] }}
+    {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 
 <div class="container">
@@ -72,8 +72,38 @@ DADOS PESSOAIS
                 </select>
             </div>
         </div>
+        <form id="form" name="personal-data" method="post" enctype="multipart/form-data">
+            {{ csrf_field() }}
 
-
+            <div class="row">
+                    <div class="col-md-3">
+                        <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
+                        <input name="name" id="textNome" class="form-control" type="text"   required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="textSobrenome" class="control-label, fonte-campos">Sobrenome<span class="cor-campo">*</span></label>
+                        <input name="last_name" id="textSobrenome" class="form-control" type="text" required oninvalid="this.setCustomValidity('Digite seu Sobrenome')" onchange="try{setCustomValidity('')}catch(e){}">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="textDtNasc" class="control-label, fonte-campos">Data de Nascimento<span class="cor-campo">*</span></label>
+                        <input name="date_birth" id="textDtNasc" class="form-control" type="date" required oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}" >
+                    </div>
+                    <div class="col-md-2">
+                        <label for="inputNatu" class="fonte-campos">Nacionalidade<span class="cor-campo">*</span></label>
+                        <select name="nationality" id="inputNatu" class="form-control">
+                            <option value="0">Brasileiro(a)</option>
+                            <option value="1">Estrangeiros</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="fonte-campos" for="sexo">Sexo:</label>
+                            <select name="genre" class="form-control" id="sexo">
+                                <option value="0">Masculino</option>
+                                <option value="1">Feminino</option>
+                                <option value="2">Não deseja Informar</option>
+                            </select>
+                        </div>
+                </div>
         <div class="row">
             <div class="col-md-6">
                 <label for="textNomeSocial" class="control-label, fonte-campos">Nome Social</label>
@@ -93,8 +123,6 @@ DADOS PESSOAIS
                         <p class="text-danger">{{ $errors->first('marital_status') }}</p>
                     @endif
                 </div>
-            </div>
-        </div>
 
 
         <div class="row">
@@ -112,29 +140,33 @@ DADOS PESSOAIS
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                Possui Alguma Deficiência?
-                <!-- <div class="checkbox, opcao-alinhamento">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        Possui Alguma Deficiência?
+                        <!-- <div class="checkbox, opcao-alinhamento">
                             <label><input type="checkbox" id ="opcaoNao" name="opcaoDeficiencia" onclick="return Validacao();">Não</label>
                         </div> -->
-                <div class="checkbox">
-                    <label>
-                        <!-- <input type="hidden" id="opcaoSim" name="opcaoDeficiencia" value="0" onclick="return Validacao();"> -->
-                        <input type="checkbox" id="opcaoSim" name="flag_deficient" onclick="return Validacao();">Sim
-                    </label>
+                        <div class="checkbox">
+                            <label>
+                                <!-- <input type="hidden" id="opcaoSim" name="opcaoDeficiencia" value="0" onclick="return Validacao();"> -->
+                                <input type="checkbox" id="opcaoSim" name="flag_deficient" onclick="return Validacao();">Sim
+                            </label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label for="comentario" class="control-label fonte-campos deficiencia" style="display: none;">
-                        Descreva sua Deficiência
-                    </label>
-                    <textarea name="obs_deficient" class="form-control deficiencia" rows="2" id="comentario" style="display: none;"></textarea>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label for="comentario" class="control-label fonte-campos deficiencia" style="display: none;">
+                                Descreva sua Deficiência
+                            </label>
+                            <textarea name="obs_deficient" class="form-control deficiencia" rows="2" id="comentario" style="display: none;"></textarea>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
         <div class="row">
@@ -174,10 +206,27 @@ DADOS PESSOAIS
         </div>
 
 
-        <div class="row">
+                        <div class="col-md-3">
+                            <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
+                            <input name="rg_number" type="text" class="form-control" id="inputNumDocs" required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')" onchange="try{setCustomValidity('')}catch(e){}" maxlength="9">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="inputOrgEmissor" class="fonte-campos">Orgão Emissor<span class="cor-campo"> *</span></label>
+                            <input name="uf_issue" type="text" class="form-control" id="inputOrgEmissor" required oninvalid="this.setCustomValidity('Digite o Orgão Emissor')" onchange="try{setCustomValidity('')}catch(e){}">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="inputDataEmissao" class="fonte-campos">Data Emissão<span class="cor-campo"> *</span></label>
+                            <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
+                        </div>
 
-            <br />
-            <h4>CPF</h4>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')" onchange="try{setCustomValidity('')}catch(e){}">
+                  </div>
+                </div>
+
+
 
             <div class="col-md-4">
                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
@@ -197,6 +246,7 @@ DADOS PESSOAIS
                 @endif
             </div>
             <!--   <div class="col-md-3">
+
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
                                 <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
                             </div>
@@ -208,12 +258,13 @@ DADOS PESSOAIS
                                 <img src="img/lixeira.jpg" class="img-responsive img-lixeira" alt="lixeira">
                             </div>-->
 
-        </div>
+                    </div>
 
 
-        <div class="row elector_title">
-            <br />
-            <h4>Titulo de Eleitor</h4>
+                         <div class="row elector_title">
+                                <br/>
+                                <h4>Titulo de Eleitor</h4>
+
 
             <div class="col-md-4">
                 <label for="inputNumDoc_1" class="fonte-campos">Número de Documento<span class="cor-campo"> *</span></label>
@@ -233,6 +284,7 @@ DADOS PESSOAIS
             </div>
         </div>
         <!--  <div class="col-md-3">
+
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
                                 <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
                             </div>
@@ -259,6 +311,7 @@ DADOS PESSOAIS
                 @endif
             </div>
             <!--   <div class="col-md-3">
+
                                 <label for="arraste" class="fonte-campos">Versão digitalizada</label>
                                 <img src="img/arraste.png" id="arraste" class="img-responsive" alt="arraste">
                             </div>
@@ -269,11 +322,11 @@ DADOS PESSOAIS
                             <div class="col-md-2">
                                 <img src="img/lixeira.jpg" class="img-responsive, incone-lixeira" alt="lixeira">
                             </div>-->
-        </div>
+                    </div>
 
-        <br />
+                <br/>
 
-        <!--<div class="col-md-11">
+<!--<div class="col-md-11">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-12">
@@ -300,6 +353,7 @@ DADOS PESSOAIS
                     </div>
                 </div>
                 <br/>-->
+
 
         <div class="row">
             <br />
@@ -340,11 +394,25 @@ DADOS PESSOAIS
         </div>
 
 
-        <div class="row">
-            <div class="col-md-3">
-                <label for="inputComplemento" class="fonte-campos">Complemento</label>
-                <input name="complement" type="text" class="form-control" id="inputComplemento">
-            </div>
+
+                    <div class="row">
+                                <div class="col-md-2">
+                                    <label for="inputTipoLogra" class="fonte-campos">Tipo Logradouro<span class="cor-campo">*</span></label>
+                                    <select name="type_public_place" id="inputTipoLogra" class="form-control">
+                                        <option value="0">Avenida</option>
+                                        <option value="1">Rua</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
+                                    <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
+                                    <input name="number" type="text" class="form-control" id="inputNum" required oninvalid="this.setCustomValidity('Digite Somente Número')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
+                                </div>
+                    </div>
+
 
 
             <div class="col-md-4">
@@ -418,12 +486,13 @@ DADOS PESSOAIS
             </div>
 
 
-            <!--<div class="col-md-1">
+
+                                        <!--<div class="col-md-1">
                                         <label for="inputPrefixo" class="fonte-campos">Prefixo<span class="cor-campo"> *</span></label>
                                         <input  type="text" class="form-control" id="inputPrefixo" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$">
                                         </div> -->
 
-            <!--<div class="form-group">
+                           <!--<div class="form-group">
                                <div class="col-md-10">
                                     <div class="col-md-5">
                                         <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
@@ -465,14 +534,15 @@ DADOS PESSOAIS
         </div>
 
 
-        <div class="row">
-            <hr />
-            <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
-        </div>
+
+                   <div class="row">
+                        <hr />
+                        <button id="addSubmit" type="submit" class="btn btn-danger float-right">AVANÇAR</button>
+                    </div>
 
 
 
-<!--
+                <!--
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
@@ -485,7 +555,7 @@ DADOS PESSOAIS
                         </div>
                     </div>
                 </div> -->
-<!-- <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-6">
                             <label for="inputUsuario" class="fonte-campos">Usuário<span class="cor-campo"> *</span></label>
@@ -497,63 +567,63 @@ DADOS PESSOAIS
                         </div>
                     </div>
                 </div> -->
-        <br/><br/>
-    </form>
-</div>
+
+        </form>
+    </div>
 @endsection
 @section('scripts')
-<!-- <script src="{{URL::asset('js/dados-pessoais.js')}}"></script> -->
+    <!-- <script src="{{URL::asset('js/dados-pessoais.js')}}"></script> -->
 
-<script>
-    /* Validação de checkedbox deficiencia */
-    function Validacao() {
-        var checkboxes = document.getElementsByName("opcaoDeficiencia");
-        var numberOfCheckedItems = 0;
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked)
-                numberOfCheckedItems++;
+    <script>
+        /* Validação de checkedbox deficiencia */
+        function Validacao() {
+            var checkboxes = document.getElementsByName("opcaoDeficiencia");
+            var numberOfCheckedItems = 0;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked)
+                    numberOfCheckedItems++;
+            }
+            if (numberOfCheckedItems > 1) {
+                alert("Selecione somente uma opção");
+                return false;
+            }
         }
-        if (numberOfCheckedItems > 1) {
-            alert("Selecione somente uma opção");
-            return false;
+
+        function get_cep(cep) {
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+                //Preenche os campos com "..." enquanto consulta webservice.
+                $("#inputLogradouro").val("...");
+                $("#inputBairro").val("...");
+                $("#inputCidade").val("...");
+                $("#inputUF").val("...");
+
+                //Consulta o webservice viacep.com.br/
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                    if (!("erro" in dados)) {
+                        //Atualiza os campos com os valores da consulta.
+                        $("#inputLogradouro").val(dados.logradouro);
+                        $("#inputBairro").val(dados.bairro);
+                        $("#inputCidade").val(dados.localidade);
+                        $("#inputUF").val(dados.uf);
+                    } //end if.
+                    else {
+                        //CEP pesquisado não foi encontrado.
+                        //limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            }
+            //alert(cep);
         }
-    }
+        // Init
+        $(document).ready(function () {
+            $("#inputNatu").change(function(){
 
-    function get_cep(cep) {
-        var validacep = /^[0-9]{8}$/;
-
-        //Valida o formato do CEP.
-        if (validacep.test(cep)) {
-            //Preenche os campos com "..." enquanto consulta webservice.
-            $("#inputLogradouro").val("...");
-            $("#inputBairro").val("...");
-            $("#inputCidade").val("...");
-            $("#inputUF").val("...");
-
-            //Consulta o webservice viacep.com.br/
-            $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-
-                if (!("erro" in dados)) {
-                    //Atualiza os campos com os valores da consulta.
-                    $("#inputLogradouro").val(dados.logradouro);
-                    $("#inputBairro").val(dados.bairro);
-                    $("#inputCidade").val(dados.localidade);
-                    $("#inputUF").val(dados.uf);
-                } //end if.
-                else {
-                    //CEP pesquisado não foi encontrado.
-                    //limpa_formulário_cep();
-                    alert("CEP não encontrado.");
-                }
-            });
-        }
-        //alert(cep);
-    }
-    // Init
-    $(document).ready(function () {
-        $("#inputNatu").change(function () {
-
-            var natural = $(this).val();
+                var natural = $(this).val();
 
             if (natural == 1) {
                 $(".militar").hide()
@@ -570,109 +640,110 @@ DADOS PESSOAIS
                 $("#file_title").prop('required',true);
             }
 
-        });
+            });
 
-        if ($("#sexo").val() == 0) {
+            if($("#sexo").val() == 0) {
 
             $(".militar").show();
             $("#file_military").prop('required',true);
         }
 
-        $("#sexo").change(function () {
 
-            var sexo = $(this).val();
+            $("#sexo").change(function(){
 
-            if (sexo == 0) {
+                var sexo = $(this).val();
+
+                if(sexo == 0) {
 
                 $(".militar").show();
                 $("#file_military").prop('required',true);
 
-            } else if (sexo == 1 || sexo == 2) {
+                } else if(sexo == 1 || sexo == 2) {
 
                 $(".militar").hide();
                 $("#file_military").prop('required',null);
             }
 
-        });
 
-        $("#inputCep").blur(function () {
+            });
 
-            get_cep($(this).val());
+            $("#inputCep").blur(function() {
 
-        });
+                get_cep($(this).val());
 
-        $("#opcaoSim").click(function () {
+            });
 
-            if ($(this).is(':checked')) {
-                $(".deficiencia").show();
-            } else {
-                $(".deficiencia").hide();
-            }
-        });
+            $("#opcaoSim").click(function() {
 
-        var enabled = false;
-        if ($('#comentario').val()) {
-            enabled = true;
-        }
-
-        // Button functonality
-        $('#addSubmit').click(function () {
-            $.ajax({
-                // Call url
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                },
-                url: "personal-data",
-                type: 'POST',
-                data: {
-                    _token: '{{csrf_token()}}',
-
-                    // Call values of fields candidates table
-                    cpf: $('#inputNumDoc').val(),
-                    date_birth: $('#textDtNasc').val(),
-                    flag_deficient: $('#opcaoSim').val(),
-                    genre: $('#sexo').val(),
-                    last_name: $('#textSobrenome').val(),
-                    marital_status: $('#inputEstadoCivil').val(),
-                    name: $('#textNome').val(),
-                    name_father: $('#inputNomePai').val(),
-                    name_mother: $('#inputNomeMae').val(),
-                    name_social: $('#textNomeSocial').val(),
-                    nationality: $('#inputNatu').val(),
-                    obs_deficient: $('#comentario').val(),
-
-                    // Call values of fields addresses table
-                    elector_title: $('#inputNumDoc_1').val(),
-                    elector_link: $('#file_title').val(),
-                    military_certificate: $('#inputNumDoc_2').val(),
-                    military_link: $('#file_military').val(),
-                    rg_number: $('#inputNumDocs').val(),
-                    rg_number_link: $('#file_rg').val(),
-                    date_issue: $('#inputDataEmissao').val(),
-                    uf_issue: $('#inputOrgEmissor').val(),
-
-                    // Call values of fields addresses table
-                    city: $('#inputCidade').val(),
-                    complement: $('#inputComplemento').val(),
-                    neighborhood: $('#inputBairro').val(),
-                    number: $('#inputNum').val(),
-                    postal_code: $('#inputCep').val(),
-                    public_place: $('#inputLogradouro').val(),
-                    state: $('#inputUF').val(),
-                    type_public_place: $('#inputTipoLogra').val(),
-                },
-                success: function (result) {
-                    // F12 or inspect on browser to show result
-                    console.log(result)
-                },
-
-
-                error: function (errors) {
-                    console.log(errors)
+                if ($(this).is(':checked')) {
+                    $(".deficiencia").show();
+                } else {
+                    $(".deficiencia").hide();
                 }
             });
-        });
-    });
 
-</script>
+            var enabled = false;
+            if ($('#comentario').val()) {
+                enabled = true;
+            }
+
+            // Button functonality
+            $('#addSubmit').click(function () {
+                $.ajax({
+                    // Call url
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    url: "personal-data",
+                    type: 'POST',
+                    data: {
+                        _token: '{{csrf_token()}}',
+
+                        // Call values of fields candidates table
+                        cpf: $('#inputNumDoc').val(),
+                        date_birth: $('#textDtNasc').val(),
+                        flag_deficient: $('#opcaoSim').val(),
+                        genre: $('#sexo').val(),
+                        last_name: $('#textSobrenome').val(),
+                        marital_status: $('#inputEstadoCivil').val(),
+                        name: $('#textNome').val(),
+                        name_father: $('#inputNomePai').val(),
+                        name_mother: $('#inputNomeMae').val(),
+                        name_social: $('#textNomeSocial').val(),
+                        nationality: $('#inputNatu').val(),
+                        obs_deficient: $('#comentario').val(),
+
+                        // Call values of fields addresses table
+                        elector_title: $('#inputNumDoc_1').val(),
+                        elector_link: $('#file_title').val(),
+                        military_certificate: $('#inputNumDoc_2').val(),
+                        military_link: $('#file_military').val(),
+                        rg_number: $('#inputNumDocs').val(),
+                        rg_number_link: $('#file_rg').val(),
+                        date_issue: $('#inputDataEmissao').val(),
+                        uf_issue: $('#inputOrgEmissor').val(),
+
+                        // Call values of fields addresses table
+                        city: $('#inputCidade').val(),
+                        complement: $('#inputComplemento').val(),
+                        neighborhood: $('#inputBairro').val(),
+                        number: $('#inputNum').val(),
+                        postal_code: $('#inputCep').val(),
+                        public_place: $('#inputLogradouro').val(),
+                        state: $('#inputUF').val(),
+                        type_public_place: $('#inputTipoLogra').val(),
+                    },
+                    success: function (result) {
+                        // F12 or inspect on browser to show result
+                        console.log(result)
+                    },
+
+
+                    error: function (errors) {
+                        console.log(errors)
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
