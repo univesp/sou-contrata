@@ -42,10 +42,11 @@
 			<div class="row">
 				<h3>Formação Acadêmica</h3>
 			<hr />
+			<div id="father">
 			<div class="col-md-7">
 				<div class="row">
 					<div class="col-md-12">
-						<select name="graduations[]" class="form-control graduations">
+						<select name="graduations[]" id="0" class="form-control graduations tier">
 							<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>
 							<option value="1">GRADUAÇÃO</option>
 							<option value="2">MESTRADO</option>
@@ -73,7 +74,6 @@
 			</div>
 			<br>
 			<br>
-			<div id="father">
 				<div class="col-md-7">
 					<div class="row spacing-top">
 						<div class="col-md-12">
@@ -121,9 +121,9 @@
 @section('scripts')
 	<script>
 		$(function(){
-			
+
 			var CONTADOR = 0;
-			var CERTIFICADOS = new Array();
+			var CERTIFICADOS = [];
 
 			function validateExtension(file) {
 				if(file.get(0).files[0].size > 40000 || file.get(0).files[0].type != 'application/pdf') {
@@ -142,20 +142,15 @@
 
 				var HTML = new Array();
 				var codigo;
+                CONTADOR++;
 
-				if(!id) {
-					codigo = CONTADOR;
-
-				} else {
-
-					codigo = id;
-				}
+                codigo = CONTADOR;
 
 				HTML.push('<div id="grad_' + codigo + '">');
 				HTML.push('<div class="col-md-7">');
 				HTML.push('<div class="row">');
 				HTML.push('<div class="col-md-12">');
-				HTML.push('<select name="graduations[]" class="form-control graduations graduate-select">');
+				HTML.push('<select name="graduations[]" id="' + codigo + '" class="form-control graduations graduate-select tier">');
 				HTML.push('<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>');
 				HTML.push('<option value="1">GRADUAÇÃO</option>');
 				HTML.push('<option value="2">MESTRADO</option>');
@@ -177,7 +172,7 @@
 				HTML.push('</select>');
 				HTML.push('</div>');
 				HTML.push('</div>');
-				HTML.push('</div><br><br>');		
+				HTML.push('</div><br><br>');
 				HTML.push('</div></div></div><br/>');
 				HTML.push('<div class="col-md-7">');
 				HTML.push('<div class="row spacing-top">');
@@ -208,20 +203,21 @@
 
 				$("#father").append(HTML.join(''));
 
-				CONTADOR++;
+                $('.tier').on('change', function() {
+                    CERTIFICADOS[$(this).attr('id')] = $(this).val();
+
+                    if (CERTIFICADOS.includes("1") && CERTIFICADOS.includes("2") && CERTIFICADOS.includes("3")) {
+                        $('.submit').prop('disabled',false);
+                    } else {
+                        $('.submit').prop('disabled',true);
+                    }
+                });
+
 			}
             function getSelectData() {
                 $.ajax({
-                    // Call url
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    },
                     url: "area",
                     type: 'get',
-                    data: {
-                        _token: '{{csrf_token()}}'
-
-                    },
                     success: function (result) {
                         result = JSON.parse(result);
                         Object.keys(result).forEach(function (key) {
@@ -241,6 +237,12 @@
 
 				});
 
+                $('.tier').on('change', function() {
+                    CERTIFICADOS[$(this).attr('id')] = $(this).val();
+
+                    console.log(CERTIFICADOS);
+                });
+
                 getSelectData();
 
 			});
@@ -253,12 +255,8 @@
 			});
 
 			$(document).on('click', '.novo', function(){
-
-				CERTIFICADOS.push($(".graduations").val());
-				
-				console.log(CERTIFICADOS);
-				
 				var id = $(this).attr('novo');
+                getSelectData();
 
 				mount_form_graduation(id);
 
@@ -272,9 +270,9 @@
 					$("#subarea").prop('disabled',true);
 				} else {
 
-					
+
 					console.log(CERTIFICADOS);
-					
+
 					$('#subarea').children().not(':first').remove();
 					$.ajax({
 						// Call url
