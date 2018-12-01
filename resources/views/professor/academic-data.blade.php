@@ -75,19 +75,19 @@
 			<br>
 			<div id="father">
 				<div class="col-md-7">
-					<div class="row" style="margin-top:10px;">
+					<div class="row spacing-top">
 						<div class="col-md-12">
 							<label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
 							<input  type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
-					<div class="row" style="margin-top:10px;">
+					<div class="row spacing-top">
 						<div class="col-md-8">
 							<label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
 							<input  type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
 						</div>
 					</div>
-					<div class="row" style="margin-top:10px;">
+					<div class="row spacing-top">
 						<div class="col-md-3">
 							<label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
 							<input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
@@ -95,15 +95,15 @@
 					</div>
 				</div>
 
-				<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-6" style="margin-top:10px;padding-left:0px;">
+				<div class="row col-md-7 spacing-top">
+					<div class="col-md-6 spacing-top">
 
 					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
 						<div class="display-flex">
 							<input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
 						</div>
 					</div><br />
-					<div class="col-md-1" style="margin-top:0px;">
+					<div class="col-md-1">
 						<button type="button" class="btn btn-success btn-sm novo">Novo</button>
 					</div>
 				</div>
@@ -111,7 +111,6 @@
 		</div>
 
 			<hr />
-	    <div style="clear: both;"></div>
 		<div class="row">
 			<p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
 		</div>
@@ -161,28 +160,28 @@
 				HTML.push('</select>');
 				HTML.push('</div></div></div><br/>');
 				HTML.push('<div class="col-md-7">');
-				HTML.push('<div class="row" style="margin-top:10px;">');
+				HTML.push('<div class="row spacing-top">');
 				HTML.push('<div class="col-md-12">');
 				HTML.push('<label for="inputCursos" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>');
 				HTML.push('<input type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity(Digite o Curso)" onchange="try{setCustomValidity("")}catch(e){}>');
 				HTML.push('</div></div>');
-				HTML.push('<div class="row" style="margin-top:10px;">');
+				HTML.push('<div class="row spacing-top">');
 				HTML.push('<div class="col-md-8">');
 				HTML.push('<label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>');
 				HTML.push('<input type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity(Digite a Instituição)" onchange="try{setCustomValidity("")}catch(e){}>');
 				HTML.push('</div></div>');
-				HTML.push('<div class="row" style="margin-top:10px;">');
+				HTML.push('<div class="row spacing-top">');
 				HTML.push('<div class="col-md-12">');
 				HTML.push('<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>');
 				HTML.push('<input type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity(Digite o Data de Conclusão)" onchange="try{setCustomValidity("")}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}>');
 				HTML.push('</div></div></div>');
-			    HTML.push('<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">');
-			    HTML.push('<div class="col-md-6" style="margin-top:10px;">');
+			    HTML.push('<div class="row col-md-7 spacing-top">');
+			    HTML.push('<div class="col-md-6 spacing-top">');
 			    HTML.push('<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>');
 			    HTML.push('<div class="display-flex">');
 			    HTML.push('<input type="file" name="file_graduate[]" class="file_graduate"/>');
 			    HTML.push('</div></div><br />');
-			    HTML.push('<div class="col-md-3" style="margin-top:0px;">');
+			    HTML.push('<div class="col-md-3">');
 			    HTML.push('<button type="button" class="btn btn-success btn-sm novo" novo='+ codigo +'>Novo</button>');
 			    HTML.push('<button type="button" class="btn btn-danger btn-sm remove" remove=' + codigo + '>Remover</button>');
 			    HTML.push('</div></div>');
