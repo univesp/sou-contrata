@@ -52,8 +52,8 @@
 					</div>
 				</div>
 			</div>
-				<div class="row">
-				  <div class="col-md-7">
+			<div class="row">
+				<div class="col-md-7">
 					<div class="col-md-6">
 					   	<label class="area">Selecione a sua Área</label>
 					   	<input type="hidden" name="area_id" id="area_id"/>
@@ -63,12 +63,12 @@
 					</div>
 					<div class="col-md-6">
 						<label class="area">Selecione a sua Subárea</label>
-						<select name="graduations[]" class="form-control graduations" id="subarea" required>
+						<select name="graduations[]" class="form-control graduations" id="subarea" disabled required>
 							<option value="">Selecione a subárea</option>
 						</select>
 					</div>
-                  </div>
-				</div>
+                </div>
+			</div>
 			<br>
 			<br>
 			<div id="father">
@@ -111,7 +111,7 @@
 			<hr />
 	    <div style="clear: both;"></div>
 		<div class="row">
-			<p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
+			<p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit" disabled>AVANÇAR</button></p>
 		</div>
 		<br /><br />
 			</form>
@@ -120,7 +120,10 @@
 @section('scripts')
 	<script>
 		$(function(){
+			
 			var CONTADOR = 0;
+			var CERTIFICADOS = new Array();
+
 			function validateExtension(file) {
 				if(file.get(0).files[0].size > 20000 || file.get(0).files[0].type != 'application/pdf') {
                     $("#msgFail").addClass('msgFail');
@@ -157,6 +160,23 @@
 				HTML.push('<option value="2">MESTRADO</option>');
 				HTML.push('<option value="3">DOUTORADO</option>');
 				HTML.push('</select>');
+				HTML.push('<div class="row">');
+				HTML.push('<div class="col-md-7">');
+				HTML.push('<div class="col-md-6">');
+				HTML.push('<label class="area">Selecione a sua Área</label>');
+				HTML.push('<input type="hidden" name="area_id" id="area_id"/>');
+				HTML.push('<select name="graduations[]" class="form-control graduations" id="area" required>');
+				HTML.push('<option value="">Selecione a área</option>');
+				HTML.push('</select>');
+				HTML.push('</div>');
+				HTML.push('<div class="col-md-6">');
+				HTML.push('<label class="area">Selecione a sua Subárea</label>');
+				HTML.push('<select name="graduations[]" class="form-control graduations" id="subarea" disabled required>');
+				HTML.push('<option value="">Selecione a subárea</option>');
+				HTML.push('</select>');
+				HTML.push('</div>');
+				HTML.push('</div>');
+				HTML.push('</div><br><br>');		
 				HTML.push('</div></div></div><br/>');
 				HTML.push('<div class="col-md-7">');
 				HTML.push('<div class="row" style="margin-top:10px;">');
@@ -213,7 +233,6 @@
                 });
             }
 
-
 			$(document).ready(function(){
 
 				$(".file_graduate").change(function () { 
@@ -222,6 +241,7 @@
 				});
 
                 getSelectData();
+
 			});
 
 			$(document).on('click', '.remove', function(){
@@ -233,6 +253,10 @@
 
 			$(document).on('click', '.novo', function(){
 
+				CERTIFICADOS.push($(".graduations").val());
+				
+				console.log(CERTIFICADOS);
+				
 				var id = $(this).attr('novo');
 
 				mount_form_graduation(id);
@@ -240,29 +264,41 @@
 			});
 
             $('#area').on('change', function(e) {
-				$("#area_id").val($('#area').val());
-                $('#subarea').children().not(':first').remove();
-                $.ajax({
-                    // Call url
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                    },
-                    url: `subarea/${e.target.value}`,
-                    type: 'get',
-                    data: {
-                        _token: '{{csrf_token()}}',
-                    },
-                    success: function (result) {
-                        result = JSON.parse(result);
-                        Object.keys(result).forEach(function (key) {
-                            $('#subarea').append(`<option value="${key}">${result[key]}</option>`)
-                        });
-                    },
 
-                    error: function (errors) {
-                        console.log(errors)
-                    }
-                });
+				$("#area_id").val($('#area').val());
+
+				if($('#area').val() == '') {
+					$("#subarea").prop('disabled',true);
+				} else {
+
+					
+					console.log(CERTIFICADOS);
+					
+					$('#subarea').children().not(':first').remove();
+					$.ajax({
+						// Call url
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+						},
+						url: `subarea/${e.target.value}`,
+						type: 'get',
+						data: {
+							_token: '{{csrf_token()}}',
+						},
+						success: function (result) {
+							result = JSON.parse(result);
+							Object.keys(result).forEach(function (key) {
+								$('#subarea').append(`<option value="${key}">${result[key]}</option>`)
+							});
+
+							$("#subarea").prop('disabled',false);
+
+						},
+						error: function (errors) {
+							console.log(errors)
+						}
+					});
+				}
             });
 		});
 	</script>
