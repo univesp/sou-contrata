@@ -43,7 +43,7 @@
                 <div class="col-md-7">
                     <div class="row">
                         <div class="col-md-12">
-                            <select name="graduate_dinamic[]" class="form-control graduate_dinamic">
+                            <select name="graduate_dinamic[]" id="0" class="form-control graduate_dinamic tier">
                                 <option value="" selected>SELECIONE A SUA FORMAÇÃO</option>
                                 <option value="1">GRADUAÇÃO</option>
                                 <option value="2">MESTRADO</option>
@@ -72,19 +72,19 @@
                 <br>
                 <div id="father">
                     <div class="col-md-7">
-                        <div class="row" style="margin-top:10px;">
+                        <div class="row spacing-top">
                             <div class="col-md-12">
                                 <label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
                                 <input  type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
-                        <div class="row" style="margin-top:10px;">
+                        <div class="row spacing-top">
                             <div class="col-md-8">
                                 <label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
                                 <input  type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
-                        <div class="row" style="margin-top:10px;">
+                        <div class="row spacing-top">
                             <div class="col-md-3">
                                 <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
                                 <input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
@@ -92,15 +92,15 @@
                         </div>
                     </div>
 
-                    <div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-                        <div class="col-md-6" style="margin-top:10px;padding-left:0px;">
+                    <div class="row col-md-7 spacing-top">
+                        <div class="col-md-6 spacing-top">
 
                             <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
                             <div class="display-flex">
                                 <input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
                             </div>
                         </div><br />
-                        <div class="col-md-1" style="margin-top:0px;">
+                        <div class="col-md-1">
                             <button type="button" class="btn btn-success btn-sm novo">Novo</button>
                         </div>
                     </div>
@@ -108,9 +108,8 @@
             </div>
 
             <hr />
-            <div style="clear: both;"></div>
             <div class="row">
-                <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
+                <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit" disabled>AVANÇAR</button></p>
             </div>
             <br /><br />
         </form>
@@ -140,20 +139,15 @@
 
                 var HTML = new Array();
                 var codigo;
+                CONTADOR++;
 
-                if(!id) {
-                    codigo = CONTADOR;
-
-                } else {
-
-                    codigo = id;
-                }
+                codigo = CONTADOR;
 
                 HTML.push('<div id="grad_' + codigo + '">');
                 HTML.push('<div class="col-md-7">');
                 HTML.push('<div class="row">');
                 HTML.push('<div class="col-md-12">');
-                HTML.push('<select name="graduate_dinamic[]" class="form-control graduations graduate-select graduate_dinamic">');
+                HTML.push('<select name="graduate_dinamic[]" id="' + codigo + '" class="form-control graduations graduate-select graduate_dinamic tier">');
                 HTML.push('<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>');
                 HTML.push('<option value="1">GRADUAÇÃO</option>');
                 HTML.push('<option value="2">MESTRADO</option>');
@@ -205,7 +199,15 @@
 
                 $("#father").append(HTML.join(''));
 
-                CONTADOR++;
+                $('.tier').on('change', function() {
+                    CERTIFICADOS[$(this).attr('id')] = $(this).val();
+
+                    if (CERTIFICADOS.includes("1") && CERTIFICADOS.includes("2") && CERTIFICADOS.includes("3")) {
+                        $('.submit').prop('disabled',false);
+                    } else {
+                        $('.submit').prop('disabled',true);
+                    }
+                });
             }
 
             function getSelectData() {
@@ -215,10 +217,6 @@
                     },
                     url: "area",
                     type: 'get',
-                    data: {
-                        _token: '{{csrf_token()}}'
-
-                    },
                     success: function (result) {
                         result = JSON.parse(result);
                         Object.keys(result).forEach(function (key) {
@@ -241,10 +239,10 @@
 
                 });
 
-                $(".graduate_dinamic").change(function(){
+                $('.tier').on('change', function() {
+                    CERTIFICADOS[$(this).attr('id')] = $(this).val();
 
-                    //$(".area_id").val($(this).val());
-
+                    console.log(CERTIFICADOS);
                 });
 
                 $("#area").change(function(){
@@ -256,13 +254,20 @@
             $(document).on('click', '.remove', function(){
 
                 var id = $(this).attr('remove');
+                delete CERTIFICADOS[id];
 
+                if (CERTIFICADOS.includes("1") && CERTIFICADOS.includes("2") && CERTIFICADOS.includes("3")) {
+                    $('.submit').prop('disabled',false);
+                } else {
+                    $('.submit').prop('disabled',true);
+                }
                 $("#grad_" + id).remove();
             });
 
             $(document).on('click', '.novo', function(){
 
                 var id = $(this).attr('novo');
+
 
                 getSelectData();
 
@@ -313,7 +318,6 @@
             });
 
             $('#area').on('change', function(e) {
-
                 //$(".area_id").val($('#area').val());
 
                 if($(this).val() == '') {
