@@ -42,8 +42,8 @@ Route::post('documents', 'UserController@documents')->name('documents')->middlew
 Route::get('process','VacancyController@process')->name('process')->middleware('login');
 
 //AREA/SUBAREA
-Route::get('area','ScholarityController@area')->name('area')->middleware('login');
-Route::get('subarea/{area}','ScholarityController@subarea')->name('subarea')->middleware('login');
+Route::get('area','ScholarityController@area')->name('area');
+Route::get('subarea/{area}','ScholarityController@subarea')->name('subarea');
 
 //POSITION
 Route::get('position/{id}','PositionController@index')->name("professorPosition")->middleware('login');
