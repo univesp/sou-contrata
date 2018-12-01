@@ -19,14 +19,14 @@
 			<ul class="nav nav-tabs">
 				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
 				<li class="disabled"><a href="#">Dados Pessoais</a></li>
-				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
+				<li class="active, link3"><a href="{{ route('professor.academic-data.index') }}">Dados Academicos</a></li>
                 {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li> --}}
 				<li class="disabled"><a href="#">Área de Interesse</a></li>
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
 
-			<form action="{{ route('professorAcademicData') }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('professor.academic-data') }}" method="post" enctype="multipart/form-data">
 
 				{{ csrf_field() }}
 			<div  class="row">
