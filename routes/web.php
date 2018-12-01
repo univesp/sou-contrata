@@ -42,8 +42,8 @@ Route::post('documents', 'UserController@documents')->name('documents')->middlew
 Route::get('process','VacancyController@process')->name('process')->middleware('login');
 
 //AREA/SUBAREA
-Route::get('area','ScholarityController@area')->name('area')->middleware('login');
-Route::get('subarea/{area}','ScholarityController@subarea')->name('subarea')->middleware('login');
+Route::get('area','ScholarityController@area')->name('area');
+Route::get('subarea/{area}','ScholarityController@subarea')->name('subarea');
 
 //POSITION
 Route::get('position/{id}','PositionController@index')->name("professorPosition")->middleware('login');
@@ -56,7 +56,7 @@ Route::post('email-check','UserController@checkEmail');
 //Route::get('personal-data','PersonalDataController@index')->name("professorPersonalData")->middleware('login');
 Route::resource('personal-data', 'PersonalDataController', [
     'only' => ['index', 'store'],
-    'names'=> ['index' => 'professorPersonalData', 'store' => 'professorPersonalData']
+    'names' => ['index' => 'professorPersonalData', 'store' => 'professorPersonalData']
 ])->middleware('login');
 
 //ACADEMIC-DATA

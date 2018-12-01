@@ -71,7 +71,6 @@
 		</div>
 	</div>
 </section>
-	<!-- #content -->
 </div>
 
 </main>

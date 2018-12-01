@@ -88,7 +88,8 @@ class UserController extends Controller {
 
         if(Crypt::decrypt($login->password) == $request->password) {
             Helper::createSession($login, $request);
-            return view('professor.personal-data');
+            //return view('professor.personal-data');
+            return redirect()->route('professorPersonalData');
         } else {
             $data = "O email ou senha não correspondem ao dados de acesso.";
             return view('vacancy.login',compact('data'));

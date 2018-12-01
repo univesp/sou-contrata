@@ -70,7 +70,6 @@
                         <option value="1">Casado</option>
                         <option value="3">Divorciado</option>
                         <option value="4">Viúvo</option>
-                        <!--<option value="4">Amasiado</option>-->
                     </select>
                     @if($errors->has('marital_status'))
                         <p class="text-danger">{{ $errors->first('marital_status') }}</p>
@@ -91,12 +90,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         Possui Alguma Deficiência?
-                        <!-- <div class="checkbox, opcao-alinhamento">
-                            <label><input type="checkbox" id ="opcaoNao" name="opcaoDeficiencia" onclick="return Validacao();">Não</label>
-                        </div> -->
                         <div class="checkbox">
                             <label>
-                                <!-- <input type="hidden" id="opcaoSim" name="opcaoDeficiencia" value="0" onclick="return Validacao();"> -->
                                 <input type="checkbox" id="opcaoSim" name="flag_deficient" onclick="return Validacao();">Sim
                             </label>
                         </div>
@@ -105,10 +100,10 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <label for="comentario" class="control-label fonte-campos deficiencia" style="display: none;">
+                            <label for="comentario" class="control-label fonte-campos deficiencia none">
                                 Descreva sua Deficiência
                             </label>
-                            <textarea name="obs_deficient" class="form-control deficiencia" rows="2" id="comentario" style="display: none;"></textarea>
+                            <textarea name="obs_deficient" class="form-control deficiencia none" rows="2" id="comentario"></textarea>
                         </div>
                     </div>
                 </div>
@@ -134,19 +129,19 @@
             <div class="col-md-2">
                 <label for="inputDataEmissao" class="fonte-campos">Data Emissão<span class="cor-campo"> *</span></label>
                 <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" required oninvalid="this.setCustomValidity('Digite a Data de Emissão')"
-                    onchange="try{setCustomValidity('')}catch(e){}" style="padding: 0;">
+                    onchange="try{setCustomValidity('')}catch(e){}">
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <input type="file" id="file_rg" name="file_rg" style="margin-top:15px;" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')"
+                <input type="file" id="file_rg" class="spacing-top" name="file_rg" required oninvalid="this.setCustomValidity('Obrigatório upload do RG')"
                     onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_rg'))
                     <p class="text-danger">{{ $errors->first('file_rg') }}</p>
                 @endif
             </div>
         </div>
-        <div class="row elector_title">
+        <div class="row">
             <br />
             <h4>CPF</h4>
             <div class="col-md-4">
@@ -160,7 +155,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <input type="file" id="file_cpf" name="file_cpf" style="margin-top:15px;" required
+                <input type="file" id="file_cpf" name="file_cpf" class="spacing-top" required
                     onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_cpf'))
                     <p class="text-danger">{{ $errors->first('file_cpf') }}</p>
@@ -183,7 +178,7 @@
         </div>
         <div class="row elector_title">
             <div class="col-md-3">
-                <input type="file" id="file_title" name="file_title" style="margin-top:15px;">
+                <input type="file" id="file_title" name="file_title" class="spacing-top">
             @if($errors->has('file_title'))
                 <p class="text-danger">{{ $errors->first('file_title') }}</p>
             @endif
@@ -191,15 +186,15 @@
         </div>
         <div class="row militar">
             <br />
-            <h4 class="militar" style="display: none;">Certificado Militar</h4>
+            <h4 class="militar none">Certificado Militar</h4>
 
             <div class="col-md-4">
-                <label for="inputNumDoc_2" style="display: none;" class="fonte-campos militar">Número de Documento<span class="cor-campo"> *</span></label>
-                <input name="military_certificate" style="display: none;" type="text" class="form-control militar" id="inputNumDoc_2">
+                <label for="inputNumDoc_2" class="fonte-campos militar none">Número de Documento<span class="cor-campo"> *</span></label>
+                <input name="military_certificate" type="text" class="form-control militar none" id="inputNumDoc_2">
                 @if($errors->has('military_certificate'))
                     <p class="text-danger">{{ $errors->first('military_certificate') }}</p>
                 @endif
-                <input type="file" id="file_military" class="militar" name="file_military" style="margin-top:15px;display: none;">
+                <input type="file" id="file_military" class="militar none spacing-top" name="file_military">
                 @if($errors->has('file_military'))
                     <p class="text-danger">{{ $errors->first('file_military') }}</p>
                 @endif
@@ -279,7 +274,7 @@
             <hr />
             <div class="col-md-4">
                 <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás e Telefone<span class="cor-campo"> *</span></label>
-                <input type="file" id="file_address" class="proof_address" name="file_address" style="margin-top:15px;" required onchange="try{setCustomValidity('')}catch(e){}" >
+                <input type="file" id="file_address" class="proof_address spacing-top" name="file_address" required onchange="try{setCustomValidity('')}catch(e){}" >
                 @if($errors->has('file_address'))
                     <p class="text-danger">{{ $errors->first('file_address') }}</p>
                 @endif

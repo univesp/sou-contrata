@@ -19,15 +19,13 @@
         <p class="formatacao-resumo">
             <ul class="nav nav-tabs">
                 <li class="active, link"><a href="#">Edital</a></li>
-                <!--<li><a class="link-2" href="#">Convocação</a></li>-->
             </ul>
         </p>
         <?php
         $link = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."documents".DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR."123456789.pdf";
-        //C:\xampp\htdocs\sou-contrata\public\documents\pdf\123456789.pdf
         ?>
             <iframe src="http://docs.google.com/gview?url=http://www.manuais.net.br/cyrela/legacy/conteudo/desenhos/101.pdf&embedded=true"
-                    style="width:100%; height:500px;padding: 30px;" frameborder="0"></iframe>
+                    class="iframe-pdf" frameborder="0"></iframe>
         {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
         <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
         <span class="texto-formatacao">
@@ -49,8 +47,7 @@
             </div>
         @else
             <div class="botao-posicao">
-                <a href="{{route('personal-data.index')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
-
+                <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
             </div>
         @endif
     </div>
