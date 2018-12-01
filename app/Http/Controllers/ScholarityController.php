@@ -21,7 +21,8 @@ class ScholarityController extends Controller
      */
     public function index()
     {
-        return view('professor.academic-data');
+        $data =  Scholarity::all();
+        return view('professor.academic-data',compact('data'));
     }
 
     /**
@@ -36,22 +37,19 @@ class ScholarityController extends Controller
         $id = !empty($request->session()->get('candidate')) ? $request->session()->get('candidate') : 1 ;
 
         $school = new Scholarity();
-
+        $path_file = "";
         foreach ($request['graduations'] as $k => $d) {
 
             $validator = Validator::make($request->all(),[
-
-                'file_graduate.*'  => 'required|mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'
+                'file_graduate.*'  => 'required|mimes:pdf|max:40000'
             ]);
-            
+
             //dd($validator->messages());
 
             if ($validator->fails()) {
-                
-                //dd($validator->messages());
-    
+                //dd($validator);
                 return redirect()
-                    ->route('personal-data.index')
+                    ->route('professorAcademicData')
                     ->withInput($request->all())
                     ->withErrors($validator->messages())
                 ;
@@ -92,15 +90,16 @@ class ScholarityController extends Controller
             }
         }
 
+        dd($school);
         $resp = $school;
         $data = Vacancy::all()->where('edict_id', 1);
 
         Helper::alterSession($request, 3);
-        return view('vacancy/process', compact(['resp','data']));
+        return view('vacancy.process', compact(['resp','data']));
 
     }
 
-    
+
     public function area() {
         // Create area list to select box
         $area = Area::pluck('description', 'id');
@@ -119,7 +118,7 @@ class ScholarityController extends Controller
             ->select('subareas.id', 'subareas.description')
             ->where('area_subarea.area_id', $area)
             ->pluck('subareas.description', 'subareas.id');
-            
+
         // Return subareas value
         echo json_encode($subareas);
     }
