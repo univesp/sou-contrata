@@ -12,10 +12,9 @@
 @section('username')
     {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
-
 <div class="container">
     <ul class="nav nav-tabs">
-        <li class="active, link3"><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li>
+        <li class="active, link3"><a href="{{ route('professorPersonalData') }}">Dados Pessoais</a></li>
         {{-- <li><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li> --}}
         <li class="enabled"><a href="#">Dados Academicos</a></li>
         {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li>
@@ -25,7 +24,7 @@
     <div class="formatacao-campos">
         *Obrigatório
     </div>
-    <form id="form" name="personal-data" method="post" enctype="multipart/form-data">
+    <form id="form" name="{{ route('professorPersonalData') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         <input type="hidden" value="{{Session::get('user')['id']}}" name="user_id" id="user_id">
 
@@ -457,7 +456,7 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                     },
-                    url: "personal-data",
+                    url: "professorPersonalData",
                     type: 'POST',
                     data: {
                         _token: '{{csrf_token()}}',

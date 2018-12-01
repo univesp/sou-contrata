@@ -32,11 +32,11 @@
 
             <div class="form-group form-group col-md-3" style="padding-left: 10px;">
                 <label for="textSenha" class="control-label, fonte-campos">Senha<span class="cor-campo">*</span></label>
-                <input id="textSenha" class="form-control" type="password" name="password" required oninvalid="this.setCustomValidity('Digite sua Senha')"  onchange="validadePasswordConfirmation();">
+                <input id="textSenha" class="form-control" type="password" name="password" required  onchange="validadePasswordConfirmation();">
             </div>
             <div class="form-group form-group col-md-3" style="padding-left: 10px;">
                 <label for="textConfirm" class="control-label, fonte-campos">Confirmar senha<span class="cor-campo">*</span></label>
-                <input id="textConfirm" class="form-control" type="password" name="passwordConfirm" required oninvalid="this.setCustomValidity('Confirme sua Senha')" onchange="validadePasswordConfirmation();">
+                <input id="textConfirm" class="form-control" type="password" name="passwordConfirm" required onchange="validadePasswordConfirmation();">
             </div>
             <div style="clear: both;"></div>
             <div class="form-group form-group col-md-3" style="padding-right: 0px;">
@@ -47,6 +47,13 @@
             <div class="form-group form-group col-md-6" style="padding-right: 12px;width: 541px;">
                 <label for="textEmail" class="control-label, fonte-campos">Email<span class="cor-campo">*</span></label>
                 <input id="textEmail" class="form-control" type="Email" name="email" style="width: 539px;" required oninvalid="this.setCustomValidity('Digite seu Email')" onchange="checkEmail();" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            </label>
+            </div>
+            <div style="clear: both;"></div>
+            <div class="form-group form-group col-md-7">
+                <label>
+                    <input type="radio" name="confirmation" required> Ao me cadastrar, confirmo que sou docente da <b>USP</b>, <b>UNICAMP</b> ou <b>UNESP</b><span class="cor-campo">*</span>
+                </label>
             </div>
             <div style="clear: both;"></div>
             <hr />

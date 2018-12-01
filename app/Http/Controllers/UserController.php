@@ -26,9 +26,9 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        return view('vacancy/login');
+        return view('vacancy.login');
     }
 
     /**
@@ -52,7 +52,7 @@ class UserController extends Controller {
         $user->save();
 
         Helper::createSession($user, $request);
-        return redirect('/personal-data');
+        return redirect()->route('professorPersonalData');
 
     }
 
@@ -82,19 +82,16 @@ class UserController extends Controller {
 
     public function login(Request $request)
     {
-        $login = User::where('password', '=', Crypt::encrypt($request->password))
-            ->orWhere('email', $request->email)->select('id', 'name' , 'email')->first();
-        if($login && isset($login->email)) {
+
+        $login = User::where('email', $request->email)
+            ->select('id', 'name' , 'email', 'password')->first();
+
+        if(Crypt::decrypt($login->password) == $request->password) {
             Helper::createSession($login, $request);
-            //pegando candidato cadastrado
-            $candidate = Candidate::where('user_id', $request->id)->first();
-            if($candidate) {
-               return redirect('/process');
-            } else {
-                return redirect('personal-data');
-            }
+            return view('professor.personal-data');
         } else {
-            return redirect('/login');
+            $data = "O email ou senha não correspondem ao dados de acesso.";
+            return view('vacancy.login',compact('data'));
         }
 
     }
@@ -119,8 +116,8 @@ class UserController extends Controller {
         return "Ok";
     }
 
-    public function form() 
+    public function form()
     {
-        return view('user/form');
+        return view('user.form');
     }
 }
