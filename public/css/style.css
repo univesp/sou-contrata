@@ -93,11 +93,6 @@ input[type="checkbox"] {
   margin-bottom: 0px !important;
 }
 
-.input-login {
-    box-shadow:none;
-    border-radius:0px;
-}
-
 .iframe-pdf {
     width:100%;
     height:500px;

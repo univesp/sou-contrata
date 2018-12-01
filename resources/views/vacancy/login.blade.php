@@ -32,10 +32,10 @@
 			</div>
             <form name="form" action="login" method="post">
                 {{ csrf_field() }}
-				<div class="step stepUsername">
+				<div class="step stepUsername" style="display: block;">
 					<div class="form-group">
-                    <input type="email" id="email" name="email" class="form-control input-login"  required oninvalid="this.setCustomValidity('Digite o email')" onchange="try{setCustomValidity('')}catch(e){}">
-						<label class="form-control-placeholder" for="username">E-mail</label>
+                    <input style="box-shadow:none;border-radius:0px;" type="email" id="email" name="email" class="form-control"  required oninvalid="this.setCustomValidity('Digite o email')" onchange="try{setCustomValidity('')}catch(e){}">
+						<label class="form-control-placeholder" for="username">Usuário</label>
 					</div>
 					<div class="step-footer">
 						<a href="">Esqueci minha senha</a>
@@ -45,7 +45,7 @@
 				</div>
 				<div class="step stepPassword">
 					<div class="form-group">
-                    <input type="password" id="inputPassword" name="password" class="form-control input-login" required>
+                    <input style="box-shadow:none;border-radius:0px" type="password" id="inputPassword" name="password" class="form-control" required>
 						<label class="form-control-placeholder" for="password">Senha</label>
 						<button class="showPassword" type="button">
 							<i class="material-icons show">visibility</i>
@@ -61,7 +61,7 @@
 				<input name="AuthState" type="hidden" value="">
 			</form>
             @if(!empty($data))
-                <div class="container-fluid spacing-top">
+                <div class="container-fluid" style="display: block; padding-top: 25px">
                     <div class="alert alert-danger" >
                         <strong>{{$data}}</strong>
                     </div>
