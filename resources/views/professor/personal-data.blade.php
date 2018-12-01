@@ -26,6 +26,8 @@
     </div>
     <form id="form" name="{{ route('professorPersonalData') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
+        <input type="hidden" value="{{Session::get('user')['id']}}" name="user_id" id="user_id">
+
             <div class="row">
                     <div class="col-md-3">
                         <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
@@ -144,7 +146,9 @@
                 @endif
             </div>
         </div>
-        <div class="row">
+        <div class="row elector_title">
+            <br />
+            <h4>CPF</h4>
             <div class="col-md-4">
                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                 <input name="cpf" type="text" class="form-control" id="inputNumDoc" required oninvalid="this.setCustomValidity('Digite o CPF somente números')"

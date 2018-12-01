@@ -21,10 +21,12 @@ class PersonalDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data =  Address::all();
-        return view('professor.personal-data',compact('data'));
+        $user_id = $request->session()->get('user')['id'];
+        return view('professor.personal-data')
+            ->with('user_id', $user_id);
+
     }
 
     /**
@@ -82,6 +84,7 @@ class PersonalDataController extends Controller
             'marital_status'    => 'required',
             'nationality'       => 'required',
             'phone'             => 'required',
+            'user_id'           => 'unique:candidates',
 
             // Documents validations
             'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents' : '',
@@ -103,6 +106,7 @@ class PersonalDataController extends Controller
             'state'                     => 'required',
             'type_public_place'         => 'required',
         ]);
+
         // Validate if the rules are met
         if ($validator->fails()) {
             return redirect()
@@ -164,8 +168,8 @@ class PersonalDataController extends Controller
             $address->public_place              = $request->public_place;
             $address->state                     = $request->state;
             $address->type_public_place         = $request->type_public_place;
-            $address->candidate_id             = $candidate->id;
 
+            $address->candidate_id             = $candidate->id;
             // Save in database
             $address->save();
             // Return in view
