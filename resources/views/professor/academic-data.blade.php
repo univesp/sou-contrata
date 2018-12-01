@@ -109,7 +109,7 @@
 
             <hr />
             <div class="row">
-                <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
+                <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" disabled class="btn btn-danger float-right submit">AVANÇAR</button></p>
             </div>
             <br /><br />
         </form>
