@@ -22,7 +22,7 @@ class ScholarityController extends Controller
     public function index()
     {
         $data =  Scholarity::all();
-        return view('professorAcademicData',compact('data'));
+        return view('professor.academic-data',compact('data'));
     }
 
     /**
