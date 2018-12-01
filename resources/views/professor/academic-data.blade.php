@@ -241,8 +241,6 @@
 
                 $('.tier').on('change', function() {
                     CERTIFICADOS[$(this).attr('id')] = $(this).val();
-
-                    console.log(CERTIFICADOS);
                 });
 
                 $("#area").change(function(){
@@ -254,7 +252,13 @@
             $(document).on('click', '.remove', function(){
 
                 var id = $(this).attr('remove');
+                delete CERTIFICADOS[id];
 
+                if (CERTIFICADOS.includes("1") && CERTIFICADOS.includes("2") && CERTIFICADOS.includes("3")) {
+                    $('.submit').prop('disabled',false);
+                } else {
+                    $('.submit').prop('disabled',true);
+                }
                 $("#grad_" + id).remove();
             });
 
