@@ -26,6 +26,7 @@ class PersonalDataController extends Controller
         $user_id = $request->session()->get('user')['id'];
         return view('professor.personal-data')
             ->with('user_id', $user_id);
+
     }
 
     /**
@@ -105,11 +106,11 @@ class PersonalDataController extends Controller
             'state'                     => 'required',
             'type_public_place'         => 'required',
         ]);
-   
+
         // Validate if the rules are met
         if ($validator->fails()) {
             return redirect()
-                ->route('personal-data.index')
+                ->route('professorPersonalData')
                 ->withInput($request->all())
                 ->withErrors($validator)
             ;
@@ -148,6 +149,7 @@ class PersonalDataController extends Controller
                 $document->number_link              = $path_file_rg;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
+                $document->rg_number                 = $request->rg_number;
                 $document->zone                     = 'Empty';
                 $document->section                  = 'Empty';
                 $document->candidate_id             = $candidate->id;
@@ -155,7 +157,6 @@ class PersonalDataController extends Controller
                 // Save in database
                 $document->save();
             }
-
             // Create new address
             $address = new Address();
             $address->city                      = $request->city;
@@ -167,15 +168,14 @@ class PersonalDataController extends Controller
             $address->public_place              = $request->public_place;
             $address->state                     = $request->state;
             $address->type_public_place         = $request->type_public_place;
-            $address->candidate_id              = $candidate->id;
 
+            $address->candidate_id             = $candidate->id;
             // Save in database
             $address->save();
-
             // Return in view
             // return response()->json('funciona');
             Helper::alterSession($request, 2);
-            return redirect()->route('academic-data.index');
+            return redirect()->route('professorAcademicData');
         }
     }
 

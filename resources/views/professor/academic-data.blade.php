@@ -19,13 +19,15 @@
 			<ul class="nav nav-tabs">
 				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
 				<li class="disabled"><a href="#">Dados Pessoais</a></li>
-				<li class="active, link3"><a href="{{ route('academic-data.index') }}">Dados Academicos</a></li>
+				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
                 {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li> --}}
 				<li class="disabled"><a href="#">Área de Interesse</a></li>
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
-			<form action="{{ route('academic-data.store') }}" method="post" enctype="multipart/form-data">
+
+			<form action="{{ route('professorAcademicData') }}" method="post" enctype="multipart/form-data">
+
 				{{ csrf_field() }}
 			<div  class="row">
 				<div class="col-md-7">
@@ -122,7 +124,7 @@
 		$(function(){
 			var CONTADOR = 0;
 			function validateExtension(file) {
-				if(file.get(0).files[0].size > 20000 || file.get(0).files[0].type != 'application/pdf') {
+				if(file.get(0).files[0].size > 40000 || file.get(0).files[0].type != 'application/pdf') {
                     $("#msgFail").addClass('msgFail');
 					$("#msgFail").append('<div class="alert alert-danger" role="alert">Arquivo Inválido ou maior que 2 Mega-byte (Mb)</div>');
                     $("#cadlettters").focus();
@@ -216,9 +218,9 @@
 
 			$(document).ready(function(){
 
-				$(".file_graduate").change(function () { 
+				$(".file_graduate").change(function () {
 					validateExtension($(this));
-				
+
 				});
 
                 getSelectData();

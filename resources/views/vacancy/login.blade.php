@@ -19,6 +19,7 @@
 			<div class="clearfix"></div>
 		</div>
 	</header>
+
 <main class="centeredContent block">
 	<div class="centered">
 <section id="login">
@@ -59,6 +60,14 @@
 				</div>
 				<input name="AuthState" type="hidden" value="">
 			</form>
+            @if(!empty($data))
+                <div class="container-fluid" style="display: block; padding-top: 25px">
+                    <div class="alert alert-danger" >
+                        <strong>{{$data}}</strong>
+                    </div>
+                </div>
+
+            @endif
 		</div>
 	</div>
 </section>

@@ -53,13 +53,16 @@ Route::post('position','CriterionController@store')->middleware('login');
 Route::post('email-check','UserController@checkEmail');
 
 //PERSONAL-DATA
+//Route::get('personal-data','PersonalDataController@index')->name("professorPersonalData")->middleware('login');
 Route::resource('personal-data', 'PersonalDataController', [
     'only' => ['index', 'store'],
- ])->middleware('login');
+    'names'=> ['index' => 'professorPersonalData', 'store' => 'professorPersonalData']
+])->middleware('login');
 
 //ACADEMIC-DATA
 Route::resource('academic-data', 'ScholarityController', [
     'only' => ['index', 'store'],
-    ])->middleware('login');
+    'names'=> ['index' => 'professorAcademicData', 'store' => 'professorAcademicData']
+])->middleware('login');
 
 
