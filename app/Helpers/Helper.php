@@ -13,7 +13,6 @@ class Helper
         return Carbon\Carbon::parse($value)->format($format);
     }
 
-
     static function formatText($value, $type = 'upper')
     {
         switch($type) {
@@ -73,6 +72,31 @@ class Helper
         $dt = date('Y-m-d', strtotime($now));
 
         return $dt;
+    }
+
+    static function uploads_documents_academic($request, $idx, $tipo, $id) 
+    {
+        switch ($tipo) {
+
+            case '1':
+                // se for 1 é Graduação
+                // Documentos de Graduação do Candidato
+
+                $path_file = $request['file_graduate'][$idx]->store("documents-graduate/{$id}");
+                break;
+            case '2':
+                // se for 2 é Mestrado
+                // Documentos de Mestrado do Candidato
+                $path_file = $request['file_graduate'][$idx]->store("documents-master/{$id}");
+                break;
+            case '3':
+                // se for 3 é Doutorado
+                // Documentos de Doutorado do Candidato
+                $path_file = $request['file_graduate'][$idx]->store("documents-doctorate/{$id}");
+                break;
+        }
+
+        return $path_file;
     }
 }
 
