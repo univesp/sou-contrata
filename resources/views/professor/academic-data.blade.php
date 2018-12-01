@@ -17,16 +17,14 @@
 	<div class="container">
 			<div id="msgFail"></div>
 			<ul class="nav nav-tabs">
-				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
 				<li class="disabled"><a href="#">Dados Pessoais</a></li>
-				<li class="active, link3"><a href="{{ route('professor.academic-data.index') }}">Dados Academicos</a></li>
-                {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li> --}}
+				<li class="active, link3"><a href="{{ route('professorPersonalData')}}">Dados Academicos</a></li>
 				<li class="disabled"><a href="#">Área de Interesse</a></li>
 			</ul>
 			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
 			<br />
 
-			<form action="{{ route('professor.academic-data') }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('professorAcademicData')}}" method="post" enctype="multipart/form-data">
 
 				{{ csrf_field() }}
 			<div  class="row">
@@ -45,7 +43,7 @@
 			<div class="col-md-7">
 				<div class="row">
 					<div class="col-md-12">
-						<select name="graduations[]" class="form-control graduations">
+						<select name="graduate_dinamic[]" class="form-control graduate_dinamic">
 							<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>
 							<option value="1">GRADUAÇÃO</option>
 							<option value="2">MESTRADO</option>
@@ -58,8 +56,7 @@
 				<div class="col-md-7">
 					<div class="col-md-6">
 					   	<label class="area">Selecione a sua Área</label>
-					   	<input type="hidden" name="area_id" id="area_id"/>
-						<select name="graduations[]" class="form-control graduations" id="area" required>
+						<select name="area_id[]" class="form-control graduations areas" id="area" required>
 							<option value="">Selecione a área</option>
 						</select>
 					</div>
@@ -113,7 +110,7 @@
 			<hr />
 	    <div style="clear: both;"></div>
 		<div class="row">
-			<p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit" disabled>AVANÇAR</button></p>
+			<p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
 		</div>
 		<br /><br />
 			</form>
@@ -127,7 +124,7 @@
 			var CERTIFICADOS = new Array();
 
 			function validateExtension(file) {
-				if(file.get(0).files[0].size > 40000 || file.get(0).files[0].type != 'application/pdf') {
+				if(file.get(0).files[0].type != 'application/pdf') {
                     $("#msgFail").addClass('msgFail');
 					$("#msgFail").append('<div class="alert alert-danger" role="alert">Arquivo Inválido ou maior que 2 Mega-byte (Mb)</div>');
                     $("#cadlettters").focus();
@@ -156,24 +153,23 @@
 				HTML.push('<div class="col-md-7">');
 				HTML.push('<div class="row">');
 				HTML.push('<div class="col-md-12">');
-				HTML.push('<select name="graduations[]" class="form-control graduations graduate-select">');
+				HTML.push('<select name="graduate_dinamic[]" class="form-control graduations graduate-select graduate_dinamic">');
 				HTML.push('<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>');
 				HTML.push('<option value="1">GRADUAÇÃO</option>');
 				HTML.push('<option value="2">MESTRADO</option>');
 				HTML.push('<option value="3">DOUTORADO</option>');
 				HTML.push('</select>');
 				HTML.push('<div class="row">');
-				HTML.push('<div class="col-md-7">');
+				HTML.push('<div class="col-md-12" style="padding-left: 0px;">');
 				HTML.push('<div class="col-md-6">');
 				HTML.push('<label class="area">Selecione a sua Área</label>');
-				HTML.push('<input type="hidden" name="area_id" id="area_id"/>');
-				HTML.push('<select name="graduations[]" class="form-control graduations" id="area" required>');
+				HTML.push('<select name="area_id[]" class="form-control graduations areas" id="" required>');
 				HTML.push('<option value="">Selecione a área</option>');
 				HTML.push('</select>');
 				HTML.push('</div>');
-				HTML.push('<div class="col-md-6">');
+				HTML.push('<div class="col-md-6" style="padding-right: 0px;">');
 				HTML.push('<label class="area">Selecione a sua Subárea</label>');
-				HTML.push('<select name="graduations[]" class="form-control graduations" id="subarea" disabled required>');
+				HTML.push('<select name="graduations[]" class="form-control graduations subarea" disabled required>');
 				HTML.push('<option value="">Selecione a subárea</option>');
 				HTML.push('</select>');
 				HTML.push('</div>');
@@ -211,9 +207,9 @@
 
 				CONTADOR++;
 			}
-            function getSelectData() {
+            
+			function getSelectData() {
                 $.ajax({
-                    // Call url
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                     },
@@ -226,23 +222,34 @@
                     success: function (result) {
                         result = JSON.parse(result);
                         Object.keys(result).forEach(function (key) {
-                            $('#area').append(`<option value="${key}">${result[key]}</option>`)
+                            $('.areas').append(`<option value="${key}">${result[key]}</option>`)
                         });
                     },
                     error: function (errors) {
-                        console.log(errors)
                     }
                 });
             }
 
 			$(document).ready(function(){
 
+                getSelectData();
+
+				$("#cadlettters").focus();
+
 				$(".file_graduate").change(function () {
 					validateExtension($(this));
 
 				});
 
-                getSelectData();
+				$(".graduate_dinamic").change(function(){
+
+					//$(".area_id").val($(this).val());
+					
+				});
+
+				$("#area").change(function(){
+					$(".area_id").val($(this).val());
+				});	
 
 			});
 
@@ -255,30 +262,65 @@
 
 			$(document).on('click', '.novo', function(){
 
-				CERTIFICADOS.push($(".graduations").val());
-				
-				console.log(CERTIFICADOS);
-				
 				var id = $(this).attr('novo');
+				
+				getSelectData();
 
 				mount_form_graduation(id);
 
 			});
 
+			$(document).on('change', '.graduate_dinamic', function(){
+
+				//$(".area_id").val($(this).val());
+
+			});
+
+			$(document).on('change', '.areas', function(e){
+
+				if($(this).val() == '') {
+
+				} else {
+					console.log($(this).val());
+					
+					$(".area_id").val($(this).val());
+
+					$(".subarea").prop('disabled',false);
+					//$('.subarea').children().not(':first').remove();
+
+					$.ajax({
+						headers: {
+							'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+						},
+						url: `subarea/${e.target.value}`,
+						type: 'get',
+						data: {
+							_token: '{{csrf_token()}}',
+						},
+						success: function (result) {
+							result = JSON.parse(result);
+							Object.keys(result).forEach(function (key) {
+								$('.subarea').append(`<option value="${key}">${result[key]}</option>`)
+							});
+
+							$(".subarea").prop('disabled',false);
+
+						},
+						error: function (errors) {
+						}
+					});
+				}
+			});
+
             $('#area').on('change', function(e) {
+				
+				//$(".area_id").val($('#area').val());
 
-				$("#area_id").val($('#area').val());
-
-				if($('#area').val() == '') {
+				if($(this).val() == '') {
 					$("#subarea").prop('disabled',true);
 				} else {
-
-					
-					console.log(CERTIFICADOS);
-					
 					$('#subarea').children().not(':first').remove();
 					$.ajax({
-						// Call url
 						headers: {
 							'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
 						},
@@ -294,10 +336,8 @@
 							});
 
 							$("#subarea").prop('disabled',false);
-
 						},
 						error: function (errors) {
-							console.log(errors)
 						}
 					});
 				}

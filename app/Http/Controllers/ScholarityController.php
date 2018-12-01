@@ -11,6 +11,7 @@ use App\Subarea;
 use App\AreaSubarea;
 use DB;
 use Illuminate\Support\Facades\Validator;
+use App\ScholarityArea;
 
 class ScholarityController extends Controller
 {
@@ -22,7 +23,7 @@ class ScholarityController extends Controller
     public function index()
     {
         $data =  Scholarity::all();
-        return view('professorAcademicData',compact('data'));
+        return view('professor.academic-data',compact('data'));
     }
 
     /**
@@ -33,25 +34,21 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-
+        
         $id = !empty($request->session()->get('candidate')) ? $request->session()->get('candidate') : 1 ;
 
         $school = new Scholarity();
-
-        if(count($request->file_graduate) >= 1) {
-
-            foreach ($request['graduations'] as $k => $d) {
-
+        $path_file = null;
+        
+        if(count($request->graduate_dinamic) >= 3) {
+            foreach ($request['graduate_dinamic'] as $k => $d) {
+                
                 $validator = Validator::make($request->all(),[
 
                     //'file_graduate.*'  => 'required|mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'
                 ]);
 
-                //dd($validator->messages());
-
                 if ($validator->fails()) {
-
-                    //dd($validator->messages());
 
                     return redirect()
                         ->route('professorAcademicData')
@@ -59,29 +56,9 @@ class ScholarityController extends Controller
                         ->withErrors($validator->messages())
                     ;
                 } else {
-
-                    switch ($d) {
-
-                        case '1':
-                            // se for 1 é Graduação
-                            // Documentos de Graduação do Candidato
-
-                            $path_file = $request['file_graduate'][$k]->store("documents-graduate/{$id}");
-                            break;
-
-                        case '2':
-                            // se for 2 é Mestrado
-                            // Documentos de Mestrado do Candidato
-                            $path_file = $request['file_graduate'][$k]->store("documents-master/{$id}");
-                            break;
-
-                        case '3':
-                            // se for 3 é Doutorado
-                            // Documentos de Doutorado do Candidato
-                            $path_file = $request['file_graduate'][$k]->store("documents-doctorate/{$id}");
-                            break;
-                    }
-
+                    // Função responsável para mover os documentos Acadêmicos.
+                    $path_file = Helper::uploads_documents_academic($request, $k, $d, $id);
+                    
                     $school->class_name = $request->cadlettters;
                     $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
                     $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
@@ -89,18 +66,24 @@ class ScholarityController extends Controller
                     $school->scholarity_type = $request->inputCursos[$k];
                     $school->teaching_institution = $request->inpuInstituicao[$k];
                     $school->candidate_id = $id;
-                    $school->area_id = $request->area_id;
+                    $school->area_id = $request->area_id[$k];
 
-                    $school->save();
+                    if($school->save()) {
+
+                        $areaScholarity = new ScholarityArea();
+                        $areaScholarity->scholarity_id = $school->id;
+                        $areaScholarity->area_id = $request->area_id[$k];
+                        
+                        $areaScholarity->save();
+                    }
 
                 }
             }
 
         } else {
-            //teste
+            return redirect()->route('professorAcademicData');
         }
 
-        dd($school);
         $resp = $school;
         $data = Vacancy::all()->where('edict_id', 1);
 
@@ -108,7 +91,6 @@ class ScholarityController extends Controller
         return view('vacancy.process', compact(['resp','data']));
 
     }
-
 
     public function area() {
         // Create area list to select box
