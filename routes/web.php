@@ -56,7 +56,7 @@ Route::post('email-check','UserController@checkEmail');
 //Route::get('personal-data','PersonalDataController@index')->name("professorPersonalData")->middleware('login');
 Route::resource('personal-data', 'PersonalDataController', [
     'only' => ['index', 'store'],
-    'names'=> ['index' => 'professorPersonalData', 'store' => 'professorPersonalData']
+    'names' => ['index' => 'professorPersonalData', 'store' => 'professorPersonalData']
 ])->middleware('login');
 
 //ACADEMIC-DATA

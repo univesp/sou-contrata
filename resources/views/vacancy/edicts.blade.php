@@ -47,8 +47,7 @@
             </div>
         @else
             <div class="botao-posicao">
-                <a href="{{route('personal-data.index')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
-
+                <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
             </div>
         @endif
     </div>
