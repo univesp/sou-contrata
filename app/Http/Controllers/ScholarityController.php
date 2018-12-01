@@ -22,7 +22,7 @@ class ScholarityController extends Controller
     public function index()
     {
         $data =  Scholarity::all();
-        return view('professor.academic-data',compact('data'));
+        return view('professorAcademicData',compact('data'));
     }
 
     /**
@@ -54,7 +54,7 @@ class ScholarityController extends Controller
                     //dd($validator->messages());
 
                     return redirect()
-                        ->route('academic-data.index')
+                        ->route('professorAcademicData')
                         ->withInput($request->all())
                         ->withErrors($validator->messages())
                     ;
@@ -181,6 +181,5 @@ class ScholarityController extends Controller
 
         $input['image'] = time() . '.' . $extensao;
         //$request->image->move(public_path("documents-academic/{$user}/"), $input['image']);
-
     }
 }
