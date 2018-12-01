@@ -21,41 +21,49 @@
         </div>
         <form action="{{route('store')}}" method="post">
             {{ csrf_field() }}
-            <div id="msgError" style="display: none;" class="alert alert-danger" role="alert">
+            <div id="msgError" class="alert alert-danger none" role="alert">
             </div>
 
-            <div class="form-group col-md-6" style="padding-left: -5;padding-left: 10px;">
-                <label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
-                <input id="textNome" class="form-control" type="text" name="name" required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
+                    <input id="textNome" class="form-control" type="text" name="name" required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
+                </div>
             </div>
-            <div style="clear: both;"></div>
 
-            <div class="form-group form-group col-md-3" style="padding-left: 10px;">
-                <label for="textSenha" class="control-label, fonte-campos">Senha<span class="cor-campo">*</span></label>
-                <input id="textSenha" class="form-control" type="password" name="password" required  onchange="validadePasswordConfirmation();">
+            <div class="row">
+                <div class="form-group form-group col-md-3">
+                    <label for="textSenha" class="control-label, fonte-campos">Senha<span class="cor-campo">*</span></label>
+                    <input id="textSenha" class="form-control" type="password" name="password" required  onchange="validadePasswordConfirmation();">
+                </div>
+                <div class="form-group form-group col-md-3">
+                    <label for="textConfirm" class="control-label, fonte-campos">Confirmar senha<span class="cor-campo">*</span></label>
+                    <input id="textConfirm" class="form-control" type="password" name="passwordConfirm" required onchange="validadePasswordConfirmation();">
+                </div>
             </div>
-            <div class="form-group form-group col-md-3" style="padding-left: 10px;">
-                <label for="textConfirm" class="control-label, fonte-campos">Confirmar senha<span class="cor-campo">*</span></label>
-                <input id="textConfirm" class="form-control" type="password" name="passwordConfirm" required onchange="validadePasswordConfirmation();">
+
+            <div class="row">
+                <div class="form-group form-group col-md-3">
+                    <label for="textLogin" class="control-label, fonte-campos">Login<span class="cor-campo">*</span></label>
+                    <input id="textLogin" class="form-control" type="text" name="login" required oninvalid="this.setCustomValidity('Digite seu Login')" onchange="try{setCustomValidity('')}catch(e){}">
+                </div>
             </div>
-            <div style="clear: both;"></div>
-            <div class="form-group form-group col-md-3" style="padding-right: 0px;">
-                <label for="textLogin" class="control-label, fonte-campos">Login<span class="cor-campo">*</span></label>
-                <input id="textLogin" class="form-control" type="text" name="login" required oninvalid="this.setCustomValidity('Digite seu Login')" onchange="try{setCustomValidity('')}catch(e){}">
+            <div class="row">
+                <div class="form-group form-group col-md-6">
+                    <label for="textEmail" class="control-label, fonte-campos">Email<span class="cor-campo">*</span></label>
+                        <input id="textEmail" class="form-control" type="Email" name="email" required oninvalid="this.setCustomValidity('Digite seu Email')" onchange="checkEmail();" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    </label>
+                </div>
+            <div>
+
+            <div class="row">
+                <div class="form-group form-group col-md-7">
+                    <label>
+                        <input type="radio" name="confirmation" required> Ao me cadastrar, confirmo que sou docente da <b>USP</b>, <b>UNICAMP</b> ou <b>UNESP</b><span class="cor-campo">*</span>
+                    </label>
+                </div>
             </div>
-            <div style="clear: both;"></div>
-            <div class="form-group form-group col-md-6" style="padding-right: 12px;width: 541px;">
-                <label for="textEmail" class="control-label, fonte-campos">Email<span class="cor-campo">*</span></label>
-                <input id="textEmail" class="form-control" type="Email" name="email" style="width: 539px;" required oninvalid="this.setCustomValidity('Digite seu Email')" onchange="checkEmail();" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-            </label>
-            </div>
-            <div style="clear: both;"></div>
-            <div class="form-group form-group col-md-7">
-                <label>
-                    <input type="radio" name="confirmation" required> Ao me cadastrar, confirmo que sou docente da <b>USP</b>, <b>UNICAMP</b> ou <b>UNESP</b><span class="cor-campo">*</span>
-                </label>
-            </div>
-            <div style="clear: both;"></div>
+
             <hr />
             <div class="row">
                 <button type="submit" name="save" id="save" class="btn btn-danger float-right">SALVAR</button></p>

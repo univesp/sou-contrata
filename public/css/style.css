@@ -9,21 +9,21 @@ input[type="checkbox"] {
     width: 16px;
     border: 1px solid white;
   }
-  
+
   input[type="checkbox"]:checked {
     background:red;
   }
-  
+
   input[type="checkbox"]:hover {
     filter: brightness(90%);
   }
-  
+
   input[type="checkbox"]:disabled {
     background: #e6e6e6;
     opacity: 0.6;
     pointer-events: none;
   }
-  
+
   input[type="checkbox"]:after {
     content: '';
     position: relative;
@@ -35,7 +35,7 @@ input[type="checkbox"] {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
     display: none;
-  }  
+  }
   .block::before {
     content: "";
     display: inline-block;
@@ -57,21 +57,21 @@ input[type="checkbox"] {
     border-radius: 50%;
     border: 1px solid white;
   }
-  
+
   input[type="radio"]:checked {
     background:red;
   }
-  
+
   input[type="radio"]:hover {
     filter: brightness(90%);
   }
-  
+
   input[type="radio"]:disabled {
     background: #e6e6e6;
     opacity: 0.6;
     pointer-events: none;
   }
-  
+
   input[type="radio"]:after {
     content: '';
     position: relative;
@@ -85,8 +85,27 @@ input[type="checkbox"] {
     display: none;
   }
 
+.none {
+    display: none;
+}
+
 .form-group {
   margin-bottom: 0px !important;
+}
+
+.input-login {
+    box-shadow:none;
+    border-radius:0px;
+}
+
+.iframe-pdf {
+    width:100%;
+    height:500px;
+    padding: 30px;
+}
+
+.spacing-top {
+    margin-top: 15px;
 }
 
 a:hover{
@@ -103,7 +122,7 @@ a:hover{
     color: #ccc;
     font-size: 12px;
    }
-   
+
    .autoria{
        margin-left: 17px;
    }
@@ -136,7 +155,7 @@ a:hover{
 
 .btn-danger{
 	float: right !important;
-	
+
 }
 
 .sair{
@@ -428,22 +447,22 @@ label {
 
 
 .dataYear {
-	
+
     width: 161px;
 }
 
 @media screen and (min-width:320px) and (max-width: 414px) {
     .imagem-univesp {
         margin-top: 5%;
-    } 
+    }
     .text-pequeno span {
         font-size: 12px;
     }
     .text-big span {
         font-size: 20px;
     }
-    
-    
+
+
   }
 
   @media screen and (min-width:415px) and (max-width: 519px) {
@@ -457,7 +476,7 @@ label {
         margin-top: 15px;
         color: #fff;
     }
-    
+
 }
 
   @media screen and (min-width:520px) and (max-width: 767px) {
@@ -469,19 +488,19 @@ label {
   }
 
   @media screen and (min-width:768px) and (max-width: 1024px) {
-   
+
     .text-pequeno span {
         font-size: 20px;
     }
     .text-big span {
         font-size: 35px;
     }
-    
-    
+
+
   }
 
   .graduate-select {
     margin-top: 20px;
   }
- 
-  
+
+
