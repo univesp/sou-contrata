@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-    Cadastro de Professores
+    CADASTRO DE PROFESSORES
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
@@ -24,8 +24,8 @@
                 <tr>
                     <th scope="col">Cargo</th>
                     <th scope="col">Edital</th>
-                    <th scope="col">Inicio</th>
-                    <th scope="col">Termino</th>
+                    <th scope="col">Início</th>
+                    <th scope="col">Término</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
