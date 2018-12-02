@@ -87,7 +87,7 @@
                         <div class="row spacing-top">
                             <div class="col-md-3">
                                 <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
-                                <input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
+                                <input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
                             </div>
                         </div>
                     </div>
@@ -143,6 +143,9 @@
 
                 codigo = CONTADOR;
 
+                var today = new Date().toISOString().split('T')[0];
+                document.getElementsByClassName("inputDataConclusao")[0].setAttribute('max', today);
+
                 HTML.push('<div id="grad_' + codigo + '">');
                 HTML.push('<div class="col-md-7">');
                 HTML.push('<div class="row">');
@@ -184,7 +187,7 @@
                 HTML.push('<div class="row" style="margin-top:10px;">');
                 HTML.push('<div class="col-md-12">');
                 HTML.push('<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>');
-                HTML.push('<input type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity(Digite o Data de Conclusão)" onchange="try{setCustomValidity("")}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}>');
+                HTML.push('<input type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" max="'+ today +'" required oninvalid="this.setCustomValidity(Digite o Data de Conclusão)" onchange="try{setCustomValidity("")}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}>');
                 HTML.push('</div></div></div>');
                 HTML.push('<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">');
                 HTML.push('<div class="col-md-6" style="margin-top:10px;">');
@@ -231,6 +234,9 @@
             $(document).ready(function(){
 
                 getSelectData();
+
+                var today = new Date().toISOString().split('T')[0];
+                document.getElementsByClassName("inputDataConclusao")[0].setAttribute('max', today);
 
                 $("#cadlettters").focus();
 

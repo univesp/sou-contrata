@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="form-group form-group col-md-6">
                     <label for="textEmail" class="control-label, fonte-campos">Email<span class="cor-campo">*</span></label>
-                        <input id="textEmail" class="form-control" type="Email" name="email" required oninvalid="this.setCustomValidity('Digite seu Email')" onchange="checkEmail();" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                        <input id="textEmail" class="form-control" type="Email" name="email" required onchange="checkEmail();" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                     </label>
                 </div>
             <div>
