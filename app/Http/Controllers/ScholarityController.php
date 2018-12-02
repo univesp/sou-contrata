@@ -78,7 +78,7 @@ class ScholarityController extends Controller
                     $areaScholarity = new ScholarityArea();
                     $areaScholarity->scholarity_id = $school->id;
                     $areaScholarity->area_id = $request->area_id[$k];
-                    //$areaScholarity->subarea_id = $request->subarea_id[$k];
+                    $areaScholarity->subarea_id = $request->subarea_id[$k];
                     $areaScholarity->save();
                 }
             }
