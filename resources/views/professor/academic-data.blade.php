@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-md-6">
                             <label class="area">Selecione a sua Subárea</label>
-                            <select name="graduations[]" class="form-control graduations" id="subarea" disabled required>
+                            <select name="subarea_id[]" class="form-control graduations" id="subarea" disabled required>
                                 <option value="">Selecione a subárea</option>
                             </select>
                         </div>
@@ -166,7 +166,7 @@
                 HTML.push('</div>');
                 HTML.push('<div class="col-md-6" style="padding-right: 0px;">');
                 HTML.push('<label class="area">Selecione a sua Subárea</label>');
-                HTML.push('<select name="graduations[]" class="form-control graduations subarea" disabled required>');
+                HTML.push('<select name="subarea_id[]" class="form-control graduations subarea" disabled required>');
                 HTML.push('<option value="">Selecione a subárea</option>');
                 HTML.push('</select>');
                 HTML.push('</div>');
