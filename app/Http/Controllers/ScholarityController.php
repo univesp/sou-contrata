@@ -40,6 +40,8 @@ class ScholarityController extends Controller
        
         $path_file = null;
 
+        dd($request);
+
         $validator = Validator::make($request->all(), [
             'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
         ]);
@@ -76,6 +78,7 @@ class ScholarityController extends Controller
                     $areaScholarity = new ScholarityArea();
                     $areaScholarity->scholarity_id = $school->id;
                     $areaScholarity->area_id = $request->area_id[$k];
+                    $areaScholarity->subarea_id = $request->subarea_id[$k];
                     
                     $areaScholarity->save();
                 }
