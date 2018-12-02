@@ -3,7 +3,7 @@
     Cadastro de Professores
 @endsection
 @section('css')
-    <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('cabecalho')
@@ -33,66 +33,59 @@
         </div>
 		<hr/>
 
-        <form action="position" method="post">
+        <form action="{{ route('professorPosition')}}" method="post">
             {{ csrf_field() }}
-
-          <h5><strong class="left">Serviços</strong> <span class="cor-campo"> *</span></h5>
+                <input type="hidden" name="vacancy_id" value="{{$id}}">
+                <h5><strong class="left">Serviços</strong> <span class="cor-campo"> *</span></h5>
                 <i id="text-negrito">Você pode se credenciar para vários serviços</i>
                 <br>
                 <div class="checkbox">
                         <div class="row">
                         @foreach($data->services as $services)
-                            <div class="col-md-12">
+                                <div class="col-md-12">
                                 <label>
                                     <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
                                 </label>
                             </div>
                         @endforeach
-                 </div>
+                        </div>
+                </div>
                 <div class="col-md-12">
-                <hr />
-                <h4>Declaração de Título de Experiência</h4>
-                      <div class="checagem-radio"></div>
-                    <br>
-                    <h5><strong class="autoria">Título de Mestre<span class="cor-campo">*</span></strong></h5>
+                    <hr />
+                    <h4>Declaração de Título de Experiência</h4>
                     <div class="checagem-radio"></div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox" name="1" id="1" value="1" onclick="return itemSelect(this)"/>Área de disciplina
-                        <div class="item-1, col-md-12 none">
-                            <input type="radio" id="1" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
-                            <input type="radio" id="2" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
-                            <input type="radio" id="3" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
-                            <input type="radio" id="4" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
-                        </div>
+                    <br>
+                    @foreach($result as $key => $title)
+                        <h5><strong class="autoria">{{$key}}<span class="cor-campo">*</span></strong></h5>
+                        <div class="checagem-radio"></div>
+                        <div class="checkbox">
+                            @foreach($title as $k => $criterion)
+                                  <label>
+                                    <input type="checkbox" name="criteria[]" id="criteria_{{$criterion['id']}}" value="{{$criterion['id']}}" onclick="return itemSelect(this)"/>{{$criterion['name']}}
+                                    <div class="item-1, col-md-12 none">
+                                        @foreach($criterion['type'] as $c => $type)
+                                            <input type="radio" id="type_{{$type['id']}}" name="type_{{$criterion['id']}}" value="{{$type['id']}}"/><span class="alinhamento-radio">{{$type['description']}}</span>
+                                        @endforeach
+                                    </div>
 
-                      </label>
-                        <div class="checagem"></div>
-                       <label>
-                       <input type="checkbox" name="5" id="5" value="5" onclick="return itemSelect(this)"/>Área correlata
-                        <div class="item-2, col-md-12 none">
-                            <input type="radio" id="5" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
-                            <input type="radio" id="6" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
-                            <input type="radio" id="7" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
-                            <input type="radio" id="8" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
+                                  </label>
+                            @endforeach
                         </div>
-                      </label>
-                    </div>
-
+                    @endforeach
 
                     <div class="checagem-radio"></div>
                     <div class="row">
                         <div class="float-right">
-                            <button type="button" class="btn btn-danger">AVANÇAR</button>
+                            <button type="submit" class="btn btn-danger">AVANÇAR</button>
                         </div>
                     </div>
-                   <br /><br />
-               </div>
-
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-                <script src="js/bootstrap.min.js"></script>
-                <script type="text/javascript">
-
+                    <br /><br />
+                 </div>
+        </form>
+    </div>
+@endsection
+@section('scripts')
+<script>
 		function itemSelect(elem) {
 		  var si = $(elem).val();
 		  var isCheck = $(elem).is(':checked');
@@ -120,7 +113,5 @@
             });
         });
 
-	   </script>
-
-
-  @endsection
+</script>
+@endsection

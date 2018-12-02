@@ -44,10 +44,10 @@
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
 						<td>
-                            @if(empty($d->applications[0]->candidate_id))
-                                <a href="{{ route('professorPosition', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
-                            @else
+                            @if(!empty($d->applications[0]->candidate_id) && $d->applications[0]->candidate_id == $candidate_id)
                                 <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Concorrendo</button></a>
+                            @else
+                                <a href="{{ url('position', $d->id) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
                             @endif
                         </td>
 					</tr>
