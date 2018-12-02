@@ -104,7 +104,7 @@ class PersonalDataController extends Controller
             'postal_code'               => 'required',
             'public_place'              => 'required',
             'state'                     => 'required',
-            'type_public_place'         => 'required',
+            'address'                   => 'required',
         ]);
 
         // Validate if the rules are met
@@ -167,9 +167,8 @@ class PersonalDataController extends Controller
             $address->postal_code               = $request->postal_code;
             $address->public_place              = $request->public_place;
             $address->state                     = $request->state;
-            $address->type_public_place         = $request->type_public_place;
-
-            $address->candidate_id             = $candidate->id;
+            $address->address                   = $request->address;
+            $address->candidate_id              = $candidate->id;
             // Save in database
             $address->save();
             // Return in view
