@@ -215,15 +215,12 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <label for="inputTipoLogra" class="fonte-campos">Tipo Logradouro<span class="cor-campo">*</span></label>
-                <select name="type_public_place" id="inputTipoLogra" class="form-control">
-                    <option value="0">Avenida</option>
-                    <option value="1">Rua</option>
-                </select>
+                <label for="address" class="fonte-campos">Tipo<span class="cor-campo">*</span></label>
+                <input type="text" id="address" name="address" class="form-control" required>
             </div>
             <div class="col-md-4">
                 <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
-                <input name="public_place" type="text" class="form-control" id="inputLogradouro" required readonly
+                <input name="public_place" type="text" class="form-control" id="inputLogradouro" required 
                     onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('public_place'))
                     <p class="text-danger">{{ $errors->first('public_place') }}</p>
@@ -231,7 +228,7 @@
             </div>
             <div class="col-md-2">
                 <label for="inputNum" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                <input name="number" type="text" class="form-control" id="inputNum" required                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
+                <input name="number" type="text" class="form-control" id="inputNum" required onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="8">
                 @if($errors->has('number'))
                     <p class="text-danger">{{ $errors->first('number') }}</p>
                 @endif
@@ -244,7 +241,7 @@
             </div>
             <div class="col-md-4">
                 <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
-                <input name="neighborhood" type="text" class="form-control" id="inputBairro" required readonly
+                <input name="neighborhood" type="text" class="form-control" id="inputBairro" required
                     onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('neighborhood'))
                     <p class="text-danger">{{ $errors->first('neighborhood') }}</p>
@@ -252,7 +249,7 @@
             </div>
             <div class="col-md-1">
                 <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                <input name="state" type="text" class="form-control" id="inputUF" required readonly onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="state" type="text" class="form-control" id="inputUF" required onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('state'))
                     <p class="text-danger">{{ $errors->first('state') }}</p>
                 @endif
@@ -261,7 +258,7 @@
         <div class="row">
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                <input name="city" type="text" class="form-control" id="inputCidade" required readonly onchange="try{setCustomValidity('')}catch(e){}">
+                <input name="city" type="text" class="form-control" id="inputCidade" required onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('city'))
                     <p class="text-danger">{{ $errors->first('city') }}</p>
                 @endif
@@ -334,7 +331,8 @@
     </div>
 @endsection
 @section('scripts')
-    <script>
+    <script src="{{URL::asset('/js/personal-data.js')}}"></script>
+    <!--<script>
         function Validacao() {
             var checkboxes = document.getElementsByName("opcaoDeficiencia");
             var numberOfCheckedItems = 0;
@@ -500,5 +498,5 @@
                 });
             });
         });
-    </script>
+    </script>-->
 @endsection
