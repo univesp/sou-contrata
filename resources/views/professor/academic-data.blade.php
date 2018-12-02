@@ -68,8 +68,6 @@
                         </div>
                     </div>
                 </div>
-                <br>
-                <br>
                 <div id="father">
                     <div class="col-md-7">
                         <div class="row spacing-top">
@@ -111,7 +109,6 @@
                     </div>
                 </div>
             </div>
-
             <hr />
             <div class="row">
                 <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit" disabled>AVANÇAR</button></p>
