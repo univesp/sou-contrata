@@ -17,6 +17,7 @@
 @endif
 @endsection
 @section('content')
+
     <div class="container">
         <table class="table">
             <thead>

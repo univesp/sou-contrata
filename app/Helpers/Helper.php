@@ -4,6 +4,7 @@ namespace App\Helpers;
 use App\Candidate;
 use App\Scholarity;
 use App\Document;
+use Illuminate\Support\Facades\Session;
 
 class Helper
 {
@@ -30,7 +31,7 @@ class Helper
         }
         return $text;
     }
-    static function alterSession($request, $permission)
+    static function alterSessionUser($request, $permission)
     {
         $user = $request->session()->get('user');
         $user['permission'] = $permission;
@@ -38,16 +39,14 @@ class Helper
         $request->session()->put('user', $user);
     }
 
-    static function createSession($user_object, $request)
+    static function createSessionUser($user_object, $request)
     {
-        $request->session()->flush();
-
+        $request->session()->forget('user_id');
         $candidate = Candidate::where('user_id', $user_object->id)->first();
         if(!empty($candidate->id)){
             $scholarities_candidate = Scholarity::where('candidate_id', $candidate->id)->first();
         }
         $page = 0;
-
         if(!empty($candidate->id)) {
             $page = 2;
             if(!empty($scholarities_candidate->id)) {
@@ -66,6 +65,12 @@ class Helper
         $request->session()->put('user', $userSession);
     }
 
+    static function createSessionEdict($request, $id)
+    {
+        Session::forget('edict_id');
+        Session::put('edict_id', $id);
+    }
+
     static function br_to_bank($now)
     {
         $data = explode('/', $now);
@@ -74,7 +79,7 @@ class Helper
         return $dt;
     }
 
-    static function uploads_documents_academic($request, $idx, $tipo, $id) 
+    static function uploads_documents_academic($request, $idx, $tipo, $id)
     {
         switch ($tipo) {
 

@@ -174,7 +174,7 @@ class PersonalDataController extends Controller
             $address->save();
             // Return in view
             // return response()->json('funciona');
-            Helper::alterSession($request, 2);
+            Helper::alterSessionUser($request, 2);
             return redirect()->route('professorAcademicData');
         }
     }

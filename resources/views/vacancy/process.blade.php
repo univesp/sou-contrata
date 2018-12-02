@@ -15,7 +15,7 @@
 @section('content')
 	<div class="container">
 	@if(!empty($resp))
-            <h1 class="alert alert-success" role="alert">{{"Parabéns você se candidatou com sucesso!"}}</h1>
+            <h1 class="alert alert-success" role="alert">{{$resp}}</h1>
 	@endif
 	<h2 class="fonte-conteudo">Credenciamento</h2>
 	<ul class="nav nav-tabs">
@@ -43,12 +43,19 @@
 						<td>{{$d->payload}}</td>
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
-						<td><a href="{{ route('professorPosition', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
+						<td>
+                            @if(empty($d->applications[0]->candidate_id))
+                                <a href="{{ route('professorPosition', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
+                            @else
+                                <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Concorrendo</button></a>
+                            @endif
+                        </td>
 					</tr>
 				@endforeach
 			@endif
 			</tbody>
 		</table>
+        {{ !empty($data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links()) }}
 		</div>
 @endsection
 @section('script')
