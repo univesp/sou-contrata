@@ -7,6 +7,7 @@ use App\Helpers\Helper;
 use App\Scholarity;
 use App\Vacancy;
 use App\Criterion;
+use App\VacancyCriterion;
 
 class PositionController extends Controller
 {
@@ -18,10 +19,16 @@ class PositionController extends Controller
     public function index($id, Request $request)
     {
         $data = Vacancy::with('vacancy_criteria')->with('services')->find($id);
+        /*$vacancies = Criterion::with('vacancy_criteria')
+            ->whereHas('vacancy_criteria',function ($query) use (&$id){
+                $query->where('vacancy_id', '=', $id)->with('criteria');
+            })->get();*/
+
         $vacancies = Criterion::with('vacancy_criteria')
             ->whereHas('vacancy_criteria',function ($query) use (&$id){
-                $query->where('vacancy_id', '=', $id);
+                $query->where('vacancy_id', '=', $id)->with('criteria');
             })->get();
+        //dd($vacancies);
         $request->session()->put('positionId', $id);
         return view('professor.position', compact(['data','vacancies', 'vagueId']));
 

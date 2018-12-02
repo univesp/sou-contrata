@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 
 class EdictController extends Controller
 {
@@ -20,7 +21,11 @@ class EdictController extends Controller
     public function edict($id, Request $request)
     {
         $data = \App\Vacancy::with('edict')->where('edict_id','=', $id)->first();
-        return view('vacancy/edicts',compact('data', $data));
+        if(empty($data)){
+            return redirect('/');
+        }
+        Helper::createSessionEdict($request, $id);
+        return view('vacancy.edicts',compact('data', $data));
     }
 
     /**

@@ -39,4 +39,9 @@ class Application extends Model
         return $this->hasMany(ApplicationCriterion::class);
     }
 
+    public function vacancies()
+    {
+        return $this->belongsTo(Vacancy::class);
+    }
+
 }

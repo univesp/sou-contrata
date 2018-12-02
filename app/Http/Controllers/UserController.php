@@ -51,7 +51,7 @@ class UserController extends Controller {
 
         $user->save();
 
-        Helper::createSession($user, $request);
+        Helper::createSessionUser($user, $request);
         return redirect()->route('professorPersonalData');
 
     }
@@ -87,7 +87,7 @@ class UserController extends Controller {
             ->select('id', 'name' , 'email', 'password')->first();
 
         if(Crypt::decrypt($login->password) == $request->password) {
-            Helper::createSession($login, $request);
+            Helper::createSessionUser($login, $request);
             //return view('professor.personal-data');
             return redirect()->route('professorPersonalData');
         } else {

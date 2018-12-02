@@ -17,6 +17,7 @@ class CriterionController extends Controller
     {
 
         //$id_candidete = $request->session()->get('candidate');
+        $id_edict = $request->session()->get('edict_id');
         $ap = new Application();
         $ap->candidate_id                 = 1;
         $ap->vacancy_id          = $request['vacancy_id'];
@@ -54,7 +55,7 @@ class CriterionController extends Controller
 
         }
 
-        $data = Vacancy::all()->where('edict_id',1);
+        $data = Vacancy::all()->where('edict_id',$id_edict);
 
         return view('vacancy.process', compact(['data', 'resp']));
     }

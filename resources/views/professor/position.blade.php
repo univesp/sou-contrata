@@ -37,176 +37,61 @@
             {{ csrf_field() }}
 
           <h5><strong class="left">Serviços</strong> <span class="cor-campo"> *</span></h5>
-          <i id="text-negrito">Você pode se credenciar para vários serviços</i>
-<br>
-			<div class="col-md-4">
-                  <span class="autoria"><b>Autoria</b></span><br>
-				<div class="checkbox">
+                <i id="text-negrito">Você pode se credenciar para vários serviços</i>
+                <br>
+                <div class="checkbox">
                         <div class="row">
                         @foreach($data->services as $services)
-                        <div class="col-md-12">
-                            <label>
-                                <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
-                            </label>
-                        </div>
-                 @endforeach
+                            <div class="col-md-12">
+                                <label>
+                                    <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
+                                </label>
+                            </div>
+                        @endforeach
                  </div>
-				</div>
-            </div>
-            <div class="col-md-4">
-                  <span class="autoria"><b>Acompanhamento da oferta de disciplinas</b></span><br>
-				<div class="checkbox">
-                        <div class="row">
-                        @foreach($data->services as $services)
-                        <div class="col-md-12">
-                            <label>
-                                <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
-                            </label>
+                <div class="col-md-12">
+                <hr />
+                <h4>Declaração de Título de Experiência</h4>
+                      <div class="checagem-radio"></div>
+                    <br>
+                    <h5><strong class="autoria">Título de Mestre<span class="cor-campo">*</span></strong></h5>
+                    <div class="checagem-radio"></div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox" name="1" id="1" value="1" onclick="return itemSelect(this)"/>Área de disciplina
+                        <div class="item-1, col-md-12 none">
+                            <input type="radio" id="1" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
+                            <input type="radio" id="2" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
+                            <input type="radio" id="3" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
+                            <input type="radio" id="4" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
                         </div>
-                 @endforeach
-                 </div>
-				</div>
-            </div>
-            <div class="col-md-4">
-                  <span class="autoria"><b>Validação de material</b></span><br>
-				<div class="checkbox">
-                        <div class="row">
-                        @foreach($data->services as $services)
-                        <div class="col-md-12">
-                            <label>
-                                <input type="checkbox" name="sevices[]" value="{{$services->id}}">{{$services->title}}
-                            </label>
+
+                      </label>
+                        <div class="checagem"></div>
+                       <label>
+                       <input type="checkbox" name="5" id="5" value="5" onclick="return itemSelect(this)"/>Área correlata
+                        <div class="item-2, col-md-12 none">
+                            <input type="radio" id="5" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
+                            <input type="radio" id="6" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
+                            <input type="radio" id="7" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
+                            <input type="radio" id="8" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
                         </div>
-                 @endforeach
-                 </div>
-				</div>
-			</div>
-       <div class="col-md-12">
-			<hr />
-			<h4>Declaração de Título de Experiência</h4>
-                <div class="checagem-radio"></div>
-                <br>
-				<h5><strong class="autoria">Título de Mestre<span class="cor-campo">*</span></strong></h5>
-				<div class="checagem-radio"></div>
-				<div class="checkbox">
-				  <label>
-					<input type="checkbox" name="1" id="1" value="1" onclick="return itemSelect(this)"/>Área de disciplina
-					<div class="item-1, col-md-12 none">
-						<input type="radio" id="1" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="2" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="3" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="4" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
+                      </label>
+                    </div>
 
-				  </label>
-					<div class="checagem"></div>
-				   <label>
-				   <input type="checkbox" name="5" id="5" value="5" onclick="return itemSelect(this)"/>Área correlata
-					<div class="item-2, col-md-12 none">
-						<input type="radio" id="5" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="6" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="7" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="8" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
-				  </label>
-                </div>
-                <br>
-				<div class="checagem-radio"></div>
-				<h5><strong class="autoria">Título de Doutor<span class="cor-campo">*</span></strong></h5>
-				<div class="checagem-radio"></div>
-				<div class="checkbox">
-				  <label>
-					<input type="checkbox" name="9" id="9" value="9" onclick="return itemSelect(this)"/>Área de disciplina
-					<div class="item-3, col-md-12 none">
-						<input type="radio" id="9" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="10" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="11" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="12" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
 
-				  </label>
-					<div class="checagem"></div>
-				   <label>
+                    <div class="checagem-radio"></div>
+                    <div class="row">
+                        <div class="float-right">
+                            <button type="button" class="btn btn-danger">AVANÇAR</button>
+                        </div>
+                    </div>
+                   <br /><br />
+               </div>
 
-				   <input type="checkbox" name="13" id="13" value="13" onclick="return itemSelect(this)"/>Área correlata
-					<div class="item-4, col-md-12 none">
-						<input type="radio" id="13" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="14" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="15" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="16" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
-
-				  </label>
-                </div>
-                <br>
-				<div class="checagem-radio"></div>
-				<h5><strong class="autoria">Experiência Docente<span class="cor-campo">*</span></strong></h5>
-				<div class="checagem-radio"></div>
-				<div class="checkbox">
-				  <label>
-					<input type="checkbox" name="17" id="17" value="17" onclick="return itemSelect(this)"/>Área de disciplina
-					<div class="item-5, col-md-12 none">
-						<input type="radio" id="17" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="18" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="19" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="20" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
-
-				  </label>
-					<div class="checagem"></div>
-				   <label>
-
-				   <input type="checkbox" name="21" id="21" value="21" onclick="return itemSelect(this)"/>Área correlata
-					<div class="item-6, col-md-12 none">
-						<input type="radio" id="21" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="22" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="23" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="24" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
-
-				  </label>
-                </div>
-                <br>
-				<div class="checagem-radio"></div>
-				<h5><strong class="autoria">Experiência da Modalidade a Distância<span class="cor-campo">*</span></strong></h5>
-				<div class="checagem-radio"></div>
-				<div class="checkbox">
-				  <label>
-					<input type="checkbox" name="25" id="25" value="25" onclick="return itemSelect(this)"/>Área de disciplina
-					<div class="item-7, col-md-12 none">
-						<input type="radio" id="25" name="disciplina"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="26" name="disciplina"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="27" name="disciplina"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="28" name="disciplina"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
-
-				  </label>
-					<div class="checagem"></div>
-				   <label>
-
-				   <input type="checkbox" name="29" id="29" value="29" onclick="return itemSelect(this)"/>Área correlata
-					<div class="item-8, col-md-12 none">
-						<input type="radio" id="29" name="correlata"/><span class="alinhamento-radio">1 a 2 anos</span>
-						<input type="radio" id="30" name="correlata"/><span class="alinhamento-radio">2 a 3 anos</span>
-						<input type="radio" id="31" name="correlata"/><span class="alinhamento-radio">3 a 4 anos</span>
-						<input type="radio" id="32" name="correlata"/><span class="alinhamento-radio">7 anos ou mais</span>
-					</div>
-
-				  </label>
-				</div>
-		</div>
-		<div class="checagem-radio"></div>
-        <div class="row">
-        	<div class="float-right">
-        		<button type="button" class="btn btn-danger">AVANÇAR</button>
-        	</div>
-        </div>
-       <br /><br />
-	   </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-	   <script type="text/javascript">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                <script type="text/javascript">
 
 		function itemSelect(elem) {
 		  var si = $(elem).val();
