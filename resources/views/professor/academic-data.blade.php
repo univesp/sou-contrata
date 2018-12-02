@@ -190,7 +190,7 @@
                 HTML.push('<div class="col-md-6" style="margin-top:10px;">');
                 HTML.push('<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>');
                 HTML.push('<div class="display-flex">');
-                HTML.push('<input type="file" name="file_graduate[]" class="file_graduate"/>');
+                HTML.push('<input type="file" name="file_graduate[]" class="file_graduate" accept="application/pdf"/>');
                 HTML.push('</div></div><br />');
                 HTML.push('<div class="col-md-3" style="margin-top:0px;">');
                 HTML.push('<button type="button" class="btn btn-success btn-sm novo" novo='+ codigo +'>Novo</button>');
