@@ -51,7 +51,7 @@ class ScholarityController extends Controller
                 ->withInput($request->all())
                 ->withErrors($validator->messages([
                     'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
-                    "file_graduate.*.accepted" => "O tipo de arquivo :attribute não é aceito apenas PDF.", 
+                    "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.", 
                 ]));
         }
 
