@@ -53,7 +53,12 @@ class Vacancy extends Model
     public function services()
     {
         return $this->belongsToMany(Service::class,
-            'assignment_vacancies');
+            'vacancies_services');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
     }
 
 }

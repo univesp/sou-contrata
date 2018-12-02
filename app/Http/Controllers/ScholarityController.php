@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Candidate;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Scholarity;
@@ -9,7 +10,6 @@ use App\Vacancy;
 use App\Area;
 use App\Subarea;
 use App\AreaSubarea;
-use App\Candidate;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use App\ScholarityArea;
@@ -36,11 +36,8 @@ class ScholarityController extends Controller
     public function store(Request $request)
     {
         $id_user = $request->session()->get('user')['id'];
-        $id_candidate = Candidate::find($id_user);
-       
-        $path_file = null;
-
-        dd($request);
+        $id_edict = $request->session()->get('edict_id');
+        $id_candidate = Candidate::where('user_id', '=', $id_user)->first();
 
         $validator = Validator::make($request->all(), [
             'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
@@ -57,9 +54,12 @@ class ScholarityController extends Controller
                 ]));
         }
 
-        if(count($request->graduate_dinamic) >= 3) {
+        $path_file = null;
 
+        if(count($request->graduate_dinamic) >= 3) {
+            
             foreach ($request['graduate_dinamic'] as $k => $d) {
+
                 $school = new Scholarity();
                 // Função responsável para mover os documentos Acadêmicos.
                 $path_file = Helper::uploads_documents_academic($request, $k, $d, $id_candidate);
@@ -88,12 +88,10 @@ class ScholarityController extends Controller
             return redirect()->route('professorAcademicData');
         }
 
-        $resp = $school;
+        $resp = "Parabens, o seu cadastro está completa e vai servi para todas as vagas que você se candidatar. Agora escolha uma vaga para se candidatar.";
+        $data = Vacancy::where('edict_id', $id_edict)->paginate(12);
 
-        $id = $request->session()->get('edital_id');
-        $data = Vacancy::all()->where('edict_id', $id)->get();
-
-        Helper::alterSession($request, 3);
+        Helper::alterSessionUser($request, 3);
         return view('vacancy.process', compact(['resp','data']));
 
     }
@@ -153,5 +151,5 @@ class ScholarityController extends Controller
     {
         //
     }
-    
+
 }
