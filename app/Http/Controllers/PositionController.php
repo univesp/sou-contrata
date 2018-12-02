@@ -27,8 +27,11 @@ class PositionController extends Controller
         $vacancies = Criterion::with('vacancy_criteria')
             ->whereHas('vacancy_criteria',function ($query) use (&$id){
                 $query->where('vacancy_id', '=', $id)->with('criteria');
-            })->get();
-        //dd($vacancies);
+            })
+            ->with('title')
+            ->with('criterion_types')
+            ->get();
+        dd($vacancies);
         $request->session()->put('positionId', $id);
         return view('professor.position', compact(['data','vacancies', 'vagueId']));
 

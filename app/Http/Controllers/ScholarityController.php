@@ -43,34 +43,34 @@ class ScholarityController extends Controller
             'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
         ]);
 
-        if ($validator->fails()) { 
-            
+        if ($validator->fails()) {
+
             return redirect()
                 ->route('professorAcademicData')
                 ->withInput($request->all())
                 ->withErrors($validator->messages([
                     'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
-                    "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.", 
+                    "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.",
                 ]));
         }
 
         $path_file = null;
 
         if(count($request->graduate_dinamic) >= 3) {
-            
+
             foreach ($request['graduate_dinamic'] as $k => $d) {
 
                 $school = new Scholarity();
                 // Função responsável para mover os documentos Acadêmicos.
-                $path_file = Helper::uploads_documents_academic($request, $k, $d, $id_candidate);
-                
+                $path_file = Helper::uploads_documents_academic($request, $k, $d, $id_candidate['id']);
+
                 $school->class_name = $request->cadlettters;
                 $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->link = $path_file;
                 $school->scholarity_type = $request->inputCursos[$k];
                 $school->teaching_institution = $request->inpuInstituicao[$k];
-                $school->candidate_id = $id_candidate;
+                $school->candidate_id = $id_candidate['id'];
                 $school->area_id = $request->area_id[$k];
 
                 if($school->save()) {
@@ -78,8 +78,8 @@ class ScholarityController extends Controller
                     $areaScholarity = new ScholarityArea();
                     $areaScholarity->scholarity_id = $school->id;
                     $areaScholarity->area_id = $request->area_id[$k];
-                    $areaScholarity->subarea_id = $request->subarea_id[$k];
-                    
+                    //$areaScholarity->subarea_id = $request->subarea_id[$k];
+
                     $areaScholarity->save();
                 }
             }
