@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-
+    DADOS ACADÊMICOS
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
