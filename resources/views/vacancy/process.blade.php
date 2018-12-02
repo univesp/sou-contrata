@@ -1,12 +1,12 @@
 @extends('layouts.header')
 @section('title')
-	Credenciamento
+	CREDENCIAMENTO
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('cabecalho')
-	Credenciamento
+	CREDENCIAMENTO
 @endsection
 @section('username')
 {{ "Bem vindo, ". Session::get('user')['user'] }}
@@ -17,7 +17,6 @@
 	@if(!empty($resp))
             <h1 class="alert alert-success" role="alert">{{$resp}}</h1>
 	@endif
-	<h2 class="fonte-conteudo">Credenciamento</h2>
 	<ul class="nav nav-tabs">
 		<li class="active, link"><a href="#">Abertos</a></li>
 	</ul>
@@ -44,10 +43,11 @@
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
 						<td>
-                            @if(empty($d->applications[0]->candidate_id))
-                                <a href="{{ route('professorPosition', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
-                            @else
+                            @if(!empty($d->applications[0]->candidate_id) && $d->applications[0]->candidate_id == $candidate_id)
                                 <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Concorrendo</button></a>
+                            @else
+                                <a href="{{ url('position', $d->id) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
+
                             @endif
                         </td>
 					</tr>

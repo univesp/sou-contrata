@@ -79,6 +79,10 @@ class ScholarityController extends Controller
                     $areaScholarity->scholarity_id = $school->id;
                     $areaScholarity->area_id = $request->area_id[$k];
                     $areaScholarity->subarea_id = $request->subarea_id[$k];
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/devel
                     $areaScholarity->save();
                 }
             }
@@ -87,7 +91,7 @@ class ScholarityController extends Controller
             return redirect()->route('professorAcademicData');
         }
 
-        $resp = "Parabens, o seu cadastro está completa e vai servi para todas as vagas que você se candidatar. Agora escolha uma vaga para se candidatar.";
+        $resp = "Parabéns, o seu cadastro está completo e servirá para que você possa se cadastrar à todas as vagas disponíveis. Agora escolha uma vaga para se candidatar.";
         $data = Vacancy::where('edict_id', $id_edict)->paginate(12);
 
         Helper::alterSessionUser($request, 3);

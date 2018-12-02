@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-
+    DADOS ACADÊMICOS
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
@@ -30,7 +30,7 @@
             <div  class="row">
                 <div class="col-md-7">
                     <div  class="form-group">
-                        <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Latttes</a><span class="cor-campo"> *</span></label>
+                        <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Lattes</a><span class="cor-campo"> *</span></label>
                         <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes">
                     </div>
                 </div>
@@ -88,6 +88,11 @@
                             <div class="col-md-3">
                                 <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
                                 <input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-danger"></p>
                             </div>
                         </div>
                     </div>

@@ -1,13 +1,13 @@
 @extends('layouts.header')
 @section('title')
-    Cadastro de Professores
+    EDITAL
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 
 @section('cabecalho')
-    FORMULÁRIO DE INSCRIÇÃO
+    EDITAL
 @endsection
 @section('username')
 {{ "Bem vindo, ". Session::get('user')['user'] }}

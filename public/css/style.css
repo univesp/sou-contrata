@@ -498,4 +498,7 @@ label {
     margin-top: 20px;
   }
 
+.btn-success{
+    float: right !important;
 
+}

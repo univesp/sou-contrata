@@ -47,7 +47,7 @@ Route::get('subarea/{area}','ScholarityController@subarea')->name('subarea');
 
 //POSITION
 Route::get('position/{id}','PositionController@index')->name("professorPosition")->middleware('login');
-Route::post('position','CriterionController@store')->middleware('login');
+Route::post('position','CriterionController@store')->name("professorPosition")->middleware('login');
 
 //CHECKEMAIL
 Route::post('email-check','UserController@checkEmail');
