@@ -35,7 +35,6 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-
         $id_user = $request->session()->get('user')['id'];
         $id_edict = $request->session()->get('edict_id');
         $id_candidate = Candidate::where('user_id', '=', $id_user)->first();
@@ -48,12 +47,21 @@ class ScholarityController extends Controller
 
                 $school = new Scholarity();
                 $validator = Validator::make($request->all(),[
-
-                    //'file_graduate.*'  => 'required|mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'
+                    'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
                 ]);
 
                 if ($validator->fails()) {
 
+                    return redirect()
+                        ->route('professorAcademicData')
+                        ->withInput($request->all())
+                        ->withErrors($validator->messages([
+                            'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
+                            "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.",
+                        ]));
+                }
+
+                if(count($request->graduate_dinamic) >= 3) {
                     return redirect()
                         ->route('professorAcademicData')
                         ->withInput($request->all())
@@ -151,20 +159,4 @@ class ScholarityController extends Controller
         //
     }
 
-    public function document_academic(Request $request) {
-
-        //$session = $request->session()->get('candidate');
-        //$user = $session[0]->id;
-
-        $input = $request->all();
-        $input['image'] = $input['file_graduate'];
-
-        // Pegando a extensão do arquivo
-
-        $arr = explode('.', $input['image']);
-        $extensao = end($arr);
-
-        $input['image'] = time() . '.' . $extensao;
-        //$request->image->move(public_path("documents-academic/{$user}/"), $input['image']);
-    }
 }
