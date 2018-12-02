@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-
+    DADOS ACADÊMICOS
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
@@ -30,7 +30,7 @@
             <div  class="row">
                 <div class="col-md-7">
                     <div  class="form-group">
-                        <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Latttes</a><span class="cor-campo"> *</span></label>
+                        <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Lattes</a><span class="cor-campo"> *</span></label>
                         <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes">
                     </div>
                 </div>
@@ -88,6 +88,11 @@
                             <div class="col-md-3">
                                 <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
                                 <input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-danger"></p>
                             </div>
                         </div>
                     </div>
@@ -188,9 +193,13 @@
                 HTML.push('<div class="col-md-12">');
                 HTML.push('<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>');
                 HTML.push('<input type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" max="'+ today +'" required oninvalid="this.setCustomValidity(Digite o Data de Conclusão)" onchange="try{setCustomValidity("")}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}>');
+                HTML.push('</div></div>');
+                HTML.push('<div class="row">');
+                HTML.push('<div class="col-md-12" style="padding-left:0px;">');
+                HTML.push('<p class="text-danger" id="err-' + codigo + '></p>');
                 HTML.push('</div></div></div>');
                 HTML.push('<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">');
-                HTML.push('<div class="col-md-6" style="margin-top:10px;">');
+                HTML.push('<div class="col-md-6" style="margin-top:10px;padding-left:0px;">');
                 HTML.push('<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>');
                 HTML.push('<div class="display-flex">');
                 HTML.push('<input type="file" name="file_graduate[]" class="file_graduate" accept="application/pdf"/>');
@@ -209,6 +218,19 @@
                         $('.submit').prop('disabled',false);
                     } else {
                         $('.submit').prop('disabled',true);
+                    }
+                });
+
+                $('.inputDataConclusao').on('blur', function() {
+                    var field = $(this).val();
+                    var date = new Date(field);
+                    var today = new Date();
+                    today.setHours(0,0,0,0);
+                    if (date >= today) {
+                        $(this).val('');
+                        $(this).parents('.row').find('.text-danger').text('Coloque apenas graduações já finalizadas!');
+                    } else {
+                        $(this).parents('.row').siblings('.row').find('.text-danger').text('');
                     }
                 });
             }
@@ -318,6 +340,19 @@
                         error: function (errors) {
                         }
                     });
+                }
+            });
+
+            $('.inputDataConclusao').on('blur', function() {
+                var field = $(this).val();
+                var date = new Date(field);
+                var today = new Date();
+                today.setHours(0,0,0,0);
+                if (date >= today) {
+                    $(this).val('');
+                    $(this).parents('.row').siblings('.row').find('.text-danger').text('Coloque apenas graduações já finalizadas!');
+                } else {
+                    $(this).parents('.row').siblings('.row').find('.text-danger').text('');
                 }
             });
 

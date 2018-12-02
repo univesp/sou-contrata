@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-    Cadastro de Professores
+    FORMULÁRIO DE INSCRIÇÃO
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
@@ -17,7 +17,7 @@
     <body>
     <div class="container">
         <div class="formatacao-campos">
-            *Obrigatório
+            * Campos obrigatórios
         </div>
         <form action="{{route('store')}}" method="post">
             {{ csrf_field() }}
@@ -43,7 +43,7 @@
             </div>
 
             <div class="row">
-                <div class="form-group form-group col-md-3">
+                <div class="form-group form-group col-md-6">
                     <label for="textLogin" class="control-label, fonte-campos">Login<span class="cor-campo">*</span></label>
                     <input id="textLogin" class="form-control" type="text" name="login" required oninvalid="this.setCustomValidity('Digite seu Login')" onchange="try{setCustomValidity('')}catch(e){}">
                 </div>
