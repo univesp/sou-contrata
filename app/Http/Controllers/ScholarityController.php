@@ -9,6 +9,7 @@ use App\Vacancy;
 use App\Area;
 use App\Subarea;
 use App\AreaSubarea;
+use App\Candidate;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use App\ScholarityArea;
@@ -34,49 +35,49 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $id = !empty($request->session()->get('candidate')) ? $request->session()->get('candidate') : 1 ;
-
-        $school = new Scholarity();
+        $id_user = $request->session()->get('user')['id'];
+        $id_candidate = Candidate::find($id_user);
+       
         $path_file = null;
-        
+
+        $validator = Validator::make($request->all(), [
+            'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
+        ]);
+
+        if ($validator->fails()) { 
+            
+            return redirect()
+                ->route('professorAcademicData')
+                ->withInput($request->all())
+                ->withErrors($validator->messages([
+                    'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
+                    "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.", 
+                ]));
+        }
+
         if(count($request->graduate_dinamic) >= 3) {
+
             foreach ($request['graduate_dinamic'] as $k => $d) {
+                $school = new Scholarity();
+                // Função responsável para mover os documentos Acadêmicos.
+                $path_file = Helper::uploads_documents_academic($request, $k, $d, $id_candidate);
                 
-                $validator = Validator::make($request->all(),[
+                $school->class_name = $request->cadlettters;
+                $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
+                $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
+                $school->link = $path_file;
+                $school->scholarity_type = $request->inputCursos[$k];
+                $school->teaching_institution = $request->inpuInstituicao[$k];
+                $school->candidate_id = $id_candidate;
+                $school->area_id = $request->area_id[$k];
 
-                    //'file_graduate.*'  => 'required|mimes:application/pdf, application/x-pdf,application/acrobat, applications/vnd.pdf, text/pdf, text/x-pdf|max:10000'
-                ]);
+                if($school->save()) {
 
-                if ($validator->fails()) {
-
-                    return redirect()
-                        ->route('professorAcademicData')
-                        ->withInput($request->all())
-                        ->withErrors($validator->messages())
-                    ;
-                } else {
-                    // Função responsável para mover os documentos Acadêmicos.
-                    $path_file = Helper::uploads_documents_academic($request, $k, $d, $id);
+                    $areaScholarity = new ScholarityArea();
+                    $areaScholarity->scholarity_id = $school->id;
+                    $areaScholarity->area_id = $request->area_id[$k];
                     
-                    $school->class_name = $request->cadlettters;
-                    $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
-                    $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
-                    $school->link = $path_file;
-                    $school->scholarity_type = $request->inputCursos[$k];
-                    $school->teaching_institution = $request->inpuInstituicao[$k];
-                    $school->candidate_id = $id;
-                    $school->area_id = $request->area_id[$k];
-
-                    if($school->save()) {
-
-                        $areaScholarity = new ScholarityArea();
-                        $areaScholarity->scholarity_id = $school->id;
-                        $areaScholarity->area_id = $request->area_id[$k];
-                        
-                        $areaScholarity->save();
-                    }
-
+                    $areaScholarity->save();
                 }
             }
 
@@ -85,7 +86,9 @@ class ScholarityController extends Controller
         }
 
         $resp = $school;
-        $data = Vacancy::all()->where('edict_id', 1);
+
+        $id = $request->session()->get('edital_id');
+        $data = Vacancy::all()->where('edict_id', $id)->get();
 
         Helper::alterSession($request, 3);
         return view('vacancy.process', compact(['resp','data']));
@@ -147,21 +150,5 @@ class ScholarityController extends Controller
     {
         //
     }
-
-    public function document_academic(Request $request) {
-
-        //$session = $request->session()->get('candidate');
-        //$user = $session[0]->id;
-
-        $input = $request->all();
-        $input['image'] = $input['file_graduate'];
-
-        // Pegando a extensão do arquivo
-
-        $arr = explode('.', $input['image']);
-        $extensao = end($arr);
-
-        $input['image'] = time() . '.' . $extensao;
-        //$request->image->move(public_path("documents-academic/{$user}/"), $input['image']);
-    }
+    
 }
