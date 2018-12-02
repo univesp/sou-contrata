@@ -15,26 +15,26 @@ class CriterionController extends Controller
     //
     public function store(Request $request)
     {
-
-        //$id_candidete = $request->session()->get('candidate');
+        $candidate_id = Candidate::where('user_id','=', $request->session()->get('user')['id'])->first()->id;
         $id_edict = $request->session()->get('edict_id');
+
         $ap = new Application();
-        $ap->candidate_id                 = 1;
+        $ap->candidate_id                 = $candidate_id;
         $ap->vacancy_id          = $request['vacancy_id'];
-        $ap->status               = 'ok';
-        $ap->observation               = "Gravando em banco!";
+        $ap->status_2              = 'ok';
+        $ap->obs               = "Gravando em banco!";
 
         $application = $ap->save();
 
         $resp = "Application cadastrado ID -" . $ap->id;
 
-        if($application)
-        {
+        if($application) {
             foreach ($request['criteria'] as $criteria){
 
                 $ac = new ApplicationCriterion();
-                $ac->candidate_id                 = $ap->id;
-                $ac->vacancy_crit_id          = $criteria;
+                $ac->application_id                 = $ap->id;
+                $ac->vacancy_criteria_id          = $criteria;
+                $ac->criterion_types_id           = $request['type_'.$criteria];
                 $ac->flag_ok               = 1;
 
                 $a_criteroin = $ac->save();
@@ -55,8 +55,13 @@ class CriterionController extends Controller
 
         }
 
-        $data = Vacancy::all()->where('edict_id',$id_edict);
+        $data = Vacancy::with('edict')
+            ->with('applications')
+            ->where('edict_id', $id_edict)
+            ->orderBy('created_at','desc')
+            //->paginate(12);
+            ->paginate(12);
 
-        return view('vacancy.process', compact(['data', 'resp']));
+        return view('vacancy.process', compact(['data', 'resp', 'candidate_id']));
     }
 }

@@ -19,22 +19,49 @@ class PositionController extends Controller
     public function index($id, Request $request)
     {
         $data = Vacancy::with('vacancy_criteria')->with('services')->find($id);
-        /*$vacancies = Criterion::with('vacancy_criteria')
-            ->whereHas('vacancy_criteria',function ($query) use (&$id){
-                $query->where('vacancy_id', '=', $id)->with('criteria');
-            })->get();*/
-
         $vacancies = Criterion::with('vacancy_criteria')
             ->whereHas('vacancy_criteria',function ($query) use (&$id){
-                $query->where('vacancy_id', '=', $id)->with('criteria');
-            })
-            ->with('title')
-            ->with('criterion_types')
-            ->get();
-        dd($vacancies);
-        $request->session()->put('positionId', $id);
-        return view('professor.position', compact(['data','vacancies', 'vagueId']));
+                $query->where('vacancy_id', '=', $id);
+            })->get();
 
+        $result = [];
+        foreach ($vacancies as $vacancy){
+            $type = $this->montarCriterionType($vacancy->id);
+            if($type != false){
+                $result[$vacancy->title][$vacancy->id] = [
+                    "id" => $vacancy->id,
+                    "title_id" => $vacancy->title_id,
+                    "name" => $vacancy->name,
+                    "created_at" => $vacancy->id,
+                    "updated_at" => $vacancy->updated_at,
+                    "type" => $type,
+                ];
+            }
+        }
+        return view('professor.position', compact(['data','result', 'id']));
+
+    }
+
+    private function montarCriterionType($id)
+    {
+        $criterion_types = Criterion::with('criterion_types')
+            ->where('id','=',$id)
+            ->get();
+        $result = [];
+        foreach ($criterion_types as $criterion){
+            foreach ($criterion->criterion_types as $c){
+                if(!empty($c)){
+                    $result[$c->id] = [
+                        "id" => $c->id,
+                        "description" => $c->description,
+                    ];
+                }else{
+                    return false;
+                }
+
+            }
+        }
+        return $result;
     }
 
     /**
