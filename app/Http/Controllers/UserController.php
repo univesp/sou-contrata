@@ -6,12 +6,11 @@ use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use App\User;
-use function Sodium\add;
+use App\Candidate;
+//use function Sodium\add;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
-use App\Candidate;
-use App\Scholarity;
-use App\Document;
+
 
 class UserController extends Controller {
 
@@ -83,8 +82,9 @@ class UserController extends Controller {
     public function login(Request $request)
     {
 
-        $login = User::where('email', $request->email)
-            ->select('id', 'name' , 'email', 'password')->first();
+        $login = User::where('email','=', $request->email)
+            ->select('id', 'name' , 'email', 'password')
+            ->first();
 
         if(Crypt::decrypt($login->password) == $request->password) {
             Helper::createSessionUser($login, $request);

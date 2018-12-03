@@ -35,9 +35,9 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
-        $id_user = $request->session()->get('user')['id'];
-        $id_edict = $request->session()->get('edict_id');
-        $id_candidate = Candidate::where('user_id', '=', $id_user)->first();
+        $user_id = $request->session()->get('user')['id'];
+        $edict_id = $request->session()->get('edict_id');
+        $candidate_id = Candidate::where('user_id', '=', $user_id)->first()->id;
 
         $validator = Validator::make($request->all(), [
             'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
@@ -55,6 +55,7 @@ class ScholarityController extends Controller
         }
 
         $path_file = null;
+        $scholarity_type = ['graduate','master','doctorate'];
 
         if(count($request->graduate_dinamic) >= 3) {
 
@@ -62,16 +63,17 @@ class ScholarityController extends Controller
 
                 $school = new Scholarity();
                 // Função responsável para mover os documentos Acadêmicos.
-                $path_file = Helper::uploads_documents_academic($request, $k, $d, $id_candidate['id']);
+                $path_file = Helper::uploads_documents_academic($request, $k, $d, $candidate_id);
 
                 $school->class_name = $request->cadlettters;
                 $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->link = $path_file;
-                $school->scholarity_type = $request->inputCursos[$k];
+                $school->scholarity_type = $scholarity_type[$k];
                 $school->teaching_institution = $request->inpuInstituicao[$k];
-                $school->candidate_id = $id_candidate['id'];
+                $school->candidate_id = $candidate_id;
                 $school->area_id = $request->area_id[$k];
+                $school->course_name = $request->inputCursos[$k];
 
                 if($school->save()) {
 
@@ -88,10 +90,10 @@ class ScholarityController extends Controller
         }
 
         $resp = "Parabéns, o seu cadastro está completo e servirá para que você possa se cadastrar à todas as vagas disponíveis. Agora escolha uma vaga para se candidatar.";
-        $data = Vacancy::where('edict_id', $id_edict)->paginate(12);
+        $data = Vacancy::where('edict_id', $edict_id)->paginate(12);
 
         Helper::alterSessionUser($request, 3);
-        return view('vacancy.process', compact(['resp','data']));
+        return view('vacancy.process', compact('resp','data', 'candidate_id'));
 
     }
 
