@@ -21,7 +21,7 @@
             <li class="active, link3"><a href="{{ route('professorPersonalData')}}">Dados Academicos</a></li>
             <li class="disabled"><a href="#">Área de Interesse</a></li>
         </ul>
-        <p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
+        <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
         <br />
 
         <form action="{{ route('professorAcademicData')}}" method="post" enctype="multipart/form-data">
