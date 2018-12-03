@@ -171,6 +171,7 @@ class PersonalDataController extends Controller
                 // Save in database
                 $address->save();
             }
+            
             // Return in view
             // return response()->json('funciona');
             Helper::alterSessionUser($request, 2);
