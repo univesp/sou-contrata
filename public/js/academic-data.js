@@ -66,7 +66,7 @@ $(function () {
         HTML.push('<div class="row" style="margin-top:10px;">');
         HTML.push('<div class="col-md-8">');
         HTML.push('<label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>');
-        HTML.push('<input type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity(Digite a Instituição)" onchange="try{setCustomValidity("")}catch(e){}>');
+        HTML.push('<input type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" maxlength="150" required oninvalid="this.setCustomValidity(Digite a Instituição)" onchange="try{setCustomValidity("")}catch(e){}>');
         HTML.push('</div></div>');
         HTML.push('<div class="row" style="margin-top:10px;">');
         HTML.push('<div class="col-md-12">');
