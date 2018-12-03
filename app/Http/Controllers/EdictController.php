@@ -24,7 +24,7 @@ class EdictController extends Controller
         if(empty($data)){
             return redirect('/');
         }
-        Helper::createSessionEdict($request, $id);
+        Helper::createSessionEdict($id);
         return view('vacancy.edicts',compact('data', $data));
     }
 
@@ -75,7 +75,7 @@ class EdictController extends Controller
 
     public function list($id, Request $request)
     {
-        $request->session()->put('edital_id', $id);
+        Helper::createSessionEdict($id);
         return view('vacancy/login', compact('data'));
 
     }

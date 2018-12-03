@@ -61,7 +61,6 @@
                                 <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Concorrendo</button></a>
                             @else
                                 <a href="{{ url('position', $d->id) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
-
                             @endif
                         </td>
 					</tr>
