@@ -19,8 +19,9 @@ class CreateScholaritiesTable extends Migration
             $table->date('end_date');
             $table->date('init_date');
             $table->text('link');
-            //$table->char('scholarity_type', 20);
+            $table->char('scholarity_type', 20);
             $table->string('teaching_institution', 150);
+            $table->string('course_name', 200);
             $table->timestamps();
         });
     }

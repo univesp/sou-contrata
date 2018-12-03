@@ -9,9 +9,10 @@ $factory->define(Scholarity::class, function ($faker) use ($factory) {
         'end_date' => Carbon::now()->addYears(5),
         'init_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'link' => $faker->url,
-        // 'scholarity_type' => $faker->text($maxNbChars = 20),
+        'scholarity_type' => $faker->text($maxNbChars = 20),
         'teaching_institution' => $faker->numberBetween($min = 1, $max = 4),
         'candidate_id' => $factory->create(App\Candidate::class)->id,
         'area_id' => $factory->create(App\Candidate::class)->id,
+        'course_name' => $faker->text($maxNbChars = 200)
     ];
 });
