@@ -66,3 +66,6 @@ Route::resource('academic-data', 'ScholarityController', [
 ])->middleware('login');
 
 
+Route::get('/scholarityJSON/{id}', 'ScholarityController@scholarityJSON');
+
+
