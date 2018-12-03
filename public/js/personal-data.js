@@ -7,7 +7,7 @@ $(function() {
         //Valida o formato do CEP.
         if (validacep.test(cep)) {
             //Preenche os campos com "..." enquanto consulta webservice.
-            $("#address").val("...");
+            $("#typePublicPlace").val("...");
             $("#inputLogradouro").val("...");
             $("#inputBairro").val("...");
             $("#inputCidade").val("...");
@@ -18,7 +18,7 @@ $(function() {
 
             if (!("erro" in dados)) {
                     //Atualiza os campos com os valores da consulta.
-                    $("#address").val(dados.tipo_logradouro);
+                    $("#typePublicPlace").val(dados.tipo_logradouro);
                     $("#inputLogradouro").val(dados.logradouro);
                     $("#inputBairro").val(dados.bairro);
                     $("#inputCidade").val(dados.cidade);
@@ -49,6 +49,38 @@ $(function() {
                 return false;
             }
         }
+
+        $(window).on('load', function () {
+            var natural = $('#inputNatu').val();
+    
+            if (natural == 1) {
+                $(".militar").hide()
+                $("#file_military").prop('required', null);
+            } else {
+                $(".militar").show();
+                $("#file_military").prop('required', true);
+            }
+            if (natural == 1) {
+                $(".elector_title").hide();
+                $("#file_title").prop('required', null);
+            } else {
+                $(".elector_title").show();
+                $("#file_title").prop('required', true);
+            }
+
+            var sexo = $('#sexo').val();
+    
+            if (sexo == 0) {
+    
+                $(".militar").show();
+                $("#file_military").prop('required', true);
+    
+            } else if (sexo == 1 || sexo == 2) {
+    
+                $(".militar").hide();
+                $("#file_military").prop('required', null);
+            }
+        })
 
         $("#inputNatu").change(function () {
     

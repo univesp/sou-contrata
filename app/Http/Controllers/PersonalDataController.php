@@ -26,7 +26,6 @@ class PersonalDataController extends Controller
         $user_id = $request->session()->get('user')['id'];
         return view('professor.personal-data')
             ->with('user_id', $user_id);
-
     }
 
     /**
@@ -104,14 +103,14 @@ class PersonalDataController extends Controller
             'postal_code'               => 'required',
             'public_place'              => 'required',
             'state'                     => 'required',
-            'address'                   => 'required',
+            'type_public_place'         => 'required',
         ]);
 
         // Validate if the rules are met
         if ($validator->fails()) {
             return redirect()
                 ->route('professorPersonalData')
-                ->withInput($request->all())
+                ->withInput($request->input())
                 ->withErrors($validator)
             ;
         } else {
@@ -156,21 +155,23 @@ class PersonalDataController extends Controller
 
                 // Save in database
                 $document->save();
+                
+                // Create new address
+                $address = new Address();
+                $address->city                      = $request->city;
+                $address->complement                = $request->complement;
+                $address->file_address              = $path_file_address;
+                $address->neighborhood              = $request->neighborhood;
+                $address->number                    = $request->number;
+                $address->postal_code               = $request->postal_code;
+                $address->public_place              = $request->public_place;
+                $address->state                     = $request->state;
+                $address->type_public_place         = $request->type_public_place;
+                $address->candidate_id              = $candidate->id;
+                // Save in database
+                $address->save();
             }
-            // Create new address
-            $address = new Address();
-            $address->city                      = $request->city;
-            $address->complement                = $request->complement;
-            $address->file_address              = $path_file_address;
-            $address->neighborhood              = $request->neighborhood;
-            $address->number                    = $request->number;
-            $address->postal_code               = $request->postal_code;
-            $address->public_place              = $request->public_place;
-            $address->state                     = $request->state;
-            $address->type_public_place         = $request->address;
-            $address->candidate_id              = $candidate->id;
-            // Save in database
-            $address->save();
+            
             // Return in view
             // return response()->json('funciona');
             Helper::alterSessionUser($request, 2);
