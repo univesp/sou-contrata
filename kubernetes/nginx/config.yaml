@@ -13,7 +13,7 @@ data:
         listen 80 default_server;
         listen [::]:80 default_server;
 
-        root /var/www/public;
+        root /var/www/autores/public;
         server_name autores.univesp.br;
 
         ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
@@ -36,7 +36,7 @@ data:
         }
 
         location /autores {
-          alias /var/www/public;
+          alias /var/www/autores/public;
           try_files $uri $uri/ @autores;
 
           location ~ \.php$ {
