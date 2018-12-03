@@ -240,8 +240,8 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <label for="address" class="fonte-campos">Tipo<span class="cor-campo">*</span></label>
-                <input type="text" id="address" name="address" class="form-control" value="{{ old('address') }}"
+                <label for="type_public_place" class="fonte-campos">Tipo<span class="cor-campo">*</span></label>
+                <input type="text" id="typePublicPlace" name="type_public_place" class="form-control" value="{{ old('type_public_place') }}"
                     required readonly oninvalid="this.setCustomValidity('Digite o Tipo')" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
             <div class="col-md-4">

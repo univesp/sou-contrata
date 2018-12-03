@@ -7,7 +7,7 @@ $(function() {
         //Valida o formato do CEP.
         if (validacep.test(cep)) {
             //Preenche os campos com "..." enquanto consulta webservice.
-            $("#address").val("...");
+            $("#typePublicPlace").val("...");
             $("#inputLogradouro").val("...");
             $("#inputBairro").val("...");
             $("#inputCidade").val("...");
@@ -18,7 +18,7 @@ $(function() {
 
             if (!("erro" in dados)) {
                     //Atualiza os campos com os valores da consulta.
-                    $("#address").val(dados.tipo_logradouro);
+                    $("#typePublicPlace").val(dados.tipo_logradouro);
                     $("#inputLogradouro").val(dados.logradouro);
                     $("#inputBairro").val(dados.bairro);
                     $("#inputCidade").val(dados.cidade);
