@@ -76,7 +76,7 @@ $(function () {
         HTML.push('<div class="row col-md-7">');
         HTML.push('<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>');
         HTML.push('<div class="display-flex">');
-        HTML.push('<input type="file" name="file_graduate[]" class="file_graduate" accept="application/pdf"/>');
+        HTML.push('<input type="file" name="file_graduate[]" class="file_graduate" required accept="application/pdf"/>');
         HTML.push('</div><br />');
         HTML.push('<button type="button" class="btn btn-success btn-sm novo" style="margin-top: -40px;" novo=' + codigo + '>Novo</button>');
         HTML.push('<button type="button" class="btn btn-danger btn-sm remove" style="margin-right:10px; margin-top: -40px;" remove=' + codigo + '>Remover</button>');

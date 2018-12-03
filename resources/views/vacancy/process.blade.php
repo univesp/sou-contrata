@@ -15,7 +15,21 @@
 @section('content')
 	<div class="container">
 	@if(!empty($resp))
-            <h1 class="alert alert-success" role="alert">{{$resp}}</h1>
+	<div class="modal fade in" id="modal-success" style="display: block;">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Parabéns!!!</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{$resp}}</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" onclick="$('.modal').hide()" data-dismiss="modal">Fechar</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	@endif
 	<ul class="nav nav-tabs">
 		<li class="active, link"><a href="#">Abertos</a></li>
