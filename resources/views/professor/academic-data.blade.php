@@ -22,7 +22,7 @@
             <li class="disabled"><a href="#">Área de Interesse</a></li>
         </ul>
         <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
-        <br />
+        <p class="text-danger">Para avançar é necessário a inserção das formações: <b>GRADUAÇÃO</b>, <b>MESTRADO</b>, <b>DOUTORADO</b>, clique no botão <b>NOVO</b> para adicionar a formação.</p>
 
         <form action="{{ route('professorAcademicData')}}" method="post" enctype="multipart/form-data">
 
