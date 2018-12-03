@@ -66,7 +66,6 @@
                         <strong>{{$data}}</strong>
                     </div>
                 </div>
-
             @endif
 		</div>
 	</div>
