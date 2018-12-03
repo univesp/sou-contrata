@@ -28,6 +28,9 @@ $(function () {
         document.getElementsByClassName("inputDataConclusao")[0].setAttribute('max', today);
 
         HTML.push('<div id="grad_' + codigo + '">');
+        HTML.push('<div class="col-md-12" style="margin: 30px 0 0 0;">');
+        HTML.push('<fieldset class="scheduler-border">');
+        HTML.push('<legend class="scheduler-border">Adição de Formação Acadêmica</legend>');
         HTML.push('<div class="col-md-7">');
         HTML.push('<div class="row">');
         HTML.push('<div class="col-md-12">');
@@ -52,8 +55,8 @@ $(function () {
         HTML.push('</select>');
         HTML.push('</div>');
         HTML.push('</div>');
-        HTML.push('</div><br><br>');
-        HTML.push('</div></div></div><br/>');
+        HTML.push('</div>');
+        HTML.push('</div></div></div>');
         HTML.push('<div class="col-md-7">');
         HTML.push('<div class="row" style="margin-top:10px;">');
         HTML.push('<div class="col-md-12">');
@@ -63,23 +66,22 @@ $(function () {
         HTML.push('<div class="row" style="margin-top:10px;">');
         HTML.push('<div class="col-md-8">');
         HTML.push('<label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>');
-        HTML.push('<input type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity(Digite a Instituição)" onchange="try{setCustomValidity("")}catch(e){}>');
+        HTML.push('<input type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" maxlength="150" required oninvalid="this.setCustomValidity(Digite a Instituição)" onchange="try{setCustomValidity("")}catch(e){}>');
         HTML.push('</div></div>');
         HTML.push('<div class="row" style="margin-top:10px;">');
         HTML.push('<div class="col-md-12">');
         HTML.push('<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>');
         HTML.push('<input type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" max="' + today + '" required oninvalid="this.setCustomValidity(Digite o Data de Conclusão)" onchange="try{setCustomValidity("")}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}>');
         HTML.push('</div></div></div>');
-        HTML.push('<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">');
-        HTML.push('<div class="col-md-6" style="margin-top:10px;">');
+        HTML.push('<div class="row col-md-7">');
         HTML.push('<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>');
         HTML.push('<div class="display-flex">');
-        HTML.push('<input type="file" name="file_graduate[]" class="file_graduate" accept="application/pdf"/>');
-        HTML.push('</div></div><br />');
-        HTML.push('<div class="col-md-3" style="margin-top:0px;">');
-        HTML.push('<button type="button" class="btn btn-success btn-sm novo" novo=' + codigo + '>Novo</button>');
-        HTML.push('<button type="button" class="btn btn-danger btn-sm remove" remove=' + codigo + '>Remover</button>');
-        HTML.push('</div></div>');
+        HTML.push('<input type="file" name="file_graduate[]" class="file_graduate" required accept="application/pdf"/>');
+        HTML.push('<span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>');
+        HTML.push('</div><br />');
+        HTML.push('<button type="button" class="btn btn-success btn-sm novo" style="margin-top: -40px;" novo=' + codigo + '>Novo</button>');
+        HTML.push('<button type="button" class="btn btn-danger btn-sm remove" style="margin-right:10px; margin-top: -40px;" remove=' + codigo + '>Remover</button>');
+        HTML.push('</div></fieldset></div>');
 
         $("#father").append(HTML.join(''));
 
