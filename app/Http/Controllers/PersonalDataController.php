@@ -26,7 +26,6 @@ class PersonalDataController extends Controller
         $user_id = $request->session()->get('user')['id'];
         return view('professor.personal-data')
             ->with('user_id', $user_id);
-
     }
 
     /**
@@ -111,7 +110,7 @@ class PersonalDataController extends Controller
         if ($validator->fails()) {
             return redirect()
                 ->route('professorPersonalData')
-                ->withInput($request->all())
+                ->withInput($request->input())
                 ->withErrors($validator)
             ;
         } else {
