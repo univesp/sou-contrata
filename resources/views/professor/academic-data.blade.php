@@ -21,7 +21,7 @@
             <li class="active, link3"><a href="{{ route('professorPersonalData')}}">Dados Academicos</a></li>
             <li class="disabled"><a href="#">Área de Interesse</a></li>
         </ul>
-        <p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
+        <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
         <br />
 
         <form action="{{ route('professorAcademicData')}}" method="post" enctype="multipart/form-data">
@@ -73,13 +73,13 @@
                         <div class="row spacing-top">
                             <div class="col-md-12">
                                 <label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
                             <div class="col-md-8">
                                 <label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" maxlength="150" required oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
@@ -96,12 +96,13 @@
                     </div>
 
                     <div class="row col-md-7 spacing-top">
-                        <div class="col-md-6 spacing-top">
+                        <div class="col-md-8 spacing-top">
 
                             <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
                             <div class="display-flex">
                                 <input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
                             </div>
+                            <span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>
                         </div><br />
                         <div class="col-md-1">
                             <button type="button" class="btn btn-success btn-sm novo">Novo</button>

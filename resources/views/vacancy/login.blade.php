@@ -9,6 +9,7 @@
 	<link href="{{URL::asset('/css/style-login.css')}}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+	<link rel="shortcut icon" href="https://apps.univesp.br/common/favicon.ico" >
 </head>
 <body class="login">
     <header>
