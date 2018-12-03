@@ -55,6 +55,7 @@ class ScholarityController extends Controller
         }
 
         $path_file = null;
+        $scholarity_type = ['graduate','master','doctorate'];
 
         if(count($request->graduate_dinamic) >= 3) {
 
@@ -68,10 +69,11 @@ class ScholarityController extends Controller
                 $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->link = $path_file;
-                $school->scholarity_type = $request->inputCursos[$k];
+                $school->scholarity_type = $scholarity_type[$k];
                 $school->teaching_institution = $request->inpuInstituicao[$k];
                 $school->candidate_id = $id_candidate['id'];
                 $school->area_id = $request->area_id[$k];
+                $school->course_name = $request->inputCursos[$k];
 
                 if($school->save()) {
 

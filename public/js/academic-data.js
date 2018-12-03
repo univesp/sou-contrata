@@ -77,6 +77,7 @@ $(function () {
         HTML.push('<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>');
         HTML.push('<div class="display-flex">');
         HTML.push('<input type="file" name="file_graduate[]" class="file_graduate" accept="application/pdf"/>');
+        HTML.push('<span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>');
         HTML.push('</div><br />');
         HTML.push('<button type="button" class="btn btn-success btn-sm novo" style="margin-top: -40px;" novo=' + codigo + '>Novo</button>');
         HTML.push('<button type="button" class="btn btn-danger btn-sm remove" style="margin-right:10px; margin-top: -40px;" remove=' + codigo + '>Remover</button>');
