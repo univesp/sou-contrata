@@ -8,6 +8,7 @@ use Illuminate\Routing\UrlGenerator;
 use App\User;
 use App\Candidate;
 //use function Sodium\add;
+use Illuminate\Support\Facades\Session;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
 
@@ -38,7 +39,7 @@ class UserController extends Controller {
      */
     public function store(Request $request)
     {
-        $request->session()->flush();
+        $request->session()->forget('user');
 
         $user = new User();
 
@@ -119,6 +120,7 @@ class UserController extends Controller {
 
     public function form()
     {
+
         return view('user.form');
     }
 }

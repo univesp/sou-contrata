@@ -35,13 +35,13 @@ class Helper
     {
         $user = $request->session()->get('user');
         $user['permission'] = $permission;
-        $request->session()->flush();
+        $request->session()->forget('user');
         $request->session()->put('user', $user);
     }
 
     static function createSessionUser($user_object, $request)
     {
-        $request->session()->forget('user_id');
+        $request->session()->forget('user');
         $candidate = Candidate::where('user_id', $user_object->id)->first();
         if(!empty($candidate->id)){
             $scholarities_candidate = Scholarity::where('candidate_id', $candidate->id)->first();
@@ -65,7 +65,7 @@ class Helper
         $request->session()->put('user', $userSession);
     }
 
-    static function createSessionEdict($request, $id)
+    static function createSessionEdict($id)
     {
         Session::forget('edict_id');
         Session::put('edict_id', $id);
