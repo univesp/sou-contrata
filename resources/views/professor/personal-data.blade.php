@@ -299,7 +299,7 @@
             <h4>Comprovante de Residência</h4>
             <hr />
             <div class="col-md-4">
-                <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás e Telefone<span class="cor-campo"> *</span></label>
+                <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás ou Telefone<span class="cor-campo"> *</span></label>
                 <input type="file" id="file_address" class="proof_address spacing-top" name="file_address" value="{{ old('file_address') }}"
                     required oninvalid="this.setCustomValidity('Obrigatorio upload do Comprovante de Residência')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_address'))
