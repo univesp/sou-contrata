@@ -73,7 +73,7 @@
                         <div class="row spacing-top">
                             <div class="col-md-12">
                                 <label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
