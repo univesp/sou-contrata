@@ -166,7 +166,19 @@ class ScholarityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dados = Scholarity::all();
+        return response()->json($dados);
+    }
+    
+    // Rotina via JSON
+
+    public function scholarityJSON($id)
+    {   
+        
+        $dados = Scholarity::where('id', '=', $id)->first();
+
+
+        return response()->json($dados);
     }
 
 }
