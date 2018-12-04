@@ -79,7 +79,7 @@
                     @endforeach
                     <div class="row">
                         <div class="float-right">
-                            <button type="submit" class="btn btn-danger">AVANÇAR</button>
+                            <button type="submit" class="btn btn-danger" disabled id="submit">AVANÇAR</button>
                         </div>
                     </div>
                     <br /><br />
@@ -92,6 +92,11 @@
         $(document).ready(function() {
             $('input:checkbox').on('change', function() {
                $(this).parent().siblings().toggle();
+               if ($('input[name="sevices[]"]:checked').length && $('input[name="criteria[]"]:checked').length) {
+                $('#submit').prop('disabled', false);
+               } else {
+                $('#submit').prop('disabled', true);
+               }
             });
             $('input:radio[value="1"]').attr('checked', true);
         });
