@@ -31,12 +31,12 @@
 				<h1>Sistema Operacional Univesp</h1>
 				<h2>Login</h2>
 			</div>
-            <form name="form" action="login" method="post">
+            <form name="form" action="{{ route('login') }}" method="post">
                 {{ csrf_field() }}
 				<div class="step stepUsername" style="display: block;">
 					<div class="form-group">
-                    <input style="box-shadow:none;border-radius:0px;" type="email" id="email" name="email" class="form-control"  required oninvalid="this.setCustomValidity('Digite o email')" onchange="try{setCustomValidity('')}catch(e){}">
-						<label class="form-control-placeholder" for="username">Usuário</label>
+                        <input style="box-shadow:none;border-radius:0px;" type="email" id="email" name="email" class="form-control"  required oninvalid="this.setCustomValidity('Digite o email')" onchange="try{setCustomValidity('')}catch(e){}">
+						<label class="form-control-placeholder" for="username">E-mail</label>
 					</div>
 					<div class="step-footer">
 						<a href="">Esqueci minha senha</a>
@@ -55,7 +55,7 @@
 					</div>
 					<div class="step-footer">
 						<a href="" target="_blank">Esqueci minha senha</a>
-						<button class="btn-red btn-danger" id="btnSubmit" type="submit">Enviar</button>
+						<button type="submit" class="btn-red btn-danger" id="btnSubmit">Enviar</button>
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -80,9 +80,6 @@
 
 		$("#email").focus();
 		$("#password").focus();
-		$("#btnSubmit").click(function () {
-			$("#btnSubmit").submit();
-		})
 
 		var login = (function () {
 			return {
@@ -108,17 +105,6 @@
 							$('input#password').prop('type', 'password').removeClass('active');
 						}
 						$(this).toggleClass('active');
-					});
-
-					$('form').submit(function (e) {
-						if ($(this).is('[action="login"]')) return true;
-						if ($('.stepUsername').is(':visible')) {
-							$('.stepUsername').hide();
-							$('.stepPassword').fadeIn();
-							/*return false; */
-							window.location.href = "login";
-						}
-						if (!$('#email').val() || !$('#password').val()) return false;
 					});
 
 				},
