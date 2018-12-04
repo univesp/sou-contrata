@@ -50,7 +50,7 @@ class CriterionController extends Controller
         }
 
         $vacancy = Vacancy::where('id','=', $request['vacancy_id'])->first()->title;
-        $resp = "Parabens! Agora você está concorrendo a vaga {$vacancy}. Lembando que você pode concorrer a quantas vagas quiser.";
+        $resp = "Parabens! Agora você está concorrendo a vaga {$vacancy}. Lembrando que você pode concorrer a quantas vagas quiser.";
         Session::put('resp',$resp);
         return redirect()->route('process');
     }
