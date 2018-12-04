@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use \App\Vacancy;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('','EdictController@index')->name('home');
+//Route::get('','EdictController@index')->name('home');
+
+Route::get('','EdictController@home')->name('home');
 
 //Vacancy
 Route::get('vacancy','ListEditalController@index')->name('vacancy')->middleware(['check.user']);
@@ -65,7 +68,5 @@ Route::resource('academic-data', 'ScholarityController', [
     'names'=> ['index' => 'professorAcademicData', 'store' => 'professorAcademicData']
 ])->middleware('login');
 
-
-Route::get('/scholarityJSON/{id}', 'ScholarityController@scholarityJSON');
 
 

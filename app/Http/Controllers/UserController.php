@@ -28,7 +28,8 @@ class UserController extends Controller {
      */
     public function index()
     {
-        return view('vacancy.login');
+        dd('teste');
+        //return view('vacancy.login');
     }
 
     /**
