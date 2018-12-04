@@ -22,7 +22,7 @@
             <li class="active, link3"><a href="{{ route('professorPosition', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li>
 		</ul>
         <div class="vague-information">
-            <p class="ob, cor-campo">*Obrigatório</p>
+            <p class="ob, cor-campo">*Campos Obrigatórios</p>
             <p>Você esta se credenciando</p>
             <p><strong>{{$data->title}}</strong></p>
             Requisitos
@@ -92,7 +92,14 @@
         $(document).ready(function() {
             $('input:checkbox').on('change', function() {
                $(this).parent().siblings().toggle();
-               if ($('input[name="sevices[]"]:checked').length && $('input[name="criteria[]"]:checked').length) {
+               if ($('input[name="sevices[]"]:checked').length && $('input[name="criteria[]"]:checked').length && $('input[type=radio][name*="type_"]:checked').length > 2){
+                $('#submit').prop('disabled', false);
+               } else {
+                $('#submit').prop('disabled', true);
+               }
+            });
+            $('input:radio').on('change', function() {
+                if ($('input[name="sevices[]"]:checked').length && $('input[name="criteria[]"]:checked').length && $('input[type=radio][name*="type_"]:checked').length > 2){
                 $('#submit').prop('disabled', false);
                } else {
                 $('#submit').prop('disabled', true);
