@@ -16,7 +16,11 @@ class CriterionController extends Controller
     public function store(Request $request)
     {
         $candidate_id = Candidate::where('user_id','=', $request->session()->get('user')['id'])->first()->id;
-        $id_edict = $request->session()->get('edict_id');
+
+        if(empty($request['criteria']) || empty($request['sevices'])){
+            Session::put('resp','Criterios e serviços precisam ser preenchidos, por favor volte a vaga desejada e marque ao menos uma opção de cada. VOCÊ AINDA NÃO ESTÁ CONCORRENDO A VAGA! ');
+            return redirect()->route('process');
+        }
 
         $ap = new Application();
         $ap->candidate_id                 = $candidate_id;
@@ -25,6 +29,8 @@ class CriterionController extends Controller
         $ap->obs               = "Gravando em banco!";
 
         $application = $ap->save();
+
+
 
         if($application) {
             foreach ($request['criteria'] as $criteria){
