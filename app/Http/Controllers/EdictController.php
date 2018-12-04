@@ -27,6 +27,14 @@ class EdictController extends Controller
         Helper::createSessionEdict($id);
         return view('vacancy.edicts',compact('data', $data));
     }
+    
+    public function home()
+    {
+        $data = \App\Vacancy::with('edict')->where('edict_id','=', 1)->first();
+        
+        Helper::createSessionEdict(1);
+        return view('vacancy.edicts',compact('data', $data));
+    }
 
     /**
      * Store a newly created resource in storage.
