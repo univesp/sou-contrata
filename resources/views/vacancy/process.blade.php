@@ -14,7 +14,7 @@
 @endsection
 @section('content')
 	<div class="container">
-	@if(!empty($resp))
+	@if(!empty($resp) || Session::get('resp') )
 	<div class="modal fade in" id="modal-success" style="display: block;">
   		<div class="modal-dialog">
     		<div class="modal-content">
@@ -22,7 +22,8 @@
 					<h4 class="modal-title">Parabéns!!!</h4>
 				</div>
 				<div class="modal-body">
-					<p>{{$resp}}</p>
+					<p>{{!empty($resp) ? $resp : Session::get('resp')}}</p>
+                    {{ Session::forget('resp')}}
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" onclick="$('.modal').hide()" data-dismiss="modal">Fechar</button>
@@ -57,7 +58,7 @@
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
 						<td>
-                            @if(!empty($d->applications[0]->candidate_id) && $d->applications[0]->candidate_id == $candidate_id)
+                            @if(!$d->applications->isEmpty() )
                                 <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Concorrendo</button></a>
                             @else
                                 <a href="{{ url('position', $d->id) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
@@ -68,7 +69,8 @@
 			@endif
 			</tbody>
 		</table>
-        {{ !empty($data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links()) }}
+
+        {{ $data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links() }}
 		</div>
 @endsection
 @section('script')

@@ -87,7 +87,7 @@ class UserController extends Controller {
             ->select('id', 'name' , 'email', 'password')
             ->first();
 
-        if(Crypt::decrypt($login->password) == $request->password) {
+        if(!empty($login) && Crypt::decrypt($login->password) == $request->password) {
             Helper::createSessionUser($login, $request);
             //return view('professor.personal-data');
             return redirect()->route('professorPersonalData');
