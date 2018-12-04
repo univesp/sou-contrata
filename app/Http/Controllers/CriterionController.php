@@ -6,7 +6,7 @@ use App\ApplicationAssignment;
 use Illuminate\Http\Request;
 use App\Application;
 use App\ApplicationCriterion;
-use App\AssignmentVacancy;
+use Illuminate\Support\Facades\Session;
 use App\Candidate;
 use App\Vacancy;
 
@@ -16,7 +16,11 @@ class CriterionController extends Controller
     public function store(Request $request)
     {
         $candidate_id = Candidate::where('user_id','=', $request->session()->get('user')['id'])->first()->id;
-        $id_edict = $request->session()->get('edict_id');
+
+        if(empty($request['criteria']) || empty($request['sevices'])){
+            Session::put('resp','Criterios e serviços precisam ser preenchidos, por favor volte a vaga desejada e marque ao menos uma opção de cada. VOCÊ AINDA NÃO ESTÁ CONCORRENDO A VAGA! ');
+            return redirect()->route('process');
+        }
 
         $ap = new Application();
         $ap->candidate_id                 = $candidate_id;
@@ -26,7 +30,7 @@ class CriterionController extends Controller
 
         $application = $ap->save();
 
-        $resp = "Application cadastrado ID -" . $ap->id;
+
 
         if($application) {
             foreach ($request['criteria'] as $criteria){
@@ -38,8 +42,6 @@ class CriterionController extends Controller
                 $ac->flag_ok               = 1;
 
                 $a_criteroin = $ac->save();
-
-                $resp = "ApplicationCriterion cadastrado ID - {$ap->id} | Criterio ID {$criteria} | ID - {$ac->id}";
             }
             foreach ($request['sevices'] as $service){
 
@@ -49,19 +51,13 @@ class CriterionController extends Controller
                 $aa->flag_ok               = 1;
 
                 $a_assigment = $aa->save();
-
-                $resp = "ApplicationCriterion cadastrado ID - {$ap->id} | Service ID {$service} | ID - {$aa->id}";
             }
 
         }
 
-        $data = Vacancy::with('edict')
-            ->with('applications')
-            ->where('edict_id', $id_edict)
-            ->orderBy('created_at','desc')
-            //->paginate(12);
-            ->paginate(12);
-
-        return view('vacancy.process', compact(['data', 'resp', 'candidate_id']));
+        $vacancy = Vacancy::where('id','=', $request['vacancy_id'])->first()->title;
+        $resp = "Parabens! Agora você está concorrendo a vaga {$vacancy}. Lembrando que você pode concorrer a quantas vagas quiser.";
+        Session::put('resp',$resp);
+        return redirect()->route('process');
     }
 }

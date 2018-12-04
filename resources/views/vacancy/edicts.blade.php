@@ -24,7 +24,7 @@
         <?php
         $link = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."documents".DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR."123456789.pdf";
         ?>
-            <iframe src="http://docs.google.com/gview?url=http://www.manuais.net.br/cyrela/legacy/conteudo/desenhos/101.pdf&embedded=true"
+            <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpMlRxTWhyQVlWU0NFSUdsT3p3bk1sYVFPdVhZ/preview"
                     class="iframe-pdf" frameborder="0"></iframe>
         {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
         <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}

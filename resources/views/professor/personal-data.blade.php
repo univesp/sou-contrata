@@ -242,12 +242,12 @@
             <div class="col-md-2">
                 <label for="type_public_place" class="fonte-campos">Tipo<span class="cor-campo">*</span></label>
                 <input type="text" id="typePublicPlace" name="type_public_place" class="form-control" value="{{ old('type_public_place') }}"
-                    required readonly oninvalid="this.setCustomValidity('Digite o Tipo')" onchange="try{setCustomValidity('')}catch(e){}">
+                    required  oninvalid="this.setCustomValidity('Digite o Tipo')" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
             <div class="col-md-4">
                 <label for="inputLogradouro" class="fonte-campos">Lougradouro<span class="cor-campo"> *</span></label>
                 <input name="public_place" type="text" class="form-control" id="inputLogradouro" value="{{ old('public_place') }}"
-                    required readonly oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
+                    required  oninvalid="this.setCustomValidity('Digite o Lougradouro')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('public_place'))
                     <p class="text-danger">{{ $errors->first('public_place') }}</p>
                 @endif
@@ -269,14 +269,14 @@
             <div class="col-md-4">
                 <label for="inputBairro" class="fonte-campos">Bairro<span class="cor-campo"> *</span></label>
                 <input name="neighborhood" type="text" class="form-control" id="inputBairro" value="{{ old('neighborhood') }}"
-                    required readonly oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}">
+                    required  oninvalid="this.setCustomValidity('Digite o Bairro')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('neighborhood'))
                     <p class="text-danger">{{ $errors->first('neighborhood') }}</p>
                 @endif
             </div>
             <div class="col-md-1">
                 <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                <input name="state" type="text" class="form-control" id="inputUF" value="{{ old('state') }}" required readonly
+                <input name="state" type="text" class="form-control" id="inputUF" value="{{ old('state') }}" required 
                     oninvalid="this.setCustomValidity('Digite o UF')"onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('state'))
                     <p class="text-danger">{{ $errors->first('state') }}</p>
@@ -286,7 +286,7 @@
         <div class="row">
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                <input name="city" type="text" class="form-control" id="inputCidade" value="{{ old('city') }}" required readonly
+                <input name="city" type="text" class="form-control" id="inputCidade" value="{{ old('city') }}" required 
                     oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('city'))
                     <p class="text-danger">{{ $errors->first('city') }}</p>

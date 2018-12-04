@@ -90,11 +90,27 @@ class ScholarityController extends Controller
         }
 
         $resp = "Parabéns, o seu cadastro está completo e servirá para que você possa se cadastrar à todas as vagas disponíveis. Agora escolha uma vaga para se candidatar.";
-        $data = Vacancy::where('edict_id', $edict_id)->paginate(12);
+        $bind = Vacancy::with('edict')
+            ->with('applications')
+            ->where('edict_id', $edict_id)
+            ->orderBy('created_at','desc')
+            ->paginate(12);
+        $data = $this->applicationsModels($bind, $candidate_id);
 
         Helper::alterSessionUser($request, 3);
         return view('vacancy.process', compact('resp','data', 'candidate_id'));
+    }
 
+    private function applicationsModels($data, $candidate_id)
+    {
+        foreach ($data as  $key=>$applications){
+            foreach ($applications->applications as $k => $application) {
+                if ($application->candidate_id != $candidate_id) {
+                    unset($data[$key]->applications[$k]);
+                }
+            }
+        }
+        return $data;
     }
 
     public function area() {

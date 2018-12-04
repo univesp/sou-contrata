@@ -38,7 +38,6 @@ class CheckUserLogin
             }
             return redirect()->route('home');
         }
-
         return $next($request);
     }
 }

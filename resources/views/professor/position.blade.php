@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-    Cadastro de Professores
+    ÁREA DE INTERESSE
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/bootstrap.css')}}" rel="stylesheet">
@@ -53,27 +53,30 @@
                 <div class="col-md-12">
                     <hr />
                     <h4>Declaração de Título de Experiência</h4>
-                    <div class="checagem-radio"></div>
                     <br>
                     @foreach($result as $key => $title)
-                        <h5><strong class="autoria">{{$key}}<span class="cor-campo">*</span></strong></h5>
-                        <div class="checagem-radio"></div>
-                        <div class="checkbox">
+                        <h5><strong>{{$key}}<span class="cor-campo">*</span></strong></h5>
+                        <div class="row">
+                        <div class="checkbox align-checkbox">
                             @foreach($title as $k => $criterion)
-                                  <label>
-                                    <input type="checkbox" name="criteria[]" id="criteria_{{$criterion['id']}}" value="{{$criterion['id']}}" onclick="return itemSelect(this)"/>{{$criterion['name']}}
-                                    <div class="item-1, col-md-12 none">
+                                <div class="col-md-12">
+                                    <label class="reset-label">
+                                        <input type="checkbox" name="criteria[]" id="criteria_{{$criterion['id']}}" value="{{$criterion['id']}}" />{{$criterion['name']}}
+                                    </label>
+                                    <div class="none checagem-radio">
                                         @foreach($criterion['type'] as $c => $type)
-                                            <input type="radio" id="type_{{$type['id']}}" name="type_{{$criterion['id']}}" value="{{$type['id']}}"/><span class="alinhamento-radio">{{$type['description']}}</span>
+                                            <label class="reset-label">
+                                                <input type="radio" id="type_{{$type['id']}}" name="type_{{$criterion['id']}}" value="{{$type['id']}}"/><span class="align-span">{{$type['description']}}</span>
+                                            </label>
                                         @endforeach
                                     </div>
+                                </div>
 
-                                  </label>
+
                             @endforeach
                         </div>
+                    </div>
                     @endforeach
-
-                    <div class="checagem-radio"></div>
                     <div class="row">
                         <div class="float-right">
                             <button type="submit" class="btn btn-danger">AVANÇAR</button>
@@ -86,31 +89,11 @@
 @endsection
 @section('scripts')
 <script>
-		function itemSelect(elem) {
-		  var si = $(elem).val();
-		  var isCheck = $(elem).is(':checked');
-
-		  if(isCheck) {
-			fadeIn($(elem).siblings());
-		  } else {
-			fadeOut($(elem).siblings());
-		  }
-		}
-
-		function fadeIn(itemClass, itemId) {
-		  $(itemClass).fadeIn();
-		  $(itemId).addClass('borda');
-		}
-
-		function fadeOut(itemClass, itemId) {
-		  $(itemClass).fadeOut();
-		  $(itemId).removeClass('borda');
-		}
-
         $(document).ready(function() {
-            $('input:radio, input:checkbox').on('click', function(e) {
-               // $(e.target).css('background', 'red');
+            $('input:checkbox').on('change', function() {
+               $(this).parent().siblings().toggle();
             });
+            $('input:radio[value="1"]').attr('checked', true);
         });
 
 </script>
