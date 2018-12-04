@@ -92,8 +92,7 @@
         $(document).ready(function() {
             $('input:checkbox').on('change', function() {
                 $(this).parent().siblings().toggle();
-                $(this).parent().siblings().find('input[type=radio][name*="type_"][value="5"]').prop('checked', false);
-
+                $(this).parent().siblings().find('input[type=radio][name*="type_"]').prop('checked', true);
                if ($('input[name="sevices[]"]:checked').length && $('input[name="criteria[]"]:checked').length && $('input[type=radio][name*="type_"]:checked').length > 2){
                 $('#submit').prop('disabled', false);
                } else {
