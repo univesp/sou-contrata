@@ -60,7 +60,6 @@ class ScholarityController extends Controller
         if(count($request->graduate_dinamic) >= 3) {
 
             foreach ($request['graduate_dinamic'] as $k => $d) {
-
                 $school = new Scholarity();
                 // Função responsável para mover os documentos Acadêmicos.
                 $path_file = Helper::uploads_documents_academic($request, $k, $d, $candidate_id);
@@ -69,7 +68,7 @@ class ScholarityController extends Controller
                 $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
                 $school->link = $path_file;
-                $school->scholarity_type = $scholarity_type[$k];
+                $school->scholarity_type = $scholarity_type[$d-1];
                 $school->teaching_institution = $request->inpuInstituicao[$k];
                 $school->candidate_id = $candidate_id;
                 $school->area_id = $request->area_id[$k];
