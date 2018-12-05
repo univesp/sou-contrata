@@ -23,7 +23,10 @@ class PersonalDataController extends Controller
      */
     public function index(Request $request)
     {
+        // Find user id
         $user_id = $request->session()->get('user')['id'];
+
+        // Return to view with user id
         return view('professor.personal-data')
             ->with('user_id', $user_id);
     }
@@ -83,6 +86,7 @@ class PersonalDataController extends Controller
             'marital_status'    => 'required',
             'nationality'       => 'required',
             'phone'             => 'required',
+            'mobile'            => 'required',
             'user_id'           => 'unique:candidates',
 
             // Documents validations
@@ -130,7 +134,8 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = trim($request->phone);
+            $candidate->phone               = trim($request->area_code_phone.' '.$request->phone);
+            $candidate->mobile              = trim($request->area_code_mobile.' '.$request->mobile);
             $candidate->user_id             = $user_id;
 
             // Save in database
@@ -168,12 +173,12 @@ class PersonalDataController extends Controller
                 $address->state                     = $request->state;
                 $address->type_public_place         = $request->type_public_place;
                 $address->candidate_id              = $candidate->id;
+
                 // Save in database
                 $address->save();
             }
             
             // Return in view
-            // return response()->json('funciona');
             Helper::alterSessionUser($request, 2);
             return redirect()->route('professorAcademicData');
         }
