@@ -88,7 +88,7 @@ class ScholarityController extends Controller
             return redirect()->route('professorAcademicData');
         }
 
-        $resp = "Parabéns, o seu cadastro está completo e servirá para que você possa se cadastrar à todas as vagas disponíveis. Agora escolha uma vaga para se candidatar.";
+        $resp = "Parabéns, o seu cadastro está completo e servirá para que você possa se credenciar à todas as disciplinas disponíveis. Agora escolha uma disciplina para se credenciar.";
         $bind = Vacancy::with('edict')
             ->with('applications')
             ->where('edict_id', $edict_id)
