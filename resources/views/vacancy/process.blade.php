@@ -59,9 +59,9 @@
 						<td>{{$d->type}}</td>
 						<td>
                             @if(!$d->applications->isEmpty() )
-                                <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Concorrendo</button></a>
+                                <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Credenciado</button></a>
                             @else
-                                <a href="{{ url('position', $d->id) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a>
+                                <a href="{{ url('position', $d->id) }}"><button type="button"  id="botao" class="btn btn-danger">Credenciar</button></a>
                             @endif
                         </td>
 					</tr>
