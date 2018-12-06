@@ -52,10 +52,10 @@
                 </div>
                 <div class="col-md-12">
                     <hr />
-                    <h4>Declaração de Título de Experiência</h4>
-                    <br>
+                    <h4>Declaração de Título de Experiência<span class="cor-campo">*</span></h4>
+                    <p><span class="cor-campo">Necessário adicionar título de doutor ou modalidade a distância</span></p>
                     @foreach($result as $key => $title)
-                        <h5><strong>{{$key}}<span class="cor-campo">*</span></strong></h5>
+                        <h5><strong>{{$key}}</strong></h5>
                         <div class="row">
                         <div class="checkbox align-checkbox">
                             @foreach($title as $k => $criterion)
@@ -94,13 +94,6 @@
                 $(this).parent().siblings().toggle();
                 $(this).parent().siblings().find('input[type=radio][name*="type_"]').prop('checked', true);
                if ($('input[name="sevices[]"]:checked').length && $('input[name="criteria[]"]:checked').length && $('input[type=radio][name*="type_"]:checked').length > 2){
-                $('#submit').prop('disabled', false);
-               } else {
-                $('#submit').prop('disabled', true);
-               }
-            });
-            $('input:radio').on('change', function() {
-                if ($('input[name="sevices[]"]:checked').length && $('input[name="criteria[]"]:checked').length && $('input[type=radio][name*="type_"]:checked').length > 2){
                 $('#submit').prop('disabled', false);
                } else {
                 $('#submit').prop('disabled', true);
