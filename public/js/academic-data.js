@@ -175,9 +175,9 @@ $(function() {
             type: 'get',
             success: function(result) {
                 result = JSON.parse(result);
-                Object.keys(result).forEach(function(key) {
+                result.forEach(function(item) {
                     $('.area').append(
-                        `<option value="${key}">${result[key]}</option>`
+                        `<option value="${item.id}">${item.description}</option>`
                     );
                 });
             },
@@ -283,9 +283,9 @@ $(function() {
                 },
                 success: function(result) {
                     result = JSON.parse(result);
-                    Object.keys(result).forEach(function(key) {
+                    result.forEach(function(item) {
                         comboSubArea.append(
-                            `<option value="${key}">${result[key]}</option>`
+                            `<option value="${item.id}">${item.description}</option>`
                         );
                     });
 

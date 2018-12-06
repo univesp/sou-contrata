@@ -114,8 +114,7 @@ class ScholarityController extends Controller
 
     public function area() {
         // Create area list to select box
-        $area = Area::pluck('description', 'id');
-
+        $area = Area::orderBy('description', 'asc')->select('description', 'id')->get();
         // Return area
         echo json_encode($area);
     }
@@ -129,8 +128,8 @@ class ScholarityController extends Controller
             ->leftJoin('area_subarea', 'subareas.id', '=', 'area_subarea.subarea_id')
             ->select('subareas.id', 'subareas.description')
             ->where('area_subarea.area_id', $area)
-            ->pluck('subareas.description', 'subareas.id');
-
+            ->orderBy('subareas.description', 'asc')
+            ->select('subareas.description', 'subareas.id')->get();
         // Return subareas value
         echo json_encode($subareas);
     }
