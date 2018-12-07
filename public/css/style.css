@@ -530,3 +530,8 @@ legend.scheduler-border {
     margin-bottom: 0px;
     margin-top: 0px;
 }
+
+.align-subtitle {
+    margin-left: -15px;
+    padding-bottom: 10px;
+}
