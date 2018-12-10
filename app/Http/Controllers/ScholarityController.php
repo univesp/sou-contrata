@@ -13,6 +13,7 @@ use App\AreaSubarea;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use App\ScholarityArea;
+use Illuminate\Support\Facades\Input;
 
 class ScholarityController extends Controller
 {
@@ -62,7 +63,14 @@ class ScholarityController extends Controller
             foreach ($request['graduate_dinamic'] as $k => $d) {
                 $school = new Scholarity();
                 // Função responsável para mover os documentos Acadêmicos.
-                $path_file = Helper::uploads_documents_academic($request, $k, $d, $candidate_id);
+                if ($request->hasFile('file_graduate.'.$k) && $request->file('file_graduate.'.$k)->isValid()) {
+                    $file = Input::file('file_graduate.'.$k);
+                    $fileMimeType = Input::file('file_graduate.'.$k)->getMimeType();
+                    $fileData = file_get_contents($file);
+                    $base64 = base64_encode($fileData);
+                    $path_file = "data:{$fileMimeType};base64,{$base64}";
+                }
+                // $path_file = Helper::uploads_documents_academic($request, $k, $d, $candidate_id);
 
                 $school->class_name = $request->cadlettters;
                 $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
@@ -167,12 +175,12 @@ class ScholarityController extends Controller
         $dados = Scholarity::all();
         return response()->json($dados);
     }
-    
+
     // Rotina via JSON
 
     public function scholarityJSON($id)
-    {   
-        
+    {
+
         $dados = Scholarity::where('id', '=', $id)->first();
 
 
