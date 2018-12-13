@@ -63,6 +63,9 @@
                     </label>
                 </div>
             </div>
+            <div class="formatacao-campos">
+                Atenção : Uma vez cadastrado você deve efetuar o login com e-mail cadastrado e sua senha.
+            </div>
 
             <hr />
             <div class="row">
@@ -110,7 +113,8 @@
                             $("#msgError").css({
                                 "display": "block",
                             })
-                            $('#msgError').text('Email já cadastrado, não pode ser usado.');
+
+                            $('#msgError').html('<p>Email já cadastrado, não pode ser usado. Faça o Login <a href="login"> Aqui</a> </p>');
                         }else if(result === 'Eok'){
                             $("#msgError").css({
                                 "display": "block",
@@ -138,6 +142,8 @@
                         $('#save').attr("disabled", false);
                     }
             }
+
+
 
         </script>
 @endsection

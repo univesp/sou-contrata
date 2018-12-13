@@ -50,6 +50,12 @@
                 <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
             </div>
         @endif
-    </div>
+        <div class="col-md-12">
+        <div class="float-right">
+            <a target="_blank" href="https://drive.google.com/a/univesp.br/file/d/11N-1wi5diU8IikcEu3e7or81dhITNf6M/view?usp=sharing" title="Confira aqui as disciplinas para 2019 !">Confira aqui as disciplinas para 2019 !</a>
+        </div>
+        </div>
+
+    </div><br>
 @endsection
 
