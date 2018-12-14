@@ -20,7 +20,7 @@ class VacancyController extends Controller
             ->with('applications')
             ->where('edict_id', $edict)
             ->orderBy('created_at','desc')
-            ->paginate(12);
+            ->get();
 
         $data = $this->applicationsModels($bind, $candidate_id);
         return view('vacancy.process', compact('data','candidate_id'));

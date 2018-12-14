@@ -48,7 +48,6 @@
 				</tr>
 			</thead>
 			<tbody>
-			<tbody>
 			@if(isset($data))
 				@foreach($data as $d)
 					<tr>
@@ -69,11 +68,12 @@
 			@endif
 			</tbody>
 		</table>
-
-        {{ $data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links() }}
+		<br/><br/>
+        {{--  {{ $data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links() }}  --}}
 		</div>
 @endsection
 @section('script')
+	
 <script>
 	var botao = document.querySelector('button#botao');
 	botao.addEventListener('click', function() {
