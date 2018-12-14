@@ -530,3 +530,12 @@ legend.scheduler-border {
     margin-bottom: 0px;
     margin-top: 0px;
 }
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #d9534f !important;
+    border-color: #d9534f !important;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #333;
+}
