@@ -7,6 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title')</title>
         <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{URL::asset('/css/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">     
         <link rel="shortcut icon" href="https://apps.univesp.br/common/favicon.ico" >
         @yield('css')
     </head>
@@ -49,12 +50,40 @@
         @yield('content')
         <script src="{{URL::asset('/js/jquery.min.js')}}"></script>
         <script src="{{URL::asset('/js/bootstrap.min.js')}}"></script>
+        <script src="{{URL::asset('/js/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{URL::asset('/js/datatables/dataTables.bootstrap.min.js')}}"></script>
         @yield('scripts')
 
         <script>
             $(function() {
                 $(document).ready(function(){
-                    
+                    $('#example').DataTable( {
+					    "searching": true, 
+                        "ordering": false,
+                        "language": {
+                            "sEmptyTable": "Nenhum registro encontrado",
+                            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sInfoThousands": ".",
+                            "sLengthMenu": "_MENU_ resultados por página",
+                            "sLoadingRecords": "Carregando...",
+                            "sProcessing": "Processando...",
+                            "sZeroRecords": "Nenhum registro encontrado",
+                            "sSearch": "Pesquisar",
+                            "oPaginate": {
+                                "sNext": "Próximo",
+                                "sPrevious": "Anterior",
+                                "sFirst": "Primeiro",
+                                "sLast": "Último"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                                "sSortDescending": ": Ordenar colunas de forma descendente"
+                            }
+                        }                 
+				    });
                 });
             });
         </script>
