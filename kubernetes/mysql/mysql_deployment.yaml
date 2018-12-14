@@ -25,4 +25,4 @@ spec:
           secret:
             secretName: cloudsql-instance-credentials
         - name: cloudsql
-          emptyDir: 
+          emptyDir:

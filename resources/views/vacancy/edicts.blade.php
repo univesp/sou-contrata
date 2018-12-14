@@ -24,7 +24,7 @@
         <?php
         $link = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."documents".DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR."123456789.pdf";
         ?>
-            <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpMlRxTWhyQVlWU0NFSUdsT3p3bk1sYVFPdVhZ/preview"
+            <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpb2N2UjhUTDJWSzdhaFlrVkt0Y0JyUktyR1VV/preview"
                     class="iframe-pdf" frameborder="0"></iframe>
         {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
         <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
@@ -50,6 +50,12 @@
                 <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
             </div>
         @endif
-    </div>
+        <div class="col-md-12">
+        <div class="float-right">
+            <a target="_blank" href="https://drive.google.com/a/univesp.br/file/d/11N-1wi5diU8IikcEu3e7or81dhITNf6M/view?usp=sharing" title="Confira aqui as disciplinas para 2019 !">Confira aqui as disciplinas para 2019 !</a>
+        </div>
+        </div>
+
+    </div><br>
 @endsection
 

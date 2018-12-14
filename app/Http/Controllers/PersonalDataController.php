@@ -43,35 +43,55 @@ class PersonalDataController extends Controller
         $user_id = $request->session()->get('user')['id'];
 
         // Send documents to storage
-        $path_file_address = '';
-        $path_file_cpf = '';
-        $path_file_rg = '';
-        $path_file_military = '';
-        $path_file_title = '';
+        $path_file_address = null;
+        $path_file_cpf = null;
+        $path_file_rg = null;
+        $path_file_military = null;
+        $path_file_title = null;
 
-        // Validate if file address exist
-        if (!empty($request['file_address'])) {
-            $path_file_address = $request['file_address']->store("documents-address/{$user_id}");
+        // Validate if file address exist and if it's valid
+        if ($request->hasFile('file_address') && $request->file('file_address')->isValid()) {
+            $file = Input::file('file_address');
+            $fileMimeType = Input::file('file_address')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_address = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate if file cpf exist
-        if (!empty($request['file_cpf'])) {
-            $path_file_cpf = $request['file_cpf']->store("documents-cpf/{$user_id}");
+        if ($request->hasFile('file_cpf') && $request->file('file_cpf')->isValid()) {
+            $file = Input::file('file_cpf');
+            $fileMimeType = Input::file('file_cpf')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_cpf = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate if file RG exist
-         if (!empty($request['file_rg'])) {
-            $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
+        if ($request->hasFile('file_rg') && $request->file('file_rg')->isValid()) {
+            $file = Input::file('file_rg');
+            $fileMimeType = Input::file('file_rg')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_rg = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate if file military exist
-        if (!empty($request['file_military'])) {
-            $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
+        if ($request->hasFile('file_military') && $request->file('file_military')->isValid()) {
+            $file = Input::file('file_military');
+            $fileMimeType = Input::file('file_military')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_military = "data:{$fileMimeType};base64,{$base64}";
         }
 
-        // Validate if file tittle exist
-        if (!empty($request['file_title'])) {
-            $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
+        // Validate if file title exist
+        if ($request->hasFile('file_title') && $request->file('file_title')->isValid()) {
+            $file = Input::file('file_title');
+            $fileMimeType = Input::file('file_title')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_title = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate all fields
@@ -153,14 +173,14 @@ class PersonalDataController extends Controller
                 $document->number_link              = $path_file_rg;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
-                $document->rg_number                 = $request->rg_number;
+                $document->rg_number                = $request->rg_number;
                 $document->zone                     = 'Empty';
                 $document->section                  = 'Empty';
                 $document->candidate_id             = $candidate->id;
 
                 // Save in database
                 $document->save();
-                
+
                 // Create new address
                 $address = new Address();
                 $address->city                      = $request->city;
@@ -177,7 +197,7 @@ class PersonalDataController extends Controller
                 // Save in database
                 $address->save();
             }
-            
+
             // Return in view
             Helper::alterSessionUser($request, 2);
             return redirect()->route('professorAcademicData');

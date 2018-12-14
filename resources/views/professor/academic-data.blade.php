@@ -55,14 +55,14 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="col-md-6">
-                            <label class="area">Selecione a sua Área</label>
-                            <select name="area_id[]" class="form-control graduations areas" id="area" required>
+                            <label>Selecione a sua Área</label>
+                            <select name="area_id[]" class="form-control graduations area" id="area" required>
                                 <option value="">Selecione a área</option>
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="area">Selecione a sua Subárea</label>
-                            <select name="subarea_id[]" class="form-control graduations" id="subarea" disabled required>
+                            <label>Selecione a sua Subárea</label>
+                            <select name="subarea_id[]" class="form-control graduations subarea" id="subarea" disabled required>
                                 <option value="">Selecione a subárea</option>
                             </select>
                         </div>
