@@ -207,7 +207,7 @@ a {
 .botao-posicao {
     float: right;
     margin-top: -50px;
-    padding: 10px 10px 40px 10px;
+    padding: 10px 10px;
 }
 
 .fonte-conteudo {
@@ -534,4 +534,13 @@ legend.scheduler-border {
 .align-subtitle {
     margin-left: -15px;
     padding-bottom: 10px;
+}
+
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    background-color: #d9534f !important;
+    border-color: #d9534f !important;
+}
+
+.pagination>li>a, .pagination>li>span {
+    color: #333;
 }

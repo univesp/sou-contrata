@@ -31,16 +31,16 @@ spec:
             - "backend"
       initContainers:
         - name: app
-          image: us.gcr.io/univesp-201808/sou-contrata:1.0.1
+          image: us.gcr.io/univesp-201808/sou-contrata:1.0.7
           command: ['/bin/sh', '-c', 'cp -rp /var/www/* /app/']
           imagePullPolicy: Always
           resources:
             limits:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
             requests:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
           volumeMounts:
             - name: sou-autores-app-volume
               mountPath: /app
@@ -54,10 +54,10 @@ spec:
           resources:
             limits:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
             requests:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
           ports:
             - containerPort: 9000
           volumeMounts:
