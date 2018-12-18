@@ -544,3 +544,11 @@ legend.scheduler-border {
 .pagination>li>a, .pagination>li>span {
     color: #333;
 }
+.copyright {
+    font-size: 12px;
+    text-align: center;
+}
+.copyright a,
+.copyright i.fa {
+    font-size: 15px;
+}
