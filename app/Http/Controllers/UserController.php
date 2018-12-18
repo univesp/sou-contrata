@@ -11,6 +11,7 @@ use App\Candidate;
 use Illuminate\Support\Facades\Session;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller {
@@ -46,7 +47,7 @@ class UserController extends Controller {
         $user->name = $request->name;
         $user->login = $request->login;
         $user->cod_privilege = 1;
-        $user->password = Crypt::encrypt($request->password);
+        $user->password = Hash::make($request->password);
         $user->email = $request->email;
 
         $user->save();
@@ -87,9 +88,8 @@ class UserController extends Controller {
             ->select('id', 'name' , 'email', 'password')
             ->first();
 
-        if(!empty($login) && Crypt::decrypt($login->password) == $request->password) {
+        if(!empty($login) && Hash::check($request->password, $login->password)) {
             Helper::createSessionUser($login, $request);
-            //return view('professor.personal-data');
             return redirect()->route('professorPersonalData');
         } else {
             $data = "O email ou senha não correspondem ao dados de acesso.";
