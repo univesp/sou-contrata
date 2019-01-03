@@ -17,52 +17,80 @@
 @section('content')
 
     <div class="container">
+        {{-- Nav Tabs --}}
         <p class="formatacao-resumo">
-            <ul class="nav nav-tabs">
-                <li class="active, link"><a href="#">Edital</a></li>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#edital" aria-controls="edital" role="tab" data-toggle="tab">Edital</a></li>
+                <li role="presentation"><a href="#classificacao" aria-controls="classificacao" role="tab" data-toggle="tab">Classificação</a></li>
             </ul>
         </p>
-        <?php
-        $link = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."documents".DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR."123456789.pdf";
-        ?>
-        <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpb2N2UjhUTDJWSzdhaFlrVkt0Y0JyUktyR1VV/preview"
-                    class="iframe-pdf" frameborder="0"></iframe>
-        <div class="container">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
-                <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
-                <span class="texto-formatacao">
-                Prazo de Inscrição:</span>
-                {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
-                    @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
-                        (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
-                    @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
-                        Hoje é o ultimo dia
-                    @endif
-                </span> --}}
-                <span class="texto-formatacao">Encerrado</span>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="edital">
+                <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpb2N2UjhUTDJWSzdhaFlrVkt0Y0JyUktyR1VV/preview"
+                            class="iframe-pdf" frameborder="0"></iframe>
+                <div class="container">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
+                        <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
+                        <span class="texto-formatacao">
+                        Prazo de Inscrição:</span>
+                        {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
+                            @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
+                                (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
+                            @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
+                                Hoje é o ultimo dia
+                            @endif
+                        </span> --}}
+                        <span class="texto-formatacao">Encerrado</span>
+                    </div>
+                    <br /><br />
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        @if(!Session::get('user'))
+                            <div class="botao-posicao">
+                                <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
+                            </div>
+                        @else
+                            <div class="botao-posicao">
+                                <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
-            <br /><br />
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                @if(!Session::get('user'))
-                    <div class="botao-posicao">
-                        <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
-                    </div>
-                    <div class="botao-posicao">
-                        {{-- <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
-                        </div> --}}
-                        <a target="_blank" href="https://drive.google.com/a/univesp.br/file/d/1AErK0oTZSq9oJZztVSRYgPmRkyaxbrAq/view?usp=sharing" title="CLASSIFICAÇÃO DOS PROFESSORES CREDENCIADOS"><button type="button" class="btn btn-danger"><i class="far fa-file-pdf"></i> PROFESSORES CREDENCIADOS</button></a>
-                    </div>
-                @else
-                    <div class="botao-posicao">
-                        <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
-                    </div>
-                    <div class="botao-posicao">
-                        <a target="_blank" href="https://drive.google.com/a/univesp.br/file/d/1AErK0oTZSq9oJZztVSRYgPmRkyaxbrAq/view?usp=sharing" title="CLASSIFICAÇÃO DOS PROFESSORES CREDENCIADOS"><button type="button" class="btn btn-danger"><i class="far fa-file-pdf"></i> PROFESSORES CREDENCIADOS</button></a>
-                    </div>
-                @endif
+            <div role="tabpanel" class="tab-pane" id="classificacao">
+                <iframe src="https://drive.google.com/file/d/1AErK0oTZSq9oJZztVSRYgPmRkyaxbrAq/preview"
+                    class="iframe-pdf" frameborder="0"></iframe>
+                                <div class="container">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
+                    <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
+                    <span class="texto-formatacao">
+                    Prazo de Inscrição:</span>
+                    {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
+                        @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
+                            (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
+                        @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
+                            Hoje é o ultimo dia
+                        @endif
+                    </span> --}}
+                    <span class="texto-formatacao">Encerrado</span>
+                </div>
+                <br /><br />
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @if(!Session::get('user'))
+                        <div class="botao-posicao">
+                            <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
+                        </div>
+                    @else
+                        <div class="botao-posicao">
+                            <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
+
         <div class="container">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="float-right">
@@ -70,8 +98,8 @@
                 </div>
             </div>
         </div>
-
-    </div><br>
+    </div>
+    <br />
     <p class="copyright">
         <strong>2018. UNIVESP - Universidade Virtual do Estado de São Paulo.</strong><br>Av. Prof. Almeida Prado, 532 - Prédio 1, Térreo. Cid. Universitária - Butantã - São Paulo-SP. CEP 05508-901 - +55 11 3188-6700 |
         <a href="https://www.facebook.com/pages/UNIVESP-Universidade-Virtual-do-Estado-de-S%C3%A3o-Paulo/1506859409552887" target="_blank" title="Facebook">
