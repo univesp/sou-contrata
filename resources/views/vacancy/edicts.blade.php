@@ -25,37 +25,50 @@
         <?php
         $link = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR."documents".DIRECTORY_SEPARATOR."pdf".DIRECTORY_SEPARATOR."123456789.pdf";
         ?>
-            <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpb2N2UjhUTDJWSzdhaFlrVkt0Y0JyUktyR1VV/preview"
+        <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpb2N2UjhUTDJWSzdhaFlrVkt0Y0JyUktyR1VV/preview"
                     class="iframe-pdf" frameborder="0"></iframe>
-        {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
-        <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
-        <span class="texto-formatacao">
-		Prazo de Inscrição</span><br />
-        {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
-            @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
-                (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
-            @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
-                Hoje é o ultimo dia
-            @endif
-        </span> --}}
-		<span class="texto-formatacao">Encerrado</span>
-        @if(!Session::get('user'))
-            <div class="botao-posicao">
-                <a href="{{route('login')}}"><button type="button" class="btn btn-danger">Login</button></a>
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
+                <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
+                <span class="texto-formatacao">
+                Prazo de Inscrição:</span>
+                {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
+                    @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
+                        (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
+                    @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
+                        Hoje é o ultimo dia
+                    @endif
+                </span> --}}
+                <span class="texto-formatacao">Encerrado</span>
             </div>
-            <div class="botao-posicao">
-
-            {{-- <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
-            </div> --}}
-        @else
-            <div class="botao-posicao">
-                <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
+            <br /><br />
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                @if(!Session::get('user'))
+                    <div class="botao-posicao">
+                        <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
+                    </div>
+                    <div class="botao-posicao">
+                        {{-- <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
+                        </div> --}}
+                        <a target="_blank" href="https://drive.google.com/a/univesp.br/file/d/1AErK0oTZSq9oJZztVSRYgPmRkyaxbrAq/view?usp=sharing" title="CLASSIFICAÇÃO DOS PROFESSORES CREDENCIADOS"><button type="button" class="btn btn-danger"><i class="far fa-file-pdf"></i> PROFESSORES CREDENCIADOS</button></a>
+                    </div>
+                @else
+                    <div class="botao-posicao">
+                        <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
+                    </div>
+                    <div class="botao-posicao">
+                        <a target="_blank" href="https://drive.google.com/a/univesp.br/file/d/1AErK0oTZSq9oJZztVSRYgPmRkyaxbrAq/view?usp=sharing" title="CLASSIFICAÇÃO DOS PROFESSORES CREDENCIADOS"><button type="button" class="btn btn-danger"><i class="far fa-file-pdf"></i> PROFESSORES CREDENCIADOS</button></a>
+                    </div>
+                @endif
             </div>
-        @endif
-        <div class="col-md-12">
-        <div class="float-right">
-            <a target="_blank" href="https://drive.google.com/a/univesp.br/file/d/11N-1wi5diU8IikcEu3e7or81dhITNf6M/view?usp=sharing" title="Confira aqui as disciplinas para 2019 !">Confira aqui as disciplinas para 2019 !</a>
         </div>
+        <div class="container">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="float-right">
+                    <a class="texto-formatacao" target="_blank" href="https://drive.google.com/a/univesp.br/file/d/11N-1wi5diU8IikcEu3e7or81dhITNf6M/view?usp=sharing" title="Confira aqui as disciplinas para 2019 !"><i class="far fa-file-pdf"></i> Confira aqui as disciplinas para 2019</a>
+                </div>
+            </div>
         </div>
 
     </div><br>
@@ -69,7 +82,7 @@
         <i class="fab fa-instagram"></i></a>
         <a href="https://www.youtube.com/channel/UCBL2tfrwhEhX52Dze_aO3zA" target="_blank" title="YouTube">
         <i class="fab fa-youtube"></i></a><br>
-        <strong><small>v1.0.10a</small></strong>
+        <strong><small>v1.0.11</small></strong>
     </p>
     <br><br>
 @endsection

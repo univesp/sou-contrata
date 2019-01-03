@@ -197,17 +197,19 @@ a {
 }
 
 .texto-formatacao {
-    margin-left: 4%;
+    /* margin-left: 4%; */
     position: relative;
-    top: -15px;
+    /* top: -15px; */
+    top: 0px;
     color: #808080;
     font-weight: bold;
 }
 
 .botao-posicao {
     float: right;
-    margin-top: -50px;
-    padding: 10px 10px;
+    /* margin-top: -50px; */
+    /* padding: 10px 10px; */
+    padding: 0px 5px;
 }
 
 .fonte-conteudo {
