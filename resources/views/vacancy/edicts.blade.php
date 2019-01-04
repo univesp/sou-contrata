@@ -27,6 +27,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="edital">
+                <h2 class="text-uppercase text-center">Edital de credenciamento de banco de docentes da Univesp</h2>
                 <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpb2N2UjhUTDJWSzdhaFlrVkt0Y0JyUktyR1VV/preview"
                             class="iframe-pdf" frameborder="0"></iframe>
                 <div class="container">
@@ -59,6 +60,7 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="classificacao">
+                <h2 class="text-uppercase text-center">Lista de credenciados para disciplinas 2019.1</h2>
                 <iframe src="https://drive.google.com/file/d/1AErK0oTZSq9oJZztVSRYgPmRkyaxbrAq/preview"
                     class="iframe-pdf" frameborder="0"></iframe>
                                 <div class="container">
