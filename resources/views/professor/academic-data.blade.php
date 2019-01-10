@@ -31,7 +31,7 @@
                 <div class="col-md-7">
                     <div  class="form-group">
                         <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Lattes</a><span class="cor-campo"> *</span></label>
-                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes">
+                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters') }}">
                     </div>
                 </div>
             </div>
@@ -44,10 +44,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <select name="graduate_dinamic[]" id="0" class="form-control graduate_dinamic tier">
-                                <option value="" selected>SELECIONE A SUA FORMAÇÃO</option>
-                                <option value="1">GRADUAÇÃO</option>
-                                <option value="2">MESTRADO</option>
-                                <option value="3">DOUTORADO</option>
+                                <option value="">SELECIONE A SUA FORMAÇÃO</option>
+                                <option value="1" {{ (collect(old('graduate_dinamic.0'))->contains('1')) ? 'selected':'' }}>GRADUAÇÃO</option>
+                                <option value="2" {{ (collect(old('graduate_dinamic.0'))->contains('2')) ? 'selected':'' }}>MESTRADO</option>
+                                <option value="3" {{ (collect(old('graduate_dinamic.0'))->contains('3')) ? 'selected':'' }}>DOUTORADO</option>
                             </select>
                         </div>
                     </div>
@@ -73,19 +73,19 @@
                         <div class="row spacing-top">
                             <div class="col-md-12">
                                 <label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required value="{{ old('inputCursos.0') }}"  oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
                             <div class="col-md-8">
                                 <label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" maxlength="150" required oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inpuInstituicao" value="{{ old('inpuInstituicao.0') }}" name="inpuInstituicao[]" required maxlength="150" oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
                             <div class="col-md-3">
                                 <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
-                                <input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
+                                <input  type="date" class="form-control dataYear inputDataConclusao" value="{{ old('inputDataConclusao.0') }}" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
                             </div>
                         </div>
                         <div class="row">
