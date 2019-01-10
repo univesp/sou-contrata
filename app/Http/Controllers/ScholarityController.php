@@ -24,8 +24,7 @@ class ScholarityController extends Controller
      */
     public function index()
     {
-        $data =  Scholarity::all();
-        return view('professor.academic-data',compact('data'));
+        return view('professor.academic-data');
     }
 
     /**
@@ -42,17 +41,26 @@ class ScholarityController extends Controller
 
         $validator = Validator::make($request->all(), [
             'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
+            'inputCursos.*' => 'required',
+            'inpuInstituicao.*' => 'required',
+            'cadlettters' => 'required',
+            'area_id.*' => 'required',
+            'subarea_id.*' => 'required',
+            'graduate_dinamic.*' => 'required',
+            'inputCursos.*' => 'required',
+            'inpuInstituicao.*' => 'required',
+            'inputDataConclusao.*' => 'required',
         ]);
-
+        
         if ($validator->fails()) {
-
+            
             return redirect()
-                ->route('professorAcademicData')
-                ->withInput($request->all())
-                ->withErrors($validator->messages([
-                    'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
-                    "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.",
-                ]));
+            ->route('professorAcademicData')
+            ->withInput($request->all())
+            ->withErrors($validator->messages([
+                'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
+                "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.",
+            ]));
         }
 
         $path_file = null;
