@@ -11,7 +11,7 @@
     EDITAL
 @endsection
 @section('username')
-{{ "Bem vindo, ". Session::get('user')['user'] }}
+{{ "Bem vindo ". Session::get('user')['user'] }}
 @endsection
 
 @section('content')
@@ -51,6 +51,9 @@
                             <div class="botao-posicao">
                                 <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                             </div>
+                            <div class="botao-posicao">
+                                <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
+                            </div>
                         @else
                             <div class="botao-posicao">
                                 <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
@@ -83,6 +86,9 @@
                     @if(!Session::get('user'))
                         <div class="botao-posicao">
                             <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
+                        </div>
+                        <div class="botao-posicao">
+                            <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
                         </div>
                     @else
                         <div class="botao-posicao">
