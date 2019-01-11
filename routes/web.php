@@ -69,8 +69,11 @@ Route::resource('academic-data', 'ScholarityController', [
 ])->middleware('login');
 
 
-
-
+//Busca interna pelos dados dos usuarios
 Route::get('search-data', function(){
     return view('professor/search-data');
 })->name('search-data');
+
+Route::post('search-data/{cpf}', function(){
+    return "Dados";
+})->name('search');
