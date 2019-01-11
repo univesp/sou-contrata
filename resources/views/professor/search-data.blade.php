@@ -14,13 +14,13 @@
              <h1 class="negrito">LOREM IPSUM</h1>
           </div>
             <div class="col-md-12">
-                <div class="input-group col-md-4" style="float:right;">
+                <div class="input-group col-md-6" style="float:right;">
                      <input class="form-control" type="text" placeholder="Search" />
                 <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit">Search</button>
+                    <button class="btn btn-default" type="submit" onClick='insereTexto()'>Pesquisar por CPF</button>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="divTeste" style="display:none;">
                <div class="col-md-12 border-right">
                     <div class="col-md-4 " >
                         <fieldset class="border">
@@ -49,6 +49,12 @@
             </div>
         </div>
     </div>
+
+
+    <script type="text/javascript">
+        function insereTexto()
+        {document.getElementById('divTeste').style.display = "block";}
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
