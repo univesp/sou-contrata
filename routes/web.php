@@ -13,9 +13,9 @@ use \App\Vacancy;
 |
 */
 
-//Route::get('','EdictController@index')->name('home');
+Route::get('','EdictController@index')->name('home');
 
-Route::get('','EdictController@home')->name('home');
+//Route::get('','EdictController@home')->name('home');
 
 //Vacancy
 Route::get('vacancy','ListEditalController@index')->name('vacancy')->middleware(['check.user']);
@@ -69,8 +69,11 @@ Route::resource('academic-data', 'ScholarityController', [
 ])->middleware('login');
 
 
-
-
+//Busca interna pelos dados dos usuarios
 Route::get('search-data', function(){
     return view('professor/search-data');
 })->name('search-data');
+
+Route::post('search-data/{cpf}', function(){
+    return "Dados";
+})->name('search');

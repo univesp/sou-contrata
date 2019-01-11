@@ -11,7 +11,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-    background: red;
+    background:red;
 }
 
 input[type="checkbox"]:hover {
@@ -25,6 +25,7 @@ input[type="checkbox"]:disabled {
 }
 
 input[type="checkbox"]:after {
+
     content: "";
 }
 
@@ -45,6 +46,9 @@ input[type="checkbox"]:disabled {
 input[type="checkbox"]:after {
     content: "";
 
+
+    content: '';
+
     position: relative;
     left: 40%;
     top: 20%;
@@ -56,7 +60,6 @@ input[type="checkbox"]:after {
     display: none;
 }
 
-/**/
 
 .block::before {
     content: "";
@@ -81,7 +84,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-    background: red;
+    background:red;
 }
 
 input[type="radio"]:hover {
@@ -151,22 +154,22 @@ input[type="month"].form-control {
     margin-top: 15px;
 }
 
-a:hover {
+a:hover{
     text-decoration: none;
 }
 
-#link a {
+#link a{
     font-size: 12px;
     color: #808080;
 }
 
-#text-negrito {
+#text-negrito{
     font-weight: bold;
     color: #ccc;
     font-size: 12px;
 }
 
-.autoria {
+.autoria{
     margin-left: 17px;
 }
 
@@ -178,25 +181,25 @@ a:hover {
     color: #808080;
 }
 
-.text-pequeno span {
+.text-pequeno span{
     font-size: 20px;
     margin-top: 15px;
-    color: #fff;
+    color:#fff;
 }
 
-.text-big span {
+.text-big span{
     font-size: 30px;
     margin-top: 5px;
-    color: #fff;
+    color:#fff;
 }
-.imagem-univesp img {
+.imagem-univesp img{
     margin-top: 5%;
-    margin-bottom: 5%;
-    float: right;
+    margin-bottom:5%;
+    float:right;
     margin-right: auto;
 }
 
-.text-user {
+.text-user{
     margin-top: 5px;
 }
 
@@ -204,7 +207,7 @@ a:hover {
     float: right !important;
 }
 
-.sair {
+.sair{
     font-weight: bold !important;
 }
 .cabecalho {
@@ -234,7 +237,6 @@ a:hover {
     border: none !important;
     border-bottom: solid 4px red !important;
 }
-
 a {
     color: #000;
 }
@@ -249,19 +251,17 @@ a {
 }
 
 .texto-formatacao {
-    /* margin-left: 4%; */
+    margin-left: 4%;
     position: relative;
-    /* top: -15px; */
-    top: 0px;
+    top: -15px;
     color: #808080;
     font-weight: bold;
 }
 
 .botao-posicao {
     float: right;
-    /* margin-top: -50px; */
-    /* padding: 10px 10px; */
-    padding: 0px 5px;
+    margin-top: -50px;
+    padding: 10px 10px;
 }
 
 .fonte-conteudo {
@@ -337,7 +337,7 @@ a {
     float: right;
 }
 
-.float-left {
+.float-left{
     float: left;
 }
 
@@ -345,8 +345,8 @@ a {
 
 .fonte-cabecalho {
     height: auto;
-    min-width: 100%;
-    background-size: cover;
+    min-width:100%;
+    background-size:cover;
     background-image: url(../img/banner.png);
 }
 
@@ -468,12 +468,11 @@ a {
 }
 
 .checagem-radio {
-    margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 0%;
 }
 
 label {
-    margin-bottom: 5px;
+    margin-bottom:5px;
     margin-top: 10px;
     font-weight: 10 !important;
 }
@@ -499,29 +498,7 @@ label {
     width: 161px;
 }
 
-.border {
-    border: 1px solid #ccc;
-}
-
-.border-right {
-    padding-right: 0px !important;
-    margin-top: 50px;
-}
-
-.title-box {
-    padding: 10px;
-    font-weight: bold;
-}
-
-.search-data {
-    padding: 10px;
-}
-
-.negrito {
-    font-weight: bold;
-}
-
-@media screen and (min-width: 320px) and (max-width: 414px) {
+@media screen and (min-width:320px) and (max-width: 414px) {
     .imagem-univesp {
         margin-top: 5%;
     }
@@ -546,7 +523,7 @@ label {
     }
 }
 
-@media screen and (min-width: 520px) and (max-width: 767px) {
+@media screen and (min-width:520px) and (max-width: 767px) {
     .text-big span {
         font-size: 25px;
         margin-top: 5px;
