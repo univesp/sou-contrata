@@ -73,3 +73,7 @@ Route::get('process', function () {
 //LOGOFF
 Route::get('logoff', 'UserController@logoff')->name('logoff');
 
+
+Route::get('search-data', function(){
+    return view('professor/search-data');
+})->name('search-data');
