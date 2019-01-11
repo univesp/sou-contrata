@@ -18,6 +18,7 @@ class Vacancy extends Model
         'postal_code',
         'matter',
         'offer',
+        'course_id',
         //'type',
     ];
 
@@ -30,12 +31,18 @@ class Vacancy extends Model
         'postal_code',
         'matter',
         'offer',
+        'course_id',
         //'type',
     ];
 
     public function edict()
     {
         return $this->belongsTo(Edict::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 
     public function vacancy_criteria()
@@ -46,7 +53,12 @@ class Vacancy extends Model
     public function services()
     {
         return $this->belongsToMany(Service::class,
-            'assignment_vacancies');
+            'vacancies_services');
+    }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
     }
 
 }

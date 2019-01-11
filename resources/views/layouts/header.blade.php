@@ -7,6 +7,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title')</title>
         <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{URL::asset('/css/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{URL::asset('/css/fontawesome/release/v5.6.3/css/all.css')}}" rel="stylesheet">
+        <link rel="shortcut icon" href="https://apps.univesp.br/common/favicon.ico" >
         @yield('css')
     </head>
     <body>
@@ -14,7 +17,7 @@
         <div class="container">
             <div  class="col-sm-6 col-xs-6 col-md-6">
                 <div class="imagem-topo-sou">
-                    <img src="../img/logo-sou.png">
+                    <img src="{{URL::asset('img/logo-sou.png')}}">
                 </div>
                 <div class="text-pequeno">
                     <span>Processo de Credenciamento</span>
@@ -23,19 +26,21 @@
                     <span>@yield('cabecalho')</span>
                 </div>
                 <div class="imagem-topo-sou">
-                    <img src="../img/logo-abaixo.jpg">
+                    <img src="{{URL::asset('img/logo-abaixo.jpg')}}">
                 </div>
             </div>
             <div style="color:white;" class="col-sm-6 col-xs-6 col-md-6 imagem-univesp float-right">
-                <img src="../img/univesp.png">
+                <img src="{{URL::asset('/img/univesp.png')}}">
                 <div class="col-sm-12 col-xs-12 col-md-12">
                     <div class="col-sm-12 col-xs-12 col-md-10">
                         <span class="float-right text-user">@yield('username')</span>
                     </div>
                     @if (Session::get('user')['user'])
-                        <div class="col-md-2">
-                            <button class="btn btn-danger sair" >Sair</button>
-                        </div>                        
+                    <form action="{{route('logoff')}}">
+                            <div class="col-md-2">
+                                <button class="btn btn-danger" type="submit">Sair</button>
+                            </div>
+                        </form>
                     @endif
                 </div>
             </div>
@@ -44,18 +49,42 @@
 
     <div style="clear:both;"></div>
         @yield('content')
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="{{URL::asset('/js/jquery.min.js')}}"></script>
+        <script src="{{URL::asset('/js/bootstrap.min.js')}}"></script>
+        <script src="{{URL::asset('/js/datatables/jquery.dataTables.min.js')}}"></script>
+        <script src="{{URL::asset('/js/datatables/dataTables.bootstrap.min.js')}}"></script>
         @yield('scripts')
 
         <script>
             $(function() {
                 $(document).ready(function(){
-
-                    $(".sair").click(function(){
-
-                        window.location.href = "/logoff";
-                    });
+                    $('#example').DataTable( {
+					    "searching": true,
+                        "ordering": false,
+                        "language": {
+                            "sEmptyTable": "Nenhum registro encontrado",
+                            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sInfoThousands": ".",
+                            "sLengthMenu": "_MENU_ resultados por página",
+                            "sLoadingRecords": "Carregando...",
+                            "sProcessing": "Processando...",
+                            "sZeroRecords": "Nenhum registro encontrado",
+                            "sSearch": "Pesquisar",
+                            "oPaginate": {
+                                "sNext": "Próximo",
+                                "sPrevious": "Anterior",
+                                "sFirst": "Primeiro",
+                                "sLast": "Último"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                                "sSortDescending": ": Ordenar colunas de forma descendente"
+                            }
+                        }
+				    });
                 });
             });
         </script>

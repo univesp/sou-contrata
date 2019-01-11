@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 
 class EdictController extends Controller
 {
@@ -11,22 +12,28 @@ class EdictController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id, Request $request)
+    public function index()
     {
+        $data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
+        return view('vacancy/index',compact('data', $data));
+    }
 
-        //$uri = explode('/',$_SERVER {'REQUEST_URI'});
-        // $editalid=end ($uri);
-        //dd($editalid);
-        //return view('');
-        //dd($id);
-
-       // $data = \App\Vacancy::with('edict')->find($id);
-
-       // $request->session()->put('edictId', $data->id);
-        //return view('vacancy/edicts',compact('data'));
-
-
-        //
+    public function edict($id, Request $request)
+    {
+        $data = \App\Vacancy::with('edict')->where('edict_id','=', $id)->first();
+        if(empty($data)){
+            return redirect('/');
+        }
+        Helper::createSessionEdict($id);
+        return view('vacancy.edicts',compact('data', $data));
+    }
+    
+    public function home()
+    {
+        $data = \App\Vacancy::with('edict')->where('edict_id','=', 1)->first();
+        
+        Helper::createSessionEdict(1);
+        return view('vacancy.edicts',compact('data', $data));
     }
 
     /**
@@ -76,7 +83,7 @@ class EdictController extends Controller
 
     public function list($id, Request $request)
     {
-        $request->session()->put('edital_id', $id);
+        Helper::createSessionEdict($id);
         return view('vacancy/login', compact('data'));
 
     }

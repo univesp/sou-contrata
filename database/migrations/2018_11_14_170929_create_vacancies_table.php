@@ -15,18 +15,15 @@ class CreateVacanciesTable extends Migration
     {
         Schema::create('vacancies', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('edict_id');
-
             $table->string('title', 150);
             $table->decimal('payload',5);
             $table->string('phone',30);
             $table->string('postal_code',15);
             $table->string('matter',100);
-            $table->string('offer',40);
-            $table->string('type',40);
-
-            $table->foreign('edict_id')->references('id')->on('edicts');
-
+            //$table->string('offer',40);
+            //$table->string('type',40);
+            $table->foreign('vacancy_id')->references('id')->on('vacancies');
+            $table->foreign('vacancy_id')->references('id')->on('vacancies');
             $table->timestamps();
         });
     }

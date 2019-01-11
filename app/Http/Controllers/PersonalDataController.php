@@ -21,9 +21,14 @@ class PersonalDataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('professor.personal-data');
+        // Find user id
+        $user_id = $request->session()->get('user')['id'];
+
+        // Return to view with user id
+        return view('professor.personal-data')
+            ->with('user_id', $user_id);
     }
 
     /**
@@ -38,35 +43,55 @@ class PersonalDataController extends Controller
         $user_id = $request->session()->get('user')['id'];
 
         // Send documents to storage
-        $path_file_address = '';
-        $path_file_cpf = '';
-        $path_file_rg = '';
-        $path_file_military = '';
-        $path_file_title = ''; 
+        $path_file_address = null;
+        $path_file_cpf = null;
+        $path_file_rg = null;
+        $path_file_military = null;
+        $path_file_title = null;
 
-        // Validate if file address exist
-        if (!empty($request['file_address'])) {
-            $path_file_address = $request['file_address']->store("documents-address/{$user_id}");
+        // Validate if file address exist and if it's valid
+        if ($request->hasFile('file_address') && $request->file('file_address')->isValid()) {
+            $file = Input::file('file_address');
+            $fileMimeType = Input::file('file_address')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_address = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate if file cpf exist
-        if (!empty($request['file_cpf'])) {
-            $path_file_cpf = $request['file_cpf']->store("documents-cpf/{$user_id}");
+        if ($request->hasFile('file_cpf') && $request->file('file_cpf')->isValid()) {
+            $file = Input::file('file_cpf');
+            $fileMimeType = Input::file('file_cpf')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_cpf = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate if file RG exist
-         if (!empty($request['file_rg'])) {
-            $path_file_rg = $request['file_rg']->store("documents-rg/{$user_id}");
+        if ($request->hasFile('file_rg') && $request->file('file_rg')->isValid()) {
+            $file = Input::file('file_rg');
+            $fileMimeType = Input::file('file_rg')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_rg = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate if file military exist
-        if (!empty($request['file_military'])) {
-            $path_file_military = $request['file_military']->store("documents-military/{$user_id}");
+        if ($request->hasFile('file_military') && $request->file('file_military')->isValid()) {
+            $file = Input::file('file_military');
+            $fileMimeType = Input::file('file_military')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_military = "data:{$fileMimeType};base64,{$base64}";
         }
 
-        // Validate if file tittle exist
-        if (!empty($request['file_title'])) {
-            $path_file_title = $request['file_title']->store("documents-title/{$user_id}");
+        // Validate if file title exist
+        if ($request->hasFile('file_title') && $request->file('file_title')->isValid()) {
+            $file = Input::file('file_title');
+            $fileMimeType = Input::file('file_title')->getMimeType();
+            $fileData = file_get_contents($file);
+            $base64 = base64_encode($fileData);
+            $path_file_title = "data:{$fileMimeType};base64,{$base64}";
         }
 
         // Validate all fields
@@ -81,6 +106,8 @@ class PersonalDataController extends Controller
             'marital_status'    => 'required',
             'nationality'       => 'required',
             'phone'             => 'required',
+            'mobile'            => 'required',
+            'user_id'           => 'unique:candidates',
 
             // Documents validations
             'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents' : '',
@@ -101,16 +128,14 @@ class PersonalDataController extends Controller
             'public_place'              => 'required',
             'state'                     => 'required',
             'type_public_place'         => 'required',
-        ]);     
- 
+        ]);
+
         // Validate if the rules are met
         if ($validator->fails()) {
-            dd($validator->messages());
-
             return redirect()
-                ->route('personal-data.index')
-                ->withInput($request->all())
-                ->withErrors($validator->messages())
+                ->route('professorPersonalData')
+                ->withInput($request->input())
+                ->withErrors($validator)
             ;
         } else {
             // Create new candidate
@@ -129,7 +154,8 @@ class PersonalDataController extends Controller
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
             $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
-            $candidate->phone               = trim($request->phone);
+            $candidate->phone               = trim($request->area_code_phone.' '.$request->phone);
+            $candidate->mobile              = trim($request->area_code_mobile.' '.$request->mobile);
             $candidate->user_id             = $user_id;
 
             // Save in database
@@ -147,32 +173,33 @@ class PersonalDataController extends Controller
                 $document->number_link              = $path_file_rg;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
+                $document->rg_number                = $request->rg_number;
                 $document->zone                     = 'Empty';
                 $document->section                  = 'Empty';
                 $document->candidate_id             = $candidate->id;
 
                 // Save in database
                 $document->save();
+
+                // Create new address
+                $address = new Address();
+                $address->city                      = $request->city;
+                $address->complement                = $request->complement;
+                $address->file_address              = $path_file_address;
+                $address->neighborhood              = $request->neighborhood;
+                $address->number                    = $request->number;
+                $address->postal_code               = $request->postal_code;
+                $address->public_place              = $request->public_place;
+                $address->state                     = $request->state;
+                $address->type_public_place         = $request->type_public_place;
+                $address->candidate_id              = $candidate->id;
+
+                // Save in database
+                $address->save();
             }
 
-            // Create new address
-            $address = new Address();
-            $address->city                      = $request->city;
-            $address->complement                = $request->complement;
-            $address->file_address              = $path_file_address;
-            $address->neighborhood              = $request->neighborhood;
-            $address->number                    = $request->number;
-            $address->postal_code               = $request->postal_code;
-            $address->public_place              = $request->public_place;
-            $address->state                     = $request->state;
-            $address->type_public_place         = $request->type_public_place;
-
-            // Save in database
-            $address->save();
-
             // Return in view
-            // return response()->json('funciona');
-            Helper::alterSession($request, 2);
+            Helper::alterSessionUser($request, 2);
             return redirect()->route('professorAcademicData');
         }
     }

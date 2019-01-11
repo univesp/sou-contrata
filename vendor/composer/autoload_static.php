@@ -87,6 +87,7 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         ),
         'J' => 
         array (
+            'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
         'I' => 
@@ -250,6 +251,10 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
         ),
+        'JakubOnderka\\PhpConsoleHighlighter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
+        ),
         'JakubOnderka\\PhpConsoleColor\\' => 
         array (
             0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
@@ -323,13 +328,6 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
             ),
         ),
-        'J' => 
-        array (
-            'JakubOnderka\\PhpConsoleHighlighter' => 
-            array (
-                0 => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src',
-            ),
-        ),
         'D' => 
         array (
             'Doctrine\\Common\\Lexer\\' => 
@@ -345,13 +343,19 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'App\\Application' => __DIR__ . '/../..' . '/app/Application.php',
         'App\\ApplicationAssignment' => __DIR__ . '/../..' . '/app/ApplicationAssignment.php',
         'App\\ApplicationCriterion' => __DIR__ . '/../..' . '/app/ApplicationCriterion.php',
-        'App\\ApplicationDocument' => __DIR__ . '/../..' . '/app/ModelUnused/ApplicationDocument.php',
+        'App\\ApplicationDocument' => __DIR__ . '/../..' . '/app/ApplicationDocument.php',
+        'App\\Area' => __DIR__ . '/../..' . '/app/Area.php',
+        'App\\AreaSubarea' => __DIR__ . '/../..' . '/app/AreaSubarea.php',
         'App\\AssignmentVacancy' => __DIR__ . '/../..' . '/app/AssignmentVacancy.php',
         'App\\Candidate' => __DIR__ . '/../..' . '/app/Candidate.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Course' => __DIR__ . '/../..' . '/app/Course.php',
         'App\\Criterion' => __DIR__ . '/../..' . '/app/Criterion.php',
+        'App\\CriterionType' => __DIR__ . '/../..' . '/app/CriterionType.php',
+        'App\\Discipline' => __DIR__ . '/../..' . '/app/Discipline.php',
         'App\\Document' => __DIR__ . '/../..' . '/app/Document.php',
         'App\\DocumentRequired' => __DIR__ . '/../..' . '/app/DocumentRequired.php',
+        'App\\DocumentType' => __DIR__ . '/../..' . '/app/DocumentType.php',
         'App\\Edict' => __DIR__ . '/../..' . '/app/Edict.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Helpers\\Helper' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
@@ -373,6 +377,7 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'App\\Http\\Controllers\\EdictController' => __DIR__ . '/../..' . '/app/Http/Controllers/EdictController.php',
         'App\\Http\\Controllers\\ListEditalController' => __DIR__ . '/../..' . '/app/Http/Controllers/ListEditalController.php',
         'App\\Http\\Controllers\\PersonalDataController' => __DIR__ . '/../..' . '/app/Http/Controllers/PersonalDataController.php',
+        'App\\Http\\Controllers\\PositionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PositionController.php',
         'App\\Http\\Controllers\\ScholarityController' => __DIR__ . '/../..' . '/app/Http/Controllers/ScholarityController.php',
         'App\\Http\\Controllers\\ServiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServiceController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
@@ -394,7 +399,10 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Scholarity' => __DIR__ . '/../..' . '/app/Scholarity.php',
+        'App\\ScholarityArea' => __DIR__ . '/../..' . '/app/ScholarityArea.php',
         'App\\Service' => __DIR__ . '/../..' . '/app/Service.php',
+        'App\\Subarea' => __DIR__ . '/../..' . '/app/Subarea.php',
+        'App\\Title' => __DIR__ . '/../..' . '/app/Title.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Vacancy' => __DIR__ . '/../..' . '/app/Vacancy.php',
         'App\\VacancyCriterion' => __DIR__ . '/../..' . '/app/VacancyCriterion.php',
@@ -402,6 +410,8 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'ApplicationCriteriaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ApplicationCriteriaTableSeeder.php',
         'ApplicationDocumentsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/unused/ApplicationDocumentsTableSeeder.php',
         'ApplicationsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ApplicationsTableSeeder.php',
+        'AreaSubareaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AreaSubareaTableSeeder.php',
+        'AreaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AreaTableSeeder.php',
         'AssignmentVacancyTableSeeder' => __DIR__ . '/../..' . '/database/seeds/AssignmentVacancyTableSeeder.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
@@ -1851,7 +1861,7 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
-        'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
         'JsonSerializable' => __DIR__ . '/..' . '/nesbot/carbon/src/JsonSerializable.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
@@ -2857,6 +2867,7 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'Psr\\Log\\NullLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/NullLogger.php',
         'Psr\\Log\\Test\\DummyTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
         'Psr\\Log\\Test\\LoggerInterfaceTest' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/LoggerInterfaceTest.php',
+        'Psr\\Log\\Test\\TestLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/Test/TestLogger.php',
         'Psr\\SimpleCache\\CacheException' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheException.php',
         'Psr\\SimpleCache\\CacheInterface' => __DIR__ . '/..' . '/psr/simple-cache/src/CacheInterface.php',
         'Psr\\SimpleCache\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/simple-cache/src/InvalidArgumentException.php',
@@ -3044,6 +3055,7 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'Ramsey\\Uuid\\UuidFactory' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactory.php',
         'Ramsey\\Uuid\\UuidFactoryInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidFactoryInterface.php',
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
+        'ScholarityAreaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ScholarityAreaTableSeeder.php',
         'ScholarityTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ScholarityTableSeeder.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
@@ -3145,6 +3157,7 @@ class ComposerStaticInit48878c1c1c28db9482fad7289e5b1c8f
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'ServiceTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ServiceTableSeeder.php',
+        'SubAreaTableSeeder' => __DIR__ . '/../..' . '/database/seeds/SubareaTableSeeder.php',
         'Symfony\\Component\\Console\\Application' => __DIR__ . '/..' . '/symfony/console/Application.php',
         'Symfony\\Component\\Console\\CommandLoader\\CommandLoaderInterface' => __DIR__ . '/..' . '/symfony/console/CommandLoader/CommandLoaderInterface.php',
         'Symfony\\Component\\Console\\CommandLoader\\ContainerCommandLoader' => __DIR__ . '/..' . '/symfony/console/CommandLoader/ContainerCommandLoader.php',

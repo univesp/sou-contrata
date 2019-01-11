@@ -116,6 +116,47 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // Candidates
+        'cpf'                 => 'CPF',
+        'file_cpf'            => 'Arquivo CPF',
+        'date_birth'          => 'Data de Nascimento',
+        'genre'               => 'Sexo',
+        'last_name'           => 'Sobrenome',
+        'name'                => 'Nome',
+        'name_father'         => 'Nome da Mãe',
+        'name_mother'         => 'Nome do Pai',
+        'name_social'         => 'Nome Social',
+        'marital_status'      => 'Estado Civil',
+        'nationality'         => 'Nacionalidade',
+        'curriculum_link'     => 'Curriculum',
+        'obs_deficient'       => 'Descrição da Deficiência',
+        'flag_deficient'      => 'Possui Alguma Deficiência?',
+        'phone'               => 'Telefone',
+        'mobile'              => 'Celular',
+        'user_id'             => 'Usuário',
+
+        // Documents
+        'elector_title'                 => 'Titulo de Eleitor',
+        'elector_link'                  => 'Arquivo Titulo de Eleitor',
+        'military_certificate'          => 'Certificado Militar',
+        'military_link'                 => 'Arquivo Certificado Militar',
+        'rg_number'                     => 'RG',
+        'number_link'                   => 'Arquivo RG',
+        'date_issue'                    => 'Data Emissão',
+        'uf_issue'                      => 'Orgão Emissor',
+        'candidate_id'                  => 'Candidato',
+
+        // Addresses
+        'city'                          => 'Cidade',
+        'complement'                    => 'Complemento',
+        'file_address'                  => 'Comprovante de Residência',
+        'neighborhood'                  => 'Bairro',
+        'number'                        => 'Número',
+        'postal_code'                   => 'CEP',
+        'public_place'                  => 'Lougradouro',
+        'state'                         => 'UF',
+        'type_public_place'             => 'Tipo Logradouro',
+    ],
 
 ];
