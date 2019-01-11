@@ -15,15 +15,17 @@ class ApplicationCriterion extends Model
     // Protect table fields
     protected $fillable = [
         'flag_ok',
-        'candidate_id',
-        'vacancy_crit_id',
+        'application_id',
+        'vacancy_criteria_id',
+        'criterion_types_id',
     ];
 
     // Protect table sorted fields
     protected $sorted = [
         'flag_ok',
-        'candidate_id',
-        'vacancy_crit_id',
+        'application_id',
+        'vacancy_criteria_id',
+        'criterion_types_id',
     ];
 
     // Relationships

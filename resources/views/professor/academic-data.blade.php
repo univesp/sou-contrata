@@ -1,6 +1,6 @@
 @extends('layouts.header')
 @section('title')
-
+    DADOS ACADÊMICOS
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
@@ -8,207 +8,117 @@
 
 @section('content')
 @section('cabecalho')
-	DADOS ACADÊMICOS
+    DADOS ACADÊMICOS
 @endsection
 @section('username')
-{{ "Bem vindo, ". Session::get('user')['user'] }}
+    {{ "Bem vindo, ". Session::get('user')['user'] }}
 @endsection
 @section('content')
+    <div class="container">
+        <div id="msgFail"></div>
+        <ul class="nav nav-tabs">
+            <li class="disabled"><a href="{{ route('professorPersonalData') }}">Dados Pessoais</a></li>
+            <li class="active"><a href="{{ route('professorAcademicData')}}">Dados Academicos</a></li>
+            <li class="disabled"><a href="#">Área de Interesse</a></li>
+        </ul>
+        <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
+        <p class="text-danger">Para avançar é necessário a inserção das formações: <b>GRADUAÇÃO</b>, <b>MESTRADO</b> e <b>DOUTORADO</b>. Clique no botão <b>NOVO</b> para adicionar a formação.</p>
 
-		<div class="container">
-			<ul class="nav nav-tabs">
-				{{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
-				<li class="disabled"><a href="#">Dados Pessoais</a></li>
-				<li class="active, link3"><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
-                {{-- <li><a href="{{ route('vagueDiscipline', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li> --}}
-				<li class="disabled"><a href="#">Área de Interesse</a></li>
-			</ul>
-			<p class="ob"><span class="cor-campo"> *</span>Obrigatório</p>
-			<br />
-			<form action="/academic-data" method="post" enctype="multipart/form-data">
-			{{ csrf_field() }}
-			<div  class="row">
-				<div class="col-md-7">
-					<div  class="form-group">
-						<label for="cadlettters" class="fonte-campos">Curriculo Lattes<span class="cor-campo"> *</span></label>
-                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="Acesse o Link Abaixo">
-						<span id="link"> <a target="_blank" href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar">Preencha este campo com a url do seu curriculo Latttes</a></span>
-					</div>
-				</div>
-			</div>
-			<br />
-			<hr />
-			<div class="row">
-				<h3>Formação Acadêmica</h3>
-			<hr />
-			
-				<div class="row">
-				  <div class="col-md-7">
-					<div class="col-md-6">
-					   <label class="area">Selecione a sua Área</label>
-						<select name="graduations[]" class="form-control graduations">
-							<option value="" selected>AREA0</option>
-							<option value="1">AREA1</option>
-							<option value="2">AREA2</option>
-							<option value="3">AREA3</option>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<label class="area">Selecione a sua Sub-Área</label>
-						<select name="graduations[]" class="form-control graduations">
-							<option value="" selected>AREA0</option>
-							<option value="1">AREA1</option>
-							<option value="2">AREA2</option>
-							<option value="3">AREA3</option>
-						</select>
-					</div>
-                  </div>
-				</div>
-			<br>
-			
-			<div class="row">
-				 <div class="col-md-7">
-					<div class="col-md-12">
-						<select name="graduations[]" class="form-control graduations">
-							<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>
-							<option value="1">GRADUAÇÃO</option>
-							<option value="2">MESTRADO</option>
-							<option value="3">DOUTORADO</option>
-						</select>
-					</div>
-				</div>
-			</div>
-			<br>
-			<div id="father">
-				<div class="col-md-7">
-					<div class="row" style="margin-top:10px;">
-						<div class="col-md-12">
-							<label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
-						</div>
-					</div>
-					<div class="row" style="margin-top:10px;">
-						<div class="col-md-8">
-							<label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
-							<input  type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
-						</div>
-					</div>
-					<div class="row" style="margin-top:10px;">
-						<div class="col-md-3">
-							<label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
-							<input  type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}">
-						</div>
-					</div>
-				</div>
+        <form action="{{ route('professorAcademicData')}}" method="post" enctype="multipart/form-data">
 
-				<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">
-					<div class="col-md-6" style="margin-top:10px;padding-left:0px;">
+            {{ csrf_field() }}
+            <div  class="row">
+                <div class="col-md-7">
+                    <div  class="form-group">
+                        <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Lattes</a><span class="cor-campo"> *</span></label>
+                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters') }}">
+                    </div>
+                </div>
+            </div>
+            <br />
+            <hr />
+            <div class="row">
+                <h3>Formação Acadêmica</h3>
+                <hr />
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <select name="graduate_dinamic[]" id="0" class="form-control graduate_dinamic tier">
+                                <option value="">SELECIONE A SUA FORMAÇÃO</option>
+                                <option value="1" {{ (collect(old('graduate_dinamic.0'))->contains('1')) ? 'selected':'' }}>GRADUAÇÃO</option>
+                                <option value="2" {{ (collect(old('graduate_dinamic.0'))->contains('2')) ? 'selected':'' }}>MESTRADO</option>
+                                <option value="3" {{ (collect(old('graduate_dinamic.0'))->contains('3')) ? 'selected':'' }}>DOUTORADO</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="col-md-6">
+                            <label>Selecione a sua Área</label>
+                            <select name="area_id[]" class="form-control graduations area" id="area" required>
+                                <option value="">Selecione a área</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Selecione a sua Subárea</label>
+                            <select name="subarea_id[]" class="form-control graduations subarea" id="subarea" disabled required>
+                                <option value="">Selecione a subárea</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div id="father">
+                    <div class="col-md-7">
+                        <div class="row spacing-top">
+                            <div class="col-md-12">
+                                <label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
+                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required value="{{ old('inputCursos.0') }}"  oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+                            </div>
+                        </div>
+                        <div class="row spacing-top">
+                            <div class="col-md-8">
+                                <label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
+                                <input  type="text" class="form-control inpuInstituicao" value="{{ old('inpuInstituicao.0') }}" name="inpuInstituicao[]" required maxlength="150" oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
+                            </div>
+                        </div>
+                        <div class="row spacing-top">
+                            <div class="col-md-3">
+                                <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
+                                <input  type="date" class="form-control dataYear inputDataConclusao" value="{{ old('inputDataConclusao.0') }}" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
 
-					  <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
-						<div class="display-flex">
-							<input type="file" name="file_graduate[]" class="file_graduate"/>
-						</div>
-					</div><br />
-					<div class="col-md-1" style="margin-top:0px;">
-						<button type="button" class="btn btn-success btn-sm novo">Novo</button>
-					</div>
-				</div>
-			</div>
-		</div>
+                    <div class="row col-md-7 spacing-top">
+                        <div class="col-md-8 spacing-top">
 
-			<hr />
-	    <div style="clear: both;"></div>
-		<div class="row">
-			<p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit">AVANÇAR</button></p>
-		</div>
-		<br /><br />
-			</form>
-		</div>
+                            <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
+                            <div class="display-flex">
+                                <input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
+                            </div>
+                            <span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>
+                        </div><br />
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-success btn-sm novo">Novo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit" disabled>AVANÇAR</button></p>
+            </div>
+            <br /><br />
+        </form>
+    </div>
+    @include('layouts.footer')
 @endsection
 @section('scripts')
-	<script>
-		$(function(){
-
-			var CONTADOR = 0;
-
-			function mount_form_graduation(id) {
-
-				var HTML = new Array();
-				var codigo;
-
-				if(!id) {
-					codigo = CONTADOR;
-
-				} else {
-
-					codigo = id;
-				}
-
-				HTML.push('<div id="grad_' + codigo + '">');
-				HTML.push('<div class="col-md-7">');
-				HTML.push('<div class="row">');
-				HTML.push('<div class="col-md-12">');
-				HTML.push('<select name="graduations[]" class="form-control graduations">');
-				HTML.push('<option value="" selected>SELECIONE A SUA FORMAÇÃO</option>');
-				HTML.push('<option value="1">GRADUAÇÃO</option>');
-				HTML.push('<option value="2">MESTRADO</option>');
-				HTML.push('<option value="3">DOUTORADO</option>');
-				HTML.push('</select>');
-				HTML.push('</div></div></div><br/>');
-				HTML.push('<div class="col-md-7">');
-				HTML.push('<div class="row" style="margin-top:10px;">');
-				HTML.push('<div class="col-md-12">');
-				HTML.push('<label for="inputCursos" class="fonte-campos">Cursos<span class="cor-campo"> *</span></label>');
-				HTML.push('<input type="text" class="form-control inputCursos" maxlength="50" name="inputCursos[]" required oninvalid="this.setCustomValidity(Digite o Curso)" onchange="try{setCustomValidity("")}catch(e){}>');
-				HTML.push('</div></div>');
-				HTML.push('<div class="row" style="margin-top:10px;">');
-				HTML.push('<div class="col-md-8">');
-				HTML.push('<label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>');
-				HTML.push('<input type="text" class="form-control inpuInstituicao" name="inpuInstituicao[]" required oninvalid="this.setCustomValidity(Digite a Instituição)" onchange="try{setCustomValidity("")}catch(e){}>');
-				HTML.push('</div></div>');
-				HTML.push('<div class="row" style="margin-top:10px;">');
-				HTML.push('<div class="col-md-12">');
-				HTML.push('<label for="inputAnoConclusao" class="fonte-campos">Data de conclusão<span class="cor-campo"> *</span></label>');
-				HTML.push('<input type="date" class="form-control dataYear inputDataConclusao" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity(Digite o Data de Conclusão)" onchange="try{setCustomValidity("")}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}>');
-				HTML.push('</div></div></div>');
-			    HTML.push('<div class="row col-md-7" style="margin-top:20px; margin-left:0px;">');
-			    HTML.push('<div class="col-md-6" style="margin-top:10px;">');
-			    HTML.push('<label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>');
-			    HTML.push('<div class="display-flex">');
-			    HTML.push('<input type="file" name="file_graduate[]" class="file_graduate"/>');
-			    HTML.push('</div></div><br />');
-			    HTML.push('<div class="col-md-3" style="margin-top:0px;">');
-			    HTML.push('<button type="button" class="btn btn-success btn-sm novo" novo='+ codigo +'>Novo</button>');
-			    HTML.push('<button type="button" class="btn btn-danger btn-sm remove" remove=' + codigo + '>Remover</button>');
-			    HTML.push('</div></div>');
-
-				$("#father").append(HTML.join(''));
-
-				CONTADOR++;
-			}
-
-			$(document).ready(function(){
-
-				$(".submit").click(function(e){
-
-				})
-
-			});
-
-			$(document).on('click', '.remove', function(){
-
-				var id = $(this).attr('remove');
-
-				$("#grad_" + id).remove();
-			});
-
-			$(document).on('click', '.novo', function(){
-
-				var id = $(this).attr('novo');
-
-				mount_form_graduation(id);
-
-			});
-		});
-	</script>
+    <script src="{{URL::asset('/js/academic-data.js')}}"></script>
 @endsection

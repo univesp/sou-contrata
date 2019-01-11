@@ -13,10 +13,10 @@ class User extends Authenticatable {
     protected $table = 'users';
 
     // Protected guarded table fields
-    protected $guarded = ['id', 'created_at', 'update_at'];
+    protected $guarded = ['created_at', 'update_at'];
 
     protected $fillable = [
-        'id', 'name','login','password', 'email', 'cod_privilege'
+       'name','login','password', 'email', 'cod_privilege'
     ];
 
     protected $sorted = [
@@ -24,7 +24,7 @@ class User extends Authenticatable {
     ];
 
     protected $hidden = [
-        'password', 'remember_token'
+        'id','password', 'remember_token'
     ];
 
     public function candidate()

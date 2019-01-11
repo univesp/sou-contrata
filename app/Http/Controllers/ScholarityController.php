@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Candidate;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Scholarity;
 use App\Vacancy;
+use App\Area;
+use App\Subarea;
+use App\AreaSubarea;
+use DB;
+use Illuminate\Support\Facades\Validator;
+use App\ScholarityArea;
+use Illuminate\Support\Facades\Input;
 
 class ScholarityController extends Controller
 {
@@ -27,58 +35,119 @@ class ScholarityController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = $request->session()->get('user')['id'];
+        $edict_id = $request->session()->get('edict_id');
+        $candidate_id = Candidate::where('user_id', '=', $user_id)->first()->id;
 
-        $id = !empty($request->session()->get('candidate')) ? $request->session()->get('candidate') : 1 ;
-
-        $school = new Scholarity();
-
-        foreach ($request['graduations'] as $k => $d) {
-
-            switch ($d) {
-                case '1':
-                    // se for 1 é Graduação
-                    // Documentos de Graduação do Candidato
-                    $path_file = $request['file_graduate'][$k]->store("documents-graduate/{$id}");
-                    break;
-
-                case '2':
-                    // se for 2 é Mestrado
-                    // Documentos de Mestrado do Candidato
-                    $path_file = $request['file_graduate'][$k]->store("documents-master/{$id}");
-                    break;
-
-                case '3':
-                    // se for 3 é Doutorado
-                    // Documentos de Doutorado do Candidato
-                    $path_file = $request['file_graduate'][$k]->store("documents-doctorate/{$id}");
-                    break;
-            }
-
-            $school->class_name = $request->cadlettters;
-            $school->end_date = $this->br_to_bank($request->inputDataConclusao[$k]);
-            $school->init_date = $this->br_to_bank($request->inputDataConclusao[$k]);
-            $school->link = $path_file;
-            $school->scholarity_type = $request->inputCursos[$k];
-            $school->teaching_institution = $request->inpuInstituicao[$k];
-            $school->candidate_id = $id;
-
-            $school->save();
+        $validator = Validator::make($request->all(), [
+            'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
+            'inputCursos.*' => 'required',
+            'inpuInstituicao.*' => 'required',
+            'cadlettters' => 'required',
+            'area_id.*' => 'required',
+            'subarea_id.*' => 'required',
+            'graduate_dinamic.*' => 'required',
+            'inputCursos.*' => 'required',
+            'inpuInstituicao.*' => 'required',
+            'inputDataConclusao.*' => 'required',
+        ]);
+        
+        if ($validator->fails()) {
+            
+            return redirect()
+            ->route('professorAcademicData')
+            ->withInput($request->all())
+            ->withErrors($validator->messages([
+                'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
+                "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.",
+            ]));
         }
 
-        $resp = $school;
-        $data = Vacancy::all()->where('edict_id', 1);
+        $path_file = null;
+        $scholarity_type = ['graduate','master','doctorate'];
 
-        Helper::alterSession($request, 3);
-        return view('vacancy/process', compact(['resp','data']));
+        if(count($request->graduate_dinamic) >= 3) {
 
+            foreach ($request['graduate_dinamic'] as $k => $d) {
+                $school = new Scholarity();
+                // Função responsável para mover os documentos Acadêmicos.
+                if ($request->hasFile('file_graduate.'.$k) && $request->file('file_graduate.'.$k)->isValid()) {
+                    $file = Input::file('file_graduate.'.$k);
+                    $fileMimeType = Input::file('file_graduate.'.$k)->getMimeType();
+                    $fileData = file_get_contents($file);
+                    $base64 = base64_encode($fileData);
+                    $path_file = "data:{$fileMimeType};base64,{$base64}";
+                }
+                // $path_file = Helper::uploads_documents_academic($request, $k, $d, $candidate_id);
+
+                $school->class_name = $request->cadlettters;
+                $school->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
+                $school->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
+                $school->link = $path_file;
+                $school->scholarity_type = $scholarity_type[$d-1];
+                $school->teaching_institution = $request->inpuInstituicao[$k];
+                $school->candidate_id = $candidate_id;
+                $school->area_id = $request->area_id[$k];
+                $school->course_name = $request->inputCursos[$k];
+
+                if($school->save()) {
+
+                    $areaScholarity = new ScholarityArea();
+                    $areaScholarity->scholarity_id = $school->id;
+                    $areaScholarity->area_id = $request->area_id[$k];
+                    $areaScholarity->subarea_id = $request->subarea_id[$k];
+                    $areaScholarity->save();
+                }
+            }
+
+        } else {
+            return redirect()->route('professorAcademicData');
+        }
+
+        $resp = "Parabéns, o seu cadastro está completo e servirá para que você possa se credenciar à todas as disciplinas disponíveis. Agora escolha uma disciplina para se credenciar.";
+        $bind = Vacancy::with('edict')
+            ->with('applications')
+            ->where('edict_id', $edict_id)
+            ->orderBy('created_at','desc')
+            ->paginate(12);
+        $data = $this->applicationsModels($bind, $candidate_id);
+
+        Helper::alterSessionUser($request, 3);
+        return view('vacancy.process', compact('resp','data', 'candidate_id'));
     }
 
-    public function br_to_bank($now)
+    private function applicationsModels($data, $candidate_id)
     {
-        $data = explode('/', $now);
-        $dt = date('Y-m-d', strtotime($now));
+        foreach ($data as  $key=>$applications){
+            foreach ($applications->applications as $k => $application) {
+                if ($application->candidate_id != $candidate_id) {
+                    unset($data[$key]->applications[$k]);
+                }
+            }
+        }
+        return $data;
+    }
 
-        return $dt;
+    public function area() {
+        // Create area list to select box
+        $area = Area::orderBy('description', 'asc')->select('description', 'id')->get();
+        // Return area
+        echo json_encode($area);
+    }
+
+    public function subarea($area) {
+        // Add area value
+        $area = (int) $area;
+
+        // Create query to list subarea
+        $subareas = DB::table('subareas')
+            ->leftJoin('area_subarea', 'subareas.id', '=', 'area_subarea.subarea_id')
+            ->select('subareas.id', 'subareas.description')
+            ->where('area_subarea.area_id', $area)
+            ->orderBy('subareas.description', 'asc')
+            ->select('subareas.description', 'subareas.id')->get();
+        // Return subareas value
+        echo json_encode($subareas);
     }
     /**
      * Display the specified resource.
@@ -111,24 +180,19 @@ class ScholarityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dados = Scholarity::all();
+        return response()->json($dados);
     }
 
-    public function document_academic(Request $request) {
+    // Rotina via JSON
 
-        //$session = $request->session()->get('candidate');
-        //$user = $session[0]->id;
+    public function scholarityJSON($id)
+    {
 
-        $input = $request->all();
-        $input['image'] = $input['file_graduate'];
+        $dados = Scholarity::where('id', '=', $id)->first();
 
-        // Pegando a extensão do arquivo
 
-        $arr = explode('.', $input['image']);
-        $extensao = end($arr);
-
-        $input['image'] = time() . '.' . $extensao;
-        //$request->image->move(public_path("documents-academic/{$user}/"), $input['image']);
-
+        return response()->json($dados);
     }
+
 }

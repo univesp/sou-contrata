@@ -28,13 +28,14 @@ class VacancyCriterion extends Model
     {
         return $this->hasMany(ApplicationCriterion::class);
     }
-    public function vacancies()
+
+    public function vacancy()
     {
-        return $this->hasMany(Vacancy::class);
+        return $this->belongsTo(Vacancy::class);
     }
 
     public function criteria()
     {
-        return $this->hasMany(Criterion::class);
+        return $this->belongsTo(Criterion::class);
     }
 }

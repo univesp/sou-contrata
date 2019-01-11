@@ -1,25 +1,37 @@
 @extends('layouts.header')
 @section('title')
-	Credenciamento
+	CREDENCIAMENTO
 @endsection
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
 @endsection
 @section('cabecalho')
-	Credenciamento
+	CREDENCIAMENTO
 @endsection
 @section('username')
 {{ "Bem vindo, ". Session::get('user')['user'] }}
 
 @endsection
-
 @section('content')
-
 	<div class="container">
-	@if(!empty($resp))
-            <h1 style="color: green;">{{"Parabéns você se candidatou com sucesso!"}}</h1>
+	@if(!empty($resp) || Session::get('resp') )
+	<div class="modal fade in" id="modal-success" style="display: block;">
+  		<div class="modal-dialog">
+    		<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Parabéns!!!</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{!empty($resp) ? $resp : Session::get('resp')}}</p>
+                    {{ Session::forget('resp')}}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" onclick="$('.modal').hide()" data-dismiss="modal">Fechar</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
 	@endif
-	<h2 class="fonte-conteudo">Credenciamento</h2>
 	<ul class="nav nav-tabs">
 		<li class="active, link"><a href="#">Abertos</a></li>
 	</ul>
@@ -36,7 +48,6 @@
 				</tr>
 			</thead>
 			<tbody>
-			<tbody>
 			@if(isset($data))
 				@foreach($data as $d)
 					<tr>
@@ -45,15 +56,25 @@
 						<td>{{$d->payload}}</td>
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
-						<td><a href="{{ route('professorPosition', ['id' => $d->id]) }}"><button type="button"  id="botao" class="btn btn-danger">Candidatar</button></a></td>
+						<td>
+                            @if(!$d->applications->isEmpty() )
+                                <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Credenciado</button></a>
+                            @else
+                                <a href="{{ url('position', $d->id) }}"><button type="button"  id="botao" class="btn btn-danger">Credenciar</button></a>
+                            @endif
+                        </td>
 					</tr>
 				@endforeach
 			@endif
 			</tbody>
 		</table>
-		</div>
+		<br/><br/>
+        {{--  {{ $data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links() }}  --}}
+        </div>
+    @include('layouts.footer')
 @endsection
 @section('script')
+
 <script>
 	var botao = document.querySelector('button#botao');
 	botao.addEventListener('click', function() {

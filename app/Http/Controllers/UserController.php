@@ -6,12 +6,13 @@ use App\Helpers\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\UrlGenerator;
 use App\User;
-use function Sodium\add;
+use App\Candidate;
+//use function Sodium\add;
+use Illuminate\Support\Facades\Session;
 use Validator;
 use Illuminate\Support\Facades\Crypt;
-use App\Candidate;
-use App\Scholarity;
-use App\Document;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller {
 
@@ -26,8 +27,9 @@ class UserController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        //
+    public function index()
+    {
+        return view('vacancy.login');
     }
 
     /**
@@ -38,20 +40,20 @@ class UserController extends Controller {
      */
     public function store(Request $request)
     {
-        $request->session()->flush();
+        $request->session()->forget('user');
 
         $user = new User();
 
-        $user->id = $request->id;
         $user->name = $request->name;
         $user->login = $request->login;
-        $user->password = Crypt::encrypt($request->password);
+        $user->cod_privilege = 1;
+        $user->password = Hash::make($request->password);
         $user->email = $request->email;
 
         $user->save();
 
-        Helper::createSession($user, $request);
-        return redirect('/personal-data');
+        Helper::createSessionUser($user, $request);
+        return redirect()->route('professorPersonalData');
 
     }
 
@@ -81,15 +83,17 @@ class UserController extends Controller {
 
     public function login(Request $request)
     {
-         $login = User::where('password', '=', Crypt::encrypt($request->password))
-            ->orWhere('email', $request->email)
+
+        $login = User::where('email','=', $request->email)
+            ->select('id', 'name' , 'email', 'password')
             ->first();
 
-        if($login && isset($login->email)) {
-            Helper::createSession($login, $request);
-            return redirect('/login');
+        if(!empty($login) && Hash::check($request->password, $login->password)) {
+            Helper::createSessionUser($login, $request);
+            return redirect()->route('professorPersonalData');
         } else {
-            return redirect('/login');
+            $data = "O email ou senha não correspondem ao dados de acesso.";
+            return view('vacancy.login',compact('data'));
         }
 
     }
@@ -98,5 +102,25 @@ class UserController extends Controller {
     {
         $request->session()->flush();
         return redirect('/');
+    }
+
+    public function checkEmail(Request $request)
+    {
+        if (!preg_match('/^(?:[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+\.)*[\w\!\#\$\%\&\'\*\+\-\/\=\?\^\`\{\|\}\~]+@(?:(?:(?:[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!\.)){0,61}[a-zA-Z0-9_-]?\.)+[a-zA-Z0-9_](?:[a-zA-Z0-9_\-](?!$)){0,61}[a-zA-Z0-9_]?)|(?:\[(?:(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\.){3}(?:[01]?\d{1,2}|2[0-4]\d|25[0-5])\]))$/', (string)$request->email)) {
+            return "Eok";
+        }
+
+        $email = User::where('email', '=', $request->email)->first();
+
+        if(!empty($email)){
+            return "Nok";
+        }
+        return "Ok";
+    }
+
+    public function form()
+    {
+
+        return view('user.form');
     }
 }

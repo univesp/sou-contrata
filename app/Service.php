@@ -11,7 +11,7 @@ class Service extends Model
 
     // Protected guarded table fields
     protected $guarded = ['id', 'created_at', 'update_at'];
-    
+
     // Protect table fields
     protected $fillable = [
         'title',
@@ -27,6 +27,6 @@ class Service extends Model
     public function vacancies()
     {
         return $this->belongsToMany(Vacancy::class,
-            'assignment_vacancies');
+            'vacancies_services');
     }
 }

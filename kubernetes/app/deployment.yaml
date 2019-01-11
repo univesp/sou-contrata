@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: laravel-app
+  name: sou-autores-app
   labels:
-    app: laravel-app
+    app: sou-autores-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: laravel-app
+      app: sou-autores-app
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,10 +17,10 @@ spec:
   template:
     metadata:
       labels:
-        app: laravel-app
+        app: sou-autores-app
     spec:
       volumes:
-        - name: laravel-app-volume
+        - name: sou-autores-app-volume
           emptyDir: {}
         - name: nginx-config-volume
           configMap:
@@ -31,22 +31,22 @@ spec:
             - "backend"
       initContainers:
         - name: app
-          image: us.gcr.io/univesp-201808/sou-contrata:1.0.2
+          image: us.gcr.io/univesp-201808/sou-contrata:1.0.12qa
           command: ['/bin/sh', '-c', 'cp -rp /var/www/* /app/']
           imagePullPolicy: Always
           resources:
             limits:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
             requests:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
           volumeMounts:
-            - name: laravel-app-volume
+            - name: sou-autores-app-volume
               mountPath: /app
           envFrom:
             - secretRef:
-                name: laravel-app-secrets
+                name: sou-autores-app-secrets
       containers:
         - name: php-fpm
           image: us.gcr.io/univesp-201808/php-fpm:7.2.3
@@ -54,18 +54,18 @@ spec:
           resources:
             limits:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
             requests:
               cpu: 150m
-              memory: 128Mi
+              memory: 256Mi
           ports:
             - containerPort: 9000
           volumeMounts:
-            - name: laravel-app-volume
+            - name: sou-autores-app-volume
               mountPath: /var/www
           envFrom:
             - secretRef:
-                name: laravel-app-secrets
+                name: sou-autores-app-secrets
         - name: nginx
           image: nginx:latest
           imagePullPolicy: Always
@@ -79,7 +79,7 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: laravel-app-volume
+            - name: sou-autores-app-volume
               mountPath: /var/www
             - name: nginx-config-volume
               mountPath: /etc/nginx/nginx.conf
