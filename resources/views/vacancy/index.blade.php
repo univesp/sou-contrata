@@ -22,8 +22,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Cargo</th>
                     <th scope="col">Edital</th>
+                    <th scope="col">Situação</th>
                     <th scope="col">Início</th>
                     <th scope="col">Término</th>
                     <th scope="col"></th>
@@ -31,20 +31,26 @@
             </thead>
             <tbody>
                 @foreach($data as $d)
-                    @if(date_diff(date_create($d->edict->date_end), date_create(now()))->format('d') > 0)
-                        <tr class="bg-danger">
+                    <?php $diff = date_diff(date_create($d->date_end), date_create(now()));?>
+
+                    @if($diff->d > 0)
+                        <tr style="color: #93222a">
                     @else
                         <tr>
                     @endif
 
-                    <td>{{$d->title}} {{$d->matter}}</td>
-                    <td>{{$d->edict->name}}</td>
-                    <td>{{date_format(date_create($d->edict->date_start), 'd/m/Y')}}</td>
-                    <td>{{date_format(date_create($d->edict->date_end), 'd/m/Y')}}</td>
+                    <td>{{$d->name}}</td>
                     <td>
-                        @if(date_diff(date_create($d->edict->date_end), date_create(now()))->format('d') > '0')
-                            <a href="{{route('edict',$d->edict->id)}}"><button type="button" class="btn btn-info">Acessar</button></a>
+                        @if($diff->d > 0)
+                            Encerrado
+                        @else
+                            Ativo
                         @endif
+                    </td>
+                    <td>{{date_format(date_create($d->date_start), 'd/m/Y')}}</td>
+                    <td>{{date_format(date_create($d->date_end), 'd/m/Y')}}</td>
+                    <td>
+                        <a href="{{route('edict',$d->id)}}"><button type="button" class="btn btn-info">Acessar</button></a>
                     </td>
                 </tr>
                 @endforeach
