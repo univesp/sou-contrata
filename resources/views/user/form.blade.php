@@ -74,6 +74,7 @@
             <br /><br />
         </form>
     </div>
+    @include('layouts.footer')
     @endsection
     @section('scripts')
         <script>

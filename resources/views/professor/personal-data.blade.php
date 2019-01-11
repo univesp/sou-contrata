@@ -62,7 +62,7 @@
                 @if($errors->has('nationality'))
                     <p class="text-danger">{{ $errors->first('nationality') }}</p>
                 @endif
-            </div>    
+            </div>
             <div class="col-md-2">
                 <label class="fonte-campos" for="sexo">Sexo:</label>
                 <select name="genre" class="form-control" id="sexo" value="{{ old('genre') }}">
@@ -273,7 +273,7 @@
             </div>
             <div class="col-md-1">
                 <label for="inputUF" class="fonte-campos">UF<span class="cor-campo">*</span></label>
-                <input name="state" type="text" class="form-control" id="inputUF" value="{{ old('state') }}" required 
+                <input name="state" type="text" class="form-control" id="inputUF" value="{{ old('state') }}" required
                     oninvalid="this.setCustomValidity('Digite o UF')"onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('state'))
                     <p class="text-danger">{{ $errors->first('state') }}</p>
@@ -283,7 +283,7 @@
         <div class="row">
             <div class="col-md-8">
                 <label for="inputCidade" class="fonte-campos">Cidade<span class="cor-campo"> *</span></label>
-                <input name="city" type="text" class="form-control" id="inputCidade" value="{{ old('city') }}" required 
+                <input name="city" type="text" class="form-control" id="inputCidade" value="{{ old('city') }}" required
                     oninvalid="this.setCustomValidity('Digite a Cidade')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('city'))
                     <p class="text-danger">{{ $errors->first('city') }}</p>
@@ -356,6 +356,7 @@
         </div>
     </form>
 </div>
+@include('layouts.footer')
 @endsection
 @section('scripts')
 <script src="{{URL::asset('/js/personal-data.js')}}"></script>

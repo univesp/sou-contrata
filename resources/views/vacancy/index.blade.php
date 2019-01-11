@@ -52,5 +52,6 @@
         </table>
         {{ $data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links() }}
     </div>
+    @include('layouts.footer')
 @endsection
 

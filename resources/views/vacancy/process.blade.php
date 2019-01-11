@@ -70,10 +70,11 @@
 		</table>
 		<br/><br/>
         {{--  {{ $data->appends(['id' => isset($filter_id) ? $filter_id : ''])->links() }}  --}}
-		</div>
+        </div>
+    @include('layouts.footer')
 @endsection
 @section('script')
-	
+
 <script>
 	var botao = document.querySelector('button#botao');
 	botao.addEventListener('click', function() {

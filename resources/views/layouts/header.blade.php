@@ -7,7 +7,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title')</title>
         <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-        <link href="{{URL::asset('/css/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">     
+        <link href="{{URL::asset('/css/datatables/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{URL::asset('/css/fontawesome/release/v5.6.3/css/all.css')}}" rel="stylesheet">
         <link rel="shortcut icon" href="https://apps.univesp.br/common/favicon.ico" >
         @yield('css')
     </head>
@@ -58,7 +59,7 @@
             $(function() {
                 $(document).ready(function(){
                     $('#example').DataTable( {
-					    "searching": true, 
+					    "searching": true,
                         "ordering": false,
                         "language": {
                             "sEmptyTable": "Nenhum registro encontrado",
@@ -82,7 +83,7 @@
                                 "sSortAscending": ": Ordenar colunas de forma ascendente",
                                 "sSortDescending": ": Ordenar colunas de forma descendente"
                             }
-                        }                 
+                        }
 				    });
                 });
             });

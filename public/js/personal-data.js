@@ -1,9 +1,9 @@
 $(function() {
-    
+
     function get_cep(cep) {
-        
+
         var validacep = /^[0-9]{8}$/;
-    
+
         //Valida o formato do CEP.
         if (validacep.test(cep)) {
             //Preenche os campos com "..." enquanto consulta webservice.
@@ -12,7 +12,7 @@ $(function() {
             $("#inputBairro").val("...");
             $("#inputCidade").val("...");
             $("#inputUF").val("...");
-    
+
             //Consulta o webservice viacep.com.br/
             $.getJSON("http://cep.republicavirtual.com.br/web_cep.php?formato=json&cep=" + cep , function (dados) {
 
@@ -52,7 +52,7 @@ $(function() {
 
         $(window).on('load', function () {
             var natural = $('#inputNatu').val();
-    
+
             if (natural == 1) {
                 $(".militar").hide()
                 $("#file_military").prop('required', null);
@@ -69,23 +69,23 @@ $(function() {
             }
 
             var sexo = $('#sexo').val();
-    
+
             if (sexo == 0) {
-    
+
                 $(".militar").show();
                 $("#file_military").prop('required', true);
-    
+
             } else if (sexo == 1 || sexo == 2) {
-    
+
                 $(".militar").hide();
                 $("#file_military").prop('required', null);
             }
         })
 
         $("#inputNatu").change(function () {
-    
+
             var natural = $(this).val();
-    
+
             if (natural == 1) {
                 $(".militar").hide()
                 $("#file_military").prop('required', null);
@@ -100,52 +100,53 @@ $(function() {
                 $(".elector_title").show();
                 $("#file_title").prop('required', true);
             }
-    
+
         });
-    
+
         if ($("#sexo").val() == 0) {
-    
+
             $(".militar").show();
             $("#file_military").prop('required', true);
         }
-    
+
         $("#sexo").change(function () {
-    
+
             var sexo = $(this).val();
-    
+
             if (sexo == 0) {
-    
+
                 $(".militar").show();
                 $("#file_military").prop('required', true);
-    
+
             } else if (sexo == 1 || sexo == 2) {
-    
+
                 $(".militar").hide();
                 $("#file_military").prop('required', null);
             }
-    
+
         });
-    
+
         $("#inputCep").blur(function () {
-    
-            get_cep($(this).val());
-    
+			var strCep = $(this).val();
+            var cep = strCep.replace('-', '');
+            get_cep(cep);
+
         });
-    
+
         $("#opcaoSim").click(function () {
-    
+
             if ($(this).is(':checked')) {
                 $(".deficiencia").show();
             } else {
                 $(".deficiencia").hide();
             }
         });
-    
+
         var enabled = false;
         if ($('#comentario').val()) {
             enabled = true;
         }
-    
+
         // Button functonality
         $('#addSubmit').click(function () {
             $.ajax({
@@ -157,7 +158,7 @@ $(function() {
                 type: 'POST',
                 data: {
                     _token: '{{csrf_token()}}',
-    
+
                     // Call values of fields candidates table
                     cpf: $('#inputNumDoc').val(),
                     date_birth: $('#textDtNasc').val(),
@@ -171,7 +172,7 @@ $(function() {
                     name_social: $('#textNomeSocial').val(),
                     nationality: $('#inputNatu').val(),
                     obs_deficient: $('#comentario').val(),
-    
+
                     // Call values of fields addresses table
                     elector_title: $('#inputNumDoc_1').val(),
                     elector_link: $('#file_title').val(),
@@ -181,7 +182,7 @@ $(function() {
                     rg_number_link: $('#file_rg').val(),
                     date_issue: $('#inputDataEmissao').val(),
                     uf_issue: $('#inputOrgEmissor').val(),
-    
+
                     // Call values of fields addresses table
                     city: $('#inputCidade').val(),
                     complement: $('#inputComplemento').val(),
@@ -201,6 +202,6 @@ $(function() {
                 }
             });
         });
-    
+
     });
 });
