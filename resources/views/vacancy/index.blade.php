@@ -33,7 +33,7 @@
                 @foreach($data as $d)
                     <?php $diff = date_diff(date_create($d->date_end), date_create(now()));?>
 
-                    @if($diff->d > 0)
+                    @if($diff->d <= 0)
                         <tr style="color: #93222a">
                     @else
                         <tr>
@@ -41,7 +41,7 @@
 
                     <td>{{$d->name}}</td>
                     <td>
-                        @if($diff->d > 0)
+                        @if($diff->d <= 0)
                             Encerrado
                         @else
                             Ativo
@@ -60,4 +60,5 @@
     </div>
     @include('layouts.footer')
 @endsection
+
 

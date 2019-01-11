@@ -23,6 +23,8 @@
                 <li role="presentation"><a href="#classificacao" aria-controls="classificacao" role="tab" data-toggle="tab">Classificação</a></li>
             </ul>
         </p>
+
+        <?php $diff = date_diff(date_create($data->date_end), date_create(now()));?>
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="edital">
@@ -42,7 +44,13 @@
                                 Hoje é o ultimo dia
                             @endif
                         </span> --}}
-                        <span class="texto-formatacao">Encerrado</span>
+
+                        @if($diff->d <= 0)
+                            <span class="texto-formatacao">Encerrado</span>
+                        @else
+                            <span class="texto-formatacao">{{$diff->d}} dias para o encerramento</span>
+                        @endif
+
                     </div>
                     <br /><br />
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -50,9 +58,11 @@
                             <div class="botao-posicao">
                                 <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                             </div>
-                            <div class="botao-posicao">
-                                <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
-                            </div>
+                            @if($diff->d != 0)
+                                <div class="botao-posicao">
+                                    <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
+                                </div>
+                            @endif
                         @else
                             <div class="botao-posicao">
                                 <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
@@ -86,9 +96,11 @@
                         <div class="botao-posicao">
                             <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                         </div>
-                        <div class="botao-posicao">
-                            <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
-                        </div>
+                        @if($diff->d > 0)
+                            <div class="botao-posicao">
+                                <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
+                            </div>
+                        @endif
                     @else
                         <div class="botao-posicao">
                             <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
