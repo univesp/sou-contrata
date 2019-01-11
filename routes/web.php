@@ -13,9 +13,9 @@ use \App\Vacancy;
 |
 */
 
-//Route::get('','EdictController@index')->name('home');
+Route::get('','EdictController@index')->name('home');
 
-Route::get('','EdictController@home')->name('home');
+//Route::get('','EdictController@home')->name('home');
 
 //Vacancy
 Route::get('vacancy','ListEditalController@index')->name('vacancy')->middleware(['check.user']);
