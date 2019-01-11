@@ -17,8 +17,8 @@
     <div class="container">
         <div id="msgFail"></div>
         <ul class="nav nav-tabs">
-            <li class="disabled"><a href="#">Dados Pessoais</a></li>
-            <li class="active, link3"><a href="{{ route('professorPersonalData')}}">Dados Academicos</a></li>
+            <li class="disabled"><a href="{{ route('professorPersonalData') }}">Dados Pessoais</a></li>
+            <li class="active"><a href="{{ route('professorAcademicData')}}">Dados Academicos</a></li>
             <li class="disabled"><a href="#">Área de Interesse</a></li>
         </ul>
         <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>

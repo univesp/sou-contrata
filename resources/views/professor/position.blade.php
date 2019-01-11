@@ -15,11 +15,9 @@
 @section('content')
     <div class="container">
 		<ul class="nav nav-tabs">
-            {{-- <li><a href="{{ route('personal-data.index') }}">Dados Pessoais</a></li> --}}
-            <li class="disabled"><a href="#">Dados Pessoais</a></li>
-            {{-- <li><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li> --}}
-            <li class="disabled"><a href="#">Dados Academicos</a></li>
-            <li class="active, link3"><a href="{{ route('professorPosition', ['id' => Session::get('vagueId')]) }}">Área de Interesse</a></li>
+            <li><a href="{{ route('professorPersonalData') }}">Dados Pessoais</a></li>
+            <li><a href="{{ route('professorAcademicData') }}">Dados Academicos</a></li>
+            <li class="active"><a href="#">Área de Interesse</a></li>
 		</ul>
         <div class="vague-information">
             <p class="ob, cor-campo">*Campos Obrigatórios</p>
