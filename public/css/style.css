@@ -679,3 +679,70 @@ legend.scheduler-border {
 .tab-content {
     padding: 20px;
 }
+
+.order-card {
+    color: #fff;
+}
+
+.bg-c-pink {
+    background: linear-gradient(45deg, #4099ff, #73b4ff);
+}
+.card {
+    border-radius: 5px;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    border: none;
+    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.card .card-block {
+    padding: 25px;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.ng-tns-c5-1 {
+    font-weight: 600;
+}
+
+.icon {
+    width: 25px;
+    color: #fff;
+}
+
+.btn-yellow {
+    background: linear-gradient(45deg, #ffb64d, #ffcb80);
+    padding: 15px 150px;
+    color: #e6e6e6;
+}
+
+.btn-red {
+    background: linear-gradient(45deg, #ff5370, #ff869a);
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-weight: bold;
+}

@@ -15,7 +15,7 @@
           </div>
             <div class="col-md-12">
                 <div class="input-group col-md-6" style="float:right;">
-                     <input class="form-control" type="text" placeholder="Search" />
+                     <input class="form-control" type="text" placeholder="Digite um CPF Válido" />
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit" onClick='insereTexto()'>Pesquisar por CPF</button>
                 </div>
@@ -23,28 +23,43 @@
             <div class="row" id="divTeste" style="display:none;">
                <div class="col-md-12 border-right">
                     <div class="col-md-4 " >
-                        <fieldset class="border">
-                            <span class="title-box">Nome</span>
-                            <p class="search-data">TITU</p>
-                        </fieldset>
+                        <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Nome</h6>
+                                <h2 class="text-right">
+                                    <img class="f-left icon" src="../img/person.svg"/>
+                                    <span class="ng-tns-c5-1">Lorem Ipsum </span>
+                                </h2>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <fieldset class="border">
-                            <span class="title-box">CPF</span>
-                            <p class="search-data">TITU</p>
-                        </fieldset>
+                    <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">CPF</h6>
+                                <h2 class="text-right">
+                                    <img class="f-left icon" src="../img/cpf.svg"/>
+                                    <span class="ng-tns-c5-1">456.132.123-5</span>
+                                </h2>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-4">
-                        <fieldset class="border">
-                            <span class="title-box">Tipo de Documento</span>
-                            <p class="search-data">TITUvf</p>
-                        </fieldset>
+                    <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Tipo de Documento</h6>
+                                <h2 class="text-right">
+                                    <img class="f-left icon" src="../img/clip.svg"/>
+                                    <span class="ng-tns-c5-1">Lorem Ipsum </span>
+                                </h2>
+                            </div>
+                        </div>
                     </div>
                </div>
             </div>
             <div class="row col-md-12 wrap">
                 <div class="btn-group float-right" role="group" aria-label="...">
-                    <button type="button" class="btn btn-success" >BAIXAR</button>
+                    <button type="button" class="btn-red" >BAIXAR</button>
                 </div>
             </div>
         </div>

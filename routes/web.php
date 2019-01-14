@@ -74,3 +74,5 @@ Route::resource('academic-data', 'ScholarityController', [
 Route::get('search-data', function(){
     return view('professor/search-data');
 })->name('search-data');
+
+
