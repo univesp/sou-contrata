@@ -1,5 +1,4 @@
-
-  @extends('layouts.header')
+@extends('layouts.header')
   @section('title')
       Cadastro de Professores
   @endsection
@@ -15,54 +14,81 @@
           </div>
 
             <div class="col-md-12">
+                <div class="alert alert-danger col-md-12" id="divError" role="alert" style="display:none;">
+                    <p id="txtError"></p>
+                </div>
                 <div class="input-group col-md-6" style="float:right;">
-                     <input id="txtCpf" class="form-control" type="text" placeholder="Search" />
+
+                     <input id="txtCpf" class="form-control" type="text" placeholder="Pesquisar por um CPF Válido" />
                     {{ csrf_field() }}
+
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit" onClick='insereTexto()'>Pesquisar por CPF</button>
                 </div>
             </div>
 
-            <div class="alert alert-danger col-md-12" id="divError" role="alert" style="display:none;">
-                <p id="txtError"></p>
-            </div>
 
-            <div class="row" id="divData" style="display:none;">
+            <div class="row" id="divData" style="display:none;margin-top:130px;">
                <div class="col-md-12 border-right">
                     <div class="col-md-4 " >
-                        <fieldset class="border">
-                            <span class="title-box">Nome</span>
-                            <p class="search-data" id="txtName">TITU</p>
-                        </fieldset>
+
+                        <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Nome</h6>
+                                <h2 class="text-right">
+                                    <img class="f-left icon" src="../img/person.svg"/>
+                                    <span class="ng-tns-c5-1">Lorem Ipsum </span>
+                                </h2>
+                            </div>
+                        </div>
+
                     </div>
-                   <div class="col-md-4">
-                       <fieldset class="border">
-                           <span class="title-box">Data Nascimento</span>
-                           <p class="search-data" id="txtBirthDay">TITUvf</p>
-                       </fieldset>
-                   </div>
+
                     <div class="col-md-4">
-                        <fieldset class="border">
-                            <span class="title-box">CPF</span>
-                            <p class="search-data" id="txtDoc">TITU</p>
-                        </fieldset>
+
+                    <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">CPF</h6>
+                                <h2 class="text-right">
+                                    <img class="f-left icon" src="../img/cpf.svg"/>
+                                    <span class="ng-tns-c5-1">456.132.123-5</span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Tipo de Documento</h6>
+                                <h2 class="text-right">
+                                    <img class="f-left icon" src="../img/clip.svg"/>
+                                    <span class="ng-tns-c5-1">Lorem Ipsum </span>
+                                </h2>
+                            </div>
+                        </div>
+
                     </div>
 
                </div>
-                <div class="row col-md-12 wrap">
-                    <div class="btn-group float-right" role="group" aria-label="...">
-                        <button type="button" class="btn btn-success" >BAIXAR</button>
-                    </div>
+            </div>
+            <div class="row col-md-12 wrap">
+                <div class="btn-group float-right" role="group" aria-label="...">
+                    <button type="button" class="btn-red" >BAIXAR</button>
+
                 </div>
             </div>
 
         </div>
     </div>
 
-
     <script type="text/javascript">
+        function insereTexto()
+        {document.getElementById('divData').style.display = "block";}
+    </script>
+
+    <!-- <script type="text/javascript">
         function insereTexto() {
-            document.getElementById('divData').style.display = "none";
+            document.getElementById('txtCpf').style.display = "none";
             document.getElementById('divError').style.display = "none";
             $.ajaxSetup({
                 headers: {
