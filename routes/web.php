@@ -74,6 +74,4 @@ Route::get('search-data', function(){
     return view('professor/search-data');
 })->name('search-data');
 
-Route::post('search-data/{cpf}', function(){
-    return "Dados";
-})->name('search');
+Route::post('search-data/{cpf}','PersonalDataController@searchForTeacher')->name('search');

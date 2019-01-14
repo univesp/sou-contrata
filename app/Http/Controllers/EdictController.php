@@ -21,7 +21,7 @@ class EdictController extends Controller
 
     public function edict($id, Request $request)
     {
-        $data = \App\Vacancy::with('edict')->where('edict_id','=', $id)->first();
+        $data = \App\Edict::orderBy('created_at','desc')->where('id','=', $id)->first();
         if(empty($data)){
             return redirect('/');
         }

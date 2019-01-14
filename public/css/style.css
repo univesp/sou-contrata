@@ -25,7 +25,6 @@ input[type="checkbox"]:disabled {
 }
 
 input[type="checkbox"]:after {
-
     content: "";
 }
 
@@ -45,10 +44,6 @@ input[type="checkbox"]:disabled {
 
 input[type="checkbox"]:after {
     content: "";
-
-
-    content: '';
-
     position: relative;
     left: 40%;
     top: 20%;
@@ -59,7 +54,6 @@ input[type="checkbox"]:after {
     transform: rotate(45deg);
     display: none;
 }
-
 
 .block::before {
     content: "";
@@ -117,7 +111,6 @@ input[type="radio"]:disabled {
 
 input[type="radio"]:after {
     content: "";
-
     position: relative;
     left: 40%;
     top: 20%;
@@ -474,7 +467,7 @@ a {
 label {
     margin-bottom:5px;
     margin-top: 10px;
-    font-weight: 10 !important;
+    font-weight: 10px !important;
 }
 
 .checkbox {
@@ -502,9 +495,11 @@ label {
     .imagem-univesp {
         margin-top: 5%;
     }
+
     .text-pequeno span {
         font-size: 12px;
     }
+
     .text-big span {
         font-size: 20px;
     }

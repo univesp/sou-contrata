@@ -237,4 +237,21 @@ class PersonalDataController extends Controller
     {
         //
     }
+
+    public function searchForTeacher($cpf)
+    {
+
+        if(!is_numeric($cpf)){
+            return "Valor precisa ser numerico";
+        }
+
+        if(strlen($cpf) != 11){
+            return "Valor precisa ser de 11 caracteres";
+        }
+
+        $data = Candidate::where('cpf','=',$cpf)
+            ->select('name', 'last_name' , 'cpf', 'date_birth')
+            ->get();
+        return $data;
+    }
 }
