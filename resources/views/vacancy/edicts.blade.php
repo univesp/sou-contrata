@@ -17,14 +17,17 @@
 
     <div class="container">
         {{-- Nav Tabs --}}
+        <?php $diff = date_diff(date_create($data->date_end), date_create(now()));?>
         <p class="formatacao-resumo">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#edital" aria-controls="edital" role="tab" data-toggle="tab">Edital</a></li>
-                <li role="presentation"><a href="#classificacao" aria-controls="classificacao" role="tab" data-toggle="tab">Classificação</a></li>
-            </ul>
+                @if(!empty($data->link_classification))
+                    <li role="presentation"><a href="#classificacao" aria-controls="classificacao" role="tab" data-toggle="tab">Classificação</a></li>
+                @endif
+              </ul>
         </p>
 
-        <?php $diff = date_diff(date_create($data->date_end), date_create(now()));?>
+
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="edital">
@@ -58,7 +61,7 @@
                             <div class="botao-posicao">
                                 <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                             </div>
-                            @if($diff->format("%R%a") > 0)
+                            @if($diff->format("%R%a") < 0)
                                 <div class="botao-posicao">
                                     <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
                                 </div>
@@ -73,7 +76,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="classificacao">
                 <h2 class="text-uppercase text-center">Lista de credenciados para disciplinas 2019.1</h2>
-                <iframe src="https://drive.google.com/file/d/1AErK0oTZSq9oJZztVSRYgPmRkyaxbrAq/preview"
+                <iframe src="{{$data->link_classification}}"
                     class="iframe-pdf" frameborder="0"></iframe>
                                 <div class="container">
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -96,7 +99,7 @@
                         <div class="botao-posicao">
                             <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                         </div>
-                        @if($diff->format("%R%a") > 0)
+                        @if($diff->format("%R%a") < 0)
                             <div class="botao-posicao">
                                 <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
                             </div>
@@ -113,7 +116,7 @@
         <div class="container">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="float-right">
-                    <a class="texto-formatacao" target="_blank" href="https://drive.google.com/a/univesp.br/file/d/11N-1wi5diU8IikcEu3e7or81dhITNf6M/view?usp=sharing" title="Confira aqui as disciplinas para 2019 !"><i class="far fa-file-pdf"></i> Confira aqui as disciplinas para 2019</a>
+                    <a class="texto-formatacao" target="_blank" href="{{$data->link_disciplines}}" title="Confira aqui as disciplinas para este edital !"><i class="far fa-file-pdf"></i> Confira aqui as disciplinas para este edital</a>
                 </div>
             </div>
         </div>
