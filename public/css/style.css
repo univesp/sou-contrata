@@ -11,7 +11,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-    background:red;
+    background: red;
 }
 
 input[type="checkbox"]:hover {
@@ -78,7 +78,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked {
-    background:red;
+    background: red;
 }
 
 input[type="radio"]:hover {
@@ -147,22 +147,22 @@ input[type="month"].form-control {
     margin-top: 15px;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
 }
 
-#link a{
+#link a {
     font-size: 12px;
     color: #808080;
 }
 
-#text-negrito{
+#text-negrito {
     font-weight: bold;
     color: #ccc;
     font-size: 12px;
 }
 
-.autoria{
+.autoria {
     margin-left: 17px;
 }
 
@@ -174,25 +174,25 @@ a:hover{
     color: #808080;
 }
 
-.text-pequeno span{
+.text-pequeno span {
     font-size: 20px;
     margin-top: 15px;
-    color:#fff;
+    color: #fff;
 }
 
-.text-big span{
+.text-big span {
     font-size: 30px;
     margin-top: 5px;
-    color:#fff;
+    color: #fff;
 }
-.imagem-univesp img{
+.imagem-univesp img {
     margin-top: 5%;
-    margin-bottom:5%;
-    float:right;
+    margin-bottom: 5%;
+    float: right;
     margin-right: auto;
 }
 
-.text-user{
+.text-user {
     margin-top: 5px;
 }
 
@@ -200,7 +200,7 @@ a:hover{
     float: right !important;
 }
 
-.sair{
+.sair {
     font-weight: bold !important;
 }
 .cabecalho {
@@ -330,7 +330,7 @@ a {
     float: right;
 }
 
-.float-left{
+.float-left {
     float: left;
 }
 
@@ -338,8 +338,8 @@ a {
 
 .fonte-cabecalho {
     height: auto;
-    min-width:100%;
-    background-size:cover;
+    min-width: 100%;
+    background-size: cover;
     background-image: url(../img/banner.png);
 }
 
@@ -465,7 +465,7 @@ a {
 }
 
 label {
-    margin-bottom:5px;
+    margin-bottom: 5px;
     margin-top: 10px;
     font-weight: 10px !important;
 }
@@ -491,7 +491,7 @@ label {
     width: 161px;
 }
 
-@media screen and (min-width:320px) and (max-width: 414px) {
+@media screen and (min-width: 320px) and (max-width: 414px) {
     .imagem-univesp {
         margin-top: 5%;
     }
@@ -518,7 +518,7 @@ label {
     }
 }
 
-@media screen and (min-width:520px) and (max-width: 767px) {
+@media screen and (min-width: 520px) and (max-width: 767px) {
     .text-big span {
         font-size: 25px;
         margin-top: 5px;
@@ -650,4 +650,71 @@ legend.scheduler-border {
 
 .tab-content {
     padding: 20px;
+}
+
+.order-card {
+    color: #fff;
+}
+
+.bg-c-pink {
+    background: linear-gradient(45deg, #4099ff, #73b4ff);
+}
+.card {
+    border-radius: 5px;
+    box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+    border: none;
+    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+.card .card-block {
+    padding: 25px;
+}
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.ng-tns-c5-1 {
+    font-weight: 600;
+}
+
+.icon {
+    width: 25px;
+    color: #fff;
+}
+
+.btn-yellow {
+    background: linear-gradient(45deg, #ffb64d, #ffcb80);
+    padding: 15px 150px;
+    color: #e6e6e6;
+}
+
+.btn-red {
+    background: linear-gradient(45deg, #ff5370, #ff869a);
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-weight: bold;
 }
