@@ -18,10 +18,8 @@
                     <p id="txtError"></p>
                 </div>
                 <div class="input-group col-md-6" style="float:right;">
-
                      <input id="txtCpf" class="form-control" type="text" placeholder="Pesquisar por um CPF Válido" />
                     {{ csrf_field() }}
-
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit" onClick='insereTexto()'>Pesquisar por CPF</button>
                 </div>
@@ -31,7 +29,6 @@
             <div class="row" id="divData" style="display:none;margin-top:130px;">
                <div class="col-md-12 border-right">
                     <div class="col-md-4 " >
-
                         <div class="card bg-c-pink order-card">
                             <div class="card-block">
                                 <h6 class="m-b-20">Nome</h6>
@@ -41,11 +38,9 @@
                                 </h2>
                             </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-4">
-
                     <div class="card bg-c-pink order-card">
                             <div class="card-block">
                                 <h6 class="m-b-20">CPF</h6>
@@ -66,15 +61,12 @@
                                 </h2>
                             </div>
                         </div>
-
                     </div>
-
                </div>
             </div>
             <div class="row col-md-12 wrap">
                 <div class="btn-group float-right" role="group" aria-label="...">
                     <button type="button" class="btn-red" >BAIXAR</button>
-
                 </div>
             </div>
 
