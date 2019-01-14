@@ -55,7 +55,6 @@ input[type="checkbox"]:after {
     display: none;
 }
 
-/**/
 .block::before {
     content: "";
     display: inline-block;
@@ -507,7 +506,6 @@ label {
 }
 
 @media screen and (min-width: 415px) and (max-width: 519px) {
-
     .text-big span {
         font-size: 19px;
         margin-top: 5px;
@@ -551,7 +549,6 @@ fieldset.scheduler-border {
     border: 1px groove #ddd !important;
     padding: 0 1.4em 1.4em 1.4em !important;
     margin: 0 0 1.5em 0 !important;
-
     -webkit-box-shadow: 0px 0px 0px 0px #000;
     box-shadow: 0px 0px 0px 0px #000;
 }

@@ -29,7 +29,7 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="edital">
                 <h2 class="text-uppercase text-center">Edital de credenciamento de banco de docentes da Univesp</h2>
-                <iframe src="https://drive.google.com/file/d/0B5Of3N77HFCpb2N2UjhUTDJWSzdhaFlrVkt0Y0JyUktyR1VV/preview"
+                <iframe src="<?=$data->link_edital ?>"
                             class="iframe-pdf" frameborder="0"></iframe>
                 <div class="container">
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -45,7 +45,7 @@
                             @endif
                         </span> --}}
 
-                        @if($diff->d <= 0)
+                        @if($diff->format("%R%a") > 0)
                             <span class="texto-formatacao">Encerrado</span>
                         @else
                             <span class="texto-formatacao">{{$diff->d}} dias para o encerramento</span>
@@ -58,7 +58,7 @@
                             <div class="botao-posicao">
                                 <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                             </div>
-                            @if($diff->d != 0)
+                            @if($diff->format("%R%a") > 0)
                                 <div class="botao-posicao">
                                     <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
                                 </div>
@@ -96,7 +96,7 @@
                         <div class="botao-posicao">
                             <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                         </div>
-                        @if($diff->d > 0)
+                        @if($diff->format("%R%a") > 0)
                             <div class="botao-posicao">
                                 <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
                             </div>
