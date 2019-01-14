@@ -87,8 +87,7 @@ class UserController extends Controller {
         $login = User::where('email','=', $request->email)
             ->select('id', 'name' , 'email', 'password')
             ->first();
-        Helper::createSessionUser($login, $request);
-        return redirect()->route('professorPersonalData');
+
         if(!empty($login) && Hash::check($request->password, $login->password)) {
             Helper::createSessionUser($login, $request);
             return redirect()->route('professorPersonalData');

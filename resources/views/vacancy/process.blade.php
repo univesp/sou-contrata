@@ -14,6 +14,11 @@
 @endsection
 @section('content')
 	<div class="container">
+        <div class="row" style="margin-top: 26px; font-size: 20px;">
+            <div class="col-sm">
+                <a href="{{route('home')}}" class="btn btn-danger">Pagina Inicial</a>
+            </div>
+        </div>
 	@if(!empty($resp) || Session::get('resp') )
 	<div class="modal fade in" id="modal-success" style="display: block;">
   		<div class="modal-dialog">
@@ -28,7 +33,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" onclick="$('.modal').hide()" data-dismiss="modal">Fechar</button>
 				</div>
-			</div><!-- /.modal-content -->
+			</div><!-- /.modal-content -->Pesquisar
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	@endif
