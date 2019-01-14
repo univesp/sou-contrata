@@ -31,43 +31,42 @@
                     <div class="col-md-4 " >
                         <div class="card bg-c-pink order-card">
                             <div class="card-block">
-                                <h6 class="m-b-20">Nome</h6>
+                                <h6 class="m-b-20">Nome Completo</h6>
                                 <h2 class="text-right">
                                     <img class="f-left icon" src="../img/person.svg"/>
-                                    <span class="ng-tns-c5-1">Lorem Ipsum </span>
+                                    <span class="ng-tns-c5-1" id="txtName"></span>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                    <h6 class="m-b-20">CPF</h6>
+                                    <h2 class="text-right">
+                                        <img class="f-left icon" src="../img/cpf.svg"/>
+                                        <span class="ng-tns-c5-1" id="txtDoc"></span>
+                                     </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                    <div class="card bg-c-pink order-card">
+                            <div class="card-block">
+                                <h6 class="m-b-20">Data de Nascimento</h6>
+                                <h2 class="text-right">
+                                    <img class="f-left icon" src="../img/aniversario.svg"/>
+                                    <span class="ng-tns-c5-1" id="txtBirthDay"></span>
                                 </h2>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                    <div class="card bg-c-pink order-card">
-                            <div class="card-block">
-                                <h6 class="m-b-20">CPF</h6>
-                                <h2 class="text-right">
-                                    <img class="f-left icon" src="../img/cpf.svg"/>
-                                    <span class="ng-tns-c5-1">456.132.123-5</span>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                    <div class="card bg-c-pink order-card">
-                            <div class="card-block">
-                                <h6 class="m-b-20">Tipo de Documento</h6>
-                                <h2 class="text-right">
-                                    <img class="f-left icon" src="../img/clip.svg"/>
-                                    <span class="ng-tns-c5-1">Lorem Ipsum </span>
-                                </h2>
-                            </div>
-                        </div>
+               <div class="row col-md-12 wrap">
+                    <div class="btn-group float-right" role="group" aria-label="...">
+                        <button type="button" class="btn-red" >BAIXAR</button>
                     </div>
                </div>
-            </div>
-            <div class="row col-md-12 wrap">
-                <div class="btn-group float-right" role="group" aria-label="...">
-                    <button type="button" class="btn-red" >BAIXAR</button>
-                </div>
             </div>
 
         </div>
@@ -78,9 +77,9 @@
         {document.getElementById('divData').style.display = "block";}
     </script>
 
-    <!-- <script type="text/javascript">
+     <script type="text/javascript">
         function insereTexto() {
-            document.getElementById('txtCpf').style.display = "none";
+            document.getElementById('divData').style.display = "none";
             document.getElementById('divError').style.display = "none";
             $.ajaxSetup({
                 headers: {
@@ -99,7 +98,7 @@
                         document.getElementById('divData').style.display = "block";
                         $('#txtName').html(result[0].name +" "+ result[0].last_name);
                         $('#txtBirthDay').html(result[0].date_birth.substr(0, 10).split('-').reverse().join('/'));
-                        $('#txtDoc').html(mCPF(result['0'].cpf));
+                        $('#txtDoc').html(mCPF(result[0].cpf));
 
                         console.log(result);
                     }else{
