@@ -30,9 +30,8 @@
 
         <div class="row">
             <div class="col-md-3">
-                <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo"
-                        required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">*</span></label>
-                <input name="name" id="textNome" class="form-control" type="text" value="{{ old('name') }}">
+                <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
+                <input name="name" id="textNome" class="form-control" type="text" value="{{ old('name') }}" oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('name'))
                     <p class="text-danger">{{ $errors->first('name') }}</p>
                 @endif
