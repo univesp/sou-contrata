@@ -75,3 +75,20 @@ Route::get('search-data', function(){
 })->name('search-data');
 
 Route::post('search-data/{cpf}','PersonalDataController@searchForTeacher')->name('search');
+
+
+
+/******************************************************ADMINISTRATION*********************************************************/
+
+// Administration users list
+Route::resource('admin/admin-user', 'Admin\AdminUserController', [
+    'names' => ['index' => 'adminUser']
+]);
+
+// Edit personal data
+Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')->name('admin/personal-data/edit');
+Route::get('admin/personal-data/update/{id}','Admin\UserController@updatePersonalData')->name('admin/personal-data/update');
+
+// Edit academic data
+Route::get('admin/academic-data/edit/{id}','Admin\UserController@editAcademicData')->name('admin/academic-data/edit');
+Route::get('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')->name('admin/academic-data/update');
