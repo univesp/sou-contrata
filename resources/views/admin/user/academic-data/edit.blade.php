@@ -21,8 +21,8 @@
         <div id="msgFail"></div>
         
         <ul class="nav nav-tabs">
-            <li class="active"><a href="{{route('admin/personal-data/edit', $id)}}">Dados Pessoais</a></li>
-            <li class="enabled"><a href="{{route('admin/academic-data/edit', $id)}}">Dados Academicos</a></li>
+            <li class="enabled"><a href="{{route('admin/personal-data/edit', $id)}}">Dados Pessoais</a></li>
+            <li class="active"><a href="{{route('admin/academic-data/edit', $id)}}">Dados Academicos</a></li>
         </ul>
 
         <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
