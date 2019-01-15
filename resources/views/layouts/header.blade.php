@@ -33,10 +33,10 @@
                 <img src="{{URL::asset('/img/univesp.png')}}">
                 <div class="col-sm-12 col-xs-12 col-md-12">
                     <div class="col-sm-12 col-xs-12 col-md-10">
-                        <span class="float-right text-user">@yield('username')</span>
+                        <span class="float-right text-user"> <a href="{{ route('adminUser') }}" class="profile-link" title="Perfil">@yield('username')</a></span>
                     </div>
                     @if (Session::get('user')['user'])
-                    <form action="{{route('logoff')}}">
+                        <form action="{{route('logoff')}}">
                             <div class="col-md-2">
                                 <button class="btn btn-danger" type="submit">Sair</button>
                             </div>
