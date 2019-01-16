@@ -30,9 +30,8 @@
 
         <div class="row">
             <div class="col-md-3">
-                <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo"
-                        required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">*</span></label>
-                <input name="name" id="textNome" class="form-control" type="text" value="{{ old('name') }}">
+                <label for="textNome" class="control-label, fonte-campos">Primeiro Nome<span class="cor-campo">*</span></label>
+                <input name="name" id="textNome" class="form-control" type="text" value="{{ old('name') }}" oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('name'))
                     <p class="text-danger">{{ $errors->first('name') }}</p>
                 @endif
@@ -154,11 +153,12 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <input type="file" id="file_rg" class="spacing-top" name="file_rg" value="{{ old('file_rg') }}"
-                    required oninvalid="this.setCustomValidity('Obrigatório upload do RG')" onchange="try{setCustomValidity('')}catch(e){}">
+                <input type="file" accept="application/pdf" id="file_rg" class="spacing-top" name="file_rg" value="{{ old('file_rg') }}"
+                    required oninvalid="this.setCustomValidity('Obrigatório upload do RG')"  onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_rg'))
                     <p class="text-danger">{{ $errors->first('file_rg') }}</p>
                 @endif
+                <small id="emailHelp" class="form-text text-muted">Apenas arquivos com extensões .pdf</small>
             </div>
         </div>
         <div class="row">
@@ -176,11 +176,12 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <input type="file" id="file_cpf" name="file_cpf" class="spacing-top" value="{{ old('file_cpf') }}"
+                <input type="file" accept="application/pdf" id="file_cpf" name="file_cpf" class="spacing-top" value="{{ old('file_cpf') }}"
                     required oninvalid="this.setCustomValidity('Obrigatorio upload do CPF')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_cpf'))
                     <p class="text-danger">{{ $errors->first('file_cpf') }}</p>
                 @endif
+                <small id="emailHelp" class="form-text text-muted">Apenas arquivos com extensões .pdf</small>
             </div>
         </div>
 
@@ -199,10 +200,11 @@
         </div>
         <div class="row elector_title">
             <div class="col-md-3">
-                <input type="file" id="file_title" name="file_title" class="spacing-top" value="{{ old('file_title') }}">
+                <input type="file" accept="application/pdf" id="file_title" name="file_title" class="spacing-top" value="{{ old('file_title') }}">
             @if($errors->has('file_title'))
                 <p class="text-danger">{{ $errors->first('file_title') }}</p>
             @endif
+            <small id="emailHelp" class="form-text text-muted">Apenas arquivos com extensões .pdf</small>
             </div>
         </div>
         <div class="row militar">
@@ -215,10 +217,11 @@
                 @if($errors->has('military_certificate'))
                     <p class="text-danger">{{ $errors->first('military_certificate') }}</p>
                 @endif
-                <input type="file" id="file_military" class="militar none spacing-top" name="file_military" value="{{ old('file_military') }}">
+                <input type="file" accept="application/pdf" id="file_military" class="militar none spacing-top" name="file_military" value="{{ old('file_military') }}">
                 @if($errors->has('file_military'))
                     <p class="text-danger">{{ $errors->first('file_military') }}</p>
                 @endif
+                <small id="emailHelp" class="form-text text-muted">Apenas arquivos com extensões .pdf</small>
             </div>
         </div>
         <br/>
@@ -297,11 +300,12 @@
             <hr />
             <div class="col-md-4">
                 <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás ou Telefone<span class="cor-campo"> *</span></label>
-                <input type="file" id="file_address" class="proof_address spacing-top" name="file_address" value="{{ old('file_address') }}"
+                <input type="file" accept="application/pdf" id="file_address" class="proof_address spacing-top" name="file_address" value="{{ old('file_address') }}"
                     required oninvalid="this.setCustomValidity('Obrigatorio upload do Comprovante de Residência')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_address'))
                     <p class="text-danger">{{ $errors->first('file_address') }}</p>
                 @endif
+                <small id="emailHelp" class="form-text text-muted">Apenas arquivos com extensões .pdf</small>
             </div>
         </div>
         <br>
@@ -360,6 +364,7 @@
 @endsection
 @section('scripts')
 <script src="{{URL::asset('/js/personal-data.js')}}"></script>
+
 <!--<script>
         function Validacao() {
             var checkboxes = document.getElementsByName("opcaoDeficiencia");

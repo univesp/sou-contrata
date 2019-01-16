@@ -718,3 +718,16 @@ legend.scheduler-border {
     color: white;
     font-weight: bold;
 }
+
+/* ADMIN CLASS */
+.profile-link {
+    color:white;
+}
+
+.profile-link:hover {
+    color:#c9302c;
+}
+
+.user-list-icon {
+    padding-right: 10px;
+}
