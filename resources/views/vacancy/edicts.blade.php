@@ -38,8 +38,8 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
                         <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
-                        {{--<span class="texto-formatacao">
-                        Prazo de Inscrição:</span>--}}
+                        <span class="texto-formatacao">
+                        Prazo de Inscrição: Encerramento, dia {{date_format(date_create($data->date_end), 'd/m/Y')}}</span>
                         {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
                             @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
                                 (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
@@ -87,7 +87,7 @@
                     {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
                     <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
                     <span class="texto-formatacao">
-                    Prazo de Inscrição:</span>
+                    Prazo de Inscrição: </span>
                     {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
                         @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
                             (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
