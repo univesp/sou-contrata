@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: sou-qa
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: qa.sou.univesp.br
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: nginx-service
+            servicePort: 80

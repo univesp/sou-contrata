@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ssl-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: autores-ip
+spec:
+  tls:
+    - secretName: laravel-app-tls-secrets
+      hosts:
+        - autores.univesp.br
+  backend:
+    serviceName: default-http-backend
+    servicePort: 80
+  rules:
+  - host: autores.univesp.br
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: nginx-service
+            servicePort: 80

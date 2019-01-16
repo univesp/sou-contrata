@@ -3,8 +3,12 @@
 /public/storage
 /storage/*.key
 /vendor
-kubernetes/app/secrets.yaml
-kubernetes/app/tls-secrets.yaml
+/kubernetes/prd/app/secrets.yaml
+/kubernetes/prd/app/tls-secrets.yaml
+/kubernetes/qa/app/secrets.yaml
+/kubernetes/qa/app/tls-secrets.yaml
+/kubernetes/dev/app/secrets.yaml
+/kubernetes/dev/app/tls-secrets.yaml
 /.idea
 /.vscode
 /nbproject
