@@ -14,7 +14,7 @@ data:
         listen [::]:80 default_server;
 
         root /var/www/autores/public;
-        server_name qa.sou.univesp.br;
+        server_name autores.univesp.br;
 
         server_tokens off;
         sendfile on;
