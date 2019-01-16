@@ -14,4 +14,4 @@ spec:
       targetPort: 80
       protocol: TCP
       name: http
-  loadBalancerIP: '35.237.60.148'
+  loadBalancerIP: '35.237.103.112'
