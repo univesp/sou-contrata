@@ -727,3 +727,7 @@ legend.scheduler-border {
 .profile-link:hover {
     color:#c9302c;
 }
+
+.user-list-icon {
+    padding-right: 10px;
+}

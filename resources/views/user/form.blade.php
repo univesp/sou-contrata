@@ -27,31 +27,31 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="textNome" class="control-label, fonte-campos">Nome<span class="cor-campo">*</span></label>
-                    <input id="textNome" class="form-control" type="text" name="name" required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
+                    <input maxlength="100" id="textNome" class="form-control" type="text" name="name" required oninvalid="this.setCustomValidity('Digite seu Nome')" onchange="try{setCustomValidity('')}catch(e){}">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group form-group col-md-3">
                     <label for="textSenha" class="control-label, fonte-campos">Senha<span class="cor-campo">*</span></label>
-                    <input id="textSenha" class="form-control" type="password" name="password" required  onchange="validadePasswordConfirmation();">
+                    <input maxlength="400" id="textSenha" class="form-control" type="password" name="password" required  onchange="validadePasswordConfirmation();">
                 </div>
                 <div class="form-group form-group col-md-3">
                     <label for="textConfirm" class="control-label, fonte-campos">Confirmar senha<span class="cor-campo">*</span></label>
-                    <input id="textConfirm" class="form-control" type="password" name="passwordConfirm" required onchange="validadePasswordConfirmation();">
+                    <input maxlength="400" id="textConfirm" class="form-control" type="password" name="passwordConfirm" required onchange="validadePasswordConfirmation();">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group form-group col-md-6">
                     <label for="textLogin" class="control-label, fonte-campos">Login<span class="cor-campo">*</span></label>
-                    <input id="textLogin" class="form-control" type="text" name="login" required oninvalid="this.setCustomValidity('Digite seu Login')" onchange="try{setCustomValidity('')}catch(e){}">
+                    <input maxlength="40" id="textLogin" class="form-control" type="text" name="login" required oninvalid="this.setCustomValidity('Digite seu Login')" onchange="try{setCustomValidity('')}catch(e){}">
                 </div>
             </div>
             <div class="row">
                 <div class="form-group form-group col-md-6">
                     <label for="textEmail" class="control-label, fonte-campos">Email<span class="cor-campo">*</span></label>
-                        <input id="textEmail" class="form-control" type="Email" name="email" required onchange="checkEmail();" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                        <input maxlength="100" id="textEmail" class="form-control" type="Email" name="email" required onchange="checkEmail();" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                     </label>
                 </div>
             <div>
