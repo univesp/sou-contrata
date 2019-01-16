@@ -29,41 +29,22 @@
                 <thead>
                     <tr>
                         <th scope="col">Nome</th>
-                        <th scope="col">CPF</th>
+                        <th scope="col">Login</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Data de Creação</th>
+                        <th scope="col">Creação</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
-			    <tbody>
-					<tr>
-						<td>Francisco Paredes</td>
-						<td>123.456.789-101</td>
-						<td>franciscoparedes@gmail.com</td>
-						<td>15/01/2019</td>
-						<td><a href="{{ url('admin/personal-data/edit', $id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
-					</tr>
-                    <tr>
-						<td>Linux Torvald</td>
-						<td>123.456.789-101</td>
-						<td>linuxtorvald@gmail.com</td>
-						<td>15/01/2019</td>
-						<td><a href="{{ url('admin/personal-data/edit', $id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
-					</tr>
-                    <tr>
-						<td>Bill Gates</td>
-						<td>123.456.789-101</td>
-						<td>billgates@gmail.com</td>
-						<td>15/01/2019</td>
-						<td><a href="{{ url('admin/personal-data/edit', $id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
-					</tr>
-                    <tr>
-						<td>Steve Jobs</td>
-						<td>123.456.789-101</td>
-						<td>stevejobs@gmail.com</td>
-						<td>15/01/2019</td>
-						<td><a href="{{ url('admin/personal-data/edit', $id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
-					</tr>
+			    <tbody>                
+                    @foreach ($users as $user)                   
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->login }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->created_at->format('d/m/y') }}</td>
+                            <td><a href="{{ url('admin/personal-data/edit', $user->id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
+                        </tr>
+                    @endforeach
 			    </tbody>
 		    </table>
         </form>
