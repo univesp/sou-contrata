@@ -74,7 +74,9 @@ Route::get('search-data', function(){
     return view('professor/search-data');
 })->name('search-data');
 
+//Tela de download de PDF
 Route::post('search-data/{cpf}','PersonalDataController@searchForTeacher')->name('search');
+Route::post('pdf-download/{cpf}','PersonalDataController@downloadPDF')->name('download');
 
 
 
