@@ -166,9 +166,9 @@
             <h4>CPF</h4>
             <div class="col-md-4">
                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
-                <input maxlength="45" name="cpf" type="text" class="form-control" id="inputNumDoc" value="{{ old('cpf') }}" required
+                <input name="cpf" type="text" class="form-control" id="inputNumDoc" value="{{ old('cpf') }}" required
                     oninvalid="this.setCustomValidity('Digite o CPF somente números')" onchange="try{setCustomValidity('')}catch(e){}"
-                    pattern="[0-9]+$" maxlength="11">
+                    pattern="[0-9]+$" maxlength="12">
                 @if($errors->has('cpf'))
                     <p class="text-danger">{{ $errors->first('cpf') }}</p>
                 @endif
@@ -191,7 +191,7 @@
 
             <div class="col-md-4">
                 <label for="inputNumDoc_1" class="fonte-campos">Número de Documento<span class="cor-campo"> *</span></label>
-                <input maxlength="45" name="elector_title" type="text" class="form-control" id="inputNumDoc_1" value="{{ old('elector_title') }}"
+                <input name="elector_title" type="text" class="form-control" id="inputNumDoc_1" value="{{ old('elector_title') }}"
                     onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="12">
             @if($errors->has('elector_title'))
                 <p class="text-danger">{{ $errors->first('elector_title') }}</p>
