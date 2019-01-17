@@ -31,7 +31,7 @@ spec:
             - "backend"
       initContainers:
         - name: app
-          image: us.gcr.io/univesp-201808/sou-contrata:1.0.16
+          image: us.gcr.io/univesp-201808/sou-contrata:1.0.18qa
           command: ['/bin/sh', '-c', 'cp -rp /var/www/* /app/']
           imagePullPolicy: Always
           resources:
