@@ -152,7 +152,7 @@ class PersonalDataController extends Controller
             $candidate->marital_status      = $request->marital_status;
             $candidate->nationality         = $request->nationality;
             $candidate->curriculum_link     = isset($request->curriculum_link)? $request->curriculum_link: 'Empty';
-            $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: 'Empty';
+            $candidate->obs_deficient       = isset($request->obs_deficient)? $request->obs_deficient: NULL;
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = trim($request->area_code_phone.' '.$request->phone);
             $candidate->mobile              = trim($request->area_code_mobile.' '.$request->mobile);
@@ -165,9 +165,9 @@ class PersonalDataController extends Controller
 
                 // Create new document
                 $document = new Document();
-                $document->elector_title            = isset($request->elector_title)? $request->elector_title : 'Empty' ;
+                $document->elector_title            = isset($request->elector_title)? $request->elector_title : NULL;
                 $document->elector_link             = $path_file_title;
-                $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : 'Empty' ;
+                $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : NULL;
                 $document->military_link            = $path_file_military;
                 $document->number                   = $request->number;
                 $document->number_link              = $path_file_rg;
