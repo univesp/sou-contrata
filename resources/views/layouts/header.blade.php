@@ -33,7 +33,11 @@
                 <img src="{{URL::asset('/img/univesp.png')}}">
                 <div class="col-sm-12 col-xs-12 col-md-12">
                     <div class="col-sm-12 col-xs-12 col-md-10">
-                        <span class="float-right text-user"> <a href="{{ route('adminUser') }}" class="profile-link" title="Perfil">@yield('username')</a></span>
+                        <input type="hidden" value="{{ $id = Session::get('user')['id'] }}">
+                        @if (Session::get('user')['user'])
+                            <span class="float-right text-user"><a href="{{route('admin/personal-data/edit', $id)}}" class="profile-link" data-toggle="tooltip" data-placement="bottom" title="Perfil">@yield('username')</a></span>
+                            <span class="float-right text-user"><a href="{{ url('admin/admin-user') }}" class="profile-link user-list-icon" data-toggle="tooltip" data-placement="bottom" title="Usuários"><i class="fa fa-users"></i></a></span>
+                        @endif
                     </div>
                     @if (Session::get('user')['user'])
                         <form action="{{route('logoff')}}">
@@ -57,6 +61,10 @@
 
         <script>
             $(function() {
+                /*Tooltip*/
+                $('[data-toggle="tooltip"]').tooltip();
+
+                /*Datatable*/
                 $(document).ready(function(){
                     $('#example').DataTable( {
 					    "searching": true,

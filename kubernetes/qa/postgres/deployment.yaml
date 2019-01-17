@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgsql
+  labels:
+    app: pgsql
+spec:
+  selector:
+    matchLabels:
+      app: pgsql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: pgsql
+    spec:
+      volumes:
+        - name: pgsql-persistent-volume
+          persistentVolumeClaim:
+            claimName: pgsql-pvc
+      containers:
+        - image: postgres:10.5
+          name: pgsql
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: pgsql-secrets
+          resources:
+            limits:
+              cpu: 250m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          ports:
+            - containerPort: 5432
+              name: pgsql
+          volumeMounts:
+            - name: pgsql-persistent-volume
+              mountPath: /var/lib/postgresql/data
