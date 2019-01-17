@@ -731,3 +731,11 @@ legend.scheduler-border {
 .user-list-icon {
     padding-right: 10px;
 }
+
+.image-size {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+    border-radius: 8px;
+}
