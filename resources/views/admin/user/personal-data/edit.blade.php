@@ -163,8 +163,8 @@
                     @if($errors->has('elector_title'))
                         <p class="text-danger">{{ $errors->first('elector_title') }}</p>
                     @endif
-                    <br/>
-                    <img class="image-size" src="{{ $document->elector_link }}" alt="Image Preview" />
+                    
+                    @if($document->elector_link)<br/><img class="image-size" src="{{ $document->elector_link }}" alt="Image Preview" />@endif
                     <input type="file" id="file_title" name="file_title" class="spacing-top" @if($document->file_title) value="{{$document->file_title}}" @endif >
                     @if($errors->has('file_title'))
                         <p class="text-danger">{{ $errors->first('file_title') }}</p>
@@ -180,8 +180,7 @@
                     @if($errors->has('military_certificate'))
                         <p class="text-danger">{{ $errors->first('military_certificate') }}</p>
                     @endif
-                    <br/><br/>
-                    <img class="image-size" src="{{ $document->military_link }}" alt="Image Preview" />
+                    @if($document->elector_link)<br/><br/><img class="image-size" src="{{ $document->military_link }}" alt="Image Preview" />@endif
                     <input type="file" id="file_military" class="militar none spacing-top" name="file_military" @if($document->file_military) value="{{ $document->file_military }}" @endif>
                     @if($errors->has('file_military'))
                         <p class="text-danger">{{ $errors->first('file_military') }}</p>
