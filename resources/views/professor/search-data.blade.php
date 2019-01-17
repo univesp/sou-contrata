@@ -7,10 +7,11 @@
       <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
   @endsection
   @section('content')
+
     <div class="container">
 		<div class=wrap>
           <div class="row">
-             <h1 class="negrito">LOREM IPSUM</h1>
+             <h1 class="negrito">Baixar documentação do candidato</h1>
           </div>
 
             <div class="col-md-12">
@@ -64,20 +65,41 @@
 
                <div class="row col-md-12 wrap">
                     <div class="btn-group float-right" role="group" aria-label="...">
-                        <button type="button" class="btn-red" >BAIXAR</button>
+                        <button type="button" class="btn-red" id="download" onclick="downloadPDF();">BAIXAR</button>
                     </div>
                </div>
             </div>
-
         </div>
     </div>
-
-    <script type="text/javascript">
-        function insereTexto()
-        {document.getElementById('divData').style.display = "block";}
-    </script>
-
+        </div>
+    </div>
      <script type="text/javascript">
+
+         function downloadPDF() {
+             $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
+             var cpf = $("#txtCpf").val();
+             console.log('gerando PDF para : ' + cpf);
+             $.ajax({
+                 url: "pdf-download/"+cpf,
+                 type: "POST",
+                 data: cpf,
+                 success: function (result) {
+                     console.log(result);
+                 },
+                 error: function (result) {
+                     console.log(result);
+                 }
+             });
+         }//downloadPDF
+
+         function insereTexto() {
+             document.getElementById('divData').style.display = "block";
+         }//insereTexto
+
         function insereTexto() {
             document.getElementById('divData').style.display = "none";
             document.getElementById('divError').style.display = "none";
@@ -114,14 +136,16 @@
                 }
             });
 
-        }
+        }//insereTexto
+
         function mCPF(cpf) {
             cpf = cpf.replace(/\D/g, "")
             cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
             cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
             cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
             return cpf
-        }
+        }//mCPF
+
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
