@@ -84,13 +84,13 @@ Route::post('pdf-download/{cpf}','PersonalDataController@downloadPDF')->name('do
 
 // Administration users list
 Route::resource('admin/admin-user', 'Admin\AdminUserController', [
-    'names' => ['index' => 'adminUser']
+    'names' => ['index' => 'admin/admin-user']
 ]);
 
 // Edit personal data
 Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')->name('admin/personal-data/edit');
-Route::get('admin/personal-data/update/{id}','Admin\UserController@updatePersonalData')->name('admin/personal-data/update');
+Route::post('admin/personal-data/update/{id}/{candidate_id}','Admin\UserController@updatePersonalData')->name('admin/personal-data/update');
 
 // Edit academic data
 Route::get('admin/academic-data/edit/{id}','Admin\UserController@editAcademicData')->name('admin/academic-data/edit');
-Route::get('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')->name('admin/academic-data/update');
+Route::post('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')->name('admin/academic-data/update');
