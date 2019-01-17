@@ -40,7 +40,7 @@ class UserController extends Controller
             ;
         } else {
             // Return this view
-            return redirect()->route("admin/admin-user");
+            return redirect()->route("home");
         }      
     }
 
@@ -164,6 +164,7 @@ class UserController extends Controller
                 $address->public_place              = $request->public_place;
                 $address->state                     = $request->state;
                 $address->type_public_place         = $request->type_public_place;
+
                 if($path_file_address) {$address->file_address = $path_file_address; }
 
                 // Update in database
