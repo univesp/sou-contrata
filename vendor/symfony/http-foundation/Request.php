@@ -545,10 +545,13 @@ class Request
         $requestOrder = ini_get('request_order') ?: ini_get('variables_order');
         $requestOrder = preg_replace('#[^cgp]#', '', strtolower($requestOrder)) ?: 'gp';
 
-        $_REQUEST = array();
+        $_REQUEST = array(array());
+
         foreach (str_split($requestOrder) as $order) {
-            $_REQUEST = array_merge($_REQUEST, $request[$order]);
+            $_REQUEST[] = $request[$order];
         }
+
+        $_REQUEST = array_merge(...$_REQUEST);
     }
 
     /**
@@ -1696,15 +1699,23 @@ class Request
         } elseif ($this->server->has('REQUEST_URI')) {
             $requestUri = $this->server->get('REQUEST_URI');
 
-            // HTTP proxy reqs setup request URI with scheme and host [and port] + the URL path, only use URL path
-            $uriComponents = parse_url($requestUri);
+            if ('' !== $requestUri && '/' === $requestUri[0]) {
+                // To only use path and query remove the fragment.
+                if (false !== $pos = strpos($requestUri, '#')) {
+                    $requestUri = substr($requestUri, 0, $pos);
+                }
+            } else {
+                // HTTP proxy reqs setup request URI with scheme and host [and port] + the URL path,
+                // only use URL path.
+                $uriComponents = parse_url($requestUri);
 
-            if (isset($uriComponents['path'])) {
-                $requestUri = $uriComponents['path'];
-            }
+                if (isset($uriComponents['path'])) {
+                    $requestUri = $uriComponents['path'];
+                }
 
-            if (isset($uriComponents['query'])) {
-                $requestUri .= '?'.$uriComponents['query'];
+                if (isset($uriComponents['query'])) {
+                    $requestUri .= '?'.$uriComponents['query'];
+                }
             }
         } elseif ($this->server->has('ORIG_PATH_INFO')) {
             // IIS 5.0, PHP as CGI
@@ -1905,7 +1916,7 @@ class Request
     private static function createRequestFromFactory(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
     {
         if (self::$requestFactory) {
-            $request = \call_user_func(self::$requestFactory, $query, $request, $attributes, $cookies, $files, $server, $content);
+            $request = (self::$requestFactory)($query, $request, $attributes, $cookies, $files, $server, $content);
 
             if (!$request instanceof self) {
                 throw new \LogicException('The Request factory must return an instance of Symfony\Component\HttpFoundation\Request.');
