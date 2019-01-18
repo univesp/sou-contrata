@@ -16,7 +16,7 @@
     @section('username')
         {{ "Bem vindo, ". Session::get('user')['user'] }}
     @endsection
-
+    {{--  {{dd($candidate, $scholarity[0], $scholarity[0]_type)}}  --}}
     <div class="container">
         <div id="msgFail"></div>
         
@@ -34,7 +34,7 @@
                 <div class="col-md-7">
                     <div  class="form-group">
                         <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Lattes</a><span class="cor-campo"> *</span></label>
-                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters', $scholarity->class_name) }}">
+                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters', $scholarity[0]->class_name) }}">
                     </div>
                 </div>
             </div>
@@ -48,9 +48,9 @@
                         <div class="col-md-12">
                             <select name="graduate_dinamic[]" id="0" class="form-control graduate_dinamic tier">
                                 <option value="">SELECIONE A SUA FORMAÇÃO</option>                                
-                                <option value="0" @if (old('graduate_dinamic.0', $scholarity->scholarity_type)=='graduate' ) selected="selected" @endif>GRADUAÇÃO</option>
-                                <option value="1" @if (old('graduate_dinamic.0', $scholarity->scholarity_type)=='master' ) selected="selected" @endif>MESTRADO</option>
-                                <option value="2" @if (old('graduate_dinamic.0', $scholarity->scholarity_type)=='doctorate' ) selected="selected" @endif>DOUTORADO</option>
+                                <option value="0" @if (old('graduate_dinamic.0', $scholarity[0]->scholarity_type)=='graduate' ) selected="selected" @endif>GRADUAÇÃO</option>
+                                <option value="1" @if (old('graduate_dinamic.0', $scholarity[0]->scholarity_type)=='master' ) selected="selected" @endif>MESTRADO</option>
+                                <option value="2" @if (old('graduate_dinamic.0', $scholarity[0]->scholarity_type)=='doctorate' ) selected="selected" @endif>DOUTORADO</option>
                             </select>
                         </div>
                     </div>
@@ -76,19 +76,19 @@
                         <div class="row spacing-top">
                             <div class="col-md-12">
                                 <label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required value="{{ old('inputCursos.0', $scholarity->course_name) }}"  oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required value="{{ old('inputCursos.0', $scholarity[0]->course_name) }}"  oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
                             <div class="col-md-8">
                                 <label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inpuInstituicao" value="{{ old('inpuInstituicao.0', $scholarity->teaching_institution) }}" name="inpuInstituicao[]" required maxlength="150" oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inpuInstituicao" value="{{ old('inpuInstituicao.0', $scholarity[0]->teaching_institution) }}" name="inpuInstituicao[]" required maxlength="150" oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
                             <div class="col-md-3">
                                 <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
-                                <input  type="date" class="form-control dataYear inputDataConclusao" value="{{ old('inputDataConclusao.0', $scholarity->end_date) }}" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
+                                <input  type="date" class="form-control dataYear inputDataConclusao" value="{{ old('inputDataConclusao.0', $scholarity[0]->end_date) }}" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
                             </div>
                         </div>
                         <div class="row">
@@ -127,7 +127,7 @@
                     </div>
                     <div class="modal-body">
                         <embed
-                            src="{{ $scholarity->link }}"
+                            src="{{ $scholarity[0]->link }}"
                             class="pdf-size"
                             frameborder="0"
                         >
