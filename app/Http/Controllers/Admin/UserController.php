@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Candidate as Candidate;
 use App\Document;
+use App\Scholarity;
 use App\Address;
 use App\User;
 use App\Area;
@@ -183,10 +184,11 @@ class UserController extends Controller
         $candidate = Candidate::find($id);
 
         // Find scholarity by candidate id
-        $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->first();
+        // $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->first();
+        $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->get();
 
         // Condition if candidate id is empty
-        if (!empty($scholarity->candidate_id)) {
+        if (!empty($scholarity[0]->candidate_id)) {
      
             // Array to select save in database
             $scholarity_type = ['graduate','master','doctorate'];
@@ -194,6 +196,7 @@ class UserController extends Controller
             // Return this view
             return view("admin.user.academic-data.edit")
                 ->with('candidate', $candidate)
+                ->with('scholarity', $scholarity)
                 ->with('scholarity', $scholarity)
                 ->with('scholarity_type', $scholarity_type)
                 ->with('id', $id)
