@@ -21,8 +21,8 @@
         <div id="msgFail"></div>
         
         <ul class="nav nav-tabs">
-            <li class="enabled"><a href="{{route('admin/personal-data/edit', $id)}}">Dados Pessoais</a></li>
-            <li class="active"><a href="{{route('admin/academic-data/edit', $id)}}">Dados Academicos</a></li>
+            <li class="enabled"><a href="{{route('admin/personal-data/edit', $candidate->user_id)}}">Dados Pessoais</a></li>
+            <li class="active"><a href="{{route('admin/academic-data/edit', $candidate->id)}}">Dados Academicos</a></li>
         </ul>
 
         <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
@@ -34,7 +34,7 @@
                 <div class="col-md-7">
                     <div  class="form-group">
                         <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Lattes</a><span class="cor-campo"> *</span></label>
-                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters') }}">
+                        <input  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters', $scholarity->class_name) }}">
                     </div>
                 </div>
             </div>
@@ -47,10 +47,10 @@
                     <div class="row">
                         <div class="col-md-12">
                             <select name="graduate_dinamic[]" id="0" class="form-control graduate_dinamic tier">
-                                <option value="">SELECIONE A SUA FORMAÇÃO</option>
-                                <option value="1" {{ (collect(old('graduate_dinamic.0'))->contains('1')) ? 'selected':'' }}>GRADUAÇÃO</option>
-                                <option value="2" {{ (collect(old('graduate_dinamic.0'))->contains('2')) ? 'selected':'' }}>MESTRADO</option>
-                                <option value="3" {{ (collect(old('graduate_dinamic.0'))->contains('3')) ? 'selected':'' }}>DOUTORADO</option>
+                                <option value="">SELECIONE A SUA FORMAÇÃO</option>                                
+                                <option value="0" @if (old('graduate_dinamic.0', $scholarity->scholarity_type)=='graduate' ) selected="selected" @endif>GRADUAÇÃO</option>
+                                <option value="1" @if (old('graduate_dinamic.0', $scholarity->scholarity_type)=='master' ) selected="selected" @endif>MESTRADO</option>
+                                <option value="2" @if (old('graduate_dinamic.0', $scholarity->scholarity_type)=='doctorate' ) selected="selected" @endif>DOUTORADO</option>
                             </select>
                         </div>
                     </div>
@@ -76,19 +76,19 @@
                         <div class="row spacing-top">
                             <div class="col-md-12">
                                 <label for="inputCursos" class="fonte-campos">Curso<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required value="{{ old('inputCursos.0') }}"  oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inputCursos" maxlength="200" name="inputCursos[]" required value="{{ old('inputCursos.0', $scholarity->course_name) }}"  oninvalid="this.setCustomValidity('Digite o Curso')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
                             <div class="col-md-8">
                                 <label for="inpuInstituicao" class="fonte-campos">Instituição<span class="cor-campo"> *</span></label>
-                                <input  type="text" class="form-control inpuInstituicao" value="{{ old('inpuInstituicao.0') }}" name="inpuInstituicao[]" required maxlength="150" oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
+                                <input  type="text" class="form-control inpuInstituicao" value="{{ old('inpuInstituicao.0', $scholarity->teaching_institution) }}" name="inpuInstituicao[]" required maxlength="150" oninvalid="this.setCustomValidity('Digite a Instituição')" onchange="try{setCustomValidity('')}catch(e){}">
                             </div>
                         </div>
                         <div class="row spacing-top">
                             <div class="col-md-3">
                                 <label for="inputAnoConclusao" class="fonte-campos">Data de Conclusão<span class="cor-campo"> *</span></label>
-                                <input  type="date" class="form-control dataYear inputDataConclusao" value="{{ old('inputDataConclusao.0') }}" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
+                                <input  type="date" class="form-control dataYear inputDataConclusao" value="{{ old('inputDataConclusao.0', $scholarity->end_date) }}" name="inputDataConclusao[]" required oninvalid="this.setCustomValidity('Digite o Data de Conclusão')" onchange="try{setCustomValidity('')}catch(e){}" pattern="\d{1,2}/\d{1,2}/\d{4}" max="new Date().toISOString().split('T')[0]">
                             </div>
                         </div>
                         <div class="row">
@@ -99,6 +99,7 @@
                     </div>
                     <div class="row col-md-7 spacing-top">
                         <div class="col-md-8 spacing-top">
+                            <button type="button" data-toggle="modal" data-target="#modal-success" class="btn pdf-buttom">Ver Diploma</button><br/>
                             <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
                             <div class="display-flex">
                                 <input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
@@ -109,7 +110,7 @@
                             <button type="button" class="btn btn-success btn-sm novo">Novo</button>
                         </div>
                     </div>
-                </div>
+                </div>                                
             </div>
             <hr />
             <div class="row">
@@ -117,11 +118,31 @@
             </div>
             <br /><br />
         </form>
+
+        <div class="modal fade in" id="modal-success" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">PDF</h4>
+                    </div>
+                    <div class="modal-body">
+                        <embed
+                            src="{{ $scholarity->link }}"
+                            class="pdf-size"
+                            frameborder="0"
+                        >
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @include('layouts.footer')
 @endsection
 
 @section('scripts')
-    <script src="{{URL::asset('/js/academic-data.js')}}"></script>
+    <script src="{{URL::asset('/js/admin/academic-data.js')}}"></script>
 @endsection
