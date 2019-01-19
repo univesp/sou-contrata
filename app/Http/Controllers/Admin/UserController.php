@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Candidate as Candidate;
 use App\Document;
+use App\Scholarity;
 use App\Address;
 use App\User;
+use App\Area;
 use DB;
 
 class UserController extends Controller
@@ -178,13 +180,59 @@ class UserController extends Controller
 
     public function editAcademicData($id)
     {
-        // Return this view
-        return view("admin.user.academic-data.edit")
-            ->with('id', $id);
+        // Find candidate by id
+        $candidate = Candidate::find($id);
+
+        // Find scholarity by candidate id
+        // $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->first();
+        $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->get();
+
+        // Condition if candidate id is empty
+        if (!empty($scholarity[0]->candidate_id)) {
+     
+            // Array to select save in database
+            $scholarity_type = ['graduate','master','doctorate'];
+            
+            // Return this view
+            return view("admin.user.academic-data.edit")
+                ->with('candidate', $candidate)
+                ->with('scholarity', $scholarity)
+                ->with('scholarity', $scholarity)
+                ->with('scholarity_type', $scholarity_type)
+                ->with('id', $id)
+            ;
+        } else {
+            // Return this view
+            return redirect()->route("home");
+        }      
     }
 
     public function updateAcademicData($id, Request $request)
     {
         //
+    }
+
+    public function area() {
+        // Create area list to select box
+        $area = Area::orderBy('description', 'asc')->select('description', 'id')->get();
+
+        // Return area
+        echo json_encode($area);
+    }
+
+    public function subarea($area) {
+        // Add area value
+        $area = (int) $area;
+
+        // Create query to list subarea
+        $subareas = DB::table('subareas')
+            ->leftJoin('area_subarea', 'subareas.id', '=', 'area_subarea.subarea_id')
+            ->select('subareas.id', 'subareas.description')
+            ->where('area_subarea.area_id', $area)
+            ->orderBy('subareas.description', 'asc')
+            ->select('subareas.description', 'subareas.id')->get();
+            
+        // Return subareas value
+        echo json_encode($subareas);
     }
 }

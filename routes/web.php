@@ -66,7 +66,7 @@ Route::resource('personal-data', 'PersonalDataController', [
 Route::resource('academic-data', 'ScholarityController', [
     'only' => ['index', 'store'],
     'names'=> ['index' => 'professorAcademicData', 'store' => 'professorAcademicData']
-])->middleware('login');
+]);
 
 
 //Busca interna pelos dados dos usuarios
@@ -94,3 +94,7 @@ Route::post('admin/personal-data/update/{id}/{candidate_id}','Admin\UserControll
 // Edit academic data
 Route::get('admin/academic-data/edit/{id}','Admin\UserController@editAcademicData')->name('admin/academic-data/edit');
 Route::post('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')->name('admin/academic-data/update');
+ 
+// Area & Subarea
+Route::get('admin/area','Admin\UserController@area')->name('admin/area');
+Route::get('admin/subarea/{area}','Admin\UserController@subarea')->name('subarea');
