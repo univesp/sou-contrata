@@ -35,7 +35,7 @@
                     <div class="col-sm-12 col-xs-12 col-md-10">
                         <input type="hidden" value="{{ $id = Session::get('user')['id'] }}">
                         @if (Session::get('user')['user'])
-                            <span class="float-right text-user">@yield('username')</span>
+                            <span class="float-right text-user"><a href="{{route('admin/personal-data/edit', $id)}}" class="profile-link" data-toggle="tooltip" data-placement="bottom" title="Perfil">@yield('username')</a></span>
                         @endif
                     </div>
                     @if (Session::get('user')['user'])

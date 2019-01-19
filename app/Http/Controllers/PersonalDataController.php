@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Scholarity;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Candidate;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Redirect;
 use Response;
 use Session;
 use Auth;
+use PDF;
 
 class PersonalDataController extends Controller
 {
@@ -253,5 +255,46 @@ class PersonalDataController extends Controller
             ->select('name', 'last_name' , 'cpf', 'date_birth')
             ->get();
         return $data;
+    }
+
+    public function downloadPDF($cpf)
+    {
+
+       if(!is_numeric($cpf)){
+            return "Valor precisa ser numerico";
+        }
+
+        if(strlen($cpf) != 11){
+            return "Valor precisa ser de 11 caracteres";
+        }
+        $candidate = Candidate::where('cpf','=',$cpf)
+            ->first();
+        $user = User::where('id','=',$candidate->user_id)
+            ->first();
+
+        $scholaraity = Scholarity::where('candidate_id','=',$candidate->id)
+            ->get();
+        $documents = Document::where('candidate_id','=',$candidate->id)
+            ->first();
+
+        $elector_link = explode(";base64,", $documents->elector_link);
+        $military_link = explode(";base64,", $documents->military_link);
+        $number_link = explode(";base64,", $documents->number_link);
+
+        $data = [
+            'name' => $candidate->name,
+            'last_name' => $candidate->name,
+            'date_birth' => $candidate->date_birth,
+            'email' => $candidate->email,
+            'mobile' => $candidate->mobile,
+            'cpf' => $candidate->cpf,
+            'phone' => $candidate->phone,
+            'name_mother' => $candidate->name_mother,
+            'name_father' => $candidate->name_father,
+            'name_social' => $candidate->name_social
+            ];
+
+        $pdf = PDF::loadView('download.makePDF', $data)->save($cpf.'-data.pdf');
+        return $pdf;
     }
 }

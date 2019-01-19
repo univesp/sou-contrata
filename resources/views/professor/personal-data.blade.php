@@ -153,7 +153,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <input type="file" accept="application/pdf" id="file_rg" class="spacing-top" name="file_rg" value="{{ old('file_rg') }}"
+                <input onchange="verificaExtensao(this)" type="file" accept="application/pdf" id="file_rg" class="spacing-top" name="file_rg" value="{{ old('file_rg') }}"
                     required oninvalid="this.setCustomValidity('Obrigatório upload do RG')"  onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_rg'))
                     <p class="text-danger">{{ $errors->first('file_rg') }}</p>
@@ -176,7 +176,7 @@
         </div>
         <div class="row">
             <div class="col-md-3">
-                <input type="file" accept="application/pdf" id="file_cpf" name="file_cpf" class="spacing-top" value="{{ old('file_cpf') }}"
+                <input onchange="verificaExtensao(this)" type="file" accept="application/pdf" id="file_cpf" name="file_cpf" class="spacing-top" value="{{ old('file_cpf') }}"
                     required oninvalid="this.setCustomValidity('Obrigatorio upload do CPF')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_cpf'))
                     <p class="text-danger">{{ $errors->first('file_cpf') }}</p>
@@ -364,6 +364,20 @@
 @endsection
 @section('scripts')
 <script src="{{URL::asset('/js/personal-data.js')}}"></script>
+
+<script language="javascript" type="text/javascript">
+    function verificaExtensao($input) {
+    var extPermitidas = ['pdf'];
+    var extArquivo = $input.value.split('.').pop();
+
+    if(typeof extPermitidas.find(function(ext){ return extArquivo == ext; }) == 'undefined') {
+        alert('Extensão "' + extArquivo + '" não permitida!');
+    } else {
+        alert('Ok!');
+    }
+    }
+</script>
+
 
 <!--<script>
         function Validacao() {
