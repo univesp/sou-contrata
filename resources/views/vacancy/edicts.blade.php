@@ -36,20 +36,11 @@
                             class="iframe-pdf" frameborder="0"></iframe>
                 <div class="container">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
-                        <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
-                        <span class="texto-formatacao">
-                        Prazo de Inscrição: Encerramento, dia {{date_format(date_create($data->date_end), 'd/m/Y')}}</span>
-                        {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
-                            @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
-                                (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
-                            @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
-                                Hoje é o ultimo dia
-                            @endif
-                        </span> --}}
-
-                        @if($diff->format("%R%a") > 0)
-                            <span class="texto-formatacao">Encerrado</span>
+                        @if($diff->format("%R%a") < 0)
+                            <span class="texto-formatacao">
+                            Prazo de Inscrição: Encerramento, dia {{date_format(date_create($data->date_end), 'd/m/Y')}}</span>
+                        @else
+                            <span class="texto-formatacao">Prazo de Inscrição: Encerrado</span>
                         @endif
 
                     </div>
@@ -118,9 +109,14 @@
         </div>
 
         <div class="container">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="float-right">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="text-center">
                     <a class="texto-formatacao" target="_blank" href="{{$data->link_disciplines}}" title="Confira aqui as disciplinas para este edital !"><i class="far fa-file-pdf"></i> Confira aqui as disciplinas para este edital</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="text-center">
+                    <a class="texto-formatacao" target="_blank" href="https://drive.google.com/a/univesp.br/file/d/1tmTADnFyAVJh400AQPJmtoY2lzGvFL3z/view?usp=sharing" title="Confira o Manual para Credenciamento"><i class="far fa-file-pdf"></i> Confira o Manual para Credenciamento</a>
                 </div>
             </div>
         </div>
