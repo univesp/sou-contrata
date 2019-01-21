@@ -721,11 +721,11 @@ legend.scheduler-border {
 
 /* ADMIN CLASS */
 .profile-link {
-    color:white;
+    color: white;
 }
 
 .profile-link:hover {
-    color:#c9302c;
+    color: #c9302c;
 }
 
 .user-list-icon {
@@ -733,16 +733,16 @@ legend.scheduler-border {
 }
 
 .image-size {
-    height: auto; 
-    width: auto; 
-    max-width: 300px; 
+    height: auto;
+    width: auto;
+    max-width: 300px;
     max-height: 300px;
     border-radius: 8px;
 }
 
 .pdf-size {
-    width:560px; 
-    height:600px;
+    width: 560px;
+    height: 600px;
 }
 
 .pdf-buttom {
@@ -755,12 +755,10 @@ legend.scheduler-border {
     color: #fff;
     background-color: #c9302c;
     border-color: #ac2925;
-
 }
 
 .pdf-buttom:focus {
     color: #fff;
     background-color: #c9302c;
     border-color: #ac2925;
-
 }
