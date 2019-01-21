@@ -32,4 +32,8 @@ class Area extends Model
     {
         return $this->hasMany(AreaSubarea::class);
     }
+    public function scholarity()
+    {
+        return $this->belongsTo(Scholarity::class);
+    }
 }
