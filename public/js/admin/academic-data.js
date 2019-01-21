@@ -171,7 +171,7 @@ $(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
-            url: 'area',
+            url: '../../../area/',
             type: 'get',
             success: function(result) {
                 result = JSON.parse(result);
@@ -276,7 +276,7 @@ $(function() {
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                 },
-                url: `subarea/${e.target.value}`,
+                url: `../../../subarea/${e.target.value}`,
                 type: 'get',
                 data: {
                     _token: '{{csrf_token()}}'
