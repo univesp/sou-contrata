@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/ctc
 /storage/*.key
 /vendor
 /kubernetes/prd/app/secrets.yaml
