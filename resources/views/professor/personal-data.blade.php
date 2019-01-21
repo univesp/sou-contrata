@@ -47,7 +47,7 @@
             <div class="col-md-2">
                 <label for="textDtNasc" class="control-label, fonte-campos">Data de Nascimento<span class="cor-campo">*</span></label>
                 <input name="date_birth" id="textDtNasc" class="form-control" type="date" value="{{ old('date_birth') }}"
-                    required oninvalid="this.setCustomValidity('Digite Data de Nascimento')" onchange="try{setCustomValidity('')}catch(e){}">
+                    required min="1938-01-01" max="2019-01-21">
                 @if($errors->has('date_birth'))
                     <p class="text-danger">{{ $errors->first('date_birth') }}</p>
                 @endif
@@ -147,7 +147,7 @@
             </div>
             <div class="col-md-2">
                 <label for="inputDataEmissao" class="fonte-campos">Data Emissão<span class="cor-campo"> *</span></label>
-                <input name="date_issue" type="date" class="form-control" id="inputDataEmissao" value="{{ old('date_issue') }}"
+                <input min="1938-01-01" max="2019-12-30" name="date_issue" type="date" class="form-control" id="inputDataEmissao" value="{{ old('date_issue') }}"
                     required oninvalid="this.setCustomValidity('Digite a Data de Emissão')" onchange="try{setCustomValidity('')}catch(e){}">
             </div>
         </div>
@@ -200,7 +200,7 @@
         </div>
         <div class="row elector_title">
             <div class="col-md-3">
-                <input type="file" accept="application/pdf" id="file_title" name="file_title" class="spacing-top" value="{{ old('file_title') }}">
+                <input onchange="verificaExtensao(this)" type="file" accept="application/pdf" id="file_title" name="file_title" class="spacing-top" value="{{ old('file_title') }}">
             @if($errors->has('file_title'))
                 <p class="text-danger">{{ $errors->first('file_title') }}</p>
             @endif
@@ -217,7 +217,7 @@
                 @if($errors->has('military_certificate'))
                     <p class="text-danger">{{ $errors->first('military_certificate') }}</p>
                 @endif
-                <input type="file" accept="application/pdf" id="file_military" class="militar none spacing-top" name="file_military" value="{{ old('file_military') }}">
+                <input onchange="verificaExtensao(this)" type="file" accept="application/pdf" id="file_military" class="militar none spacing-top" name="file_military" value="{{ old('file_military') }}">
                 @if($errors->has('file_military'))
                     <p class="text-danger">{{ $errors->first('file_military') }}</p>
                 @endif
@@ -300,7 +300,7 @@
             <hr />
             <div class="col-md-4">
                 <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás ou Telefone<span class="cor-campo"> *</span></label>
-                <input type="file" accept="application/pdf" id="file_address" class="proof_address spacing-top" name="file_address" value="{{ old('file_address') }}"
+                <input onchange="verificaExtensao(this)" type="file" accept="application/pdf" id="file_address" class="proof_address spacing-top" name="file_address" value="{{ old('file_address') }}"
                     required oninvalid="this.setCustomValidity('Obrigatorio upload do Comprovante de Residência')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('file_address'))
                     <p class="text-danger">{{ $errors->first('file_address') }}</p>
