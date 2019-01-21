@@ -37,6 +37,7 @@
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 	@endif
+
 	<ul class="nav nav-tabs">
 		<li class="active, link"><a href="#">Abertos</a></li>
 	</ul>

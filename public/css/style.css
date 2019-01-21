@@ -731,3 +731,36 @@ legend.scheduler-border {
 .user-list-icon {
     padding-right: 10px;
 }
+
+.image-size {
+    height: auto; 
+    width: auto; 
+    max-width: 300px; 
+    max-height: 300px;
+    border-radius: 8px;
+}
+
+.pdf-size {
+    width:560px; 
+    height:600px;
+}
+
+.pdf-buttom {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+
+.pdf-buttom:hover {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+
+}
+
+.pdf-buttom:focus {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+
+}

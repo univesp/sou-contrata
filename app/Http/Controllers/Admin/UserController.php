@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Candidate as Candidate;
 use App\Document;
+use App\Scholarity;
 use App\Address;
 use App\User;
+use App\Area;
 use DB;
 
 class UserController extends Controller
@@ -40,7 +42,7 @@ class UserController extends Controller
             ;
         } else {
             // Return this view
-            return redirect()->route("admin/admin-user");
+            return redirect()->route("home");
         }      
     }
 
@@ -82,7 +84,7 @@ class UserController extends Controller
         $candidate = Candidate::where('user_id', $id)->first();
         $document = Document::where('candidate_id', $candidate_id)->first();
         $address = Address::where('candidate_id', $candidate_id)->first();
-        
+
         // Validate all fields
         $validator = Validator::make($request->all(), [
             // Candidate validations
@@ -96,9 +98,9 @@ class UserController extends Controller
             'mobile'            => 'required',
             
             // Documents validations
-            'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents,'.$document->elector_title : '',
+            'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents,elector_title,' . $document->id : '',
             'file_title'                => ($request->nationality == 0 && !empty($path_file_title)) ? 'required' : '',
-            'military_certificate'      => ($request->genre == 0 && $request->nationality == 0) ? 'required|unique:documents,'.$document->military_certificate : '',
+            'military_certificate'      => ($request->genre == 0 && $request->nationality == 0) ? 'required|unique:documents,military_certificate,'.$document->id : '',
             'file_military'             => ($request->genre == 0 && $request->nationality == 0  && !empty($path_file_military)) ? 'required' : '',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
@@ -117,7 +119,7 @@ class UserController extends Controller
         // Validate if the rules are met
         if ($validator->fails()) {
             return redirect()
-            ->route('admin/personal-data/edit')
+            ->route('admin/personal-data/edit', $id)
             ->withInput($request->input())
             ->withErrors($validator)
             ;
@@ -141,15 +143,16 @@ class UserController extends Controller
             // Update in database
             if ($candidate->save()) {
                 // Update document               
-                $document->elector_title            = isset($request->elector_title)? $request->elector_title : NULL ;
-                $document->elector_link             = $path_file_title;
-                $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : NULL ;
-                $document->military_link            = $path_file_military;
+                $document->elector_title            = isset($request->elector_title)? $request->elector_title : NULL;
+                $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : NULL;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
                 $document->uf_issue                 = $request->uf_issue;
                 $document->rg_number                = $request->rg_number;
                 $document->zone                     = 'Empty';
                 $document->section                  = 'Empty';
+
+                if($path_file_title) { $document->elector_link = $path_file_title; }
+                if($path_file_military) { $document->military_link = $path_file_military; }
 
                 // Update in database
                 $document->save();
@@ -157,13 +160,14 @@ class UserController extends Controller
                 // Update address                
                 $address->city                      = $request->city;
                 $address->complement                = $request->complement;
-                $address->file_address              = $path_file_address;
                 $address->neighborhood              = $request->neighborhood;
                 $address->number                    = $request->number;
                 $address->postal_code               = $request->postal_code;
                 $address->public_place              = $request->public_place;
                 $address->state                     = $request->state;
                 $address->type_public_place         = $request->type_public_place;
+
+                if($path_file_address) {$address->file_address = $path_file_address; }
 
                 // Update in database
                 $address->save();
@@ -176,13 +180,59 @@ class UserController extends Controller
 
     public function editAcademicData($id)
     {
-        // Return this view
-        return view("admin.user.academic-data.edit")
-            ->with('id', $id);
+        // Find candidate by id
+        $candidate = Candidate::find($id);
+
+        // Find scholarity by candidate id
+        // $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->first();
+        $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->get();
+
+        // Condition if candidate id is empty
+        if (!empty($scholarity[0]->candidate_id)) {
+     
+            // Array to select save in database
+            $scholarity_type = ['graduate','master','doctorate'];
+            
+            // Return this view
+            return view("admin.user.academic-data.edit")
+                ->with('candidate', $candidate)
+                ->with('scholarity', $scholarity)
+                ->with('scholarity', $scholarity)
+                ->with('scholarity_type', $scholarity_type)
+                ->with('id', $id)
+            ;
+        } else {
+            // Return this view
+            return redirect()->route("home");
+        }      
     }
 
     public function updateAcademicData($id, Request $request)
     {
         //
+    }
+
+    public function area() {
+        // Create area list to select box
+        $area = Area::orderBy('description', 'asc')->select('description', 'id')->get();
+
+        // Return area
+        echo json_encode($area);
+    }
+
+    public function subarea($area) {
+        // Add area value
+        $area = (int) $area;
+
+        // Create query to list subarea
+        $subareas = DB::table('subareas')
+            ->leftJoin('area_subarea', 'subareas.id', '=', 'area_subarea.subarea_id')
+            ->select('subareas.id', 'subareas.description')
+            ->where('area_subarea.area_id', $area)
+            ->orderBy('subareas.description', 'asc')
+            ->select('subareas.description', 'subareas.id')->get();
+            
+        // Return subareas value
+        echo json_encode($subareas);
     }
 }
