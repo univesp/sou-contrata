@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Scholarity;
+use FontLib\EOT\File;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
 use App\Candidate;
 use App\Document;
 use App\Address;
+use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Redirect;
@@ -15,6 +17,7 @@ use Response;
 use Session;
 use Auth;
 use PDF;
+use Illuminate\Support\Facades\Storage;
 
 class PersonalDataController extends Controller
 {
@@ -272,14 +275,12 @@ class PersonalDataController extends Controller
         $user = User::where('id','=',$candidate->user_id)
             ->first();
 
-        $scholaraity = Scholarity::where('candidate_id','=',$candidate->id)
+        $scholarity = Scholarity::where('candidate_id','=',$candidate->id)
+            ->with('area')
             ->get();
+
         $documents = Document::where('candidate_id','=',$candidate->id)
             ->first();
-
-        $elector_link = explode(";base64,", $documents->elector_link);
-        $military_link = explode(";base64,", $documents->military_link);
-        $number_link = explode(";base64,", $documents->number_link);
 
         $data = [
             'name' => $candidate->name,
@@ -291,10 +292,44 @@ class PersonalDataController extends Controller
             'phone' => $candidate->phone,
             'name_mother' => $candidate->name_mother,
             'name_father' => $candidate->name_father,
-            'name_social' => $candidate->name_social
+            'name_social' => $candidate->name_social,
+            'rg_number' => $documents->rg_number,
+            'data_issue' => $documents->data_issue,
+            'uf_issue' => $documents->uf_issue,
+            'elector_title' => $documents->elector_title,
+            'zone' => $documents->zone,
+            'section' => $documents->section,
+            'military_certificate' => $documents->military_certificate,
+
+            'name_user' => $user->name,
+            'email_user' => $user->email,
+
+            'scholarities' => $scholarity,
+
+            'military_link' => $documents->military_link,
+            'elector_link' => $documents->elector_link,
+            'number_link' => $documents->number_link,
             ];
 
-        $pdf = PDF::loadView('download.makePDF', $data)->save($cpf.'-data.pdf');
-        return $pdf;
+
+        foreach ($scholarity as $scholl){
+            $link = explode(";", $scholl->link);
+            if($link[0] == 'data:application/pdf'){
+                $link2 = explode(",", $scholl->link);
+                Storage::disk('public')->put(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$cpf.DIRECTORY_SEPARATOR.$scholl->scholarity_type.'.pdf', base64_decode($link2[1]));;
+                //Storage::download(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$cpf.DIRECTORY_SEPARATOR.$scholl->scholarity_type.'.pdf', $scholl->scholarity_type.'.pdf');
+            }
+        }
+        $unique = uniqid();
+        mkdir($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique, 0777, true);
+        $pdf = PDF::loadView('download.makePDF', $data)->save($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique.DIRECTORY_SEPARATOR.$cpf.'-data.pdf');
+
+        return array(
+            asset($unique.DIRECTORY_SEPARATOR.$cpf.'-data.pdf'),
+            asset('storage/docs/'.$cpf.'/graduate.pdf'),
+            asset('storage/docs/'.$cpf.'/master.pdf'),
+            asset('storage/docs/'.$cpf.'/doctorate.pdf')
+
+            );
     }
 }

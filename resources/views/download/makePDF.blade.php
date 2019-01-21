@@ -2,125 +2,152 @@
     <html>
         <head>
             <title>Minha página de teste</title>
+
         </head>
 
-        <style>
-        .container {
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-right: auto;
-            margin-left: auto;
-        }
 
-        .row{
-            width:100%;
-        }
-
-        h3{
-            font-size:1.3em;
-            font-weight:bold;
-        }
-
-        .col-lg-4,.col-lg-8 {
-            position: relative;
-            min-height: 1px;
-            padding-right: 15px;
-            padding-left: 15px;
-            float:left;
-         }
-
-         @media (min-width: 1200px){
-            .col-lg-4 {
-                width: 33.33333333%;
-            }
-            .col-lg-8 {
-                width: 66.66666667%;
-            }
-            .container {
-            width: 1170px;
-            }
-         }
-
-            @media (min-width: 992px){
-            .container {
-                width: 970px;
-            }
-            }
-
-            @media (min-width: 768px){
-            .container {
-                width: 750px;
-                }
-            }
-
-        </style>
         <body>
-            <h1>Dados Pessoais {{ $name . " " . $last_name }}</h1>
+             <h1>Dados</h1><br>
+
+            <h3>Dados de Usuário:</h3>
+
+            <div class="row">
+                <div class="col-lg-4"  style="font: bold">Nome:</div>
+                <div class="col-lg-8">{{ $name_user }}</div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4" style="font: bold">Email:</div>
+                <div class="col-lg-8">{{ $email_user }}</div>
+            </div>
+
+            <h3>Dados Pessoais</h3>
 
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">Nome</div>
+                    <div class="col-lg-4" style="font: bold">Nome:</div>
                     <div class="col-lg-8">{{ $name . " " . $last_name }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Data nascimento</div>
-                    <div class="col-lg-8">{{ $date_birth }}</div>
+                    <div class="col-lg-4" style="font: bold">Data Nascimento:</div>
+                    <div class="col-lg-8">{{ date_format(date_create($date_birth),"d-m-Y") }}</div>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">E-mail</div>
-                    <div class="col-lg-8">{{ $email }}</div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4">CPF</div>
+                    <div class="col-lg-4" style="font: bold">CPF:</div>
                     <div class="col-lg-8">{{ $cpf }}</div>
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">Telefone</div>
+                    <div class="col-lg-4" style="font: bold">Telefone:</div>
                     <div class="col-lg-8">{{ $phone }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Celular</div>
+                    <div class="col-lg-4" style="font: bold">Celular</div>
                     <div class="col-lg-8">{{ $mobile }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Nome da mãe</div>
+                    <div class="col-lg-4" style="font: bold">Nome da Mãe:</div>
                     <div class="col-lg-8">{{ $name_mother }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Nome do pai</div>
+                    <div class="col-lg-4" style="font: bold">Nome do Pai:</div>
                     <div class="col-lg-8">{{ $name_father }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Nome social</div>
+                    <div class="col-lg-4" style="font: bold">Nome Social:</div>
                     <div class="col-lg-8">{{ $name_social }}</div>
                 </div>
 
-
+                <div style="display: block; page-break-before: always;"></div>
                 <h3>Documentos:</h3>
+                <div class="row">
+                    <div class="col-lg-4" style="font: bold">RG:</div>
+                    <div class="col-lg-8">{{ $rg_number }}</div>
+                </div>
 
                 <div class="row">
-                    <div class="col-lg-4">Nome social</div>
-                    <div class="col-lg-8">{{ $name_social }}</div>
+                    <div class="col-lg-4" style="font: bold">Data Emissão:</div>
+                    <div class="col-lg-8">{{ date_format(date_create($data_issue),"d-m-Y") }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Nome social</div>
-                    <div class="col-lg-8">{{ $name_social }}</div>
+                    <div class="col-lg-4" style="font: bold">UF:</div>
+                    <div class="col-lg-8">{{ $uf_issue }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Nome social</div>
-                    <div class="col-lg-8">{{ $name_social }}</div>
+                    <div class="col-lg-4" style="font: bold">Título de Eleitor:</div>
+                    <div class="col-lg-8">{{ $elector_title }}</div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-4" style="font: bold">Zona</div>
+                    <div class="col-lg-8">{{ $zone }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4">Nome social</div>
-                    <div class="col-lg-8">{{ $name_social }}</div>
+                    <div class="col-lg-4" style="font: bold">Sessão:</div>
+                    <div class="col-lg-8">{{ $section }}</div>
                 </div>
+
+                <div style="display: block; page-break-before: always;"></div>
+                <h3>Dados Acadêmicos:</h3>
+                @foreach($scholarities as$scholarity)
+
+                    <fieldset>
+                        <legend style="font: bold; font-size: 18px">
+                            @if($scholarity->scholarity_type == "graduate")
+                                Graduação
+                            @elseif ($scholarity->scholarity_type == "master")
+                                Mestrado
+                            @else
+                                Doutorado
+                            @endif
+                        </legend>
+                        <div class="row">
+                            <div class="col-lg-4" style="font: bold">Instituição de Ensino:</div>
+                            <div class="col-lg-8">{{ $scholarity->teaching_institution }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="font: bold">Data Início:</div>
+                            <div class="col-lg-8">{{ date_format(date_create($scholarity->init_date),"d-m-Y") }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="font: bold">Data termino:</div>
+                            <div class="col-lg-8">{{ date_format(date_create($scholarity->end_date),"d-m-Y") }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="font: bold">Area:</div>
+                            <div class="col-lg-8">{{ $scholarity->area[0]->description }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="font: bold">Lattes:</div>
+                            <div class="col-lg-8">{{ $scholarity->class_name }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4" style="font: bold">Nome do Curso:</div>
+                            <div class="col-lg-8">{{ $scholarity->course_name }}</div>
+                        </div>
+                    </fieldset>
+                @endforeach
+
+                @if(!empty($military_certificate))
                 <div class="row">
-                    <div class="col-lg-4">Nome social</div>
-                    <div class="col-lg-8">{{ $name_social }}</div>
+                    <div class="col-lg-4" style="font: bold">Certificado militar:</div>
+                    <div class="col-lg-8">{{ $military_certificate }}</div>
                 </div>
+
+                @endif
+
+                <div style="display: block; page-break-before: always;"></div>
+                <h3> Imgens</h3>
+                <fieldset>
+                    <img src="{{$military_link}}" style='display:block; width:500px;height:400px;'>
+                </fieldset>
+                <fieldset>
+                    <img src="{{$elector_link}}" style='display:block; width:500px;height:400px;'>
+                </fieldset>
+                <fieldset>
+                    <img src="{{$number_link}}" style='display:block; width:500px;height:400px;'>
+                </fieldset>
             </div>
         </body>
     </html>
