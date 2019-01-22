@@ -308,7 +308,8 @@
             </div>
             <div class="row">
                 <hr />
-                <button type="submit" class="btn btn-danger float-right">AVANÇAR</button>
+                <button type="submit" class="btn btn-danger float-right">ATUALIZAR</button>
+                <a href="{{route('home')}}"><button type="button" class="btn btn-danger space-btw-button">VOLTAR</button></a>
             </div>
         </form>
     </div>
