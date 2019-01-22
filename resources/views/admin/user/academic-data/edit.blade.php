@@ -28,7 +28,7 @@
         <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
         <p class="text-danger">Para avançar é necessário a inserção das formações: <b>GRADUAÇÃO</b>, <b>MESTRADO</b> e <b>DOUTORADO</b>. Clique no botão <b>NOVO</b> para adicionar a formação.</p>
 
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin/academic-data/update', $id)}}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div  class="row">
                 <div class="col-md-7">

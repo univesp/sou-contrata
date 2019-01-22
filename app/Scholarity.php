@@ -46,4 +46,9 @@ class Scholarity extends Model
     {
         return $this->hasMany(ScholarityArea::class);
     }
+
+    public function area()
+    {
+        return $this->hasMany(Area::class,'id','area_id');
+    }
 }

@@ -31,7 +31,7 @@
                 <div class="col-md-7">
                     <div  class="form-group">
                         <label for="cadlettters" class="fonte-campos"><a href="http://buscatextual.cnpq.br/buscatextual/busca.do?metodo=apresentar" target="blank">Preencha este campo com a url do seu curriculo Lattes</a><span class="cor-campo"> *</span></label>
-                        <input required  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters') }}">
+                        <input maxlength="1" required  type="text" class="form-control" id="cadlettters" name="cadlettters" placeholder="links para o curriculo lattes" value="{{ old('cadlettters') }}">
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
 
                             <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
                             <div class="display-flex">
-                                <input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
+                                <input type="file" onchange="verificaExtensao(this)" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
                             </div>
                             <span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>
                         </div><br />
@@ -120,5 +120,19 @@
     @include('layouts.footer')
 @endsection
 @section('scripts')
+    <script language="javascript" type="text/javascript">
+        function verificaExtensao($input) {
+            var extPermitidas = ['pdf'];
+            var extArquivo = $input.value.split('.').pop();
+
+            if(typeof extPermitidas.find(function(ext){ return extArquivo == ext; }) == 'undefined') {
+                alert('Extensão "' + extArquivo + '" não permitida!');
+                $input.value = ''
+            } else {
+                alert('Ok!');
+            }
+        }
+    </script>
     <script src="{{URL::asset('/js/academic-data.js')}}"></script>
+
 @endsection

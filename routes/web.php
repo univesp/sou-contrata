@@ -97,4 +97,4 @@ Route::post('admin/academic-data/update/{id}','Admin\UserController@updateAcadem
  
 // Area & Subarea
 Route::get('admin/area','Admin\UserController@area')->name('admin/area');
-Route::get('admin/subarea/{area}','Admin\UserController@subarea')->name('subarea');
+Route::get('admin/subarea/{area}','Admin\UserController@subarea')->name('admin/subarea');

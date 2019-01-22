@@ -5,6 +5,11 @@
   @section('css')
       <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
       <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+      <!-- <style>
+      .card-block{
+          border:1px solid #ccc;
+      }
+      </style> -->
   @endsection
   @section('content')
 
@@ -31,8 +36,8 @@
                <div class="col-md-12 border-right">
                     <div class="col-md-4 " >
                         <div class="card bg-c-pink order-card">
-                            <div class="card-block">
-                                <h6 class="m-b-20">Nome Completo</h6>
+                            <div class="card-block" style="border:1px solid #ccc;">
+                                <h6 class="m-b-20" >Nome Completo</h6>
                                 <h2 class="text-right">
                                     <img class="f-left icon" src="../img/person.svg"/>
                                     <span class="ng-tns-c5-1" id="txtName"></span>
@@ -65,9 +70,20 @@
 
                <div class="row col-md-12 wrap">
                     <div class="btn-group float-right" role="group" aria-label="...">
-                        <button type="button" class="btn-red" id="download" onclick="downloadPDF();">BAIXAR</button>
+                        <button type="button" class="btn-red" id="download" onclick="downloadPDF();">GERAR DOCUMENTOS</button>
                     </div>
                </div>
+
+               <div class="row col-md-12 wrap" id="links" style="display: none">
+                   <div class="btn-group float-right" role="group" aria-label="...">
+                       <a id="info" class="texto-formatacao" target="_blank" href="" title="Veja os dados do candidato."><i class="far fa-file-pdf"></i> Dados</a>
+                       <a id="graduate" class="texto-formatacao" target="_blank" href="" title="Veja a graduação."><i class="far fa-file-pdf"></i> Graduação</a>
+                       <a id="master" class="texto-formatacao" target="_blank" href="" title="Veja o mestrado."><i class="far fa-file-pdf"></i> Mestrado</a>
+                       <a id="doctorate" class="texto-formatacao" target="_blank" href="" title="Veja o doutorado."><i class="far fa-file-pdf"></i> Doutorado</a>
+
+                   </div>
+               </div>
+
             </div>
         </div>
     </div>
@@ -83,15 +99,22 @@
              });
              var cpf = $("#txtCpf").val();
              console.log('gerando PDF para : ' + cpf);
+
              $.ajax({
                  url: "pdf-download/"+cpf,
                  type: "POST",
                  data: cpf,
                  success: function (result) {
                      console.log(result);
+                     $("#info").attr("href", result[0])
+                     $("#graduate").attr("href", result[1])
+                     $("#master").attr("href", result[2])
+                     $("#doctorate").attr("href", result[3])
+                     $("#links").removeAttr("style")
+
                  },
                  error: function (result) {
-                     console.log(result);
+                      console.log(result);
                  }
              });
          }//downloadPDF
@@ -103,6 +126,7 @@
         function insereTexto() {
             document.getElementById('divData').style.display = "none";
             document.getElementById('divError').style.display = "none";
+            $("#links").css("display", "none");
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -114,7 +138,7 @@
                 type: "POST",
                 data: $("#txtCpf").val(),
                 success: function (result) {
-                    console.log(typeof result);
+                     console.log('testes');
                     if(typeof result != 'string'){
 
                         document.getElementById('divData').style.display = "block";
@@ -122,17 +146,18 @@
                         $('#txtBirthDay').html(result[0].date_birth.substr(0, 10).split('-').reverse().join('/'));
                         $('#txtDoc').html(mCPF(result[0].cpf));
 
-                        console.log(result);
+                         console.log(result);
                     }else{
                         document.getElementById('divError').style.display = "block";
                         $('#txtError').html(result);
-                        console.log(result);
+                         console.log(result);
                     }
 
                 },
                 error: function (result) {
                     document.getElementById('divError').style.display = "block";
-                    console.log(result);
+                    // console.log(result);
+                    // console.log('teste');
                 }
             });
 

@@ -12,6 +12,8 @@ use App\Scholarity;
 use App\Address;
 use App\User;
 use App\Area;
+use App\Helpers\Helper;
+use App\ScholarityArea;
 use DB;
 
 class UserController extends Controller
@@ -119,9 +121,9 @@ class UserController extends Controller
         // Validate if the rules are met
         if ($validator->fails()) {
             return redirect()
-            ->route('admin/personal-data/edit', $id)
-            ->withInput($request->input())
-            ->withErrors($validator)
+                ->route('admin/personal-data/edit', $id)
+                ->withInput($request->input())
+                ->withErrors($validator)
             ;
         } else {
             // Update candidate
@@ -184,7 +186,6 @@ class UserController extends Controller
         $candidate = Candidate::find($id);
 
         // Find scholarity by candidate id
-        // $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->first();
         $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->get();
 
         // Condition if candidate id is empty
@@ -197,7 +198,6 @@ class UserController extends Controller
             return view("admin.user.academic-data.edit")
                 ->with('candidate', $candidate)
                 ->with('scholarity', $scholarity)
-                ->with('scholarity', $scholarity)
                 ->with('scholarity_type', $scholarity_type)
                 ->with('id', $id)
             ;
@@ -209,7 +209,72 @@ class UserController extends Controller
 
     public function updateAcademicData($id, Request $request)
     {
-        //
+        // Validate all fields
+        $validator = Validator::make($request->all(), [
+            'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
+            'inputCursos.*' => 'required',
+            'inpuInstituicao.*' => 'required',
+            'cadlettters' => 'required',
+            'area_id.*' => 'required',
+            'subarea_id.*' => 'required',
+            'graduate_dinamic.*' => 'required',
+            'inputCursos.*' => 'required',
+            'inpuInstituicao.*' => 'required',
+            'inputDataConclusao.*' => 'required',
+        ]);
+
+        // Validate if the rules are met
+        if ($validator->fails()) {
+            return redirect()
+            ->route('admin/academic-data/edit', $id)
+            ->withInput($request->all())
+            ->withErrors($validator->messages([
+                'file_graduate.*.size' => 'O tamanho do Arquivo é muito grande (:size), o tamanho permitido no máximo é de 4 MegaByte (Mb).',
+                "file_graduate.*.accepted" => "O tipo de arquivo :accepted não é aceito apenas PDF.",
+                ]))
+            ;
+        }
+            
+        $path_file = null;
+        $scholarity_type = ['graduate','master','doctorate'];
+      
+        // Validate if graduate dinamic has more than three
+        if(count($request->graduate_dinamic) >= 1) {
+            
+            foreach ($request['graduate_dinamic'] as $k => $d) {
+                $candidate = Candidate::find($id);
+                $scholarity = Scholarity::where('candidate_id', $candidate->id)->get();
+
+                // Validate if file graduate exist
+                if ($request->hasFile('file_graduate.'.$k) && $request->file('file_graduate.'.$k)->isValid()) {
+                    $file = Input::file('file_graduate.'.$k);
+                    $fileMimeType = Input::file('file_graduate.'.$k)->getMimeType();
+                    $fileData = file_get_contents($file);
+                    $base64 = base64_encode($fileData);
+                    $path_file = "data:{$fileMimeType};base64,{$base64}";
+                }
+
+                // Update scholarity
+                $scholarity->class_name = $request->cadlettters;
+                $scholarity->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
+                $scholarity->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
+                $scholarity->link = $path_file;
+                $scholarity->scholarity_type = $scholarity_type[$k];
+                $scholarity->teaching_institution = $request->inpuInstituicao[$k];
+                $scholarity->area_id = $request->area_id[$k];
+                $scholarity->course_name = $request->inputCursos[$k];
+
+                if($scholarity->save()) {    
+                        // Update area scholarity    
+                    $areaScholarity = ScholarityArea::whereIn('scholarity_id', [$scholarity[$k]->id])->get();
+                    $areaScholarity->area_id = $request->area_id[$k];
+                    $areaScholarity->subarea_id = $request->subarea_id[$k];
+                    $areaScholarity->save();
+                }
+            }
+        } else {
+            return redirect()->route('home');
+        }
     }
 
     public function area() {
