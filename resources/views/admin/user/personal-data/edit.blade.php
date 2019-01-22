@@ -20,7 +20,7 @@
     <div class="container">
         <ul class="nav nav-tabs">
             <li class="active"><a href="{{route('admin/personal-data/edit', $user->id)}}">Dados Pessoais</a></li>
-            <li  class="enabled"><a href="{{route('admin/academic-data/edit', $candidate->id)}}">Dados Academicos</a></li>
+            <li style="display: none;" class="enabled"><a href="{{route('admin/academic-data/edit', $candidate->id)}}">Dados Academicos</a></li>
         </ul>
         <div class="formatacao-campos">
             *Obrigatório
