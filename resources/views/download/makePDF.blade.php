@@ -2,63 +2,81 @@
     <html>
         <head>
             <title>Minha página de teste</title>
+            <style>
+                .row{
+                    margin-top:15px;
 
+                }
+            </style>
         </head>
-
 
         <body>
              <h1>Dados</h1><br>
 
-            <h3>Dados de Usuário:</h3>
 
-            <div class="row">
-                <div class="col-lg-4"  style="font: bold">Nome:</div>
-                <div class="col-lg-8">{{ $name_user }}</div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4" style="font: bold">Email:</div>
-                <div class="col-lg-8">{{ $email_user }}</div>
-            </div>
 
+        <fieldset style="border:1px solid #ccc; ">
+             <h3>Dados de Usuário:</h3>
+                <div class="row">
+                    <div class="col-lg-4"  style="font: bold">Nome:</div>
+                    <div class="col-lg-8">{{ $name_user }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4" style="font: bold">Email:</div>
+                    <div class="col-lg-8">{{ $email_user }}</div>
+                </div>
+        </fieldset>
+
+
+        <fieldset style="border:1px solid #ccc; ">
             <h3>Dados Pessoais</h3>
+            <div class="container" style="100%;">
+                <div style="widht:33.3333%;float:left;">
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">Nome:</div>
+                        <div class="col-lg-8">{{ $name . " " . $last_name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">Data Nascimento:</div>
+                        <div class="col-lg-8">{{ date_format(date_create($date_birth),"d-m-Y") }}</div>
+                    </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">Nome:</div>
-                    <div class="col-lg-8">{{ $name . " " . $last_name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">Data Nascimento:</div>
-                    <div class="col-lg-8">{{ date_format(date_create($date_birth),"d-m-Y") }}</div>
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">CPF:</div>
+                        <div class="col-lg-8">{{ $cpf }}</div>
+                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">CPF:</div>
-                    <div class="col-lg-8">{{ $cpf }}</div>
+                <div style="widht:33.3333%;float:left;margin-left:20%;">
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">Telefone:</div>
+                        <div class="col-lg-8">{{ $phone }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">Celular</div>
+                        <div class="col-lg-8">{{ $mobile }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">Nome da Mãe:</div>
+                        <div class="col-lg-8">{{ $name_mother }}</div>
+                    </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">Telefone:</div>
-                    <div class="col-lg-8">{{ $phone }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">Celular</div>
-                    <div class="col-lg-8">{{ $mobile }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">Nome da Mãe:</div>
-                    <div class="col-lg-8">{{ $name_mother }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">Nome do Pai:</div>
-                    <div class="col-lg-8">{{ $name_father }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4" style="font: bold">Nome Social:</div>
-                    <div class="col-lg-8">{{ $name_social }}</div>
-                </div>
+                <div style="widht:33.3333%;float:right;">
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">Nome do Pai:</div>
+                        <div class="col-lg-8">{{ $name_father }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4" style="font: bold">Nome Social:</div>
+                        <div class="col-lg-8">{{ $name_social }}</div>
+                    </div>
+               </div>
+            </fieldset>
 
                 <div style="display: block; page-break-before: always;"></div>
+
+            <fieldset style="border:1px solid #ccc; ">
                 <h3>Documentos:</h3>
                 <div class="row">
                     <div class="col-lg-4" style="font: bold">RG:</div>
@@ -87,6 +105,7 @@
                     <div class="col-lg-4" style="font: bold">Sessão:</div>
                     <div class="col-lg-8">{{ $section }}</div>
                 </div>
+            </fieldset>
 
                 <div style="display: block; page-break-before: always;"></div>
                 <h3>Dados Acadêmicos:</h3>
