@@ -239,7 +239,7 @@ class UserController extends Controller
         $scholarity_type = ['graduate','master','doctorate'];
       
         // Validate if graduate dinamic has more than three
-        if(count($request->graduate_dinamic) >= 1) {
+        if(count($request->graduate_dinamic) >= 3) {
             
             foreach ($request['graduate_dinamic'] as $k => $d) {
                 $candidate = Candidate::find($id);
@@ -264,13 +264,14 @@ class UserController extends Controller
                 $scholarity->area_id = $request->area_id[$k];
                 $scholarity->course_name = $request->inputCursos[$k];
 
-                if($scholarity->save()) {    
-                        // Update area scholarity    
+                // if($scholarity->save()) {    
+                    // Update area scholarity    
                     $areaScholarity = ScholarityArea::whereIn('scholarity_id', [$scholarity[$k]->id])->get();
                     $areaScholarity->area_id = $request->area_id[$k];
                     $areaScholarity->subarea_id = $request->subarea_id[$k];
-                    $areaScholarity->save();
-                }
+                    dd($areaScholarity);
+                    // $areaScholarity->save();
+                // }
             }
         } else {
             return redirect()->route('home');
