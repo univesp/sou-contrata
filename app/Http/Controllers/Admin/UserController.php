@@ -152,7 +152,6 @@ class UserController extends Controller
                 $document->rg_number                = $request->rg_number;
                 $document->zone                     = 'Empty';
                 $document->section                  = 'Empty';
-
                 if($path_file_title) { $document->elector_link = $path_file_title; }
                 if($path_file_military) { $document->military_link = $path_file_military; }
 
@@ -168,7 +167,6 @@ class UserController extends Controller
                 $address->public_place              = $request->public_place;
                 $address->state                     = $request->state;
                 $address->type_public_place         = $request->type_public_place;
-
                 if($path_file_address) {$address->file_address = $path_file_address; }
 
                 // Update in database
@@ -240,11 +238,14 @@ class UserController extends Controller
       
         // Validate if graduate dinamic has more than three
         if(count($request->graduate_dinamic) >= 3) {
-            
-            foreach ($request['graduate_dinamic'] as $k => $d) {
-                $candidate = Candidate::find($id);
-                $scholarity = Scholarity::where('candidate_id', $candidate->id)->get();
+            // Declarate empty array
+            $areaScholarityArray = array();
+            $scholarityArray = array();
 
+            foreach ($request['graduate_dinamic'] as $k => $d) {
+                $candidate = Candidate::find($id);                
+                $scholarityId = Scholarity::where('candidate_id', $candidate->id)->get();
+                
                 // Validate if file graduate exist
                 if ($request->hasFile('file_graduate.'.$k) && $request->file('file_graduate.'.$k)->isValid()) {
                     $file = Input::file('file_graduate.'.$k);
@@ -254,27 +255,45 @@ class UserController extends Controller
                     $path_file = "data:{$fileMimeType};base64,{$base64}";
                 }
 
-                // Update scholarity
-                $scholarity->class_name = $request->cadlettters;
-                $scholarity->end_date  = Helper::br_to_bank($request->inputDataConclusao[$k]);
-                $scholarity->init_date = Helper::br_to_bank($request->inputDataConclusao[$k]);
-                $scholarity->link = $path_file;
-                $scholarity->scholarity_type = $scholarity_type[$k];
-                $scholarity->teaching_institution = $request->inpuInstituicao[$k];
-                $scholarity->area_id = $request->area_id[$k];
-                $scholarity->course_name = $request->inputCursos[$k];
-
-                // if($scholarity->save()) {    
-                    // Update area scholarity    
-                    $areaScholarity = ScholarityArea::whereIn('scholarity_id', [$scholarity[$k]->id])->get();
-                    $areaScholarity->area_id = $request->area_id[$k];
-                    $areaScholarity->subarea_id = $request->subarea_id[$k];
-                    dd($areaScholarity);
-                    // $areaScholarity->save();
-                // }
+                // Construct the array to call values correctly
+                array_push ($scholarityArray, $scholarityId);
+                $scholarity[] = Scholarity::distinct()->whereIn('id', [$scholarityId[$k]->id])->first();
+                
+                array_push ($areaScholarityArray, $scholarityId[$k]->id);
+                $areaScholarity[] = ScholarityArea::distinct()->whereIn('scholarity_id', [$areaScholarityArray[$k]])->first();
             }
-        } else {
+           
+            for ($i=0; $i < count($scholarity); $i++) { 
+                // Update scholarity
+                $scholarity[$i]->class_name = $request->cadlettters;
+                $scholarity[$i]->course_name = $request->inputCursos[$i];
+                $scholarity[$i]->end_date  = Helper::br_to_bank($request->inputDataConclusao[$i]);
+                $scholarity[$i]->init_date = Helper::br_to_bank($request->inputDataConclusao[$i]);
+                if($path_file) { $scholarity[$i]->link = $path_file; }
+                $scholarity[$i]->scholarity_type = $scholarity_type[$i];
+                $scholarity[$i]->teaching_institution = $request->inpuInstituicao[$i];
+                $scholarity[$i]->area_id = $request->area_id[$i];
+                $scholarity[$i]->course_name = $request->inputCursos[$i]; 
+
+                // Update in database
+                if($scholarity[$i]->save()) {
+                    for ($as=0; $as < count($areaScholarity); $as++) { 
+                        // Update area scholarity    
+                        $areaScholarity[$as]->area_id = $request->area_id[$as];
+                        $areaScholarity[$as]->subarea_id = $request->subarea_id[$as];
+
+                        // Update in database
+                        $areaScholarity[$as]->save();
+                    }
+                }
+            }     
+            
+            // Return this view
             return redirect()->route('home');
+        } else {
+            
+            // Return this view
+            return redirect()->route('admin/academic-data/edit', $id);
         }
     }
 
