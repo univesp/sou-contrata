@@ -5,6 +5,11 @@
   @section('css')
       <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
       <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
+      <!-- <style>
+      .card-block{
+          border:1px solid #ccc;
+      }
+      </style> -->
   @endsection
   @section('content')
 
@@ -31,8 +36,8 @@
                <div class="col-md-12 border-right">
                     <div class="col-md-4 " >
                         <div class="card bg-c-pink order-card">
-                            <div class="card-block">
-                                <h6 class="m-b-20">Nome Completo</h6>
+                            <div class="card-block" style="border:1px solid #ccc;">
+                                <h6 class="m-b-20" >Nome Completo</h6>
                                 <h2 class="text-right">
                                     <img class="f-left icon" src="../img/person.svg"/>
                                     <span class="ng-tns-c5-1" id="txtName"></span>
@@ -109,7 +114,7 @@
 
                  },
                  error: function (result) {
-                     console.log(result);
+                      console.log(result);
                  }
              });
          }//downloadPDF
@@ -133,7 +138,7 @@
                 type: "POST",
                 data: $("#txtCpf").val(),
                 success: function (result) {
-                    console.log('testes');
+                     console.log('testes');
                     if(typeof result != 'string'){
 
                         document.getElementById('divData').style.display = "block";
@@ -141,18 +146,18 @@
                         $('#txtBirthDay').html(result[0].date_birth.substr(0, 10).split('-').reverse().join('/'));
                         $('#txtDoc').html(mCPF(result[0].cpf));
 
-                        console.log(result);
+                         console.log(result);
                     }else{
                         document.getElementById('divError').style.display = "block";
                         $('#txtError').html(result);
-                        console.log(result);
+                         console.log(result);
                     }
 
                 },
                 error: function (result) {
                     document.getElementById('divError').style.display = "block";
-                    console.log(result);
-                    console.log('teste');
+                    // console.log(result);
+                    // console.log('teste');
                 }
             });
 
