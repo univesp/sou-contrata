@@ -5,18 +5,21 @@
             <style>
                 .row{
                     margin-top:15px;
-
                 }
+                *{
+                    border:none !important;
+                 }
+
+
             </style>
         </head>
 
-        <body>
-             <h1>Dados</h1><br>
+        <body style="border:none;">
 
+        <h1>Dados</h1><br>
 
-
-        <fieldset style="border:1px solid #ccc; ">
-             <h3>Dados de Usuário:</h3>
+        <fieldset style="border-bottom:1px solid #ccc;">
+             <h3  style="border-bottom:4px solid red;width:150px;">Dados de Usuário</h3>
                 <div class="row">
                     <div class="col-lg-4"  style="font: bold">Nome:</div>
                     <div class="col-lg-8">{{ $name_user }}</div>
@@ -27,10 +30,9 @@
                 </div>
         </fieldset>
 
-
-        <fieldset style="border:1px solid #ccc; ">
-            <h3>Dados Pessoais</h3>
-            <div class="container" style="100%;">
+        <fieldset style="border-bottom:1px solid #ccc;">
+            <h3 style="border-bottom:4px solid red;width:140px;">Dados Pessoais</h3>
+            <div style="width:100%;">
                 <div style="widht:33.3333%;float:left;">
                     <div class="row">
                         <div class="col-lg-4" style="font: bold">Nome:</div>
@@ -74,10 +76,10 @@
                </div>
             </fieldset>
 
-                <div style="display: block; page-break-before: always;"></div>
+            <br>
 
-            <fieldset style="border:1px solid #ccc; ">
-                <h3>Documentos:</h3>
+            <fieldset style="border-bottom:1px solid #ccc;">
+                <h3  style="border-bottom:4px solid red;width:110px;">Documentos</h3>
                 <div class="row">
                     <div class="col-lg-4" style="font: bold">RG:</div>
                     <div class="col-lg-8">{{ $rg_number }}</div>
@@ -107,8 +109,9 @@
                 </div>
             </fieldset>
 
-                <div style="display: block; page-break-before: always;"></div>
-                <h3>Dados Acadêmicos:</h3>
+            <div style="display: block; page-break-before: left;"></div>
+
+                <h3 style="border-bottom:4px solid red;width:180px;">Dados Acadêmicos</h3>
                 @foreach($scholarities as$scholarity)
 
                     <fieldset>
@@ -117,10 +120,11 @@
                                 Graduação
                             @elseif ($scholarity->scholarity_type == "master")
                                 Mestrado
-                            @else
+                            @elseif
                                 Doutorado
                             @endif
                         </legend>
+
                         <div class="row">
                             <div class="col-lg-4" style="font: bold">Instituição de Ensino:</div>
                             <div class="col-lg-8">{{ $scholarity->teaching_institution }}</div>
@@ -146,6 +150,7 @@
                             <div class="col-lg-8">{{ $scholarity->course_name }}</div>
                         </div>
                     </fieldset>
+                    <br><br><br>
                 @endforeach
 
                 @if(!empty($military_certificate))
@@ -157,16 +162,18 @@
                 @endif
 
                 <div style="display: block; page-break-before: always;"></div>
-                <h3> Imgens</h3>
-                <fieldset>
-                    <img src="{{$military_link}}" style='display:block; width:500px;height:400px;'>
-                </fieldset>
-                <fieldset>
-                    <img src="{{$elector_link}}" style='display:block; width:500px;height:400px;'>
-                </fieldset>
-                <fieldset>
-                    <img src="{{$number_link}}" style='display:block; width:500px;height:400px;'>
-                </fieldset>
+                  <h3> Imagens</h3>
+                    <div style="text-align:center;">
+                        <fieldset style="border:none;">
+                            <img src="{{$military_link}}" style='display:block; width:500px;height:400px;'>
+                        </fieldset>
+                        <fieldset style="border:none;">
+                            <img src="{{$elector_link}}" style='display:block; width:500px;height:400px;'>
+                        </fieldset>
+                        <fieldset style="border:none;">
+                            <img src="{{$number_link}}" style='display:block; width:500px;height:400px;'>
+                        </fieldset>
+                    </div>
             </div>
         </body>
     </html>
