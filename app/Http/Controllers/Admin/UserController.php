@@ -246,15 +246,6 @@ class UserController extends Controller
                 $candidate = Candidate::find($id);                
                 $scholarityId = Scholarity::where('candidate_id', $candidate->id)->get();
                 
-                // Validate if file graduate exist
-                if ($request->hasFile('file_graduate.'.$k) && $request->file('file_graduate.'.$k)->isValid()) {
-                    $file = Input::file('file_graduate.'.$k);
-                    $fileMimeType = Input::file('file_graduate.'.$k)->getMimeType();
-                    $fileData = file_get_contents($file);
-                    $base64 = base64_encode($fileData);
-                    $path_file = "data:{$fileMimeType};base64,{$base64}";
-                }
-
                 // Construct the array to call values correctly
                 array_push ($scholarityArray, $scholarityId);
                 $scholarity[] = Scholarity::distinct()->whereIn('id', [$scholarityId[$k]->id])->first();
@@ -262,8 +253,17 @@ class UserController extends Controller
                 array_push ($areaScholarityArray, $scholarityId[$k]->id);
                 $areaScholarity[] = ScholarityArea::distinct()->whereIn('scholarity_id', [$areaScholarityArray[$k]])->first();
             }
-           
+            
             for ($i=0; $i < count($scholarity); $i++) { 
+                // Validate if file graduate exist
+                if ($request->hasFile('file_graduate.'.$i) && $request->file('file_graduate.'.$i)->isValid()) {
+                    $file = Input::file('file_graduate.'.$i);
+                    $fileMimeType = Input::file('file_graduate.'.$i)->getMimeType();
+                    $fileData = file_get_contents($file);
+                    $base64 = base64_encode($fileData);
+                    $path_file = "data:{$fileMimeType};base64,{$base64}";
+                }
+
                 // Update scholarity
                 $scholarity[$i]->class_name = $request->cadlettters;
                 $scholarity[$i]->course_name = $request->inputCursos[$i];
