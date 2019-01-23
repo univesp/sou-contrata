@@ -66,7 +66,7 @@ Route::resource('personal-data', 'PersonalDataController', [
 Route::resource('academic-data', 'ScholarityController', [
     'only' => ['index', 'store'],
     'names'=> ['index' => 'professorAcademicData', 'store' => 'professorAcademicData']
-]);
+])->middleware('login');
 
 
 //Busca interna pelos dados dos usuarios
