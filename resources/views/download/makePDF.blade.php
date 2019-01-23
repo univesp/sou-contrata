@@ -21,11 +21,11 @@
         <fieldset style="border-bottom:1px solid #ccc;">
              <h3  style="border-bottom:4px solid red;width:150px;">Dados de Usuário</h3>
                 <div class="row">
-                    <div class="col-lg-4"  style="font: bold">Nome:</div>
+                    <div class="col-lg-4"  style="font: bold;">Nome:</div>
                     <div class="col-lg-8">{{ $name_user }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4" style="font: bold">Email:</div>
+                    <div class="col-lg-4" style="font: bold;">Email:</div>
                     <div class="col-lg-8">{{ $email_user }}</div>
                 </div>
         </fieldset>
@@ -35,31 +35,31 @@
             <div style="width:100%;">
                 <div style="widht:33.3333%;float:left;">
                     <div class="row">
-                        <div class="col-lg-4" style="font: bold">Nome:</div>
+                        <div class="col-lg-4" style="font: bold;">Nome:</div>
                         <div class="col-lg-8">{{ $name . " " . $last_name }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4" style="font: bold">Data Nascimento:</div>
+                        <div class="col-lg-4" style="font: bold;">Data Nascimento:</div>
                         <div class="col-lg-8">{{ date_format(date_create($date_birth),"d-m-Y") }}</div>
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-4" style="font: bold">CPF:</div>
+                        <div class="col-lg-4" style="font: bold;">CPF:</div>
                         <div class="col-lg-8">{{ $cpf }}</div>
                     </div>
                 </div>
 
                 <div style="widht:33.3333%;float:left;margin-left:20%;">
                     <div class="row">
-                        <div class="col-lg-4" style="font: bold">Telefone:</div>
+                        <div class="col-lg-4" style="font: bold;">Telefone:</div>
                         <div class="col-lg-8">{{ $phone }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4" style="font: bold">Celular</div>
+                        <div class="col-lg-4" style="font: bold;">Celular</div>
                         <div class="col-lg-8">{{ $mobile }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4" style="font: bold">Nome da Mãe:</div>
+                        <div class="col-lg-4" style="font: bold;">Nome da Mãe:</div>
                         <div class="col-lg-8">{{ $name_mother }}</div>
                     </div>
                 </div>
@@ -70,11 +70,12 @@
                         <div class="col-lg-8">{{ $name_father }}</div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4" style="font: bold">Nome Social:</div>
+                        <div class="col-lg-4" style="font: bold;">Nome Social:</div>
                         <div class="col-lg-8">{{ $name_social }}</div>
                     </div>
                </div>
-            </fieldset>
+            </div>
+        </fieldset>
 
             <br>
 
@@ -86,25 +87,25 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4" style="font: bold">Data Emissão:</div>
+                    <div class="col-lg-4" style="font: bold;">Data Emissão:</div>
                     <div class="col-lg-8">{{ date_format(date_create($data_issue),"d-m-Y") }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4" style="font: bold">UF:</div>
+                    <div class="col-lg-4" style="font: bold;">UF:</div>
                     <div class="col-lg-8">{{ $uf_issue }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4" style="font: bold">Título de Eleitor:</div>
+                    <div class="col-lg-4" style="font: bold;">Título de Eleitor:</div>
                     <div class="col-lg-8">{{ $elector_title }}</div>
                 </div>
 
 
                 <div class="row">
-                    <div class="col-lg-4" style="font: bold">Zona</div>
+                    <div class="col-lg-4" style="font: bold;">Zona</div>
                     <div class="col-lg-8">{{ $zone }}</div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4" style="font: bold">Sessão:</div>
+                    <div class="col-lg-4" style="font: bold;">Sessão:</div>
                     <div class="col-lg-8">{{ $section }}</div>
                 </div>
             </fieldset>
@@ -115,7 +116,7 @@
                 @foreach($scholarities as$scholarity)
 
                     <fieldset>
-                        <legend style="font: bold; font-size: 18px">
+                        <legend style="font: bold; font-size: 18px;">
                             @if($scholarity->scholarity_type == "graduate")
                                 Graduação
                             @elseif ($scholarity->scholarity_type == "master")
@@ -126,27 +127,27 @@
                         </legend>
 
                         <div class="row">
-                            <div class="col-lg-4" style="font: bold">Instituição de Ensino:</div>
+                            <div class="col-lg-4" style="font: bold;">Instituição de Ensino:</div>
                             <div class="col-lg-8">{{ $scholarity->teaching_institution }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4" style="font: bold">Data Início:</div>
+                            <div class="col-lg-4" style="font: bold;">Data Início:</div>
                             <div class="col-lg-8">{{ date_format(date_create($scholarity->init_date),"d-m-Y") }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4" style="font: bold">Data termino:</div>
+                            <div class="col-lg-4" style="font: bold;">Data termino:</div>
                             <div class="col-lg-8">{{ date_format(date_create($scholarity->end_date),"d-m-Y") }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4" style="font: bold">Area:</div>
+                            <div class="col-lg-4" style="font: bold;">Area:</div>
                             <div class="col-lg-8">{{ $scholarity->area[0]->description }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4" style="font: bold">Lattes:</div>
+                            <div class="col-lg-4" style="font: bold;">Lattes:</div>
                             <div class="col-lg-8">{{ $scholarity->class_name }}</div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4" style="font: bold">Nome do Curso:</div>
+                            <div class="col-lg-4" style="font: bold;">Nome do Curso:</div>
                             <div class="col-lg-8">{{ $scholarity->course_name }}</div>
                         </div>
                     </fieldset>
@@ -155,7 +156,7 @@
 
                 @if(!empty($military_certificate))
                 <div class="row">
-                    <div class="col-lg-4" style="font: bold">Certificado militar:</div>
+                    <div class="col-lg-4" style="font: bold;">Certificado militar:</div>
                     <div class="col-lg-8">{{ $military_certificate }}</div>
                 </div>
 
@@ -174,6 +175,5 @@
                             <img src="{{$number_link}}" style='display:block; width:500px;height:400px;'>
                         </fieldset>
                     </div>
-            </div>
         </body>
     </html>
