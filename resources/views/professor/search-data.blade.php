@@ -5,17 +5,19 @@
   @section('css')
       <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
       <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-      <!-- <style>
-      .card-block{
-          border:1px solid #ccc;
-      }
-      </style> -->
+      <style>
+       .negrito::before{
+           width:10px;
+           height:22px;
+           background-color:red;
+       }
+      </style>
   @endsection
   @section('content')
 
     <div class="container">
           <div class="row">
-             <h1 class="negrito">Baixar documentação do candidato</h1>
+            <h1 class="negrito" style="font-weight:800;font-size:22px;margin-bottom:20px;margin-top:20px;">BAIXAR DOCUMENTAÇÃO DO CANDIDATO</h1>
           </div>
 
             <div class="row">

@@ -262,7 +262,7 @@ class PersonalDataController extends Controller
 
     public function searchData()
     {
-        $data = Candidate::with('scholarities')->with('document')->paginate(20);
+        $data = Candidate::with('scholarities')->with('document')->paginate(10);
         $candidates = $this->treatData($data);
 
         return view('professor/search-data')
