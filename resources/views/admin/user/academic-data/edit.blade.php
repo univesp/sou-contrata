@@ -114,7 +114,10 @@
             </div>
             <hr />
             <div class="row">
-                <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span><button type="submit" class="btn btn-danger float-right submit" disabled>AVANÇAR</button></p>
+                <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span>
+                    <button type="submit" class="btn btn-danger float-right submit" disabled>ATUALIZAR</button>
+                    <a href="{{route('home')}}"><button type="button" class="btn btn-danger space-btw-button">VOLTAR</button></a>
+                </p>
             </div>
             <br /><br />
         </form>
