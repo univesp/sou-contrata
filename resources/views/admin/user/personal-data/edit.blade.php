@@ -141,8 +141,8 @@
                 </div>
             </div>
             <br/>
-            <img class="image-size" src="{{ $document->number_link }}" alt="Image Preview" />
-               
+                <img class="image-size" src="{{ $document->number_link }}" alt="Image Preview" /><br/><br/>
+                <a href="{{ $document->number_link }}" class="btn pdf-buttom" data-toggle="tooltip" data-placement="bottom" title="Imprimir Imagem" download><i class="fa fa-download"></i></a>
             <div class="row">
                 <br />
                 <h4>CPF</h4>
@@ -152,7 +152,8 @@
                 </div>
             </div>
             <br/>
-            <img class="image-size" src="{{ $candidate->file_cpf }}" alt="Image Preview" />
+            <img class="image-size" src="{{ $candidate->file_cpf }}" alt="Image Preview" /><br/><br/>
+            <a href="{{ $candidate->file_cpf }}" class="btn pdf-buttom" data-toggle="tooltip" data-placement="bottom" title="Imprimir Imagem" download><i class="fa fa-download"></i></a>
 
             <div class="row elector_title">
                 <br />
@@ -164,7 +165,10 @@
                         <p class="text-danger">{{ $errors->first('elector_title') }}</p>
                     @endif
                     
-                    @if($document->elector_link)<br/><img class="image-size" src="{{ $document->elector_link }}" alt="Image Preview" />@endif
+                    @if($document->elector_link)
+                        <br/><img class="image-size" src="{{ $document->elector_link }}" alt="Image Preview" /><br/><br/>
+                        <a href="{{ $document->elector_link }}" class="btn pdf-buttom" data-toggle="tooltip" data-placement="bottom" title="Imprimir Imagem" download><i class="fa fa-download"></i></a>
+                    @endif
                     <input type="file" id="file_title" name="file_title" class="spacing-top" @if($document->file_title) value="{{$document->file_title}}" @endif >
                     @if($errors->has('file_title'))
                         <p class="text-danger">{{ $errors->first('file_title') }}</p>
@@ -180,7 +184,10 @@
                     @if($errors->has('military_certificate'))
                         <p class="text-danger">{{ $errors->first('military_certificate') }}</p>
                     @endif
-                    @if($document->elector_link)<br/><br/><img class="image-size" src="{{ $document->military_link }}" alt="Image Preview" />@endif
+                    @if($document->military_link)<br/><br/>
+                        <img class="image-size" src="{{ $document->military_link }}" alt="Image Preview" /><br/><br/>
+                        <a href="{{ $document->military_link }}" class="btn pdf-buttom" data-toggle="tooltip" data-placement="bottom" title="Imprimir Imagem" download><i class="fa fa-download"></i></a>
+                    @endif
                     <input type="file" id="file_military" class="militar none spacing-top" name="file_military" @if($document->file_military) value="{{ $document->file_military }}" @endif>
                     @if($errors->has('file_military'))
                         <p class="text-danger">{{ $errors->first('file_military') }}</p>
@@ -255,7 +262,8 @@
                 <hr />
                 <div class="col-md-4">
                     <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás ou Telefone<span class="cor-campo"> *</span></label>
-                    <img class="image-size" src="{{ $address->file_address }}" alt="Image Preview" />
+                    <img class="image-size" src="{{ $address->file_address }}" alt="Image Preview" /><br/><br/>
+                    <a href="{{ $address->file_address }}" class="btn pdf-buttom" data-toggle="tooltip" data-placement="bottom" title="Imprimir Imagem" download><i class="fa fa-download"></i></a>
                     <input type="file" id="file_address" class="proof_address spacing-top" name="file_address" @if($address->file_address) value="{{$address->file_address}}" @endif  @if(empty($address->file_address)) required oninvalid="this.setCustomValidity('Obrigatorio upload do Comprovante de Residência')" onchange="try{setCustomValidity('')}catch(e){}" @endif>
                     @if($errors->has('file_address'))
                         <p class="text-danger">{{ $errors->first('file_address') }}</p>
@@ -308,7 +316,8 @@
             </div>
             <div class="row">
                 <hr />
-                <button type="submit" class="btn btn-danger float-right">AVANÇAR</button>
+                <button type="submit" class="btn btn-danger float-right">ATUALIZAR</button>
+                <a href="{{route('home')}}"><button type="button" class="btn btn-danger space-btw-button">VOLTAR</button></a>
             </div>
         </form>
     </div>
