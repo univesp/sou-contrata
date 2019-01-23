@@ -260,6 +260,45 @@ class PersonalDataController extends Controller
         return $data;
     }
 
+    public function searchData()
+    {
+        $data = Candidate::with('scholarities')->with('document')->paginate(20);
+        $candidates = $this->treatData($data);
+
+        return view('professor/search-data')
+            ->with('candidates', $candidates);
+    }
+
+    private function treatData($data)
+    {
+        foreach ($data as $k => $d){
+            if(!empty($d->scholarities[0])){
+                $data[$k]->scholarities = true;
+            }else{
+                $data[$k]->scholarities = false;
+            }
+            if(!empty($d->document[0])){
+                $data[$k]->document = true;
+            }else{
+                $data[$k]->document = false;
+            }
+            $d->cpf_form = $this->mask("###.###.###-##",$d->cpf);
+        }
+        return $data;
+    }
+
+    private function mask($mask,$str){
+
+        $str = str_replace(" ","",$str);
+
+        for($i=0;$i<strlen($str);$i++){
+            $mask[strpos($mask,"#")] = $str[$i];
+        }
+
+        return $mask;
+
+    }
+
     public function downloadPDF($cpf)
     {
 
