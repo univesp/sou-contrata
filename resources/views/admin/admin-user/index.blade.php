@@ -31,7 +31,7 @@
                         <th scope="col">Nome</th>
                         <th scope="col">Login</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Creação</th>
+                        <th scope="col">Criação</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
