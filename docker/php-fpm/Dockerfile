@@ -75,4 +75,6 @@ RUN rm -rf /tmp/pear \
     && rm /var/log/lastlog /var/log/faillog
 
 WORKDIR /var/www
+ADD . /var/www
+RUN chown -R www-data:www-data /var/www
 CMD ["php-fpm"]
