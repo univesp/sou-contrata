@@ -5,99 +5,74 @@
   @section('css')
       <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
       <link href="{{URL::asset('/css/bootstrap.min.css')}}" rel="stylesheet">
-      <!-- <style>
-      .card-block{
-          border:1px solid #ccc;
-      }
-      </style> -->
+      <style>
+       .negrito::before{
+           width:10px;
+           height:22px;
+           background-color:red;
+       }
+      </style>
   @endsection
   @section('content')
 
     <div class="container">
-		<div class=wrap>
           <div class="row">
-             <h1 class="negrito">Baixar documentação do candidato</h1>
+            <h1 class="negrito" style="font-weight:800;font-size:22px;margin-bottom:20px;margin-top:20px;">BAIXAR DOCUMENTAÇÃO DO CANDIDATO</h1>
           </div>
 
-            <div class="col-md-12">
-                <div class="alert alert-danger col-md-12" id="divError" role="alert" style="display:none;">
-                    <p id="txtError"></p>
-                </div>
-                <div class="input-group col-md-6" style="float:right;">
-                     <input id="txtCpf" class="form-control" type="text" placeholder="Pesquisar por um CPF Válido" />
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Data Nascimento</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Documentos Academicos?</th>
+                        <th scope="col">Documentos Pessoais?</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($candidates as $candidate)
+                        <tr>
+                            <td>{{$candidate->name}} {{$candidate->last_name}}</th>
+                            <td>{{ date_format(date_create($candidate->date_birth),"d-m-Y") }}</td>
+                            <td>{{$candidate->cpf_form}}</td>
+                            @if($candidate->scholarities)
+                                <td class="Success">Sim</td>
+                            @else
+                                <td class="Danger">Não</td>
+                            @endif
+                            @if($candidate->document)
+                                <td class="Success">Sim</td>
+                            @else
+                                <td class="Danger">Não</td>
+                            @endif
+                            <td><button class="btn btn-default" type="submit" onClick='downloadPDF({{$candidate->cpf}})'>Gerar PDF</button></td>
+                        </tr>
+                    @endforeach
                     {{ csrf_field() }}
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit" onClick='insereTexto()'>Pesquisar por CPF</button>
-                </div>
+                    </tbody>
+                </table>
             </div>
 
-
-            <div class="row" id="divData" style="display:none;margin-top:130px;">
-               <div class="col-md-12 border-right">
-                    <div class="col-md-4 " >
-                        <div class="card bg-c-pink order-card">
-                            <div class="card-block" style="border:1px solid #ccc;">
-                                <h6 class="m-b-20" >Nome Completo</h6>
-                                <h2 class="text-right">
-                                    <img class="f-left icon" src="../img/person.svg"/>
-                                    <span class="ng-tns-c5-1" id="txtName"></span>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-c-pink order-card">
-                            <div class="card-block">
-                                    <h6 class="m-b-20">CPF</h6>
-                                    <h2 class="text-right">
-                                        <img class="f-left icon" src="../img/cpf.svg"/>
-                                        <span class="ng-tns-c5-1" id="txtDoc"></span>
-                                     </h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                    <div class="card bg-c-pink order-card">
-                            <div class="card-block">
-                                <h6 class="m-b-20">Data de Nascimento</h6>
-                                <h2 class="text-right">
-                                    <img class="f-left icon" src="../img/aniversario.svg"/>
-                                    <span class="ng-tns-c5-1" id="txtBirthDay"></span>
-                                </h2>
-                            </div>
-                        </div>
-                    </div>
-
-               <div class="row col-md-12 wrap">
-                    <div class="btn-group float-right" role="group" aria-label="...">
-                        <button type="button" class="btn-red" id="download" onclick="downloadPDF();">GERAR DOCUMENTOS</button>
-                    </div>
+           <div class="row col-md-12 wrap" id="links" style="display: none">
+               <div class="btn-group float-right" role="group" aria-label="...">
+                   <a id="info" class="texto-formatacao" target="_blank" href="" title="Veja os dados do candidato."><i class="far fa-file-pdf"></i> Dados</a>
+                   <a id="graduate" class="texto-formatacao" target="_blank" href="" title="Veja a graduação."><i class="far fa-file-pdf"></i> Graduação</a>
+                   <a id="master" class="texto-formatacao" target="_blank" href="" title="Veja o mestrado."><i class="far fa-file-pdf"></i> Mestrado</a>
+                   <a id="doctorate" class="texto-formatacao" target="_blank" href="" title="Veja o doutorado."><i class="far fa-file-pdf"></i> Doutorado</a>
                </div>
-
-               <div class="row col-md-12 wrap" id="links" style="display: none">
-                   <div class="btn-group float-right" role="group" aria-label="...">
-                       <a id="info" class="texto-formatacao" target="_blank" href="" title="Veja os dados do candidato."><i class="far fa-file-pdf"></i> Dados</a>
-                       <a id="graduate" class="texto-formatacao" target="_blank" href="" title="Veja a graduação."><i class="far fa-file-pdf"></i> Graduação</a>
-                       <a id="master" class="texto-formatacao" target="_blank" href="" title="Veja o mestrado."><i class="far fa-file-pdf"></i> Mestrado</a>
-                       <a id="doctorate" class="texto-formatacao" target="_blank" href="" title="Veja o doutorado."><i class="far fa-file-pdf"></i> Doutorado</a>
-
-                   </div>
-               </div>
-
-            </div>
-        </div>
-    </div>
-        </div>
+           </div>
     </div>
      <script type="text/javascript">
 
-         function downloadPDF() {
+         function downloadPDF(cpf) {
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                  }
              });
-             var cpf = $("#txtCpf").val();
              console.log('gerando PDF para : ' + cpf);
 
              $.ajax({
@@ -115,6 +90,11 @@
                  },
                  error: function (result) {
                       console.log(result);
+                     $("#info").attr("href", result[0])
+                     $("#graduate").attr("href", result[1])
+                     $("#master").attr("href", result[2])
+                     $("#doctorate").attr("href", result[3])
+                     $("#links").removeAttr("style")
                  }
              });
          }//downloadPDF
