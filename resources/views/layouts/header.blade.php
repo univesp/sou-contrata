@@ -65,6 +65,19 @@
 
                 /*Datatable*/
                 $(document).ready(function(){
+                    $('.change-status').change(function() {
+                        id = $(this).data('id');
+                        $.ajax({
+                            url:'../admin/change-status',
+                            type: 'POST',
+                            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                            data: { 'id' : id },
+                            success: function(data){
+                                console.log(data);
+                            },
+                        });
+                    });
+
                     $('#example').DataTable( {
 					    "searching": true,
                         "ordering": false,
