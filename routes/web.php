@@ -70,9 +70,7 @@ Route::resource('academic-data', 'ScholarityController', [
 
 
 //Busca interna pelos dados dos usuarios
-Route::get('search-data', function(){
-    return view('professor/search-data');
-})->name('search-data');
+Route::get('search-data','PersonalDataController@searchData')->name('search-data');
 
 //Tela de download de PDF
 Route::post('search-data/{cpf}','PersonalDataController@searchForTeacher')->name('search');
@@ -83,9 +81,8 @@ Route::post('pdf-download/{cpf}','PersonalDataController@downloadPDF')->name('do
 /******************************************************ADMINISTRATION*********************************************************/
 
 // Administration users list
-Route::resource('admin/admin-user', 'Admin\AdminUserController', [
-    'names' => ['index' => 'admin/admin-user']
-]);
+Route::get('admin/admin-user','Admin\AdminUserController@index')->name('admin/admin-user');
+Route::post('admin/change-status', array('as' => 'change-status', 'uses' => 'Admin\AdminUserController@changeStatus'));
 
 // Edit personal data
 Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')->name('admin/personal-data/edit');
@@ -94,7 +91,7 @@ Route::post('admin/personal-data/update/{id}/{candidate_id}','Admin\UserControll
 // Edit academic data
 Route::get('admin/academic-data/edit/{id}','Admin\UserController@editAcademicData')->name('admin/academic-data/edit');
 Route::post('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')->name('admin/academic-data/update');
- 
+
 // Area & Subarea
 Route::get('admin/area','Admin\UserController@area')->name('admin/area');
 Route::get('admin/subarea/{area}','Admin\UserController@subarea')->name('admin/subarea');
