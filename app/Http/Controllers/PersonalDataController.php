@@ -262,11 +262,22 @@ class PersonalDataController extends Controller
 
     public function searchData()
     {
-        $data = Candidate::with('scholarities')->with('document')->paginate(10);
+       /* $data = Candidate::with('scholarities')
+            ->with('document')
+            ->select('id','name', 'last_name' , 'cpf', 'date_birth')
+            ->get();*/
+
+        $data = Candidate::with(array('scholarities'=>function($query){
+            $query->select('id','candidate_id');
+        }))->with(array('document'=>function($query){
+            $query->select('id','candidate_id');
+        }))
+            ->select('id','name', 'last_name' , 'cpf', 'date_birth')
+            ->get();
+
         $candidates = $this->treatData($data);
 
-        return view('professor/search-data')
-            ->with('candidates', $candidates);
+        return view('professor/search-data', compact('candidates'));
     }
 
     private function treatData($data)
