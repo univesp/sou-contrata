@@ -88,7 +88,7 @@ class UserController extends Controller {
             ->select('id', 'name' , 'email', 'password')
             ->first();
 
-        if(!empty($login) && Hash::check($request->password, $login->password)) {
+        if(!empty($login) && Hash::check($request->password, $login->password) && $login->flag_ativo == 1) {
             Helper::createSessionUser($login, $request);
             return redirect()->route('professorPersonalData');
         } else {

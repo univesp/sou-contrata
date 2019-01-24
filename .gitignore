@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/ctc
+/public/5c*
 /storage/*.key
 /vendor
 /kubernetes/prd/app/secrets.yaml
