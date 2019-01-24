@@ -83,9 +83,8 @@ Route::post('pdf-download/{cpf}','PersonalDataController@downloadPDF')->name('do
 /******************************************************ADMINISTRATION*********************************************************/
 
 // Administration users list
-Route::resource('admin/admin-user', 'Admin\AdminUserController', [
-    'names' => ['index' => 'admin/admin-user']
-]);
+Route::get('admin/admin-user','Admin\AdminUserController@index')->name('admin/admin-user');
+Route::post('admin/change-status', array('as' => 'change-status', 'uses' => 'Admin\AdminUserController@changeStatus'));
 
 // Edit personal data
 Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')->name('admin/personal-data/edit');
