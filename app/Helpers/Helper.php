@@ -55,13 +55,15 @@ class Helper
         } else {
             $page = 1;
         }
-
+        
         $userSession = [
             'id' => $user_object->id,
             'user' => $user_object->name,
             'email' => $user_object->email,
+            'flag_admin' => $user_object->flag_admin,
             'permission' => $page,
         ];
+        
         $request->session()->put('user', $userSession);
     }
 
