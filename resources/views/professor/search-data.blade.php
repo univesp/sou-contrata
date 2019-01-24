@@ -97,6 +97,7 @@
      <script type="text/javascript">
 
          function downloadPDF(cpf) {
+            document.getElementById("links").style.display = "none";
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -114,8 +115,7 @@
                      $("#graduate").attr("href", result[1])
                      $("#master").attr("href", result[2])
                      $("#doctorate").attr("href", result[3])
-                     $("#links").removeAttr("style")
-
+                    document.getElementById("links").style.display = "block";
                  },
                  error: function (result) {
                       console.log(result);
@@ -123,7 +123,7 @@
                      $("#graduate").attr("href", result[1])
                      $("#master").attr("href", result[2])
                      $("#doctorate").attr("href", result[3])
-                     $("#links").removeAttr("style")
+                     document.getElementById("links").style.display = "block";
                  }
              });
          }//downloadPDF
