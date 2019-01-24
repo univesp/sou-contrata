@@ -111,7 +111,6 @@ class ScholarityController extends Controller
             ->orderBy('created_at','desc')
             ->paginate(12);
         $data = $this->applicationsModels($bind, $candidate_id);
-
         Helper::alterSessionUser($request, 3);
         return view('vacancy.process', compact('resp','data', 'candidate_id'));
     }
