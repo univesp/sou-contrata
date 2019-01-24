@@ -85,7 +85,7 @@ class UserController extends Controller {
     {
 
         $login = User::where('email','=', $request->email)
-            ->select('id', 'name' , 'email', 'password')
+            ->select('id', 'name' , 'email', 'password', 'flag_admin')
             ->first();
 
         if(!empty($login) && Hash::check($request->password, $login->password) && $login->flag_ativo == 1) {
