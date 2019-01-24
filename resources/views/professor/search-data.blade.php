@@ -11,13 +11,23 @@
            height:22px;
            background-color:red;
        }
+       a:hover{
+           text-decoration:none;
+       }
+       .texto-formatacao{
+          font-size: 18px;
+          color:#28a745;
+       }
+       #links{
+           margin-bottom:0px !important;
+       }
       </style>
   @endsection
   @section('content')
 
     <div class="container">
           <div class="row">
-            <h1 class="negrito" style="font-weight:800;font-size:22px;margin-bottom:20px;margin-top:20px;">BAIXAR DOCUMENTAÇÃO DO CANDIDATO</h1>
+            <h1 class="negrito" style="font-weight:800;font-size:22px;margin-bottom:20px;margin-top:20px;">DOCUMENTAÇÃO DO CANDIDATO</h1>
           </div>
 
             <div class="row">
@@ -48,7 +58,8 @@
                             @else
                                 <td class="Danger">Não</td>
                             @endif
-                            <td><button class="btn btn-default" type="submit" onClick='downloadPDF({{$candidate->cpf}})'>Gerar PDF</button></td>
+                            <td><button type="submit" class="btn btn-default" data-toggle="modal" onClick='downloadPDF({{$candidate->cpf}})' data-target="#exampleModal">Gerar PDF</button></td>
+
                         </tr>
                     @endforeach
                     {{ csrf_field() }}
@@ -56,14 +67,32 @@
                 </table>
             </div>
 
-           <div class="row col-md-12 wrap" id="links" style="display: none">
-               <div class="btn-group float-right" role="group" aria-label="...">
-                   <a id="info" class="texto-formatacao" target="_blank" href="" title="Veja os dados do candidato."><i class="far fa-file-pdf"></i> Dados</a>
-                   <a id="graduate" class="texto-formatacao" target="_blank" href="" title="Veja a graduação."><i class="far fa-file-pdf"></i> Graduação</a>
-                   <a id="master" class="texto-formatacao" target="_blank" href="" title="Veja o mestrado."><i class="far fa-file-pdf"></i> Mestrado</a>
-                   <a id="doctorate" class="texto-formatacao" target="_blank" href="" title="Veja o doutorado."><i class="far fa-file-pdf"></i> Doutorado</a>
-               </div>
-           </div>
+           <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header" style="padding-bottom:0px;">
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-weight:bold;">Escolha o Arquivo que deseja Baixar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="border-top:none;padding-top:0px;padding-bottom:0px;">
+                    <div class="row col-md-12 wrap" id="links" style="display:none;margin-bottom: 0px;" >
+                        <div class="btn-group float-right" role="group" aria-label="..." style="width:100%;text-align:center;">
+                            <a id="info" class="texto-formatacao" target="_blank" href="" title="Veja os dados do candidato."><i class="far fa-file-pdf"></i> Dados</a>
+                            <a id="graduate" class="texto-formatacao" target="_blank" href="" title="Veja a graduação."><i class="far fa-file-pdf"></i> Graduação</a>
+                            <a id="master" class="texto-formatacao" target="_blank" href="" title="Veja o mestrado."><i class="far fa-file-pdf"></i> Mestrado</a>
+                            <a id="doctorate" class="texto-formatacao" target="_blank" href="" title="Veja o doutorado."><i class="far fa-file-pdf"></i> Doutorado</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+            </div>
     </div>
      <script type="text/javascript">
 

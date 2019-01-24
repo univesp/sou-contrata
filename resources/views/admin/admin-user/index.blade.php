@@ -32,8 +32,10 @@
                         <th scope="col">Login</th>
                         <th scope="col">Email</th>
                         <th scope="col">Criação</th>
+                        <th scope="col">Ativo</th>
                         <th scope="col"></th>
                     </tr>
+                    {{ csrf_field() }}
                 </thead>
 			    <tbody>                
                     @foreach ($users as $user)                   
@@ -42,6 +44,7 @@
                             <td>{{ $user->login }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at->format('d/m/y') }}</td>
+                            <td><input type="checkbox" class="change-status" data-id="{{$user->id}}" @if ($user->flag_ativo) checked @endif></td>
                             <td><a href="{{ url('admin/personal-data/edit', $user->id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
                         </tr>
                     @endforeach
