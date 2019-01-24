@@ -31,7 +31,7 @@
           </div>
 
             <div class="row">
-                <table class="table">
+                <table class="table" id="example">
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col">Nome</th>
