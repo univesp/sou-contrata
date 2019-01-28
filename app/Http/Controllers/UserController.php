@@ -85,7 +85,7 @@ class UserController extends Controller {
     {
 
         $login = User::where('email','=', $request->email)
-            ->select('id', 'name' , 'email', 'password', 'flag_admin')
+            ->select('id', 'name' , 'email', 'password', 'flag_admin', 'flag_ativo')
             ->first();
             Helper::createSessionUser($login, $request);
             return redirect()->route('professorPersonalData');
