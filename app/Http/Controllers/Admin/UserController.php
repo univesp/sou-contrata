@@ -18,6 +18,27 @@ use DB;
 
 class UserController extends Controller
 {
+    public function editPassword($id)
+    {
+        $user = User::find($id);
+
+        if (!empty($user->id)) {
+
+            // Return this view
+            return view("admin.user.password.edit")
+                ->with('user', $user);
+        } else {
+            // Return this view
+            return redirect()->route("home");
+        }
+    }
+
+    public function updatePassword($id, Request $request)
+    {
+
+    }
+
+
     public function editPersonalData($id)
     {
         // Find user by id
@@ -25,7 +46,6 @@ class UserController extends Controller
 
         // Find candidate by user id
         $candidate = DB::table('candidates')->where('user_id', $user->id)->first();
-      
         // Condition if user by candidate exists
         if (!empty($candidate->user_id)) {
             // Find document by candidate id
@@ -181,17 +201,29 @@ class UserController extends Controller
     public function editAcademicData($id)
     {
         // Find candidate by id
-        $candidate = Candidate::find($id);
+        $candidate = Candidate::where("user_id",$id)->first();
 
         // Find scholarity by candidate id
-        $scholarity = DB::table('scholarities')->where('candidate_id', $candidate->id)->get();
+        $scholarity = Scholarity::with('area')
+            ->with('scholarityAreas')
+            ->where('candidate_id', $candidate->id)->get();
+
+        $cont = 0;
+        foreach ($scholarity as $scholl){
+            $scholarity[$cont]->subarea = DB::table('subareas')
+                ->leftJoin('scholarity_area', 'subareas.id', '=', 'scholarity_area.subarea_id')
+                ->select('subareas.id', 'subareas.description')
+                ->where('scholarity_area.scholarity_id', $scholl->scholarityAreas[0]->scholarity_id)
+                ->orderBy('subareas.description', 'asc')->get();
+            $cont++;
+        }
 
         // Condition if candidate id is empty
         if (!empty($scholarity[0]->candidate_id)) {
      
             // Array to select save in database
             $scholarity_type = ['graduate','master','doctorate'];
-            
+
             // Return this view
             return view("admin.user.academic-data.edit")
                 ->with('candidate', $candidate)
