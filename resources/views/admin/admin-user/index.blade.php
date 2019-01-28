@@ -46,7 +46,7 @@
                             <td>{{ $user->created_at->format('d/m/y') }}</td>
                             <td><input type="checkbox" class="change-status" data-id="{{$user->id}}" @if ($user->flag_ativo) checked @endif></td>
                             @if($user->flag_ativo == 1)
-                                <td><a href="{{ url('admin/personal-data/edit', $user->id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
+                                <td><a href="{{ route('admin/personal-data/edit', $user->id) }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
                             @else 
                                 <td><a href="{{ route('home') }}"><button type="button" class="btn btn-danger">Perfil</button></a></td>
                             @endif

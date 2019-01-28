@@ -34,12 +34,7 @@
                 <div class="col-sm-12 col-xs-12 col-md-12">
                     <div class="col-sm-12 col-xs-12 col-md-10">
                         <input type="hidden" value="{{ $id = Session::get('user')['id'] }}">
-                        @if (Session::get('user')['user'])
-                            <span class="float-right text-user"><a href="{{route('admin/personal-data/edit', $id)}}" class="profile-link" data-toggle="tooltip" data-placement="bottom" title="Editar perfil">@yield('username')</a></span>
-                        @endif
-                        @if (Session::get('user')['flag_admin'] == 1)
-                            <span class="float-right text-user"><a href="{{ url('admin/admin-user') }}" class="profile-link user-list-icon" data-toggle="tooltip" data-placement="bottom" title="Usuários"><i class="fa fa-users"></i></a></span>
-                        @endif
+                            <span class="float-right text-user"><a href="{{ route('admin/admin-user') }}" class="profile-link" data-toggle="tooltip" data-placement="bottom" title="Editar perfil">@yield('username')</a></span>
                     </div>
                     @if (Session::get('user')['user'])
                         <form action="{{route('logoff')}}">
