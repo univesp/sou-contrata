@@ -18,7 +18,6 @@
     @endsection
 
     <div class="container">
-        /*FIXME: Problem using styles with class name */
         <div class="row" style="margin-top: 26px; font-size: 20px;">
             <div class="col-sm">
                 <a href="{{route('home')}}" class="btn btn-danger">Pagina Inicial</a>
