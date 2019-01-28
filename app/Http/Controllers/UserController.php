@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
 
+
 class UserController extends Controller {
 
     protected $url;
@@ -87,8 +88,6 @@ class UserController extends Controller {
         $login = User::where('email','=', $request->email)
             ->select('id', 'name' , 'email', 'password', 'flag_admin', 'flag_ativo')
             ->first();
-            Helper::createSessionUser($login, $request);
-            return redirect()->route('professorPersonalData');
 
         if(!empty($login) && Hash::check($request->password, $login->password) && $login->flag_ativo == 1) {
             Helper::createSessionUser($login, $request);
