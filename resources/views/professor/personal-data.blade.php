@@ -156,9 +156,9 @@
             <div class="col-md-3">
                 <input onchange="verificaExtensao(this)" type="file" accept="application/pdf" id="file_rg" class="spacing-top" name="file_rg" value="{{ old('file_rg') }}"
                     required oninvalid="this.setCustomValidity('Obrigatório upload do RG')"  onchange="try{setCustomValidity('')}catch(e){}">
-                {{-- @if($errors->has('file_rg'))
+              @if($errors->has('file_rg'))
                     <p class="text-danger">{{ $errors->first('file_rg') }}</p>
-                @endif --}}
+                @endif
                 <small id="emailHelp" class="form-text text-muted">Apenas arquivos com extensões .pdf</small>
             </div>
         </div>
