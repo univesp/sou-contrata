@@ -121,7 +121,7 @@
                             <label for="comentario" class="control-label fonte-campos deficiencia none">
                                 Descreva sua Deficiência
                             </label>
-                            <textarea name="obs_deficient" class="form-control deficiencia none" rows="2" id="comentario">{{ old('obs_deficient') }}</textarea>
+                            <textarea name="obs_deficient" class="form-control deficiencia none" rows="5" id="comentario">{{ old('obs_deficient') }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -372,9 +372,9 @@
 
     if(typeof extPermitidas.find(function(ext){ return extArquivo == ext; }) == 'undefined') {
         alert('Extensão "' + extArquivo + '" não permitida!');
-    } else {
-        alert('Ok!');
+        $input.value = ''
     }
+
     }
 </script>
 

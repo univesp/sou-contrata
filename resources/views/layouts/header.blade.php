@@ -71,7 +71,7 @@
                             headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}' },
                             data: { 'id' : id },
                             success: function(data){
-                                console.log(data);
+                                //
                             },
                         });
                     });

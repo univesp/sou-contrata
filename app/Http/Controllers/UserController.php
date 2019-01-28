@@ -86,9 +86,8 @@ class UserController extends Controller {
     {
 
         $login = User::where('email','=', $request->email)
-            ->select('id', 'name' , 'email', 'password', 'flag_admin','flag_ativo')
+            ->select('id', 'name' , 'email', 'password', 'flag_admin', 'flag_ativo')
             ->first();
-
 
         if(!empty($login) && Hash::check($request->password, $login->password) && $login->flag_ativo == 1) {
             Helper::createSessionUser($login, $request);
