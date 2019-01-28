@@ -15,7 +15,7 @@ class EdictController extends Controller
     public function index()
     {
         //$data = \App\Vacancy::with('edict')->orderBy('created_at','desc')->paginate(20);
-        $data = \App\Edict::orderBy('created_at','desc')->paginate(20);
+        $data = \App\Edict::orderBy('created_at','desc')->where('active','=',1)->paginate(20);
         return view('vacancy/index',compact('data', $data));
     }
 
@@ -28,11 +28,11 @@ class EdictController extends Controller
         Helper::createSessionEdict($id);
         return view('vacancy.edicts',compact('data', $data));
     }
-    
+
     public function home()
     {
         $data = \App\Vacancy::with('edict')->where('edict_id','=', 1)->first();
-        
+
         Helper::createSessionEdict(1);
         return view('vacancy.edicts',compact('data', $data));
     }

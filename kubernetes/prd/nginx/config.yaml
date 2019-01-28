@@ -51,9 +51,13 @@ data:
           try_files $uri $uri/ @autores;
 
           location ~ \.php$ {
-              fastcgi_pass 127.0.0.1:9000;
-              fastcgi_param SCRIPT_FILENAME $request_filename;
-              include fastcgi_params;
+                fastcgi_pass 127.0.0.1:9000;
+                fastcgi_param SCRIPT_FILENAME $request_filename;
+                fastcgi_index index.php;
+                fastcgi_buffers 16 16k;
+                fastcgi_buffer_size 32k;
+                fastcgi_read_timeout 600;
+                include fastcgi_params;
           }
         }
 
