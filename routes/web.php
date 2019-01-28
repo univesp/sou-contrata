@@ -87,6 +87,15 @@ Route::get('admin/admin-user','Admin\AdminUserController@index')
 Route::post('admin/change-status', array('as' => 'change-status', 'uses' => 'Admin\AdminUserController@changeStatus'))
     ->middleware('login');
 
+// Edit Password
+Route::get('admin/password/edit/{id}','Admin\UserController@editPassword')
+    ->name('admin/password/edit')
+    ->middleware('login');
+
+Route::post('admin/password/update/{id}','Admin\UserController@updatePassword')
+    ->name('admin/password/update')
+    ->middleware('login');
+
 // Edit personal data
 Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')
     ->name('admin/personal-data/edit')
