@@ -274,8 +274,8 @@ class UserController extends Controller
             $areaScholarityArray = array();
             $scholarityArray = array();
 
-            foreach ($request['graduate_dinamic'] as $k => $d) {
-                $candidate = Candidate::find($id);                
+            foreach ($request['graduate_dinamic'] as $k => $d) {   
+                $candidate = Candidate::where('user_id', $id)->first();            
                 $scholarityId = Scholarity::where('candidate_id', $candidate->id)->get();
                 
                 // Construct the array to call values correctly
