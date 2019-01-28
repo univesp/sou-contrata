@@ -81,17 +81,33 @@ Route::post('pdf-download/{cpf}','PersonalDataController@downloadPDF')->name('do
 /******************************************************ADMINISTRATION*********************************************************/
 
 // Administration users list
-Route::get('admin/admin-user','Admin\AdminUserController@index')->name('admin/admin-user');
-Route::post('admin/change-status', array('as' => 'change-status', 'uses' => 'Admin\AdminUserController@changeStatus'));
+Route::get('admin/admin-user','Admin\AdminUserController@index')
+    ->name('admin/admin-user')
+    ->middleware('login');
+Route::post('admin/change-status', array('as' => 'change-status', 'uses' => 'Admin\AdminUserController@changeStatus'))
+    ->middleware('login');
 
 // Edit personal data
-Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')->name('admin/personal-data/edit');
-Route::post('admin/personal-data/update/{id}/{candidate_id}','Admin\UserController@updatePersonalData')->name('admin/personal-data/update');
+Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')
+    ->name('admin/personal-data/edit')
+    ->middleware('login');
+
+Route::post('admin/personal-data/update/{id}/{candidate_id}','Admin\UserController@updatePersonalData')
+    ->name('admin/personal-data/update')
+    ->middleware('login');
 
 // Edit academic data
-Route::get('admin/academic-data/edit/{id}','Admin\UserController@editAcademicData')->name('admin/academic-data/edit');
-Route::post('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')->name('admin/academic-data/update');
+Route::get('admin/academic-data/edit/{id}','Admin\UserController@editAcademicData')
+    ->name('admin/academic-data/edit')
+    ->middleware('login');
+Route::post('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')
+    ->name('admin/academic-data/update')
+    ->middleware('login');
 
 // Area & Subarea
-Route::get('admin/area','Admin\UserController@area')->name('admin/area');
-Route::get('admin/subarea/{area}','Admin\UserController@subarea')->name('admin/subarea');
+Route::get('admin/area','Admin\UserController@area')
+    ->name('admin/area')
+    ->middleware('login');
+Route::get('admin/subarea/{area}','Admin\UserController@subarea')
+    ->name('admin/subarea')
+    ->middleware('login');

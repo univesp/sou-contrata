@@ -46,14 +46,12 @@ class Helper
         if(!empty($candidate->id)){
             $scholarities_candidate = Scholarity::where('candidate_id', $candidate->id)->first();
         }
-        $page = 0;
+        $page = 1;
         if(!empty($candidate->id)) {
             $page = 2;
             if(!empty($scholarities_candidate->id)) {
                 $page = 3;
             }
-        } else {
-            $page = 1;
         }
         
         $userSession = [

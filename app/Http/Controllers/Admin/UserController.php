@@ -25,7 +25,6 @@ class UserController extends Controller
 
         // Find candidate by user id
         $candidate = DB::table('candidates')->where('user_id', $user->id)->first();
-      
         // Condition if user by candidate exists
         if (!empty($candidate->user_id)) {
             // Find document by candidate id
