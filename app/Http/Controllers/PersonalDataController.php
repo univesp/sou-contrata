@@ -372,7 +372,7 @@ class PersonalDataController extends Controller
         }
         // $unique = uniqid();
         // mkdir($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique, 0777, true);
-        $pdf = PDF::loadView('download.makePDF', $data)->save(Storage::disk('public')->put(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$cpf.DIRECTORY_SEPARATOR.$cpf.'-data.pdf');
+        $pdf = PDF::loadView('download.makePDF', $data)->save(Storage::disk('public')->put(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$cpf.DIRECTORY_SEPARATOR.$cpf.'-data.pdf'));
 
         return array(
             asset('storage/docs/'.$cpf.'/'.$cpf.'-data.pdf'),
