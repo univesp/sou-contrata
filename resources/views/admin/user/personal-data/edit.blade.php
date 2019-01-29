@@ -118,7 +118,8 @@
                                 <label for="comentario" class="control-label fonte-campos deficiencia none">
                                     Descreva sua Deficiência
                                 </label>
-                                <textarea name="obs_deficient" class="form-control deficiencia none" rows="2" id="comentario">{{ old('obs_deficient', $candidate->obs_deficient) }}</textarea>
+                                <textarea maxlength="50" name="obs_deficient" class="form-control deficiencia none" rows="5" id="comentario">{{ old('obs_deficient', $candidate->obs_deficient) }}</textarea>
+                                    <small id="emailHelp" class="form-text text-muted">Apenas 150 caracteres são permitidos</small>
                             </div>
                         </div>
                     </div>
@@ -165,7 +166,7 @@
                     @if($errors->has('elector_title'))
                         <p class="text-danger">{{ $errors->first('elector_title') }}</p>
                     @endif
-                    
+
                     @if($document->elector_link)
                         <br/><img class="image-size" src="{{ $document->elector_link }}" alt="Image Preview" /><br/><br/>
                         <a href="{{ $document->elector_link }}" class="btn pdf-buttom" data-toggle="tooltip" data-placement="bottom" title="Imprimir Imagem" download><i class="fa fa-download"></i></a>
@@ -262,7 +263,7 @@
                 <h4>Comprovante de Residência</h4>
                 <hr />
                 <div class="col-md-4">
-                    <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás ou Telefone<span class="cor-campo"> *</span></label>
+                    <label for="inputNumDoc_2" class="fonte-campos">Água, Luz, Gás ou Telefone<span class="cor-campo"> *</span></label><br>
                     <img class="image-size" src="{{ $address->file_address }}" alt="Image Preview" /><br/><br/>
                     <a href="{{ $address->file_address }}" class="btn pdf-buttom" data-toggle="tooltip" data-placement="bottom" title="Imprimir Imagem" download><i class="fa fa-download"></i></a>
                     <input type="file" id="file_address" class="proof_address spacing-top" name="file_address" @if($address->file_address) value="{{$address->file_address}}" @endif  @if(empty($address->file_address)) required oninvalid="this.setCustomValidity('Obrigatorio upload do Comprovante de Residência')" onchange="try{setCustomValidity('')}catch(e){}" @endif>
