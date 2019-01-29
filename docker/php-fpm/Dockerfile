@@ -78,6 +78,6 @@ WORKDIR /var/www
 ADD . /var/www
 
 RUN cd /var/www/autores && \
-    ln -s ./storage/app/public ./public/storage
+    php artisan storage:link
 
 CMD ["php-fpm"]
