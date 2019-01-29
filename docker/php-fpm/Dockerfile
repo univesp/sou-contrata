@@ -77,4 +77,7 @@ RUN rm -rf /tmp/pear \
 WORKDIR /var/www
 ADD . /var/www
 
+RUN cd /var/www/autores && \
+    ln -s ./storage/app/public ./public/storage
+
 CMD ["php-fpm"]
