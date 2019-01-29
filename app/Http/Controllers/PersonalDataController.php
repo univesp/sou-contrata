@@ -371,11 +371,11 @@ class PersonalDataController extends Controller
             }
         }
         $unique = uniqid();
-        mkdir($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique, 0777, true);
-        $pdf = PDF::loadView('download.makePDF', $data)->save($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique.DIRECTORY_SEPARATOR.$cpf.'-data.pdf');
+        // mkdir($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique, 0777, true);
+        $pdf = PDF::loadView('download.makePDF', $data)->save('storage/docs/'.$cpf.'/'.$cpf.'-data.pdf');
 
         return array(
-            asset($unique.DIRECTORY_SEPARATOR.$cpf.'-data.pdf'),
+            asset('storage/docs/'.$cpf.'/'.$cpf.'-data.pdf'),
             asset('storage/docs/'.$cpf.'/graduate.pdf'),
             asset('storage/docs/'.$cpf.'/master.pdf'),
             asset('storage/docs/'.$cpf.'/doctorate.pdf')
