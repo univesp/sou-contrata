@@ -21,7 +21,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a href="{{route('admin/personal-data/edit', $user->id)}}">Dados Pessoais</a></li>
             <li class="enabled"><a href="{{route('admin/academic-data/edit', $user->id)}}">Dados Academicos</a></li>
-            <li class="active"><a href="{{route('admin/password/edit', $user->id)}}">Senha</a></li>
+            <li class="enabled"><a href="{{route('admin/password/edit', $user->id)}}">Senha</a></li>
         </ul>
         <div class="formatacao-campos">
             *Obrigatório
