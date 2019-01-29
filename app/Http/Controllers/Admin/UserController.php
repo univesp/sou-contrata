@@ -121,15 +121,15 @@ class UserController extends Controller
             
             // Documents validations
             'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents,elector_title,' . $document->id : '',
-            'file_title'                => ($request->nationality == 0 && empty($path_file_title)) ? 'required' : '',
+            'file_title'                => ($request->nationality == 0 && !empty($path_file_title)) ? 'required' : '',
             'military_certificate'      => ($request->genre == 0 && $request->nationality == 0) ? 'required|unique:documents,military_certificate,'.$document->id : '',
-            'file_military'             => ($request->genre == 0 && $request->nationality == 0  && empty($path_file_military)) ? 'required' : '',
+            'file_military'             => ($request->genre == 0 && $request->nationality == 0  && !empty($path_file_military)) ? 'required' : '',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
             
             // Address validations
             'city'                      => 'required',
-            'file_address'              => (empty($path_file_address)) ? 'required' : '',
+            'file_address'              => (!empty($path_file_address)) ? 'required' : '',
             'neighborhood'              => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
@@ -241,7 +241,7 @@ class UserController extends Controller
     {
         // Validate all fields
         $validator = Validator::make($request->all(), [
-            'file_graduate.*' => empty($path_file) ? 'required|file|max:4000|mimes:pdf' : 'file|max:4000|mimes:pdf',
+            'file_graduate.*' => !empty($path_file) ? 'required|file|max:4000|mimes:pdf' : 'file|max:4000|mimes:pdf',
             'inputCursos.*' => 'required',
             'inpuInstituicao.*' => 'required',
             'cadlettters' => 'required',
