@@ -242,7 +242,7 @@ class UserController extends Controller
     {
         // Validate all fields
         $validator = Validator::make($request->all(), [
-            'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
+            'file_graduate.*' => !empty($path_file) ? 'required|file|max:4000|mimes:pdf' : 'file|max:4000|mimes:pdf',
             'inputCursos.*' => 'required',
             'inpuInstituicao.*' => 'required',
             'cadlettters' => 'required',
@@ -275,8 +275,8 @@ class UserController extends Controller
             $areaScholarityArray = array();
             $scholarityArray = array();
 
-            foreach ($request['graduate_dinamic'] as $k => $d) {
-                $candidate = Candidate::find($id);
+            foreach ($request['graduate_dinamic'] as $k => $d) {   
+                $candidate = Candidate::where('user_id', $id)->first();            
                 $scholarityId = Scholarity::where('candidate_id', $candidate->id)->get();
 
                 // Construct the array to call values correctly

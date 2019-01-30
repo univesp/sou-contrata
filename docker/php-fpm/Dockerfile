@@ -77,7 +77,7 @@ RUN rm -rf /tmp/pear \
 WORKDIR /var/www
 ADD . /var/www
 
-# CREATE SYMBOLIC LINK TO STORAGE IN PUBLIC
-RUN ln -s /var/www//autores/storage/app/public /var/www/autores/public/storage
+RUN cd /var/www/autores && \
+    php artisan storage:link
 
 CMD ["php-fpm"]
