@@ -122,15 +122,15 @@ class UserController extends Controller
 
             // Documents validations
             'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents,elector_title,' . $document->id : '',
-            'file_title'                => ($request->nationality == 0 && !empty($path_file_title)) ? 'required' : '',
+            'file_title'                => ($request->nationality == 0 && !empty($path_file_title)) ? 'required|image' : 'image',
             'military_certificate'      => ($request->genre == 0 && $request->nationality == 0) ? 'required|unique:documents,military_certificate,'.$document->id : '',
-            'file_military'             => ($request->genre == 0 && $request->nationality == 0  && !empty($path_file_military)) ? 'required' : '',
+            'file_military'             => ($request->genre == 0 && $request->nationality == 0  && !empty($path_file_military)) ? 'required|image' : 'image',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
 
             // Address validations
             'city'                      => 'required',
-            'file_address'              => (!empty($path_file_address)) ? 'required' : '',
+            'file_address'              => (!empty($path_file_address)) ? 'required|image' : 'image',
             'neighborhood'              => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
