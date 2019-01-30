@@ -146,6 +146,9 @@ return [
         'date_issue'                    => 'Data Emissão',
         'uf_issue'                      => 'Orgão Emissor',
         'candidate_id'                  => 'Candidato',
+        'file_title'                    => 'Titulo de Eleitor',
+        'file_military'                 => 'Certificado Militar',
+        'file_address'                  => 'Comprovante de Residência',
 
         // Addresses
         'city'                          => 'Cidade',
