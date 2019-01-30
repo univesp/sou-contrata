@@ -36,7 +36,6 @@ class UserController extends Controller
 
     public function updatePassword($id, Request $request)
     {
-
     }
 
 
@@ -238,6 +237,10 @@ class UserController extends Controller
         }
     }
 
+    public function storeAcademicData(Request $request)
+    {
+    }
+
     public function updateAcademicData($id, Request $request)
     {
         // Validate all fields
@@ -330,7 +333,8 @@ class UserController extends Controller
         }
     }
 
-    public function area() {
+    public function area() 
+    {
         // Create area list to select box
         $area = Area::orderBy('description', 'asc')->select('description', 'id')->get();
 
@@ -338,7 +342,8 @@ class UserController extends Controller
         echo json_encode($area);
     }
 
-    public function subarea($area) {
+    public function subarea($area) 
+    {
         // Add area value
         $area = (int) $area;
 
