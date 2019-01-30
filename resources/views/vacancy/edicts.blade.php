@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="classificacao">
-                <h2 class="text-uppercase text-center">Lista de credenciados para disciplinas 2019.1</h2>
+                <h2 class="text-uppercase text-center">Lista de credenciados para disciplinas 2019</h2>
                 <iframe src="{{$data->link_classification}}"
                     class="iframe-pdf" frameborder="0"></iframe>
                                 <div class="container">

@@ -19,11 +19,11 @@
     {{--  {{dd($candidate, $scholarity[0], $scholarity[0]_type)}}  --}}
     <div class="container">
         <div id="msgFail"></div>
-        
+
         <ul class="nav nav-tabs">
             <li class="enabled"><a href="{{route('admin/personal-data/edit', $candidate->user_id)}}">Dados Pessoais</a></li>
             <li class="active"><a href="{{route('admin/academic-data/edit', $candidate->user_id)}}">Dados Academicos</a></li>
-            <li class="active"><a href="{{route('admin/password/edit', $candidate->user_id)}}">Senha</a></li>
+            <li style="display:none;" class="enabled"><a href="{{route('admin/password/edit', $candidate->user_id)}}">Senha</a></li>
         </ul>
 
         <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
@@ -41,6 +41,11 @@
             </div>
             <br />
             <hr />
+            <div style="float:right;">
+                <div class="row">
+                    <button type="button" onclick="getfocus()" class="btn btn-success btn-sm novo">Adicionar Nova Graduação</button>
+                </div>
+            </div>
             @foreach($scholarity as $scholl)
                 <div class="row">
                     <h3>Formação Acadêmica</h3>
@@ -67,7 +72,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Selecione a sua Subárea</label>
-                                <select name="subarea_id[]" class="form-control graduations subarea" id="subarea" disabled required>
+                                <select name="subarea_id[]" class="form-control graduations subarea" id="subarea" required>
                                     <option value="{{$scholl->subarea[0]->id}}">{{$scholl->subarea[0]->description}}</option>
                                 </select>
                             </div>
@@ -104,13 +109,14 @@
                                 <button type="button" data-toggle="modal" data-target="#modal-success" class="btn pdf-buttom">Ver Diploma</button><br/>
                                 <label for="inpuInstituicao" class="fonte-campos">Insira seu Diploma aqui<span class="cor-campo"> *</span></label>
                                 <div class="display-flex">
-                                    <input type="file" name="file_graduate[]" class="file_graduate" required  accept="application/pdf"/>
+                                    <input type="file" name="file_graduate[]" class="file_graduate" @if($scholl->link)  @endif  accept="application/pdf"/>
+                                    @if($errors->has('file_graduate[]'))
+                                        <p class="text-danger">{{ $errors->first('file_graduate[]') }}</p>
+                                    @endif
                                 </div>
                                 <span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>
                             </div><br />
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-success btn-sm novo">Novo</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -123,7 +129,7 @@
             <hr />
             <div class="row">
                 <p class="top">Adicionar Formação : <span class="cor-campo"> * | Graduação | Mestrado | Doutorado</span>
-                    <button type="submit" class="btn btn-danger float-right submit" disabled>ATUALIZAR</button>
+                    <button type="submit" class="btn btn-danger float-right submit">ATUALIZAR</button>
                     <a href="{{route('home')}}"><button type="button" class="btn btn-danger space-btw-button">VOLTAR</button></a>
                 </p>
             </div>

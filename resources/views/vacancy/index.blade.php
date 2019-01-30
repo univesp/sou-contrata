@@ -19,7 +19,8 @@
 @section('content')
 
     <div class="container">
-        <table class="table">
+        <div class="form_dados"></div>
+        <table class="table" id="example">
             <thead>
                 <tr>
                     <th scope="col">Edital</th>
