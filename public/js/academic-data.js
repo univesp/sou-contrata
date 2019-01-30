@@ -1,3 +1,7 @@
+function getfocus() {
+    document.getElementById("myAnchor").focus();
+}
+
 $(function() {
     var CONTADOR = 0;
     var CERTIFICADOS = new Array();
@@ -33,7 +37,7 @@ $(function() {
         HTML.push('<div class="col-md-12" style="margin: 30px 0 0 0;">');
         HTML.push('<fieldset class="scheduler-border">');
         HTML.push(
-            '<legend class="scheduler-border">Adição de Formação Acadêmica</legend>'
+            '<legend class="scheduler-border" >Adição de Formação Acadêmica</legend>'
         );
         HTML.push('<div class="col-md-7">');
         HTML.push('<div class="row">');
@@ -118,7 +122,7 @@ $(function() {
         );
         HTML.push("</div><br />");
         HTML.push(
-            '<button type="button" class="btn btn-success btn-sm novo" style="margin-top: -40px;" novo=' +
+            '<button id="myAnchor" type="button" class="btn btn-success btn-sm novo" style="margin-top: -40px;" novo=' +
                 codigo +
                 ">Novo</button>"
         );
