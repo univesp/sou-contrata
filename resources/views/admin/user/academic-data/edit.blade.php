@@ -19,7 +19,7 @@
     {{--  {{dd($candidate, $scholarity[0], $scholarity[0]_type)}}  --}}
     <div class="container">
         <div id="msgFail"></div>
-        
+
         <ul class="nav nav-tabs">
             <li class="enabled"><a href="{{route('admin/personal-data/edit', $candidate->user_id)}}">Dados Pessoais</a></li>
             <li class="active"><a href="{{route('admin/academic-data/edit', $candidate->user_id)}}">Dados Academicos</a></li>
