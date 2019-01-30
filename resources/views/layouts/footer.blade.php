@@ -12,7 +12,7 @@
                     <i class="fab fa-instagram"></i></a>
                     <a href="https://www.youtube.com/channel/UCBL2tfrwhEhX52Dze_aO3zA" target="_blank" title="YouTube">
                     <i class="fab fa-youtube"></i></a><br>
-                    <strong><small>v1.0.23qa</small></strong>
+                    <strong><small>v1.0.24qa</small></strong>
                 </p>
         </div>
     </div>
