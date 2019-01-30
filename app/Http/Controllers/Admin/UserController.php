@@ -26,7 +26,8 @@ class UserController extends Controller
 
             // Return this view
             return view("admin.user.password.edit")
-                ->with('user', $user);
+                ->with('user', $user)
+                ->with('id', $id);
         } else {
             // Return this view
             return redirect()->route("home");
@@ -53,7 +54,7 @@ class UserController extends Controller
 
             // Find address by candidate id
             $address = Address::where('candidate_id', $candidate->id)->first();
-         
+
             // Return this view
             return view("admin.user.personal-data.edit")
                 ->with('address', $address)
@@ -65,7 +66,7 @@ class UserController extends Controller
         } else {
             // Return this view
             return redirect()->route("home");
-        }      
+        }
     }
 
     public function updatePersonalData($id, $candidate_id, Request $request)
@@ -101,7 +102,7 @@ class UserController extends Controller
             $base64 = base64_encode($fileData);
             $path_file_title = "data:{$fileMimeType};base64,{$base64}";
         }
-        
+
         // Find candidate, document & address by id
         $candidate = Candidate::where('user_id', $id)->first();
         $document = Document::where('candidate_id', $candidate_id)->first();
@@ -118,7 +119,7 @@ class UserController extends Controller
             'nationality'       => 'required',
             'phone'             => 'required',
             'mobile'            => 'required',
-            
+
             // Documents validations
             'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents,elector_title,' . $document->id : '',
             'file_title'                => ($request->nationality == 0 && !empty($path_file_title)) ? 'required' : '',
@@ -126,7 +127,7 @@ class UserController extends Controller
             'file_military'             => ($request->genre == 0 && $request->nationality == 0  && !empty($path_file_military)) ? 'required' : '',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
-            
+
             // Address validations
             'city'                      => 'required',
             'file_address'              => (!empty($path_file_address)) ? 'required' : '',
@@ -137,7 +138,7 @@ class UserController extends Controller
             'state'                     => 'required',
             'type_public_place'         => 'required',
         ]);
-            
+
         // Validate if the rules are met
         if ($validator->fails()) {
             return redirect()
@@ -161,10 +162,10 @@ class UserController extends Controller
             $candidate->flag_deficient      = ($request->obs_deficient) ? 1 : 0 ;
             $candidate->phone               = trim($request->area_code_phone.' '.$request->phone);
             $candidate->mobile              = trim($request->area_code_mobile.' '.$request->mobile);
-            
+
             // Update in database
             if ($candidate->save()) {
-                // Update document               
+                // Update document
                 $document->elector_title            = isset($request->elector_title)? $request->elector_title : NULL;
                 $document->military_certificate     = isset($request->military_certificate)? $request->military_certificate : NULL;
                 $document->date_issue               = date('Y-m-d', strtotime($request->date_issue));
@@ -178,7 +179,7 @@ class UserController extends Controller
                 // Update in database
                 $document->save();
 
-                // Update address                
+                // Update address
                 $address->city                      = $request->city;
                 $address->complement                = $request->complement;
                 $address->neighborhood              = $request->neighborhood;
@@ -220,7 +221,7 @@ class UserController extends Controller
 
         // Condition if candidate id is empty
         if (!empty($scholarity[0]->candidate_id)) {
-     
+
             // Array to select save in database
             $scholarity_type = ['graduate','master','doctorate'];
 
@@ -234,14 +235,14 @@ class UserController extends Controller
         } else {
             // Return this view
             return redirect()->route("home");
-        }      
+        }
     }
 
     public function updateAcademicData($id, Request $request)
     {
         // Validate all fields
         $validator = Validator::make($request->all(), [
-            'file_graduate.*' => 'required|file|max:4000|mimes:pdf',
+            'file_graduate.*' => !empty($path_file) ? 'required|file|max:4000|mimes:pdf' : 'file|max:4000|mimes:pdf',
             'inputCursos.*' => 'required',
             'inpuInstituicao.*' => 'required',
             'cadlettters' => 'required',
@@ -264,29 +265,29 @@ class UserController extends Controller
                 ]))
             ;
         }
-            
+
         $path_file = null;
         $scholarity_type = ['graduate','master','doctorate'];
-      
+
         // Validate if graduate dinamic has more than three
         if(count($request->graduate_dinamic) >= 3) {
             // Declarate empty array
             $areaScholarityArray = array();
             $scholarityArray = array();
 
-            foreach ($request['graduate_dinamic'] as $k => $d) {
-                $candidate = Candidate::find($id);                
+            foreach ($request['graduate_dinamic'] as $k => $d) {   
+                $candidate = Candidate::where('user_id', $id)->first();            
                 $scholarityId = Scholarity::where('candidate_id', $candidate->id)->get();
-                
+
                 // Construct the array to call values correctly
                 array_push ($scholarityArray, $scholarityId);
                 $scholarity[] = Scholarity::distinct()->whereIn('id', [$scholarityId[$k]->id])->first();
-                
+
                 array_push ($areaScholarityArray, $scholarityId[$k]->id);
                 $areaScholarity[] = ScholarityArea::distinct()->whereIn('scholarity_id', [$areaScholarityArray[$k]])->first();
             }
-            
-            for ($i=0; $i < count($scholarity); $i++) { 
+
+            for ($i=0; $i < count($scholarity); $i++) {
                 // Validate if file graduate exist
                 if ($request->hasFile('file_graduate.'.$i) && $request->file('file_graduate.'.$i)->isValid()) {
                     $file = Input::file('file_graduate.'.$i);
@@ -305,12 +306,12 @@ class UserController extends Controller
                 $scholarity[$i]->scholarity_type = $scholarity_type[$i];
                 $scholarity[$i]->teaching_institution = $request->inpuInstituicao[$i];
                 $scholarity[$i]->area_id = $request->area_id[$i];
-                $scholarity[$i]->course_name = $request->inputCursos[$i]; 
+                $scholarity[$i]->course_name = $request->inputCursos[$i];
 
                 // Update in database
                 if($scholarity[$i]->save()) {
-                    for ($as=0; $as < count($areaScholarity); $as++) { 
-                        // Update area scholarity    
+                    for ($as=0; $as < count($areaScholarity); $as++) {
+                        // Update area scholarity
                         $areaScholarity[$as]->area_id = $request->area_id[$as];
                         $areaScholarity[$as]->subarea_id = $request->subarea_id[$as];
 
@@ -318,12 +319,12 @@ class UserController extends Controller
                         $areaScholarity[$as]->save();
                     }
                 }
-            }     
-            
+            }
+
             // Return this view
             return redirect()->route('home');
         } else {
-            
+
             // Return this view
             return redirect()->route('admin/academic-data/edit', $id);
         }
@@ -348,7 +349,7 @@ class UserController extends Controller
             ->where('area_subarea.area_id', $area)
             ->orderBy('subareas.description', 'asc')
             ->select('subareas.description', 'subareas.id')->get();
-            
+
         // Return subareas value
         echo json_encode($subareas);
     }
