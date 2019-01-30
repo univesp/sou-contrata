@@ -41,6 +41,11 @@
             </div>
             <br />
             <hr />
+            <div style="float:right;">
+                <div class="row">
+                    <button type="button" onclick="getfocus()" class="btn btn-success btn-sm novo">Adicionar Nova Graduação</button>
+                </div>
+            </div>
             @foreach($scholarity as $scholl)
                 <div class="row">
                     <h3>Formação Acadêmica</h3>
@@ -111,9 +116,7 @@
                                 </div>
                                 <span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>
                             </div><br />
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-success btn-sm novo">Novo</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
