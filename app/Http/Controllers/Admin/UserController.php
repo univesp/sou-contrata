@@ -349,7 +349,9 @@ class UserController extends Controller
                 $scholarity[$i]->end_date  = Helper::br_to_bank($request->inputDataConclusao[$i]);
                 $scholarity[$i]->init_date = Helper::br_to_bank($request->inputDataConclusao[$i]);
                 if($path_file) { $scholarity[$i]->link = $path_file; }
-                $scholarity[$i]->scholarity_type = $request->scholarity_type;
+                //dd($scholarity_type[$request->graduate_dinamic[$k]], $scholarity_type, $request->graduate_dinamic[$k]);
+
+                $scholarity[$i]->scholarity_type = $scholarity_type[$request->graduate_dinamic[$i]];
                 $scholarity[$i]->teaching_institution = $request->inpuInstituicao[$i];
                 $scholarity[$i]->area_id = $request->area_id[$i];
                 $scholarity[$i]->course_name = $request->inputCursos[$i];

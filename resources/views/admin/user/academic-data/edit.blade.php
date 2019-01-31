@@ -56,6 +56,8 @@
                             <div class="col-md-12">
                                 <select name="graduate_dinamic[]" id="0" class="form-control graduate_dinamic tier">
                                     <option value="">SELECIONE A SUA FORMAÇÃO</option>
+
+
                                     <option value="0" @if (old('graduate_dinamic.0', $scholl->scholarity_type)=='graduate' ) selected="selected" @endif>GRADUAÇÃO</option>
                                     <option value="1" @if (old('graduate_dinamic.0', $scholl->scholarity_type)=='master' ) selected="selected" @endif>MESTRADO</option>
                                     <option value="2" @if (old('graduate_dinamic.0', $scholl->scholarity_type)=='doctorate' ) selected="selected" @endif>DOUTORADO</option>
