@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Candidate as Candidate;
 use App\Document;
 use App\Scholarity;
@@ -20,8 +21,9 @@ class UserController extends Controller
 {
     public function editPassword($id)
     {
-        $user = User::find($id);
-
+        // Find user by id
+        $user = User::where('id', $id)->first();
+    
         if (!empty($user->id)) {
 
             // Return this view
@@ -36,8 +38,41 @@ class UserController extends Controller
 
     public function updatePassword($id, Request $request)
     {
-    }
+        // Find by user id
+        $user = User::find($id);
+        
+        // Validate all fields
+        $validator = Validator::make($request->all(), [
+            // Candidate validations
+            'old_password'      => 'required',
+            'password'          => 'required|same:password_confirm',
+        ]);
 
+        // Validate if the rules are met
+        if ($validator->fails()) {
+            // Return json with errors
+            return response()->json(['errors' => $validator->errors()->all()]);
+        } else {
+            
+            // Request all fields
+            $input = $request->all();
+
+            // Validation if the old password is equal to the one in the database
+            if(Hash::check($request->old_password, $user->password)) {                
+                
+                // Condition if password field is empty
+                if(!empty($input['password'])){ 
+                    $input['password'] = Hash::make($input['password']);
+                }
+
+                // Update password
+                $user->update($input);
+
+                // Return response value to script
+                return response()->json([$user, 'success'=>'Senha atualizada com sucesso!']);
+            }
+        }
+    }
 
     public function editPersonalData($id)
     {
