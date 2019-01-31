@@ -1,27 +1,23 @@
 @extends('layouts.header')
 
 @section('title')
-    DADOS ACADÊMICOS
+    SENHA
 @endsection
 
 @section('css')
-    <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">    
 @endsection
-
-
 
 @section('content')
     @section('cabecalho')
-        DADOS ACADÊMICOS
+        SENHA
     @endsection
 
     @section('username')
         {{ "Bem vindo, ". Session::get('user')['user'] }}
     @endsection
-    {{--  {{dd($candidate, $scholarity[0], $scholarity[0]_type)}}  --}}
+
     <div class="container">
-        <div id="msgFail"></div>
 
         <ul class="nav nav-tabs">
             <li class="enabled"><a href="{{route('admin/personal-data/edit', $user->id)}}">Dados Pessoais</a></li>
@@ -29,54 +25,54 @@
             <li class="active"><a href="{{route('admin/password/edit', $user->id)}}">Senha</a></li>
         </ul>
 
-       <form action="{{ route('admin/password/update', $id)}}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="row">
-                <div class="login-body">
-                    <article class="container-login center-block">
-                        <section>
-                            <ul id="top-bar" class="nav nav-tabs nav-justified">
-                                <li><a href="#">Esqueci minha Senha</a></li>
-                            </ul>
-                            <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
-                                <div id="login-access" class="tab-pane fade active in">
-                                    <h2 style="margin-top:0px;"><i class="glyphicon glyphicon-log-in"></i> Accesso</h2>
-                                    <form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
-                                        <div class="form-group ">
-                                            <label for="login" >Digite sua Senha Antiga</label>
-                                               <input type="text" class="form-control" name="login" id="login_value"
-                                                    placeholder="Digite sua Senha Antiga" tabindex="1" value="" />
-                                        </div>
+        <input type="hidden" id="hidden-id" value="{{ $user->id }}">
+        {{ csrf_field() }}
+        <div class="row">
+            <div class="login-body">
+                <article class="container-login center-block">
+                    <section>
+                        <ul id="top-bar" class="nav nav-tabs nav-justified">
+                            <li><a href="#" >Esqueci minha Senha</a></li>
+                        </ul>
+                        <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+                            <div id="msgFail"></div><div id="msgSuccess"></div>
+                            <div id="login-access" class="tab-pane fade active in">
+                                <h2 style="margin-top:0px;"><i class="fa fa-unlock"></i> Accesso</h2>
+                                <form method="post" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+                                    <div class="form-group ">
+                                        <label for="old_password" >Digite sua Senha Antiga</label>
+                                            <input type="password" class="form-control" name="old_password" id="old_password"
+                                                placeholder="Digite sua Senha Antiga" tabindex="1" value="" required/>
+                                    </div>
 
-                                        <div class="form-group ">
-                                            <label for="password" >Digite uma Nova Senha</label>
-                                                <input type="password" class="form-control" name="password" id="password"
-                                                    placeholder="Digite uma Nova Senha" value="" tabindex="2" />
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="password" >Digite uma Nova Senha</label>
+                                            <input type="password" class="form-control" name="password" id="password"
+                                                placeholder="Digite uma Nova Senha" value="" tabindex="2" required/>
+                                    </div>
 
-                                        <div class="form-group ">
-                                            <label for="password" >Confirme a nova Senha</label>
-                                                <input type="password" class="form-control" name="password" id="password"
-                                                    placeholder="Confirme a nova Senha" value="" tabindex="2" />
-                                        </div>
-                                        <br>
-                                        <div class="form-group ">
-                                                <button style="border:none;" type="submit" name="log-me-in" id="submit" tabindex="5" >Confirmar alteração de Senha</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                    <div class="form-group">
+                                        <label for="password_confirm" >Confirme a nova Senha</label>
+                                            <input type="password" class="form-control" name="password_confirm" id="password_confirm"
+                                                placeholder="Confirme a nova Senha" value="" tabindex="2" />
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <button style="border:none;" type="button" name="log-me-in" id="submit" tabindex="5" >Confirmar alteração de Senha</button>
+                                    </div>
+                                </form>
                             </div>
-                        </section>
-                    </article>
-                </div>
+                        </div>
+                    </section>
+                </article>
             </div>
-        </form>
+        </div>
 
-       </div>
+    </div>
 
     @include('layouts.footer')
 @endsection
 
 @section('scripts')
-    <script src="{{URL::asset('/js/admin/academic-data.js')}}"></script>
+    <script src="{{URL::asset('/js/admin/password.js')}}"></script>
 @endsection
