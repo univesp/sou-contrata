@@ -50,10 +50,10 @@ class UserController extends Controller
 
         // Validate if the rules are met
         if ($validator->fails()) {
-            // Return json with errors
+            // Return response with errors
             return response()->json(['errors' => $validator->errors()->all()]);
+
         } else {
-            
             // Request all fields
             $input = $request->all();
 
@@ -69,7 +69,11 @@ class UserController extends Controller
                 $user->update($input);
 
                 // Return response value to script
-                return response()->json([$user, 'success'=>'Senha atualizada com sucesso!']);
+                return response()->json([$user, 'success' => 'Senha atualizada com sucesso!.']);
+                
+            }else {
+                // Return json with errors
+                return response()->json(['errors' => ['Senha antiga incorreta.']]);
             }
         }
     }

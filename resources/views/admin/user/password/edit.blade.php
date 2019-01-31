@@ -32,7 +32,7 @@
                 <article class="container-login center-block">
                     <section>
                         <ul id="top-bar" class="nav nav-tabs nav-justified">
-                            <li><a href="#" >Esqueci minha Senha</a></li>
+                            <li><a href="#" >Editar Senha</a></li>
                         </ul>
                         <div class="tab-content tabs-login col-lg-12 col-md-12 col-sm-12 cols-xs-12">
                             <div id="msgFail"></div><div id="msgSuccess"></div>
