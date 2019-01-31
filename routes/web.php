@@ -96,6 +96,10 @@ Route::post('admin/password/update/{id}','Admin\UserController@updatePassword')
     ->name('admin/password/update')
     ->middleware('login');
 
+Route::post('admin/password/update/{id}','Admin\UserController@updatePassword')
+    ->name('admin/password/update')
+    ->middleware('login');
+
 // Edit personal data
 Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')
     ->name('admin/personal-data/edit')
@@ -127,3 +131,6 @@ Route::get('admin/area','Admin\UserController@area')
 Route::get('admin/subarea/{area}','Admin\UserController@subarea')
     ->name('admin/subarea')
     ->middleware('login');
+
+
+
