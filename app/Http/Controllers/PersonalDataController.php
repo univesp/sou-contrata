@@ -310,18 +310,13 @@ class PersonalDataController extends Controller
 
     }
 
-    public function downloadPDF($cpf)
+    public function downloadPDF($id)
     {
 
-       if(!is_numeric($cpf)){
-            return "Valor precisa ser numerico";
-        }
 
-        if(strlen($cpf) != 11){
-            return "Valor precisa ser de 11 caracteres";
-        }
-        $candidate = Candidate::where('cpf','=',$cpf)
-            ->first();
+        $candidate = Candidate::find($id)->first();
+
+
         $user = User::where('id','=',$candidate->user_id)
             ->first();
 
@@ -362,24 +357,25 @@ class PersonalDataController extends Controller
             ];
 
 
+        $unique = uniqid();
         foreach ($scholarity as $scholl){
             $link = explode(";", $scholl->link);
             if($link[0] == 'data:application/pdf'){
                 $link2 = explode(",", $scholl->link);
-                Storage::disk('public')->put(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$cpf.DIRECTORY_SEPARATOR.$scholl->scholarity_type.'.pdf', base64_decode($link2[1]));
-                //Storage::download(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$cpf.DIRECTORY_SEPARATOR.$scholl->scholarity_type.'.pdf', $scholl->scholarity_type.'.pdf');
+                Storage::disk('public')->put(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$unique.DIRECTORY_SEPARATOR.$scholl->scholarity_type.'.pdf', base64_decode($link2[1]));
+                //Storage::download(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$unique.DIRECTORY_SEPARATOR.$scholl->scholarity_type.'.pdf', $scholl->scholarity_type.'.pdf');
             }
         }
         // $unique = uniqid();
         // mkdir($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique, 0777, true);
-        // $pdf = PDF::loadView('download.makePDF', $data)->save($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique.DIRECTORY_SEPARATOR.$cpf.'-data.pdf');
+        // $pdf = PDF::loadView('download.makePDF', $data)->save($_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.$unique.DIRECTORY_SEPARATOR.$unique.'-data.pdf');
         $pdf = PDF::loadView('download.makePDF', $data);
-        Storage::disk('public')->put(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$cpf.DIRECTORY_SEPARATOR.$cpf.'-data.pdf',  $pdf->output());
+        Storage::disk('public')->put(DIRECTORY_SEPARATOR.'docs'.DIRECTORY_SEPARATOR.$unique.DIRECTORY_SEPARATOR.$unique.'-data.pdf',  $pdf->output());
         return array(
-            asset('storage/docs/'.$cpf.'/'.$cpf.'-data.pdf'),
-            asset('storage/docs/'.$cpf.'/graduate.pdf'),
-            asset('storage/docs/'.$cpf.'/master.pdf'),
-            asset('storage/docs/'.$cpf.'/doctorate.pdf')
+            asset('storage/docs/'.$unique.'/'.$unique.'-data.pdf'),
+            asset('storage/docs/'.$unique.'/graduate.pdf'),
+            asset('storage/docs/'.$unique.'/master.pdf'),
+            asset('storage/docs/'.$unique.'/doctorate.pdf')
 
             );
     }

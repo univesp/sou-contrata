@@ -58,7 +58,7 @@
                             @else
                                 <td class="Danger">Não</td>
                             @endif
-                            <td><button type="submit" class="btn btn-default" data-toggle="modal" onClick='downloadPDF({{$candidate->cpf}})' data-target="#exampleModal">Gerar PDF</button></td>
+                            <td><button type="submit" class="btn btn-default" data-toggle="modal" onClick='downloadPDF({{$candidate->id}})' data-target="#exampleModal">Gerar PDF</button></td>
 
                         </tr>
                     @endforeach
@@ -96,19 +96,17 @@
     </div>
      <script type="text/javascript">
 
-         function downloadPDF(cpf) {
+         function downloadPDF(id) {
             document.getElementById("links").style.display = "none";
              $.ajaxSetup({
                  headers: {
                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                  }
              });
-             console.log('gerando PDF para : ' + cpf);
-
              $.ajax({
-                 url: "pdf-download/"+cpf,
+                 url: "pdf-download/"+id,
                  type: "POST",
-                 data: cpf,
+                 data: id,
                  success: function (result) {
                      console.log(result);
                      $("#info").attr("href", result[0])
@@ -147,7 +145,6 @@
                 type: "POST",
                 data: $("#txtCpf").val(),
                 success: function (result) {
-                     console.log('testes');
                     if(typeof result != 'string'){
 
                         document.getElementById('divData').style.display = "block";

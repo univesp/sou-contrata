@@ -44,7 +44,7 @@
             <hr />
             <div style="float:right;">
                 <div class="row">
-                    <button type="button" onclick="getfocus()" class="btn btn-success btn-sm novo">Adicionar Nova Graduação</button>
+                    <button type="button" class="btn btn-success btn-sm novo">Adicionar Nova Graduação</button>
                 </div>
             </div>
             @foreach($scholarity as $scholl)
