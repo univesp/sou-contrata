@@ -146,6 +146,9 @@ return [
         'date_issue'                    => 'Data Emissão',
         'uf_issue'                      => 'Orgão Emissor',
         'candidate_id'                  => 'Candidato',
+        'file_title'                    => 'Titulo de Eleitor',
+        'file_military'                 => 'Certificado Militar',
+        'file_address'                  => 'Comprovante de Residência',
 
         // Addresses
         'city'                          => 'Cidade',
@@ -157,6 +160,11 @@ return [
         'public_place'                  => 'Lougradouro',
         'state'                         => 'UF',
         'type_public_place'             => 'Tipo Logradouro',
+
+        // Password
+        'password'                      => 'Senha',
+        'old_password'                  => 'Senha Antiga',
+        'password_confirm'              => 'Confirmação de Senha'
     ],
 
 ];
