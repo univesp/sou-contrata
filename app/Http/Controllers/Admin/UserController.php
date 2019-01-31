@@ -284,6 +284,7 @@ class UserController extends Controller
 
     public function updateAcademicData($id, Request $request)
     {
+
         // Validate all fields
         $validator = Validator::make($request->all(), [
             'file_graduate.*' => !empty($path_file) ? 'required|file|max:4000|mimes:pdf' : 'file|max:4000|mimes:pdf',
@@ -331,7 +332,8 @@ class UserController extends Controller
                 $areaScholarity[] = ScholarityArea::distinct()->whereIn('scholarity_id', [$areaScholarityArray[$k]])->first();
             }
 
-            for ($i=0; $i < count($scholarity); $i++) {
+
+            for ($i=0; $i < sizeof($scholarity); $i++) {
                 // Validate if file graduate exist
                 if ($request->hasFile('file_graduate.'.$i) && $request->file('file_graduate.'.$i)->isValid()) {
                     $file = Input::file('file_graduate.'.$i);
@@ -347,7 +349,7 @@ class UserController extends Controller
                 $scholarity[$i]->end_date  = Helper::br_to_bank($request->inputDataConclusao[$i]);
                 $scholarity[$i]->init_date = Helper::br_to_bank($request->inputDataConclusao[$i]);
                 if($path_file) { $scholarity[$i]->link = $path_file; }
-                $scholarity[$i]->scholarity_type = $scholarity_type[$i];
+                $scholarity[$i]->scholarity_type = $request->scholarity_type;
                 $scholarity[$i]->teaching_institution = $request->inpuInstituicao[$i];
                 $scholarity[$i]->area_id = $request->area_id[$i];
                 $scholarity[$i]->course_name = $request->inputCursos[$i];
