@@ -20,6 +20,7 @@ $(document).ready(function(){
                     $('#msgSuccess').append(
                         '<div class="alert alert-success" role="alert">'+ data.success +'</div>'
                     );
+                    $('input[type="password"]').val('');
                 }
 
                 if(data.errors) {
