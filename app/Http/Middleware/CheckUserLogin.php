@@ -27,7 +27,7 @@ class CheckUserLogin
         $prefix = explode("/", Route::getCurrentRoute()->getName());
         //PAINEL ADMINISTRATIVO
         if($prefix[0] == "admin"){
-            if($user['flag_admin'] == 0 && $user['permission'] == 3){
+            if($user['flag_admin'] == 0){
                 //User comum
                 if(!empty($request->route()->parameters()['id']) && $request->route()->parameters()['id'] == $user['id']){
                     if(Route::getCurrentRoute()->getName() == "admin/admin-user"){
@@ -40,26 +40,44 @@ class CheckUserLogin
             }
             if($user['flag_admin'] == 1){
                 //User admin
+                if (Route::getCurrentRoute()->getName() == "professorPersonalData"){
+                    return redirect()->route("admin/admin-user");
+                }elseif (Route::getCurrentRoute()->getName() == "professorAcademicData"){
+                    return redirect()->route("admin/admin-user");
+                }
+                return $next($request);
+            }
+        }else{
+            if($user['flag_admin'] == 0){
+                if ($user['permission'] == 1 && Route::getCurrentRoute()->getName() != "professorPersonalData"){
+                    return redirect()->route('professorPersonalData');
+                }elseif ($user['permission'] == 2 && Route::getCurrentRoute()->getName() != "professorAcademicData"){
+                    return redirect()->route('professorAcademicData');
+                }elseif ($user['permission'] == 3 && Route::getCurrentRoute()->getName() == "professorPersonalData"){
+                    if(!empty(Session::get('edict_id'))){
+                        return redirect()->route('process');
+                    }
+                    return redirect()->route('home');
+                }elseif ($user['permission'] == 3 && Route::getCurrentRoute()->getName() == "professorAcademicData"){
+                    if(!empty(Session::get('edict_id'))){
+                        return redirect()->route('process');
+                    }
+                    return redirect()->route('home');
+                }
+
+                return $next($request);
+            }
+            if($user['flag_admin'] == 1){
+                //User admin
+                if (Route::getCurrentRoute()->getName() == "professorPersonalData"){
+                    return redirect()->route("admin/admin-user");
+                }elseif (Route::getCurrentRoute()->getName() == "professorAcademicData"){
+                    return redirect()->route("admin/admin-user");
+                }
                 return $next($request);
             }
         }
 
-        if ($user['permission'] == 1 && Route::getCurrentRoute()->getName() != "professorPersonalData"){
-            return redirect()->route('professorPersonalData');
-        }elseif ($user['permission'] == 2 && Route::getCurrentRoute()->getName() != "professorAcademicData"){
-            return redirect()->route('professorAcademicData');
-        }elseif ($user['permission'] == 3 && Route::getCurrentRoute()->getName() == "professorPersonalData"){
-            if(!empty(Session::get('edict_id'))){
-                    return redirect()->route('process');
-            }
-            return redirect()->route('home');
-        }elseif ($user['permission'] == 3 && Route::getCurrentRoute()->getName() == "professorAcademicData"){
-            if(!empty(Session::get('edict_id'))){
-                    return redirect()->route('process');
-            }
-            return redirect()->route('home');
-        }
 
-        return $next($request);
     }
 }
