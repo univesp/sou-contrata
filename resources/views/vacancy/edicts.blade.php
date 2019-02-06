@@ -17,7 +17,6 @@
 
     <div class="container">
         {{-- Nav Tabs --}}
-        <?php $diff = date_diff(date_create($data->date_end), date_create(now()));?>
         <p class="formatacao-resumo">
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#edital" aria-controls="edital" role="tab" data-toggle="tab">Edital</a></li>
@@ -27,7 +26,6 @@
               </ul>
         </p>
 
-
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="edital">
@@ -36,9 +34,9 @@
                             class="iframe-pdf" frameborder="0"></iframe>
                 <div class="container">
                     <div class="col-md-12 col-sm-12 col-xs-12">
-                        @if($diff->format("%R%a") < 0)
+                        @if(\App\Helpers\Helper::dateDiff($data->date_end) > 0)
                             <span class="texto-formatacao">
-                            Prazo de Inscrição: Encerramento, dia {{date_format(date_create($data->date_end), 'd/m/Y')}}</span>
+                            Prazo de Inscrição: Encerramento, dia {{date_format(date_create($data->date_end), 'd/m/Y H:i')}}</span>
                         @else
                             <span class="texto-formatacao">Prazo de Inscrição: Encerrado</span>
                         @endif
@@ -50,13 +48,13 @@
                             <div class="botao-posicao">
                                 <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                             </div>
-                            @if($diff->format("%R%a") < 0)
+                            @if(\App\Helpers\Helper::dateDiff($data->date_end) > 0)
                                 <div class="botao-posicao">
                                     <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
                                 </div>
                             @endif
                         @else
-                            @if($diff->format("%R%a") < 0)
+                            @if(\App\Helpers\Helper::dateDiff($data->date_end) > 0)
                                 <div class="botao-posicao">
                                     <a href="{{route('professorPersonalData')}}"><button type="button" class="btn btn-danger">PROSSEGUIR</button></a>
                                 </div>
@@ -94,7 +92,7 @@
                         <div class="botao-posicao">
                             <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
                         </div>
-                        @if($diff->format("%R%a") < 0)
+                        @if(\App\Helpers\Helper::dateDiff($data->date_end) > 0)
                             <div class="botao-posicao">
                                 <a href="{{route('form')}}"><button type="button" class="btn btn-danger">QUERO ME CADASTRAR</button></a>
                             </div>
@@ -120,6 +118,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
     @include('layouts.footer')
 @endsection
