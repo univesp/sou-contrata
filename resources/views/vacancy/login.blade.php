@@ -40,7 +40,7 @@
 					</div>
 					<div class="step-footer">
 						<a href="">Esqueci minha senha</a>
-						<button class="btn-red btn-danger" id="btnNext" type="button">Próxima</button>
+						<button class="btn btn-danger" id="btnNext" type="button">Próxima</button>
 						<div class="clearfix"></div>
 					</div>
 				</div>
@@ -55,7 +55,7 @@
 					</div>
 					<div class="step-footer">
 						<a href="" target="_blank">Esqueci minha senha</a>
-						<button type="submit" class="btn-red btn-danger" id="btnSubmit">Enviar</button>
+						<button type="submit" class="btn btn-danger" id="btnSubmit">Enviar</button>
 						<div class="clearfix"></div>
 					</div>
 				</div>

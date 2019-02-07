@@ -5,6 +5,7 @@ use App\Candidate;
 use App\Scholarity;
 use App\Document;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class Helper
 {
@@ -12,6 +13,21 @@ class Helper
     {
         // Utiliza a classe de Carbon para converter ao formato de data ou hora desejado
         return Carbon\Carbon::parse($value)->format($format);
+    }
+    static function dateDiff($data)
+    {
+        $UTC = new \DateTimeZone("UTC");
+        $newTZ = new \DateTimeZone("America/Sao_Paulo");
+
+        $dateNow = new \DateTime(now(),$UTC);
+        $dateNow->setTimezone($newTZ);
+        $dateStart   = new \DateTime($data);
+
+
+        $today = strtotime($dateNow->format('Y/m/d H:i:s'));
+        $start = strtotime($dateStart->format('Y/m/d H:i:s'));
+
+       return $start - $today;
     }
 
     static function formatText($value, $type = 'upper')

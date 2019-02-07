@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Candidate as Candidate;
 use App\Document;
 use App\Scholarity;
@@ -20,8 +21,9 @@ class UserController extends Controller
 {
     public function editPassword($id)
     {
-        $user = User::find($id);
-
+        // Find user by id
+        $user = User::where('id', $id)->first();
+    
         if (!empty($user->id)) {
 
             // Return this view
@@ -36,12 +38,50 @@ class UserController extends Controller
 
     public function updatePassword($id, Request $request)
     {
+        // Find by user id
+        $user = User::find($id);
+        
+        // Validate all fields
+        $validator = Validator::make($request->all(), [
+            // Candidate validations
+            'old_password'      => 'required',
+            'password'          => 'required|same:password_confirm',
+        ]);
 
+        // Validate if the rules are met
+        if ($validator->fails()) {
+            // Return response with errors
+            return response()->json(['errors' => $validator->errors()->all()]);
+
+        } else {
+            // Request all fields
+            $input = $request->all();
+
+            // Validation if the old password is equal to the one in the database
+            if(Hash::check($request->old_password, $user->password)) {                
+                
+                // Condition if password field is empty
+                if(!empty($input['password'])){ 
+                    $input['password'] = Hash::make($input['password']);
+                }
+
+                // Update password
+                $user->update($input);
+
+                // Return response value to script
+                return response()->json([$user, 'success' => 'Senha atualizada com sucesso!.']);
+                
+            }else {
+                // Return json with errors
+                return response()->json(['errors' => ['Senha antiga incorreta.']]);
+            }
+        }
     }
-
 
     public function editPersonalData($id)
     {
+
+
         // Find user by id
         $user = User::find($id);
 
@@ -122,15 +162,15 @@ class UserController extends Controller
 
             // Documents validations
             'elector_title'             => ($request->nationality == 0) ? 'required|unique:documents,elector_title,' . $document->id : '',
-            'file_title'                => ($request->nationality == 0 && !empty($path_file_title)) ? 'required' : '',
+            'file_title'                => ($request->nationality == 0 && !empty($path_file_title)) ? 'required|image' : 'image',
             'military_certificate'      => ($request->genre == 0 && $request->nationality == 0) ? 'required|unique:documents,military_certificate,'.$document->id : '',
-            'file_military'             => ($request->genre == 0 && $request->nationality == 0  && !empty($path_file_military)) ? 'required' : '',
+            'file_military'             => ($request->genre == 0 && $request->nationality == 0  && !empty($path_file_military)) ? 'required|image' : 'image',
             'date_issue'                => 'required',
             'uf_issue'                  => 'required',
 
             // Address validations
             'city'                      => 'required',
-            'file_address'              => (!empty($path_file_address)) ? 'required' : '',
+            'file_address'              => (!empty($path_file_address)) ? 'required|image' : 'image',
             'neighborhood'              => 'required',
             'number'                    => 'required',
             'postal_code'               => 'required',
@@ -238,8 +278,13 @@ class UserController extends Controller
         }
     }
 
+    public function storeAcademicData(Request $request)
+    {
+    }
+
     public function updateAcademicData($id, Request $request)
     {
+
         // Validate all fields
         $validator = Validator::make($request->all(), [
             'file_graduate.*' => !empty($path_file) ? 'required|file|max:4000|mimes:pdf' : 'file|max:4000|mimes:pdf',
@@ -275,8 +320,8 @@ class UserController extends Controller
             $areaScholarityArray = array();
             $scholarityArray = array();
 
-            foreach ($request['graduate_dinamic'] as $k => $d) {   
-                $candidate = Candidate::where('user_id', $id)->first();            
+            foreach ($request['graduate_dinamic'] as $k => $d) {
+                $candidate = Candidate::where('user_id', $id)->first();
                 $scholarityId = Scholarity::where('candidate_id', $candidate->id)->get();
 
                 // Construct the array to call values correctly
@@ -287,7 +332,8 @@ class UserController extends Controller
                 $areaScholarity[] = ScholarityArea::distinct()->whereIn('scholarity_id', [$areaScholarityArray[$k]])->first();
             }
 
-            for ($i=0; $i < count($scholarity); $i++) {
+
+            for ($i=0; $i < sizeof($scholarity); $i++) {
                 // Validate if file graduate exist
                 if ($request->hasFile('file_graduate.'.$i) && $request->file('file_graduate.'.$i)->isValid()) {
                     $file = Input::file('file_graduate.'.$i);
@@ -303,7 +349,9 @@ class UserController extends Controller
                 $scholarity[$i]->end_date  = Helper::br_to_bank($request->inputDataConclusao[$i]);
                 $scholarity[$i]->init_date = Helper::br_to_bank($request->inputDataConclusao[$i]);
                 if($path_file) { $scholarity[$i]->link = $path_file; }
-                $scholarity[$i]->scholarity_type = $scholarity_type[$i];
+                //dd($scholarity_type[$request->graduate_dinamic[$k]], $scholarity_type, $request->graduate_dinamic[$k]);
+
+                $scholarity[$i]->scholarity_type = $scholarity_type[$request->graduate_dinamic[$i]];
                 $scholarity[$i]->teaching_institution = $request->inpuInstituicao[$i];
                 $scholarity[$i]->area_id = $request->area_id[$i];
                 $scholarity[$i]->course_name = $request->inputCursos[$i];
@@ -330,7 +378,8 @@ class UserController extends Controller
         }
     }
 
-    public function area() {
+    public function area() 
+    {
         // Create area list to select box
         $area = Area::orderBy('description', 'asc')->select('description', 'id')->get();
 
@@ -338,7 +387,8 @@ class UserController extends Controller
         echo json_encode($area);
     }
 
-    public function subarea($area) {
+    public function subarea($area) 
+    {
         // Add area value
         $area = (int) $area;
 

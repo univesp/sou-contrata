@@ -6,6 +6,7 @@
 
 @section('css')
     <link href="{{URL::asset('/css/style.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -23,7 +24,7 @@
         <ul class="nav nav-tabs">
             <li class="enabled"><a href="{{route('admin/personal-data/edit', $candidate->user_id)}}">Dados Pessoais</a></li>
             <li class="active"><a href="{{route('admin/academic-data/edit', $candidate->user_id)}}">Dados Academicos</a></li>
-            <li style="display:none;" class="enabled"><a href="{{route('admin/password/edit', $candidate->user_id)}}">Senha</a></li>
+            <li class="enabled"><a href="{{route('admin/password/edit', $candidate->user_id)}}">Senha</a></li>
         </ul>
 
         <p class="ob"><span class="cor-campo"> *</span>Campos Obrigatórios</p>
@@ -41,6 +42,11 @@
             </div>
             <br />
             <hr />
+            <div style="float:right;">
+                <div class="row">
+                    <button type="button" class="btn btn-success btn-sm novo">Adicionar Nova Graduação</button>
+                </div>
+            </div>
             @foreach($scholarity as $scholl)
                 <div class="row">
                     <h3>Formação Acadêmica</h3>
@@ -50,6 +56,8 @@
                             <div class="col-md-12">
                                 <select name="graduate_dinamic[]" id="0" class="form-control graduate_dinamic tier">
                                     <option value="">SELECIONE A SUA FORMAÇÃO</option>
+
+
                                     <option value="0" @if (old('graduate_dinamic.0', $scholl->scholarity_type)=='graduate' ) selected="selected" @endif>GRADUAÇÃO</option>
                                     <option value="1" @if (old('graduate_dinamic.0', $scholl->scholarity_type)=='master' ) selected="selected" @endif>MESTRADO</option>
                                     <option value="2" @if (old('graduate_dinamic.0', $scholl->scholarity_type)=='doctorate' ) selected="selected" @endif>DOUTORADO</option>
@@ -111,9 +119,7 @@
                                 </div>
                                 <span class="cor-campo">* Formato do arquivo deve ser PDF, com tamanho max de 4 MB</span></label>
                             </div><br />
-                            <div class="col-md-1">
-                                <button type="button" class="btn btn-success btn-sm novo">Novo</button>
-                            </div>
+
                         </div>
                     </div>
                 </div>
