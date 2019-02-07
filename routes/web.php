@@ -74,7 +74,7 @@ Route::get('search-data','PersonalDataController@searchData')->name('search-data
 
 //Tela de download de PDF
 Route::post('search-data/{cpf}','PersonalDataController@searchForTeacher')->name('search');
-Route::post('pdf-download/{cpf}','PersonalDataController@downloadPDF')->name('download');
+Route::post('pdf-download/{id}','PersonalDataController@downloadPDF')->name('download');
 
 
 
@@ -96,6 +96,10 @@ Route::post('admin/password/update/{id}','Admin\UserController@updatePassword')
     ->name('admin/password/update')
     ->middleware('login');
 
+Route::post('admin/password/update/{id}','Admin\UserController@updatePassword')
+    ->name('admin/password/update')
+    ->middleware('login');
+
 // Edit personal data
 Route::get('admin/personal-data/edit/{id}','Admin\UserController@editPersonalData')
     ->name('admin/personal-data/edit')
@@ -109,14 +113,24 @@ Route::post('admin/personal-data/update/{id}/{candidate_id}','Admin\UserControll
 Route::get('admin/academic-data/edit/{id}','Admin\UserController@editAcademicData')
     ->name('admin/academic-data/edit')
     ->middleware('login');
+
 Route::post('admin/academic-data/update/{id}','Admin\UserController@updateAcademicData')
     ->name('admin/academic-data/update')
+    ->middleware('login');
+
+// Add scholarity
+Route::post('admin/academic-data/store','Admin\UserController@storeAcademicData')
+    ->name('admin/academic-data/store')
     ->middleware('login');
 
 // Area & Subarea
 Route::get('admin/area','Admin\UserController@area')
     ->name('admin/area')
     ->middleware('login');
+
 Route::get('admin/subarea/{area}','Admin\UserController@subarea')
     ->name('admin/subarea')
     ->middleware('login');
+
+
+
