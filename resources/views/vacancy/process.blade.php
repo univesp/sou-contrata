@@ -55,8 +55,7 @@
 			</thead>
 			<tbody>
 			@if(isset($data))
-				@foreach($data as $d)
-
+                @foreach($data as $d)
 					<tr>
 						<td>{{$d->title}}</td>
 						<td>{{$d->matter}}</td>
@@ -64,8 +63,7 @@
 						<td>{{$d->offer}}</td>
 						<td>{{$d->type}}</td>
 						<td>
-                            <?php $diff = date_diff(date_create($d->edict->date_end), date_create(now()));?>
-                            @if($diff->format("%R%a") < 0)
+                            @if(\App\Helpers\Helper::dateDiff($d->edict->date_end) >= 0)
                                 @if(!$d->applications->isEmpty() )
                                     <a href="#"> <button type="button"  id="botaoSucess" class="btn btn-success">Credenciado</button></a>
                                 @else
