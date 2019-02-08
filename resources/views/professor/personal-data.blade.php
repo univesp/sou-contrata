@@ -134,9 +134,8 @@
             <h4>Documento de Indentidade</h4>
             <div class="col-md-3">
                 <label for="inputNumDocs" class="fonte-campos">Número de Documento RG<span class="cor-campo"> *</span></label>
-                <input maxlength="45" name="rg_number" type="text" class="form-control" id="inputNumDocs" value="{{ old('rg_number') }}"
-                    required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')" onchange="try{setCustomValidity('')}catch(e){}"
-                    maxlength="9">
+                <input maxlength="9" name="rg_number" type="text" class="form-control" id="inputNumDocs" value="{{ old('rg_number') }}"
+                    required oninvalid="this.setCustomValidity('Digite o Número do RG com dígito')" onchange="try{setCustomValidity('')}catch(e){}">
                 @if($errors->has('rg_number'))
                     <p class="text-danger">{{ $errors->first('rg_number') }}</p>
                 @endif
@@ -169,7 +168,7 @@
                 <label for="inputNumDoc" class="fonte-campos">Número do Documento<span class="cor-campo"> *</span></label>
                 <input name="cpf" type="text" class="form-control" id="inputNumDoc" value="{{ old('cpf') }}" required
                     oninvalid="this.setCustomValidity('Digite o CPF somente números')" onchange="try{setCustomValidity('')}catch(e){}"
-                    pattern="[0-9]+$" maxlength="12">
+                    pattern="[0-9]+$" maxlength="11">
                 @if($errors->has('cpf'))
                     <p class="text-danger">{{ $errors->first('cpf') }}</p>
                 @endif
@@ -325,7 +324,7 @@
             </div>
             <div class="col-md-3">
                 <label for="inputNum_1" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                <input maxlength="20" name="phone" type="text" class="form-control" id="inputNum_1" value="{{ old('phone') }}"
+                <input maxlength="9R" name="phone" type="text" class="form-control" id="inputNum_1" value="{{ old('phone') }}"
                     required oninvalid="this.setCustomValidity('Digite o Telefone')" onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15">
                 @if($errors->has('phone'))
                     <p class="text-danger">{{ $errors->first('phone') }}</p>
@@ -348,7 +347,7 @@
             </div>
             <div class="col-md-3">
                 <label for="inputNum_2" class="fonte-campos">Número<span class="cor-campo"> *</span></label>
-                <input maxlength="20" name="mobile" type="text" class="form-control" id="inputNum_1" value="{{ old('mobile') }}"
+                <input maxlength="9" name="mobile" type="text" class="form-control" id="inputNum_1" value="{{ old('mobile') }}"
                     required oninvalid="this.setCustomValidity('Digite o Celular')"  onchange="try{setCustomValidity('')}catch(e){}" pattern="[0-9]+$" maxlength="15">
                 @if($errors->has('mobile'))
                 <p class="text-danger">{{ $errors->first('mobile') }}</p>
