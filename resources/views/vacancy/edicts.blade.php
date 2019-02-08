@@ -69,25 +69,24 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="classificacao">
                 <h2 class="text-uppercase text-center">Lista de credenciados para disciplinas 2019</h2>
-                <iframe src="{{$data->link_classification}}"
-                    class="iframe-pdf" frameborder="0"></iframe>
-                                <div class="container">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
-                    <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
-                    <span class="texto-formatacao">
-                    Prazo de Inscrição: </span>
-                    {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
-                        @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
-                            (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
-                        @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
-                            Hoje é o ultimo dia
-                        @endif
-                    </span> --}}
-                    <span class="texto-formatacao">Encerrado</span>
-                </div>
-                <br /><br />
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <iframe src="{{$data->link_classification}}" class="iframe-pdf" frameborder="0"></iframe>
+                <div class="container">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        {{--<img src="img/conteudo.jpg"  class="img-responsive, posicao-imagem" alt="conteudo"/>
+                        <img src="img/calendario.jpg"  class="img-responsive" alt="calendario"/>--}}
+                        <span class="texto-formatacao">
+                        Prazo de Inscrição: </span>
+                        {{-- <span class="texto-formatacao">{{ date_format(date_create($data->edict->date_end), 'd/m/Y') }}
+                            @if(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') > '0')
+                                (em {{date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') }} dias)
+                            @elseif(date_diff(date_create($data->edict->date_end), date_create(now()))->format('%d') == '0')
+                                Hoje é o ultimo dia
+                            @endif
+                        </span> --}}
+                        <span class="texto-formatacao">Encerrado</span>
+                    </div>
+                    <br /><br />
+                    <div class="col-md-12 col-sm-12 col-xs-12">
                     @if(!Session::get('user'))
                         <div class="botao-posicao">
                             <a href="{{route('login')}}"><button type="button" class="btn btn-danger">LOGIN</button></a>
@@ -103,22 +102,22 @@
                         </div>
                     @endif
                 </div>
+                </div>
             </div>
-        </div>
 
-        <div class="container">
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="text-center">
-                    <a class="texto-formatacao" target="_blank" href="{{$data->link_disciplines}}" title="Confira aqui as disciplinas para este edital !"><i class="far fa-file-pdf"></i> Confira aqui as disciplinas para este edital</a>
+            <div class="container">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="text-center">
+                        <a class="texto-formatacao" target="_blank" href="{{$data->link_disciplines}}" title="Confira aqui as disciplinas para este edital !"><i class="far fa-file-pdf"></i> Confira aqui as disciplinas para este edital</a>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-                <div class="text-center">
-                    <a class="texto-formatacao" target="_blank" href="https://drive.google.com/a/univesp.br/file/d/1tmTADnFyAVJh400AQPJmtoY2lzGvFL3z/view?usp=sharing" title="Confira o Manual para Credenciamento"><i class="far fa-file-pdf"></i> Confira o Manual para Credenciamento</a>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="text-center">
+                        <a class="texto-formatacao" target="_blank" href="https://drive.google.com/a/univesp.br/file/d/1tmTADnFyAVJh400AQPJmtoY2lzGvFL3z/view?usp=sharing" title="Confira o Manual para Credenciamento"><i class="far fa-file-pdf"></i> Confira o Manual para Credenciamento</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
     @include('layouts.footer')
 @endsection
